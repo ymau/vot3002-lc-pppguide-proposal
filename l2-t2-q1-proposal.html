@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>L2 - (Proposal Project) Finding Useful Information 01</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>L2 - (Proposal Project) Finding Useful Information (Task 2-Quiz 1)</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Canvas-confetti library -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+<style>
+:root{
+  --bg-gradient: linear-gradient(-45deg,#dbeafe,#e0f2fe,#e0e7ff);
+  --accent:#4f46e5;
+  --accent-2:#ec4899;
+  --ink:#0f172a;
+  --muted:#6b7280;
+  --card-bg:rgba(255,255,255,0.96);
+  --shadow:0 16px 40px rgba(15,23,42,0.18);
+  --good:#22c55e;
+  --bad:#f97316;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;}
+
+body{
+  font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  color:var(--ink);
+  background:var(--bg-gradient);
+  background-size:400% 400%;
+  animation:gradientShift 26s ease-in-out infinite;
+}
+
+.app{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:16px;
+}
+.card{
+  width:100%;
+  max-width:640px;
+  background:var(--card-bg);
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  padding:20px 16px 18px;
+}
+
+/* screens */
+.screen{display:none;}
+.screen.active{display:block;}
+
+/* headings */
+h1{
+  font-size:1.35rem;
+  text-align:center;
+  margin-bottom:4px;
+  color:var(--accent);
+}
+.lead{
+  text-align:center;
+  font-size:.9rem;
+  color:var(--muted);
+  margin-bottom:14px;
+}
+.badge{
+  display:inline-block;
+  padding:4px 10px;
+  border-radius:999px;
+  font-size:.75rem;
+  font-weight:600;
+  background:rgba(79,70,229,0.08);
+  color:var(--accent);
+  margin-bottom:8px;
+}
+
+/* project topic pill */
+.topic-pill-wrapper{
+  text-align:center;
+  margin-bottom:6px;
+}
+
+.topic-pill{
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  padding:4px 10px;
+  border-radius:999px;
+  font-size:.8rem;
+  font-weight:600;
+  background:linear-gradient(135deg,#a5f3fc,#e0e7ff);
+  color:#1e293b;
+}
+
+/* scenario text */
+.scenario-box{
+  background:#f9fafb;
+  border-radius:16px;
+  padding:12px 12px 10px;
+  border:1px solid rgba(148,163,184,0.6);
+  box-shadow:0 8px 22px rgba(15,23,42,0.12);
+  margin-bottom:10px;
+}
+.sentence{
+  padding:6px 4px;
+  border-radius:10px;
+  font-size:.9rem;
+  cursor:pointer;
+  position:relative;
+}
+.sentence:not(:last-child){
+  border-bottom:1px dashed rgba(148,163,184,0.5);
+}
+.sentence-label{
+  position:absolute;
+  right:6px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:.7rem;
+  padding:2px 6px;
+  border-radius:999px;
+  background:#e5e7eb;
+  color:#374151;
+}
+.sentence.correct[data-type="background"]{
+  background:#fefce8;
+}
+.sentence.correct[data-type="purpose"]{
+  background:#eff6ff;
+}
+.sentence.correct[data-type="people"]{
+  background:#ecfdf3;
+}
+.sentence.correct[data-type="success"]{
+  background:#e0f2fe;
+}
+
+/* Chinese translation style - plain text only */
+.sentence-zh {
+  font-size: 0.82rem;
+  color: #6b7280;
+  font-weight: 400;
+  padding: 4px 4px 0 4px;
+  line-height: 1.4;
+  margin-top: 4px;
+}
+
+/* category buttons */
+.chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:10px;
+  justify-content:center;
+}
+.chip{
+  padding:7px 12px;
+  border-radius:999px;
+  border:1px solid transparent;
+  font-size:.8rem;
+  cursor:pointer;
+  color:#0f172a;
+  background:#e5e7eb;
+  box-shadow:0 4px 10px rgba(15,23,42,0.12);
+  transition:.16s ease;
+}
+.chip span{
+  display:block;
+  font-size:.72rem;
+  color:#4b5563;
+}
+.chip[data-type="background"]{
+  background:#fef9c3;
+  border-color:#facc15;
+}
+.chip[data-type="purpose"]{
+  background:#dbeafe;
+  border-color:#60a5fa;
+}
+.chip[data-type="people"]{
+  background:#dcfce7;
+  border-color:#4ade80;
+}
+.chip[data-type="success"]{
+  background:#e0f2fe;
+  border-color:#38bdf8;
+}
+.chip.active{
+  box-shadow:0 0 0 2px rgba(79,70,229,0.28);
+  transform:translateY(-1px);
+}
+
+/* buttons */
+.btn-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:12px;
+  justify-content:center;
+}
+.btn{
+  flex:1 1 auto;
+  padding:9px 12px;
+  border-radius:999px;
+  border:none;
+  cursor:pointer;
+  font-size:.9rem;
+  font-weight:600;
+  font-family:inherit;
+  transition:.16s ease;
+}
+.btn-primary{
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  color:#fff;
+  box-shadow:0 8px 20px rgba(79,70,229,0.4);
+}
+.btn-secondary{
+  background:#fff;
+  color:var(--accent);
+  border:1px solid rgba(148,163,184,0.8);
+}
+.btn:active{
+  transform:scale(.97);
+  box-shadow:none;
+}
+.btn-primary:disabled{
+  opacity:.4;
+  box-shadow:none;
+  cursor:default;
+}
+
+/* feedback & progress */
+.feedback{
+  margin-top:8px;
+  font-size:.86rem;
+  text-align:center;
+  color:var(--muted);
+}
+.feedback strong{color:var(--accent);}
+.progress{
+  margin-top:4px;
+  font-size:.8rem;
+  color:var(--muted);
+  text-align:center;
+}
+
+/* quiz (one section at a time) */
+.quiz-card{
+  background:#f9fafb;
+  border-radius:16px;
+  padding:12px 12px 10px;
+  border:1px solid rgba(148,163,184,0.6);
+  box-shadow:0 8px 22px rgba(15,23,42,0.12);
+  margin-bottom:10px;
+}
+.quiz-heading{
+  font-size:.95rem;
+  font-weight:600;
+}
+.quiz-heading small{
+  display:block;
+  font-size:.8rem;
+  color:#4b5563;
+}
+.quiz-options{
+  margin-top:8px;
+  display:grid;
+  gap:6px;
+}
+.option-btn{
+  padding:7px 9px;
+  border-radius:12px;
+  border:1px solid rgba(148,163,184,0.7);
+  background:#fff;
+  font-size:.85rem;
+  text-align:left;
+  cursor:pointer;
+  transition:.16s ease;
+  position:relative;
+}
+.option-btn.correct{
+  border-color:var(--good);
+  background:#ecfdf3;
+  color:#166534;
+}
+.option-btn.correct::after{
+  content:"✓";
+  position:absolute;
+  right:8px;
+  top:50%;
+  transform:translateY(-50%);
+  font-weight:700;
+  color:#16a34a;
+}
+.option-btn.wrong{
+  border-color:var(--bad);
+  background:#fff7ed;
+  color:#9a3412;
+}
+.option-btn.wrong::after{
+  content:"✗";
+  position:absolute;
+  right:8px;
+  top:50%;
+  transform:translateY(-50%);
+  font-weight:700;
+  color:#dc2626;
+}
+.option-btn.disabled{
+  pointer-events:none;
+  opacity:.85;
+}
+
+/* score */
+.score{
+  margin-top:6px;
+  font-size:.9rem;
+  font-weight:600;
+  text-align:center;
+}
+
+/* background animation */
+@keyframes gradientShift{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="card">
+
+    <!-- SCREEN 1: ACTIVITY 1 -->
+    <section class="screen active" data-screen="act1">
+      <div style="text-align:center;">
+        <span class="badge">Lesson 2 · Quiz 1</span>
+        <h1>Finding Useful Information</h1>
+        <p class="lead">
+          Read the project topic and scenario. <br>Choose a section, then tap sentence(s) that match it.<br>
+          先看專題題目和情境，再為句子選正確部分。
+        </p>
+      </div>
+
+      <div class="topic-pill-wrapper">
+        <div class="topic-pill">
+          Proposal Project Topic: <br/>Improving the college canteen service
+        </div>
+      </div>
+
+      <div class="scenario-box">
+        <div class="sentence" data-id="s1">
+          The college canteen is often very crowded during lunchtime.
+          <div class="sentence-zh">學校飯堂在午飯時間通常十分擠擁。</div>
+        </div>
+        <div class="sentence" data-id="s2">
+          Many students have to wait more than 15 minutes to get their food.
+          <div class="sentence-zh">許多學生需要等候超過十五分鐘才能取得食物。</div>
+        </div>
+        <div class="sentence" data-id="s3">
+          Some students complain that there are not enough healthy food choices.
+          <div class="sentence-zh">部分學生投訴健康食物的選擇不足夠。</div>
+        </div>
+        <div class="sentence" data-id="s4">
+          Your project team wants to improve the canteen service for students.
+          <div class="sentence-zh">你的項目小組希望改善飯堂為學生提供的服務。</div>
+        </div>
+        <div class="sentence" data-id="s5">
+          You will work with the canteen manager and student union to collect opinions.
+          <div class="sentence-zh">你將會與飯堂經理及學生會合作收集意見。</div>
+        </div>
+        <div class="sentence" data-id="s6">
+          If the project is successful, waiting time should be shorter and students should feel more satisfied.
+          <div class="sentence-zh">如果項目成功，等候時間應該會縮短，而學生應該會感到更滿意。</div>
+        </div>
+      </div>
+
+      <div class="chips">
+        <button class="chip" data-type="background">
+          Background<br><span>現在情況／背景</span>
+        </button>
+        <button class="chip" data-type="purpose">
+          Project Purpose<br><span>專題目的</span>
+        </button>
+        <button class="chip" data-type="people">
+          People Involved<br><span>相關人士</span>
+        </button>
+        <button class="chip" data-type="success">
+          Success Criteria<br><span>成功準則</span>
+        </button>
+      </div>
+
+      <div class="progress" id="act1Progress"></div>
+      <div class="feedback" id="act1Feedback">
+        Tap a section heading first, then tap a sentence. 先選部分，再點句子。
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" id="toQuizBtn" disabled>
+          Next: Mini Project Plan ▶
+        </button>
+      </div>
+    </section>
+
+    <!-- SCREEN 2: QUIZ -->
+    <section class="screen" data-screen="quiz">
+      <div style="text-align:center;">
+        <span class="badge">Lesson 2 - Quiz 1</span>
+        <h1>Mini Project Plan Quiz</h1>
+        <p class="lead">
+          Choose the correct sentence.<br>
+          選出最合適的句子
+        </p>
+      </div>
+
+      <div class="quiz-card">
+        <div class="quiz-heading" id="quizHeading"></div>
+        <div class="quiz-heading"><small id="quizHeadingZh"></small></div>
+        <div class="quiz-options" id="quizOptions"></div>
+      </div>
+
+      <div class="feedback" id="quizFeedback">
+        Tap one sentence. 點一個句子。
+      </div>
+      <div class="score" id="quizScore"></div>
+
+      <div class="btn-row">
+        <button class="btn btn-secondary" id="quizBackBtn">Back to Activity</button>
+        <button class="btn btn-primary" id="quizNextBtn">Next section</button>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script>
+/* ----- Activity 1 mapping ----- */
+const act1Answers = {
+  s1:['background'],
+  s2:['background'],
+  s3:['background'],
+  s4:['purpose'],
+  s5:['people'],
+  s6:['success']
+};
+
+/* Quiz sections */
+const quizSections = [
+  {
+    key:'background',
+    titleEn:'Background',
+    titleZh:'現在情況／背景',
+    options:[
+      {text:'Your project team wants to improve the canteen service for students.', textZh:'你的項目小組希望改善飯堂為學生提供的服務。', correct:false},
+      {text:'The college canteen is often very crowded during lunchtime.', textZh:'學校飯堂在午飯時間通常十分擠擁。', correct:true},
+      {text:'If the project is successful, waiting time should be shorter.', textZh:'如果項目成功，等候時間應該會縮短。', correct:false}
+    ]
+  },
+  {
+    key:'purpose',
+    titleEn:'Project Purpose',
+    titleZh:'專題目的',
+    options:[
+      {text:'Many students have to wait more than 15 minutes.', textZh:'許多學生需要等候超過十五分鐘。', correct:false},
+      {text:'You will work with the canteen manager and student union.', textZh:'你將會與飯堂經理及學生會合作。', correct:false},
+      {text:'Your project team wants to improve the canteen service for students.', textZh:'你的項目小組希望改善飯堂為學生提供的服務。', correct:true}
+    ]
+  },
+  {
+    key:'requirements',
+    titleEn:'Requirements',
+    titleZh:'要求',
+    options:[
+      {text:'The canteen is often crowded at lunchtime.', textZh:'飯堂在午飯時間通常十分擠擁。', correct:false},
+      {text:'The new ideas should help students get food more quickly and have healthier choices.', textZh:'新建議應該能協助學生更快取得食物及有更健康的選擇。', correct:true},
+      {text:'Students complain about the lack of healthy food.', textZh:'學生投訴健康食物不足夠。', correct:false}
+    ]
+  },
+  {
+    key:'people',
+    titleEn:'People Involved',
+    titleZh:'相關人士',
+    options:[
+      {text:'You will work with the canteen manager and student union to collect opinions.', textZh:'你將會與飯堂經理及學生會合作收集意見。', correct:true},
+      {text:'Many students have to wait more than 15 minutes.', textZh:'許多學生需要等候超過十五分鐘。', correct:false},
+      {text:'If the project is successful, students should feel more satisfied.', textZh:'如果項目成功，學生應該會感到更滿意。', correct:false}
+    ]
+  },
+  {
+    key:'success',
+    titleEn:'Success Criteria',
+    titleZh:'成功準則',
+    options:[
+      {text:'Your team wants to improve the canteen service.', textZh:'你的小組希望改善飯堂服務。', correct:false},
+      {text:'You will collect opinions from students.', textZh:'你將會收集學生的意見。', correct:false},
+      {text:'If the project is successful, waiting time should be shorter and students should feel more satisfied.', textZh:'如果項目成功，等候時間應該會縮短，而學生應該會感到更滿意。', correct:true}
+    ]
+  }
+];
+
+/* ----- helpers ----- */
+function showScreen(name){
+  document.querySelectorAll('.screen').forEach(sec=>{
+    sec.classList.toggle('active', sec.dataset.screen === name);
+  });
+  window.scrollTo({top:0,behavior:'instant'});
+}
+
+/* ----- Activity 1 ----- */
+let activeType = null;
+const chips = document.querySelectorAll('.chip');
+const sentences = document.querySelectorAll('.sentence');
+const act1Feedback = document.getElementById('act1Feedback');
+const act1Progress = document.getElementById('act1Progress');
+const toQuizBtn = document.getElementById('toQuizBtn');
+
+chips.forEach(chip=>{
+  chip.addEventListener('click',()=>{
+    chips.forEach(c=>c.classList.remove('active'));
+    if(activeType === chip.dataset.type){
+      activeType = null;
+      act1Feedback.textContent = 'Tap a section heading first, then tap a sentence. 先選部分，再點句子。';
+    }else{
+      activeType = chip.dataset.type;
+      chip.classList.add('active');
+      act1Feedback.textContent = `Now tap sentences for ${chip.textContent.trim().split('\n')[0]}.`;
+    }
+  });
+});
+
+sentences.forEach(s=>{
+  s.addEventListener('click',()=>{
+    if(!activeType){
+      act1Feedback.textContent = 'Choose a section first. 先選部分。';
+      return;
+    }
+    const id = s.dataset.id;
+    const correctTypes = act1Answers[id] || [];
+    const already = s.classList.contains('correct') &&
+                    s.dataset.type === activeType;
+    if(already) return;
+
+    if(correctTypes.includes(activeType)){
+      s.classList.add('correct');
+      s.dataset.type = activeType;
+
+      if(!s.querySelector('.sentence-label')){
+        const lab = document.createElement('span');
+        lab.className = 'sentence-label';
+        lab.textContent = activeType;
+        s.appendChild(lab);
+      }else{
+        s.querySelector('.sentence-label').textContent = activeType;
+      }
+
+      act1Feedback.innerHTML = '<strong>Good!</strong> That sentence fits this section.';
+      updateAct1Progress();
+    }else{
+      act1Feedback.textContent = 'Not this section. Try another sentence. 不是這一部分，再試。';
+      s.style.transform='translateX(-3px)';
+      setTimeout(()=>{s.style.transform='';},120);
+    }
+  });
+});
+
+function updateAct1Progress(){
+  const needed = Object.keys(act1Answers).length;
+  let correctCount = 0;
+  sentences.forEach(s=>{
+    if(s.classList.contains('correct')) correctCount++;
+  });
+  act1Progress.textContent = `You have labelled ${correctCount} / ${needed} sentences.`;
+  if(correctCount === needed){
+    act1Feedback.innerHTML = '<strong>Excellent!</strong> You have found all key sentences.';
+    toQuizBtn.disabled = false;
+    // Trigger confetti when Task 1 is complete
+    confetti({
+      particleCount: 150,
+      spread: 70,
+      origin: { y: 0.6 }
+    });
+  }
+}
+
+/* ----- Quiz (one section at a time) ----- */
+let quizIndex = 0;
+let quizCorrect = 0;
+
+const quizHeading = document.getElementById('quizHeading');
+const quizHeadingZh = document.getElementById('quizHeadingZh');
+const quizOptionsBox = document.getElementById('quizOptions');
+const quizFeedback = document.getElementById('quizFeedback');
+const quizScore = document.getElementById('quizScore');
+const quizBackBtn = document.getElementById('quizBackBtn');
+const quizNextBtn = document.getElementById('quizNextBtn');
+
+function showQuizSection(){
+  const sec = quizSections[quizIndex];
+  quizHeading.textContent = sec.titleEn;
+  quizHeadingZh.textContent = sec.titleZh;
+  quizOptionsBox.innerHTML = '';
+  quizFeedback.textContent = 'Tap one sentence. 點一個句子。';
+  quizScore.textContent = `Section ${quizIndex+1} / ${quizSections.length}`;
+
+  sec.options.forEach(opt=>{
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.dataset.correct = opt.correct ? '1' : '0';
+    btn.innerHTML = opt.text + '<div class="sentence-zh">' + opt.textZh + '</div>';
+    btn.addEventListener('click',()=>onOptionClick(btn));
+    quizOptionsBox.appendChild(btn);
+  });
+
+  quizNextBtn.disabled = true;
+}
+
+function onOptionClick(btn){
+  const all = quizOptionsBox.querySelectorAll('.option-btn');
+  all.forEach(b=>b.classList.add('disabled'));
+
+  const isCorrect = btn.dataset.correct === '1';
+  if(isCorrect){
+    btn.classList.add('correct');
+    quizFeedback.textContent = 'Correct! 做得好！';
+    quizCorrect++;
+    
+    // Trigger confetti for each correct answer in Task 2
+    confetti({
+      particleCount: 100,
+      spread: 60,
+      origin: { y: 0.6 }
+    });
+    
+  }else{
+    btn.classList.add('wrong');
+    const correctBtn = Array.from(all).find(b=>b.dataset.correct==='1');
+    if(correctBtn) correctBtn.classList.add('correct');
+    quizFeedback.textContent = 'Not the best choice. Look at the green sentence. 留意綠色句子。';
+  }
+
+  if(quizIndex === quizSections.length-1){
+    quizNextBtn.textContent = 'See result 查看結果';
+  }else{
+    quizNextBtn.textContent = 'Next section 下一部分';
+  }
+  quizNextBtn.disabled = false;
+}
+
+quizNextBtn.addEventListener('click', () => {
+  if (quizIndex < quizSections.length - 1) {
+    quizIndex++;
+    showQuizSection();
+  } else {
+    quizScore.textContent = `You got ${quizCorrect} / ${quizSections.length} sections correct. 你答對 ${quizCorrect} 個部分。`;
+    if (quizCorrect === quizSections.length) {
+      quizFeedback.textContent = 'Excellent! All sections are correct.';
+      // Trigger bigger confetti celebration for completing all quiz sections perfectly
+      confetti({
+        particleCount: 200,
+        spread: 100,
+        origin: { y: 0.5 }
+      });
+    } else {
+      quizFeedback.textContent = 'Check the green sentences to see the best answers. 留意綠色句子。';
+    }
+    quizNextBtn.disabled = true;
+  }
+});
+
+quizBackBtn.addEventListener('click',()=>{
+  showScreen('act1');
+});
+
+/* ----- navigation ----- */
+toQuizBtn.addEventListener('click',()=>{
+  quizIndex = 0;
+  quizCorrect = 0;
+  quizNextBtn.disabled = true;
+  quizNextBtn.textContent = 'Next section 下一部分';
+  showQuizSection();
+  showScreen('quiz');
+});
+
+/* init */
+updateAct1Progress();
+
+</script>
+
+</body>
+</html>
+    
+  </body>
+  
+</html>

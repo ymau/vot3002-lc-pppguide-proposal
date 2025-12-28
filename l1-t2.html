@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>L1 - Project Plan Headings (Quiz)</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Project Plan Headings – Flashcards & Quiz</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Add the canvas-confetti library -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js">
+</script>
+  
+<style>
+:root{
+  --bg-gradient: linear-gradient(-45deg,#D8EFD3,#F5DAD2,#FFFED3);
+  --accent:#4f46e5;
+  --accent-2:#ec4899;
+  --ink:#0f172a;
+  --muted:#6b7280;
+  --card-bg:rgba(255,255,255,0.96);
+  --shadow:0 16px 40px rgba(15,23,42,0.18);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;}
+
+body{
+  font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  color:var(--ink);
+  background:var(--bg-gradient);
+  background-size:400% 400%;
+  animation:gradientShift 26s ease-in-out infinite;
+}
+
+/* layout */
+.app{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:16px;
+}
+.card{
+  width:100%;
+  max-width:520px;
+  background:var(--card-bg);
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  padding:20px 16px 18px;
+}
+
+/* screens */
+.screen{display:none;}
+.screen.active{display:block;}
+
+/* headings */
+h1{
+  font-size:1.4rem;
+  text-align:center;
+  margin-bottom:4px;
+  color:var(--accent);
+}
+.lead{
+  text-align:center;
+  font-size:.9rem;
+  color:var(--muted);
+  margin-bottom:14px;
+}
+.badge{
+  display:inline-block;
+  padding:4px 10px;
+  border-radius:999px;
+  font-size:.75rem;
+  font-weight:600;
+  background:rgba(79,70,229,0.08);
+  color:var(--accent);
+  margin-bottom:8px;
+}
+
+/* flashcard */
+.flashcard{
+  background:linear-gradient(150deg,#a5f3fc,#e0e7ff,#FFF2EB,#ECFAE5);
+  border-radius:18px;
+  padding:18px 14px;
+  border:1px solid rgba(148,163,184,0.6);
+  box-shadow:0 10px 26px rgba(15,23,42,0.12);
+  text-align:center;
+  margin-bottom:12px;
+}
+.flash-heading{
+  font-size:1.05rem;
+  font-weight:600;
+}
+.flash-heading small{
+  display:block;
+  font-size:.9rem;
+  color:#4b5563;
+  margin-top:2px;
+}
+.flash-body{
+  margin-top:10px;
+  font-size:.92rem;
+  color:var(--muted);
+}
+
+/* buttons */
+.btn-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:10px;
+}
+.btn{
+  flex:1 1 auto;
+  padding:9px 12px;
+  border-radius:999px;
+  border:none;
+  cursor:pointer;
+  font-size:.9rem;
+  font-weight:600;
+  font-family:inherit;
+  transition:.16s ease;
+}
+.btn-primary{
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  color:#fff;
+  box-shadow:0 8px 20px rgba(79,70,229,0.4);
+}
+.btn-secondary{
+  background:#fff;
+  color:var(--accent);
+  border:1px solid rgba(148,163,184,0.8);
+}
+.btn:active{
+  transform:scale(.97);
+  box-shadow:none;
+}
+
+/* progress */
+.progress{
+  margin-top:6px;
+  font-size:.82rem;
+  color:var(--muted);
+  text-align:center;
+}
+
+/* quiz */
+.quiz-question{
+  font-size:1rem;
+  font-weight:600;
+  text-align:center;
+  margin-bottom:8px;
+  font-family: 'Poppins', sana-serif;
+}
+.quiz-question small{
+  display:block;
+  font-size:.9rem;
+  color:#4b5563;
+  margin-top:2px;
+}
+.quiz-options{
+  display:grid;
+  gap:8px;
+  margin-top:10px;
+}
+.option-btn{
+  padding:10px 12px;
+  border-radius:14px;
+  border:1px solid rgba(148,163,184,0.7);
+  background:#f9fafb;
+  text-align:left;
+  font-size:.9rem;
+  cursor:pointer;
+  transition:.16s ease;
+}
+.option-btn.correct{
+  border-color:#22c55e;
+  background:#ecfdf3;
+  color:#166534;
+  position:relative;
+}
+
+.option-btn.correct::after{
+  content:"✓";
+  position:absolute;
+  right:10px;
+  top:50%;
+  transform:translateY(-50%);
+  font-weight:700;
+  color:#16a34a;
+}
+
+.option-btn.wrong{
+  border-color:#f97316;
+  background:#fff7ed;
+  color:#9a3412;
+  position:relative;
+}
+
+.option-btn.wrong::after{
+  content:"✗";
+  position:absolute;
+  right:10px;
+  top:50%;
+  transform:translateY(-50%);
+  font-weight:700;
+  color:#dc2626;
+}
+
+.option-btn.disabled{
+  pointer-events:none;
+  opacity:.8;
+}
+
+/* feedback */
+.feedback{
+  margin-top:8px;
+  font-size:.88rem;
+  text-align:center;
+  color:var(--muted);
+}
+.feedback strong{color:var(--accent);}
+
+/* score */
+.score{
+  margin-top:10px;
+  font-size:.95rem;
+  text-align:center;
+  font-weight:600;
+}
+
+/* animations */
+@keyframes gradientShift{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="card">
+
+    <!-- SCREEN 1: FLASHCARDS -->
+    <section class="screen active" data-screen="flash">
+      <div style="text-align:center;">
+        <span class="badge">Lesson 1</span>
+        <h1>Understanding the <br/>Headings of a Project Plan</h1>
+        <p class="lead">
+          認識專題計劃書的重要標題
+        </p>
+      </div>
+
+      <div class="flashcard" id="flashcard">
+        <div class="flash-heading" id="flashHeadingEn"></div>
+        <div class="flash-heading">
+          <small id="flashHeadingZh"></small>
+        </div>
+        <div class="flash-body" id="flashBody"></div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-secondary" id="showMeaningBtn">
+          Show meaning
+        </button>
+        <button class="btn btn-primary" id="nextFlashBtn">
+          Next card
+        </button>
+      </div>
+
+      <div class="progress" id="flashProgress"></div>
+
+      <div class="feedback" id="flashFeedback">
+        Try to recall the meaning before you tap<br/> 在點開卡片之前，先嘗試回想標題的意思
+      </div>
+
+      <div class="btn-row" style="margin-top:14px;">
+        <button class="btn btn-secondary" id="goToQuizBtn">
+          Go to quiz 
+        </button>
+      </div>
+    </section>
+
+    <!-- SCREEN 2: QUIZ -->
+    <section class="screen" data-screen="quiz">
+      <div style="text-align:center;">
+        <span class="badge">Project Plan Headings · Quick Quiz</span>
+        <h1>Check Your Understanding</h1>
+        <p class="lead">
+          Choose the best meaning for each heading<br>
+          為每個標題選出最合適的解釋
+        </p>
+      </div>
+
+      <div class="flashcard">
+        <div class="quiz-question" id="quizHeadingEn"></div>
+        <div class="quiz-question"><small id="quizHeadingZh"></small></div>
+        <div class="quiz-options" id="quizOptions"></div>
+      </div>
+
+      <div class="feedback" id="quizFeedback">
+        Tap an option  點一個選項
+      </div>
+
+      <div class="score" id="quizScore"></div>
+
+      <div class="btn-row">
+        <button class="btn btn-secondary" id="quizBackBtn">
+          Back to cards
+        </button>
+        <button class="btn btn-primary" id="quizNextBtn">
+          Next question
+        </button>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script>
+const items = [
+  {
+    key:'topic',
+    headingEn:'Project Topic',
+    headingZh:'專題題目',
+    meaningEn:'Name of your project (one clear line)',
+    meaningZh:'專題的名稱(一行寫清楚)'
+  },
+  {
+    key:'background',
+    headingEn:'Background',
+    headingZh:'背景',
+    meaningEn:'Who has the problem now and what is happening?',
+    meaningZh:'現在是誰遇到這個問題？情況是怎樣？'
+  },
+  {
+    key:'purpose',
+    headingEn:'Project Purpose',
+    headingZh:'專題目的',
+    meaningEn:'What do you want to change or improve with this project?',
+    meaningZh:'你想透過這個專題改變或改善甚麼？'
+  },
+  {
+    key:'requirements',
+    headingEn:'Requirements',
+    headingZh:'要求',
+    meaningEn:'Important features your product or service must include',
+    meaningZh:'產品／服務一定要具備的要素'
+  },
+  {
+    key:'success',
+    headingEn:'Success Criteria',
+    headingZh:'成功準則',
+    meaningEn:'How you will check if the project is successful',
+    meaningZh:'你會怎樣檢查／判斷專題是否成功'
+  },
+  {
+    key:'people',
+    headingEn:'People Involved',
+    headingZh:'相關人士',
+    meaningEn:'People you need to work with or think about',
+    meaningZh:'你要合作或需要考慮的人'
+  },
+  {
+    key:'problems',
+    headingEn:'Potential Problems',
+    headingZh:'可能出現的問題',
+    meaningEn:'Things that might go wrong or be difficult',
+    meaningZh:'可能出錯或困難的地方'
+  },
+  {
+    key:'milestone',
+    headingEn:'Milestone',
+    headingZh:'里程碑',
+    meaningEn:'Big tasks and when they should be finished',
+    meaningZh:'重要工作及完成的時間'
+  },
+  {
+    key:'resources',
+    headingEn:'Resources Needed',
+    headingZh:'所需資源',
+    meaningEn:'Materials, tools, venues or help you need',
+    meaningZh:'你需要的物料、場地、房間或協助'
+  },
+  {
+    key:'outputs',
+    headingEn:'Project Outputs',
+    headingZh:'專題成果',
+    meaningEn:'What you will hand in or present at each stage',
+    meaningZh:'你在每個階段要提交或要展示的東西'
+  }
+];
+
+/* helpers */
+function shuffle(arr){
+  return arr
+    .map(v => ({v, sort:Math.random()}))
+    .sort((a,b)=>a.sort-b.sort)
+    .map(({v})=>v);
+}
+function showScreen(name){
+  document.querySelectorAll('.screen').forEach(sec=>{
+    sec.classList.toggle('active', sec.dataset.screen === name);
+  });
+  window.scrollTo({top:0,behavior:'instant'});
+}
+
+/* FLASHCARDS */
+let flashIndex = 0;
+const flashHeadingEn = document.getElementById('flashHeadingEn');
+const flashHeadingZh = document.getElementById('flashHeadingZh');
+const flashBody = document.getElementById('flashBody');
+const flashProgress = document.getElementById('flashProgress');
+const flashFeedback = document.getElementById('flashFeedback');
+const showMeaningBtn = document.getElementById('showMeaningBtn');
+const nextFlashBtn = document.getElementById('nextFlashBtn');
+const goToQuizBtn = document.getElementById('goToQuizBtn');
+
+function showFlashcard(){
+  const item = items[flashIndex];
+  flashHeadingEn.textContent = item.headingEn;
+  flashHeadingZh.textContent = item.headingZh;
+  flashBody.textContent = '';  // no repeated instruction
+  flashProgress.textContent = `Card ${flashIndex+1} / ${items.length}`;
+  flashFeedback.textContent = 'Try to recall the meaning before you tap';
+}
+
+showMeaningBtn.addEventListener('click',()=>{
+  const item = items[flashIndex];
+  flashBody.innerHTML = `${item.meaningEn}<br>${item.meaningZh}`;
+  flashFeedback.textContent = '';
+});
+
+nextFlashBtn.addEventListener('click',()=>{
+  flashIndex = (flashIndex + 1) % items.length;
+  showFlashcard();
+});
+
+goToQuizBtn.addEventListener('click',()=>{
+  startQuiz();
+  showScreen('quiz');
+});
+
+/* QUIZ */
+let quizOrder = [];
+let quizIndex = 0;
+let quizScore = 0;
+const quizHeadingEn = document.getElementById('quizHeadingEn');
+const quizHeadingZh = document.getElementById('quizHeadingZh');
+const quizOptions = document.getElementById('quizOptions');
+const quizFeedback = document.getElementById('quizFeedback');
+const quizScoreEl = document.getElementById('quizScore');
+const quizBackBtn = document.getElementById('quizBackBtn');
+const quizNextBtn = document.getElementById('quizNextBtn');
+
+function startQuiz(){
+  quizOrder = shuffle(items.slice());
+  quizIndex = 0;
+  quizScore = 0;
+  quizScoreEl.textContent = '';
+  showQuizQuestion();
+}
+
+function showQuizQuestion(){
+  const item = quizOrder[quizIndex];
+  quizHeadingEn.textContent = item.headingEn;
+  quizHeadingZh.textContent = item.headingZh;
+
+  const wrongs = shuffle(items.filter(i=>i.key!==item.key)).slice(0,2);
+  const allOptions = shuffle([item, ...wrongs]);
+
+  quizOptions.innerHTML = '';
+  allOptions.forEach(opt=>{
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.dataset.key = opt.key;
+    btn.innerHTML = `${opt.meaningEn}<br><small>${opt.meaningZh}</small>`;
+    btn.addEventListener('click',()=>onOptionClick(btn,item.key));
+    quizOptions.appendChild(btn);
+  });
+
+  quizFeedback.textContent = 'Tap an option 點一個選項';
+  quizScoreEl.textContent = `Question ${quizIndex+1} / ${quizOrder.length}`;
+}
+
+function onOptionClick(btn, correctKey){
+  const all = quizOptions.querySelectorAll('.option-btn');
+  all.forEach(b=>b.classList.add('disabled'));
+
+  const chosenKey = btn.dataset.key;
+  if(chosenKey === correctKey){
+    btn.classList.add('correct');
+    quizFeedback.innerHTML = '<strong>Correct!</strong> 做得好！';
+    quizScore++;
+    
+    // Trigger confetti effect for correct answer
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 }
+    });
+    
+  }else{
+    btn.classList.add('wrong');
+    const correctBtn = Array.from(all).find(b=>b.dataset.key===correctKey);
+    if(correctBtn) correctBtn.classList.add('correct');
+    quizFeedback.innerHTML = 'Not the correct answer. Look at the green one. 留意綠色正確答案。';
+  }
+
+  if(quizIndex === quizOrder.length-1){
+    quizNextBtn.textContent = 'See result 查看分數';
+  }else{
+    quizNextBtn.textContent = 'Next question';
+  }
+}
+
+quizNextBtn.addEventListener('click',()=>{
+  if(quizIndex < quizOrder.length-1){
+    quizIndex++;
+    showQuizQuestion();
+  }else{
+    quizScoreEl.textContent = `You got ${quizScore} / ${quizOrder.length} correct. 你答對 ${quizScore} 題。`;
+    quizFeedback.textContent = 'You can press “Back to cards” to review again. 可以返回卡片再溫習。';
+  }
+});
+
+quizBackBtn.addEventListener('click',()=>{
+  showScreen('flash');
+});
+
+/* init */
+showFlashcard();
+</script>
+</body>
+</html>
+    
+  </body>
+  
+</html>

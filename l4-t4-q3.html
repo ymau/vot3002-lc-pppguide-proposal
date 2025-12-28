@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>L4 - Project Plan (Phrases for Describing Success Criteria)</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Project Plan - Phrases for Describing Success Criteria</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:linear-gradient(-45deg,#dbeafe,#e0f2fe,#e0e7ff);
+  background-size:400% 400%;
+  animation:grad 24s ease-in-out infinite;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  padding:20px 10px;
+}
+@keyframes grad{
+  0%{background-position:0 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0 50%}
+}
+
+.container{
+  width:100%;
+  max-width:960px;
+  background:#fff;
+  border-radius:26px;
+  box-shadow:0 22px 60px rgba(15,23,42,0.25);
+  overflow:hidden;
+}
+
+/* hero cover */
+.hero-cover{
+background: linear-gradient(135deg, #4caf50 0%, #2fb6a0 50%, #2196f3 100%);
+  padding:28px 24px 20px;
+  color:#fff;
+  position:relative;
+}
+.hero-title{
+  font-size:1.8rem;
+  font-weight:700;
+  text-align:center;
+}
+.hero-subtitle{
+  margin-top:6px;
+  font-size:.95rem;
+  text-align:center;
+  opacity:.95;
+}
+.lang-pill{
+  position:absolute;
+  top:16px;
+  right:18px;
+  padding:5px 14px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.85);
+  background:rgba(15,23,42,.18);
+  color:#fff;
+  font-size:.78rem;
+  font-weight:600;
+  cursor:pointer;
+}
+
+/* slim progress + score */
+.cover-progress-wrap{
+  padding:10px 24px 6px;
+  background:#fff;
+}
+.cover-bar{
+  width:100%;
+  height:14px;
+  border-radius:999px;
+  background:#e5e7eb;
+  overflow:hidden;
+}
+.cover-bar-fill{
+  width:0%;
+  height:100%;
+  background:linear-gradient(90deg,#22c55e,#a3e635);
+  transition:width .4s ease;
+}
+.cover-score{
+  text-align:center;
+  font-size:.9rem;
+  color:#4b5563;
+  margin-top:4px;
+}
+.cover-score span{
+  color:#0ea5e9;
+  font-weight:600;
+}
+
+/* cover body */
+.cover-body{
+  padding:26px 24px 20px;
+  text-align:center;
+}
+.dots-row{
+  font-size:2rem;
+  margin-bottom:14px;
+}
+.cover-main-title{
+  font-size:1.5rem;
+  font-weight:700;
+  color:#4f46e5;
+  margin-bottom:6px;
+}
+.cover-main-sub{
+  font-size:.95rem;
+  color:#4b5563;
+}
+
+/* big start button */
+.cover-btn-wrap{
+  padding:0 24px 22px;
+}
+.big-start-btn{
+  width:100%;
+  border:none;
+  border-radius:999px;
+  padding:16px 24px;
+  font-size:1rem;
+  font-weight:700;
+  color:#fff;
+  cursor:pointer;
+  background:linear-gradient(90deg,#7b1fa2,#3949ab,#00acc1);
+  box-shadow:0 14px 30px rgba(55,48,163,.45);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+}
+
+/* pages */
+.page{display:none;padding:22px 22px 26px;position:relative;}
+.page.active{display:block;}
+
+.task-header{text-align:left;margin-bottom:12px;}
+
+  .task-header-box{
+  background: linear-gradient(135deg, #a5b4fc 0%, #c4b5fd 50%, #f9a8d4 100%);
+  color:#fff;
+  padding:14px 16px;
+  border-radius:18px;
+  margin-bottom:16px;
+}
+
+.task-header-box h2{
+  font-size:1.2rem;
+  font-weight:700;
+  margin-bottom:4px;
+}
+
+.task-header-box p{
+  font-size:.9rem;
+  opacity:.96;
+}
+
+.task-title{
+  font-size:1.25rem;
+  font-weight:700;
+  color:#6d28d9;
+}
+.task-sub{
+  font-size:.9rem;
+  color:#4b5563;
+  margin-top:4px;
+}
+
+/* on-task language toggle */
+.page-toggle{
+  position:absolute;
+  top:10px;
+  right:18px;
+}
+
+/* Level1 groups */
+.sc-part-label{
+  font-size:.85rem;
+  font-weight:600;
+  color:#334155;
+  margin:10px 0 4px;
+}
+.sc-groups{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:12px;
+  margin-bottom:10px;
+}
+.sc-group{
+  background:#f9fafb;
+  border-radius:14px;
+  padding:10px 10px 12px;
+  border:1px solid #e5e7eb;
+}
+.sc-group h3{
+  font-size:.9rem;
+  color:#4c1d95;
+}
+.sc-tip{
+  font-size:.78rem;
+  color:#6b7280;
+  margin-bottom:6px;
+}
+.sc-drop-zone{
+  min-height:56px;
+  border-radius:10px;
+  border:2px dashed #e5e7eb;
+  padding:6px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  background:#fff;
+}
+.sc-drop-zone.correct{
+  border-color:#22c55e;
+  background:#ecfdf3;
+}
+.sc-drop-zone.incorrect{
+  border-color:#f97316;
+  background:#fff7ed;
+}
+
+/* phrase chips */
+.sc-phrases-bank{
+  margin-top:8px;
+  padding:8px;
+  border-radius:12px;
+  background:#eef2ff;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.sc-chip{
+  padding:6px 10px;
+  border-radius:999px;
+  background:#fff;
+  border:1px solid #c4b5fd;
+  font-size:.82rem;
+  cursor:grab;
+  color:#111827;
+  box-shadow:0 2px 6px rgba(148,163,184,.35);
+}
+.sc-chip.dragging{opacity:.7}
+
+/* Level 2 redesigned */
+.l2-header{
+  margin-bottom: 10px;
+}
+
+.l2-shell{
+  margin-top: 4px;
+  padding: 18px 18px 16px;
+  border-radius: 22px;
+  background: radial-gradient(circle at top left,#eef2ff 0,#f9fafb 45%,#f1f5f9 100%);
+  border: 1px solid #e2e8f0;
+  box-shadow:0 16px 35px rgba(15,23,42,0.10);
+}
+
+.l2-context{
+  font-size:.9rem;
+  color:#6b7280;
+  margin-bottom:10px;
+}
+
+.l2-sentence{
+  font-size:1.02rem;
+  font-weight:600;
+  color:#111827;
+  margin-bottom:14px;
+  line-height:1.6;
+}
+.l2-sentence span.blank{
+  border-bottom:3px solid #6366f1;
+  padding:0 6px;
+  border-radius:4px;
+}
+
+/* options as soft pills */
+.l2-options{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:10px;
+}
+
+.option-btn{
+  padding:9px 18px;
+  border-radius:999px;
+  border:1px solid transparent;
+  background:linear-gradient(135deg,#eef2ff,#e0f2fe);
+  cursor:pointer;
+  font-size:.9rem;
+  color:#1f2937;
+  transition:transform .12s ease, box-shadow .12s ease, background .12s ease, border-color .12s ease;
+  box-shadow:0 4px 10px rgba(148,163,184,.35);
+}
+.option-btn:hover{
+  transform:translateY(-1px);
+  box-shadow:0 6px 14px rgba(148,163,184,.45);
+  border-color:#818cf8;
+}
+.option-btn.correct{
+  background:linear-gradient(135deg,#bbf7d0,#6ee7b7);
+  border-color:#16a34a;
+  color:#064e3b;
+}
+.option-btn.wrong{
+  background:linear-gradient(135deg,#fee2e2,#fed7aa);
+  border-color:#f97316;
+  color:#7c2d12;
+}
+
+.l2-footer{
+  margin-top:4px;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+.score-line{
+  font-size:.86rem;
+  color:#64748b;
+  text-align:left;
+}
+
+.feedback{
+  font-size:.9rem;
+  text-align:left;
+}
+.feedback.correct{color:#16a34a;}
+.feedback.incorrect{color:#b45309;}
+
+/* navigation buttons spacing */
+.l2-nav{
+  margin-top:16px;
+}
+
+/* buttons & feedback */
+.btn-row{
+  display:flex;
+  gap:8px;
+  margin-top:14px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+.btn{
+  padding:9px 18px;
+  border-radius:999px;
+  border:none;
+  font-size:.9rem;
+  font-weight:600;
+  cursor:pointer;
+  transition:.16s;
+}
+.btn-primary{
+  background:linear-gradient(135deg,#7c3aed,#0ea5e9);
+  color:#fff;
+  box-shadow:0 8px 18px rgba(55,48,163,.35);
+}
+.btn-primary:hover{transform:translateY(-1px);}
+.btn-secondary{
+  background:#e5e7eb;
+  color:#111827;
+}
+.btn-secondary:hover{background:#d1d5db;}
+
+.feedback{
+  margin-top:10px;
+  font-size:.9rem;
+  text-align:center;
+  color:#4b5563;
+}
+.feedback.correct{color:#15803d;}
+.feedback.incorrect{color:#b45309;}
+
+.score-line{
+  margin-top:8px;
+  text-align:center;
+  font-size:.88rem;
+  color:#4b5563;
+}
+
+/* completion */
+.complete-card{
+  margin-top:6px;
+  padding:22px 18px;
+  border-radius:18px;
+  background:linear-gradient(135deg,#6d28d9,#f97316);
+  color:#fff;
+  text-align:center;
+}
+.complete-card h3{
+  font-size:1.3rem;
+  margin-bottom:10px;
+}
+.complete-card ul{
+  list-style:disc;
+  margin:10px 0 0 22px;
+  text-align:left;
+  font-size:.92rem;
+}
+
+/* utility */
+.hidden{display:none;}
+
+@media(max-width:640px){
+  .page{padding:18px 16px 22px;}
+  .hero-cover{padding:22px 18px 18px;}
+  .hero-title{font-size:1.4rem;}
+}
+  .back-home-btn{
+  min-width:140px;
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+ <!-- HERO (always visible) -->
+  <div class="hero-cover">
+    <button class="lang-pill" id="langToggleCover">中文</button>
+    <div class="hero-title" id="heroTitle">
+      Phrases for <br>Describing Success Criteria
+    </div>
+    <div class="hero-subtitle" id="heroSubtitle">
+      Learn to describe clear, measurable success criteria for your project
+    </div>
+  </div>
+  <!-- PROGRESS (always visible) -->
+  <div class="cover-progress-wrap">
+    <div class="cover-bar">
+      <div class="cover-bar-fill" id="courseProgressFill"></div>
+    </div>
+    <div class="cover-score">
+      ⭐ <span id="courseScoreText">0 / 2 sections</span>
+    </div>
+  </div>
+  <!-- COVER PAGE -->
+  <section class="page active" id="pageCover">
+      <div class="cover-body">
+      <div class="dots-row">🔴🟠🟢</div>
+      <div class="cover-main-title" id="coverMainTitle">Project Success Criteria Challenge!</div>
+      <p class="cover-main-sub" id="coverMainSub">
+        Complete two interactive exercises to spot patterns in success‑criteria phrases and practise writing them in your project plan.
+      </p>
+    </div>
+
+    <div class="cover-btn-wrap">
+      <button class="big-start-btn" id="startBtn">
+        Start Challenge 🚀
+      </button>
+    </div>
+  </section>
+
+  <!-- PAGE 1: LEVEL 1 – PART A -->
+  <section class="page" id="pageL1A">
+      <div class="task-header-box">
+  <h2 id="l1aTitle">Level 1 – Sort the Phrases (Part A)</h2>
+  <p id="l1aSub">
+    Drag each phrase into the best group. Focus on the numbers and time limits.
+  </p>
+</div>
+
+<div class="sc-part-label" id="l1aLabel">Feedback & Satisfaction</div>
+      <div class="sc-groups">
+      <div class="sc-group">
+        <h3 id="gA1Title">Feedback / Entries</h3>
+        <p class="sc-tip" id="gA1Tip">Phrases about collecting forms or entries</p>
+        <div class="sc-drop-zone" data-category="feedback" id="zoneA_feedback"></div>
+      </div>
+      <div class="sc-group">
+        <h3 id="gA3Title">Customer Satisfaction</h3>
+        <p class="sc-tip" id="gA3Tip">Phrases about satisfaction percentages</p>
+        <div class="sc-drop-zone" data-category="satisfaction" id="zoneA_satisfaction"></div>
+        </div>
+    </div>
+
+    <div class="sc-phrases-bank" id="bankA"></div>
+
+    <div class="feedback" id="l1aFeedback"></div>
+
+    <div class="btn-row">
+      <button class="btn btn-secondary" id="l1aResetBtn">Reset</button>
+      <button class="btn btn-primary" id="l1aCheckBtn">Check Part A</button>
+      <button class="btn btn-secondary hidden" id="toL1BBtn">Next: Part B</button>
+ <!-- at the bottom of each non-cover page, inside the <section> -->
+<div class="btn-row" style="margin-top:10px;">
+  <button class="btn btn-secondary back-home-btn">Back to Home</button>
+</div>
+
+  </section>
+
+  <!-- PAGE 2: LEVEL 1 – PART B -->
+  <section class="page" id="pageL1B">
+      <div class="task-header-box">
+  <h2 id="l1bTitle">Level 1 – Sort the Phrases (Part B)</h2>
+  <p id="l1bSub">
+    Drag each phrase into the best group. Look at numbers of people and money.
+  </p>
+</div>
+
+    <div class="sc-part-label" id="l1bLabel">Visitors & Sales</div>
+
+    <div class="sc-groups">
+      <div class="sc-group">
+        <h3 id="gB1Title">Visitors / New Customers</h3>
+        <p class="sc-tip" id="gB1Tip">Phrases about attracting people</p>
+        <div class="sc-drop-zone" data-category="visitors" id="zoneB_visitors"></div>
+      </div>
+      <div class="sc-group">
+        <h3 id="gB2Title">Sales / Money</h3>
+        <p class="sc-tip" id="gB2Tip">Phrases about sales or money</p>
+        <div class="sc-drop-zone" data-category="money" id="zoneB_money"></div>
+      </div>
+    </div>
+
+    <div class="sc-phrases-bank" id="bankB"></div>
+
+    <div class="feedback" id="l1bFeedback"></div>
+
+    <div class="btn-row">
+      <button class="btn btn-secondary" id="l1bResetBtn">Reset</button>
+      <button class="btn btn-primary" id="l1bCheckBtn">Check Part B</button>
+      <button class="btn btn-secondary hidden" id="toL2Btn">Next: Level 2 Sentences</button>
+      <!-- at the bottom of each non-cover page, inside the <section> -->
+<div class="btn-row" style="margin-top:10px;">
+  <button class="btn btn-secondary back-home-btn">Back to Home</button>
+    </div>
+  </section>
+
+  <!-- PAGE 3: LEVEL 2 – SENTENCE QUIZ -->
+  <section class="page" id="pageL2">
+      <div class="task-header-box">
+  <h2 id="l2Title">Level 2 – Sentence Challenge</h2>
+  <p id="l2Sub">
+    Read the project context. Choose the success‑criteria sentence that shows how success will be measured.
+  </p>
+</div>
+
+
+    <div class="l2-shell">
+    <div class="l2-context" id="l2Context"></div>
+    <div class="l2-sentence" id="l2Sentence"></div>
+
+    <div class="l2-options" id="l2Options"></div>
+
+    <div class="l2-footer">
+      <div class="score-line" id="l2ScoreLine"></div>
+      <div class="feedback" id="l2Feedback"></div>
+    </div>
+  </div>
+
+  <div class="btn-row l2-nav">
+      <button class="btn btn-secondary" id="l2BackBtn">Back to Level 1</button>
+      <button class="btn btn-primary" id="l2NextBtn">Next question</button>
+    <!-- at the bottom of each non-cover page, inside the <section> -->
+<div class="btn-row" style="margin-top:10px;">
+  <button class="btn btn-secondary back-home-btn">Back to Home</button>
+    </div>
+  </section>
+
+  <!-- PAGE 4: COMPLETION -->
+  <section class="page" id="pageComplete">
+      <div class="complete-card">
+      <h3 id="completeTitle">🎉 You’ve completed all sections!</h3>
+      <p id="completeIntro">
+        Remember how to write strong success criteria for your project:
+      </p>
+      <ul id="completeList">
+        <li>Include a clear topic (what you will measure)</li>
+        <li>Add numbers (how many / how much / what percentage)</li>
+        <li>Add a time limit (by when / in how long)</li>
+      </ul>
+      <p style="margin-top:12px;font-size:.9rem;" id="completeHint">
+        Try to turn your success criteria into sentences that look like the ones you practised.
+      </p>
+    </div>
+    <div class="btn-row" style="margin-top:16px;">
+      <button class="btn btn-primary" id="restartBtn">Replay Level 2</button>
+      <!-- at the bottom of each non-cover page, inside the <section> -->
+<div class="btn-row" style="margin-top:10px;">
+  <button class="btn btn-secondary back-home-btn">Back to Home</button>
+    </div>
+  </section>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+<script>
+/* ---------- DATA ---------- */
+
+const level1PartA = [
+  { text_en:'collect 200 feedback forms by end of week', text_zh:'在一週內收集 200 份意見表', category:'feedback' },
+  { text_en:'collect 300 entries by year end',            text_zh:'在年底前收集 300 份參賽作品', category:'feedback' },
+  { text_en:'achieve 95% satisfaction in 1 month',        text_zh:'在 1 個月內達到 95% 滿意度', category:'satisfaction' },
+  { text_en:'improve satisfaction rate by 10% within 2 months', text_zh:'在 2 個月內將滿意度提高 10%', category:'satisfaction' }
+];
+
+const level1PartB = [
+  { text_en:'attract 100 new customers in 1 month', text_zh:'在 1 個月內吸引 100 位新顧客', category:'visitors' },
+  { text_en:'attract 500 visitors in 1 week',       text_zh:'在 1 週內吸引 500 位訪客', category:'visitors' },
+  { text_en:'sell 500 items in 30 days',            text_zh:'在 30 天內售出 500 件貨品', category:'money' },
+  { text_en:'make $8,000 business each day',        text_zh:'每天賺取 $8,000 生意額', category:'money' }
+];
+
+const l2BaseQuestions = [
+  {
+    context_en:'A school has set up a new reading corner and wants to check if students like it.',
+    context_zh:'一所學校設立了新的閱讀角，想檢查學生是否喜歡。',
+    sentence_en:'The project will be successful if we __________.',
+    sentence_zh:'如果我們能夠 __________，這個專題就算成功。',
+    options_en:[
+      'collect 200 feedback forms by end of week',
+      'attract 500 visitors in 1 week',
+      'make $8,000 business each day'
+    ],
+    options_zh:[
+      '在一週內收集 200 份意見表',
+      '在 1 週內吸引 500 位訪客',
+      '每天賺取 $8,000 生意額'
+    ],
+    correct:'collect 200 feedback forms by end of week'
+  },
+  {
+    context_en:'A shopping mall has redesigned the customer service counter.',
+    context_zh:'一個商場重新設計了顧客服務櫃檯。',
+    sentence_en:'Success will be measured by whether we can __________.',
+    sentence_zh:'成功準則是能否 __________。',
+    options_en:[
+      'achieve 95% satisfaction in 1 month',
+      'sell 500 items in 30 days',
+      'attract 100 new customers in 1 month'
+    ],
+    options_zh:[
+      '在 1 個月內達到 95% 滿意度',
+      '在 30 天內售出 500 件貨品',
+      '在 1 個月內吸引 100 位新顧客'
+    ],
+    correct:'achieve 95% satisfaction in 1 month'
+  },
+  {
+    context_en:'An online shop needs to make enough sales to cover its costs.',
+    context_zh:'一間網店需要有足夠銷售來支付成本。',
+    sentence_en:'One success criterion is that the shop must __________.',
+    sentence_zh:'其中一項成功準則是商店必須能夠 __________。',
+    options_en:[
+      'sell 500 items in 30 days',
+      'collect 300 entries by year end',
+      'improve satisfaction rate by 10% within 2 months'
+    ],
+    options_zh:[
+      '在 30 天內售出 500 件貨品',
+      '在年底前收集 300 份參賽作品',
+      '在 2 個月內將滿意度提高 10%'
+    ],
+    correct:'sell 500 items in 30 days'
+  },
+  {
+    context_en:'A competition organiser wants to make sure enough people join the event.',
+    context_zh:'比賽主辦單位想確保有足夠人參加。',
+    sentence_en:'The success criteria include that we __________.',
+    sentence_zh:'成功準則包括我們要能夠 __________。',
+    options_en:[
+      'collect 300 entries by year end',
+      'attract 100 new customers in 1 month',
+      'answer 50 enquiries in 10 minutes'
+    ],
+    options_zh:[
+      '在年底前收集 300 份參賽作品',
+      '在 1 個月內吸引 100 位新顧客',
+      '在 10 分鐘內回答 50 個查詢'
+    ],
+    correct:'collect 300 entries by year end'
+  },
+  {
+    context_en:'A customer service team wants a clear target for response speed.',
+    context_zh:'客戶服務團隊想為回覆速度訂立清晰目標。',
+    sentence_en:'We will say the project is successful if staff can __________.',
+    sentence_zh:'如果職員能夠 __________，我們就會認為專題成功。',
+    options_en:[
+      'answer 50 enquiries in 10 minutes',
+      'attract 500 visitors in 1 week',
+      'make $8,000 business each day'
+    ],
+    options_zh:[
+      '在 10 分鐘內回答 50 個查詢',
+      '在 1 週內吸引 500 位訪客',
+      '每天賺取 $8,000 生意額'
+    ],
+    correct:'answer 50 enquiries in 10 minutes'
+  }
+];
+
+/* ---------- STATE & UTIL ---------- */
+let currentLang='en';
+let currentPage='pageCover';
+let l1ACompleted=false;
+let l1BCompleted=false;
+let l2Finished=false;
+
+let l2Questions=[], l2Order=[], l2Index=0, l2Score=0;
+
+function $(id){return document.getElementById(id);}
+function shuffle(arr){return arr.slice().sort(()=>Math.random()-0.5);}
+
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const page=document.getElementById(id);
+  if(page) page.classList.add('active');
+  currentPage=id;
+  window.scrollTo(0,0);
+}
+
+function updateCourseProgress(){
+  const done=(l1ACompleted && l1BCompleted ?1:0)+(l2Finished?1:0);
+  const percent=(done/2)*100;
+  $('courseProgressFill').style.width=percent+'%';
+  $('courseScoreText').textContent=`${done} / 2 sections`;
+}
+function fireConfetti() {
+  confetti({
+    particleCount: 120,
+    spread: 70,
+    origin: { y: 0.6 }
+  });
+}
+/* ---------- LANGUAGE TEXT ---------- */
+const uiText={
+  en:{
+    toggle:'中文',
+    heroTitle:'Phrases for Describing Success Criteria',
+    heroSub:'Learn to describe clear, measurable success criteria for your project',
+    coverMainTitle:'Project Success Criteria Challenge!',
+    coverMainSub:'Complete two interactive exercises to spot patterns in success‑criteria phrases and practise writing them in your project plan.',
+    startBtn:'Start Challenge 🚀',
+    l1aTitle:'Level 1 – Sort the Phrases (Part A)',
+    l1aSub:'Drag each phrase into the best group. Focus on the numbers and time limits.',
+    l1bTitle:'Level 1 – Sort the Phrases (Part B)',
+    l1bSub:'Drag each phrase into the best group. Look at numbers of people and money.',
+    partALabel:'Feedback & Satisfaction',
+    partBLabel:'Visitors & Sales',
+    gA1Title:'Feedback / Entries',
+    gA1Tip:'Phrases about collecting forms or entries.',
+    gA3Title:'Customer Satisfaction',
+    gA3Tip:'Phrases about satisfaction percentages.',
+    gB1Title:'Visitors / New Customers',
+    gB1Tip:'Phrases about attracting people.',
+    gB2Title:'Sales / Money',
+    gB2Tip:'Phrases about sales or money.',
+    reset:'Reset',
+    checkA:'Check Part A',
+    checkB:'Check Part B',
+    nextA:'Next: Part B',
+    nextB:'Next: Level 2 Sentences',
+    l2Title:'Level 2 – Sentence Challenge',
+    l2Sub:'Read the project context. Choose the success‑criteria sentence that shows how success will be measured.',
+    backL2:'Back to Level 1',
+    nextQ:'Next question',
+    allCorrectA:'✅ Great! You sorted all Part A phrases correctly.',
+    allCorrectB:'✅ Great! You sorted all Part B phrases correctly.',
+    someWrong:'Some phrases are not in the best group yet. Check the numbers and time.',
+    l2Correct:'✅ Correct! Good choice.',
+    l2Wrong:'❌ Not the best option. Look at the context again.',
+    l2Done:'You finished all Level 2 questions.',
+    completeTitle:'🎉 You’ve completed all sections!',
+    completeIntro:'Remember how to write strong success criteria for your own project:',
+    completePoint1:'Include a clear topic (what you will measure)',
+    completePoint2:'Add numbers (how many / how much / what percentage)',
+    completePoint3:'Add a time limit (by when / in how long)',
+    completeHint:'Try to turn your project aims into sentences that look like the ones you practised.',
+    replay:'Replay Level 2'
+  },
+  zh:{
+    toggle:'EN',
+    heroTitle:'描述成功準則的句式',
+    heroSub:'學習用清晰、可量度的方式寫出成功準則。',
+    coverMainTitle:'專題成功準則小挑戰！',
+    coverMainSub:'完成兩個互動練習，學習描述成功準則的句式，並在你的專案計劃中運用它們。',
+    startBtn:'開始挑戰 🚀',
+    l1aTitle:'第 1 級 – 分類短語 (A 部分)',
+    l1aSub:'把短語拖到最合適的一組，留意數字和時間。',
+    l1bTitle:'第 1 級 – 分類短語 (B 部分)',
+    l1bSub:'把短語拖到最合適的一組，留意人數和金額。',
+    partALabel:'回應及滿意度',
+    partBLabel:'訪客及銷售',
+    gA1Title:'回應 / 參賽作品',
+    gA1Tip:'有關收集表格或參賽作品的短語。',
+    gA3Title:'顧客滿意度',
+    gA3Tip:'有關滿意度百分比的短語。',
+    gB1Title:'訪客 / 新顧客',
+    gB1Tip:'有關吸引人數的短語。',
+    gB2Title:'銷售 / 金額',
+    gB2Tip:'有關銷售或生意額的短語。',
+    reset:'重設',
+    checkA:'檢查 A 部分',
+    checkB:'檢查 B 部分',
+    nextA:'下一步：B 部分',
+    nextB:'下一步：第 2 級句子',
+    l2Title:'第 2 級 – 句子挑戰',
+    l2Sub:'先看專題情境，再選出最能「量度成功」的成功準則句子。',
+    backL2:'返回第 1 級',
+    nextQ:'下一題',
+    allCorrectA:'✅ 很好！你已正確分類 A 部分所有短語。',
+    allCorrectB:'✅ 很好！你已正確分類 B 部分所有短語。',
+    someWrong:'仍有短語未放在最合適的一組，留意數字和時間。',
+    l2Correct:'✅ 正確！選得很好。',
+    l2Wrong:'❌ 未必最合適，再看看情境。',
+    l2Done:'你已完成第 2 級所有題目。',
+    completeTitle:'🎉 你已完成所有部分！',
+    completeIntro:'寫成功準則時要記住：',
+    completePoint1:'先寫清楚量度的對象（你想檢查甚麼）',
+    completePoint2:'加入數字（多少件／多少人／多少百分比）',
+    completePoint3:'寫出時間限制（在甚麼時間內做到）',
+    completeHint:'嘗試把你的專題計畫中的成功準則改寫成類似你剛才練習的句子。',
+    replay:'再玩一次第 2 級'
+  }
+};
+
+/* ---------- LANGUAGE APPLY ---------- */
+function applyLanguage(){
+  const t=uiText[currentLang];
+
+  // toggles
+  ['langToggleCover','langToggleL1A','langToggleL1B','langToggleL2','langToggleComplete']
+    .forEach(id=>{ if($(id)) $(id).textContent=t.toggle; });
+
+  $('heroTitle').textContent=t.heroTitle;
+  $('heroSubtitle').textContent=t.heroSub;
+  $('coverMainTitle').textContent=t.coverMainTitle;
+  $('coverMainSub').textContent=t.coverMainSub;
+  $('startBtn').textContent=t.startBtn;
+
+  $('l1aTitle').textContent=t.l1aTitle;
+  $('l1aSub').textContent=t.l1aSub;
+  $('l1aLabel').textContent=t.partALabel;
+  $('gA1Title').textContent=t.gA1Title;
+  $('gA1Tip').textContent=t.gA1Tip;
+  $('gA3Title').textContent=t.gA3Title;
+  $('gA3Tip').textContent=t.gA3Tip;
+
+  $('l1bTitle').textContent=t.l1bTitle;
+  $('l1bSub').textContent=t.l1bSub;
+  $('l1bLabel').textContent=t.partBLabel;
+  $('gB1Title').textContent=t.gB1Title;
+  $('gB1Tip').textContent=t.gB1Tip;
+  $('gB2Title').textContent=t.gB2Title;
+  $('gB2Tip').textContent=t.gB2Tip;
+
+  $('l1aResetBtn').textContent=t.reset;
+  $('l1aCheckBtn').textContent=t.checkA;
+  $('toL1BBtn').textContent=t.nextA;
+  $('l1bResetBtn').textContent=t.reset;
+  $('l1bCheckBtn').textContent=t.checkB;
+  $('toL2Btn').textContent=t.nextB;
+
+  $('l2Title').textContent=t.l2Title;
+  $('l2Sub').textContent=t.l2Sub;
+  $('l2BackBtn').textContent=t.backL2;
+  $('l2NextBtn').textContent=t.nextQ;
+
+  $('completeTitle').textContent=t.completeTitle;
+  $('completeIntro').textContent=t.completeIntro;
+  const list=$('completeList');
+  list.innerHTML='';
+  [t.completePoint1,t.completePoint2,t.completePoint3].forEach(pt=>{
+    const li=document.createElement('li');
+    li.textContent=pt;
+    list.appendChild(li);
+  });
+  $('completeHint').textContent=t.completeHint;
+
+  $('restartBtn').textContent=t.replay;
+}
+
+/* ---------- LEVEL 1 ---------- */
+function makeChip(item){
+  const chip=document.createElement('div');
+  chip.className='sc-chip';
+  chip.draggable=true;
+  chip.dataset.category=item.category;
+  chip.textContent=currentLang==='en'?item.text_en:item.text_zh;
+  chip.addEventListener('dragstart',e=>{
+    e.dataTransfer.setData('category',chip.dataset.category);
+    chip.classList.add('dragging');
+  });
+  chip.addEventListener('dragend',()=>chip.classList.remove('dragging'));
+  return chip;
+}
+function setupDropZone(zone){
+  zone.addEventListener('dragover',e=>e.preventDefault());
+  zone.addEventListener('drop',e=>{
+    e.preventDefault();
+    const drag=document.querySelector('.sc-chip.dragging');
+    if(drag) zone.appendChild(drag);
+  });
+}
+
+function initL1A(){
+  const bank=$('bankA');
+  bank.innerHTML='';
+  shuffle(level1PartA).forEach(item=>bank.appendChild(makeChip(item)));
+  ['zoneA_feedback','zoneA_satisfaction'].forEach(id=>{
+    const z=$(id);
+    z.classList.remove('correct','incorrect');
+    z.innerHTML='';
+    setupDropZone(z);
+  });
+  $('l1aFeedback').textContent='';
+}
+function initL1B(){
+  const bank=$('bankB');
+  bank.innerHTML='';
+  shuffle(level1PartB).forEach(item=>bank.appendChild(makeChip(item)));
+  ['zoneB_visitors','zoneB_money'].forEach(id=>{
+    const z=$(id);
+    z.classList.remove('correct','incorrect');
+    z.innerHTML='';
+    setupDropZone(z);
+  });
+  $('l1bFeedback').textContent='';
+}
+
+function checkL1A(){
+  const t = uiText[currentLang];
+  let all = true;
+
+  [['zoneA_feedback','feedback'],['zoneA_satisfaction','satisfaction']].forEach(([id,cat])=>{
+    const z = $(id);
+    const chips = z.querySelectorAll('.sc-chip');
+    let ok = true;
+
+    // if no chips, this zone cannot be correct
+    if (chips.length === 0) {
+      ok = false;
+    } else {
+      chips.forEach(ch=>{
+        if (ch.dataset.category !== cat) ok = false;
+      });
+    }
+
+    z.classList.remove('correct','incorrect');
+    z.classList.add(ok ? 'correct' : 'incorrect');
+    if (!ok) all = false;
+  });
+
+  const fb = $('l1aFeedback');
+  if (all){
+    fb.className = 'feedback correct';
+    fb.textContent = t.allCorrectA;
+    l1ACompleted = true;
+    $('toL1BBtn').classList.remove('hidden');
+    fireConfetti();          // ✅ only when all correct
+  } else {
+    fb.className = 'feedback incorrect';
+    fb.textContent = t.someWrong;
+  }
+  updateCourseProgress();
+}
+  
+function checkL1B(){
+  const t = uiText[currentLang];
+  let all = true;
+
+  [['zoneB_visitors','visitors'],['zoneB_money','money']].forEach(([id,cat])=>{
+    const z = $(id);
+    const chips = z.querySelectorAll('.sc-chip');
+    let ok = true;
+
+    if (chips.length === 0) {
+      ok = false;
+    } else {
+      chips.forEach(ch=>{
+        if (ch.dataset.category !== cat) ok = false;
+      });
+    }
+
+    z.classList.remove('correct','incorrect');
+    z.classList.add(ok ? 'correct' : 'incorrect');
+    if (!ok) all = false;
+  });
+
+  const fb = $('l1bFeedback');
+  if (all){
+    fb.className = 'feedback correct';
+    fb.textContent = t.allCorrectB;
+    l1BCompleted = true;
+    $('toL2Btn').classList.remove('hidden');
+    fireConfetti();            // ✅ only on fully correct Part B
+  } else {
+    fb.className = 'feedback incorrect';
+    fb.textContent = t.someWrong;
+  }
+  updateCourseProgress();
+}
+
+/* ---------- LEVEL 2 ---------- */
+function prepareL2(){
+  l2Questions=l2BaseQuestions.slice();
+  l2Order=shuffle(l2Questions.map((_,i)=>i));
+  l2Index=0;
+  l2Score=0;
+  l2Finished=false;
+  $('l2NextBtn').disabled=false;
+  showL2Question();
+}
+function showL2Question(){
+  if(l2Index>=l2Order.length){
+    const t=uiText[currentLang];
+    $('l2Feedback').className='feedback correct';
+    $('l2Feedback').textContent=t.l2Done;
+    $('l2ScoreLine').textContent=`Score: ${l2Score} / ${l2Order.length}`;
+    $('l2NextBtn').disabled=true;
+    l2Finished=true;
+    updateCourseProgress();
+    fireConfetti();              // 🎉 show confetti
+    showPage('pageComplete');
+    return;
+  }
+  const q=l2Questions[l2Order[l2Index]];
+  $('l2Context').textContent=currentLang==='en'?q.context_en:q.context_zh;
+  const s=currentLang==='en'?q.sentence_en:q.sentence_zh;
+  $('l2Sentence').innerHTML=s.replace('__________','<span class="blank">__________</span>');
+  $('l2Feedback').textContent='';
+  $('l2Feedback').className='feedback';
+  $('l2ScoreLine').textContent=`Question ${l2Index+1} / ${l2Order.length} · Score: ${l2Score}`;
+  const opts=currentLang==='en'?q.options_en:q.options_zh;
+  const container=$('l2Options');
+  container.innerHTML='';
+  opts.forEach((label,i)=>{
+    const btn=document.createElement('button');
+    btn.className='option-btn';
+    btn.textContent=label;
+    const key=q.options_en[i];
+    btn.addEventListener('click',()=>handleL2Answer(key,btn));
+    container.appendChild(btn);
+  });
+  $('l2NextBtn').disabled=true;
+}
+function handleL2Answer(selected,btn){
+  const t=uiText[currentLang];
+  const q=l2Questions[l2Order[l2Index]];
+  const allBtns=document.querySelectorAll('#l2Options .option-btn');
+  allBtns.forEach(b=>b.disabled=true);
+  if(selected===q.correct){
+    btn.classList.add('correct');
+    $('l2Feedback').className='feedback correct';
+    $('l2Feedback').textContent=t.l2Correct;
+    l2Score++;
+  }else{
+    btn.classList.add('wrong');
+    const ix=q.options_en.indexOf(q.correct);
+    if(ix>-1 && allBtns[ix]) allBtns[ix].classList.add('correct');
+    $('l2Feedback').className='feedback incorrect';
+    $('l2Feedback').textContent=t.l2Wrong;
+  }
+  $('l2ScoreLine').textContent=`Question ${l2Index+1} / ${l2Order.length} · Score: ${l2Score}`;
+  $('l2NextBtn').disabled=false;
+}
+
+/* ---------- EVENTS + INIT ---------- */
+document.addEventListener('DOMContentLoaded', () => {
+  const toggleLang = () => {
+    currentLang = currentLang === 'en' ? 'zh' : 'en';
+    applyLanguage();
+    // rebuild content in current page when language changes
+    if(currentPage==='pageL1A'){ initL1A(); }
+    if(currentPage==='pageL1B'){ initL1B(); }
+    if(currentPage==='pageL2'){ showL2Question(); }
+  };
+  document.querySelectorAll('.back-home-btn').forEach(btn=>{
+  btn.addEventListener('click', () => {
+    showPage('pageCover');     // go back to cover
+  });
+});
+
+
+  applyLanguage();
+  updateCourseProgress();
+
+  const startBtn=$('startBtn');
+  if(startBtn){
+    startBtn.addEventListener('click', () => {
+      initL1A();
+      showPage('pageL1A');
+    });
+  }
+
+  ['langToggleCover','langToggleL1A','langToggleL1B','langToggleL2','langToggleComplete']
+    .forEach(id=>{ const btn=$(id); if(btn) btn.addEventListener('click',toggleLang); });
+
+  $('l1aResetBtn').addEventListener('click', initL1A);
+  $('l1aCheckBtn').addEventListener('click', checkL1A);
+  $('toL1BBtn').addEventListener('click', () => {
+    initL1B();
+    showPage('pageL1B');
+  });
+
+  $('l1bResetBtn').addEventListener('click', initL1B);
+  $('l1bCheckBtn').addEventListener('click', checkL1B);
+  $('toL2Btn').addEventListener('click', () => {
+    showPage('pageL2');
+    prepareL2();
+  });
+
+  $('l2BackBtn').addEventListener('click', () => showPage('pageL1B'));
+  $('l2NextBtn').addEventListener('click', () => { l2Index++; showL2Question(); });
+  $('restartBtn').addEventListener('click', () => {
+    showPage('pageL2');
+    prepareL2();
+  });
+});
+</script>
+</body>
+</html>
+    
+  </body>
+  
+</html>

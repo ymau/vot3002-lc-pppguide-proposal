@@ -1,0 +1,1633 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>L4 - Project Plan (Adjectives for Describing Requirements)</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Plan - Adjectives for Describing Requirements</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(-45deg, #FDEDED, #F7F6D3, #AAC4F5);
+            min-height: 100vh;
+            padding: 10px;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .header {
+    background: linear-gradient(135deg, #FFC107 0%, #d4f06b 50%, #4caf50 100%);
+    color: white;
+    padding: 26px 15px 20px;  /* was 20px 15px; */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.lang-toggle {
+    position: absolute;
+    top: 16px;               /* was 10px; */
+    right: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid white;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.75em;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+        .lang-toggle:hover {
+            background: white;
+            color: #0891b2;
+        }
+
+        .header h1 {
+            font-size: 1.5em;
+            margin-bottom: 8px;
+            font-weight: 700;
+            text-align: center;
+            padding-right: 0;
+        }
+
+        .header p {
+            font-size: 0.9em;
+            opacity: 0.95;
+            font-weight: 300;
+          text-align: center;
+        }
+
+        .progress-container {
+            background: white;
+            padding: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 25px;
+            background: #e0e0e0;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg,#06b6d4 0%,#FFFD8F 100%);
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.8em;
+        }
+
+        .score-display {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 1em;
+            font-weight: 600;
+            color: #0891b2;
+        }
+
+        .content {
+            padding: 20px 15px;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-intro {
+            background: linear-gradient(135deg, #14b8a6 0%, #06b6d4 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .section-intro h2 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .section-intro p {
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        .activity-container {
+            background: #fff;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px 15px;
+            margin: 15px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #e2e8f0;
+        }
+
+        .stat-label {
+            font-size: 0.75em;
+            color: #718096;
+            margin-bottom: 5px;
+        }
+
+        .stat-value {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #0891b2;
+        }
+
+        .matching-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-flow: column;  /* ← ADD THIS LINE */
+    grid-template-rows: repeat(5, auto);  /* ← ADD THIS LINE */
+    gap: 10px;
+    margin: 15px 0;
+}
+
+        .match-card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 3px solid #e0e0e0;
+            transition: all 0.3s ease;
+            text-align: center;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.95em;
+            font-weight: 500;
+            user-select: none;
+            touch-action: manipulation;
+        }
+
+        .match-card.adjective {
+            background: linear-gradient(135deg, #6A0066 0%, #06b6d4 100%);
+            color: white;
+        }
+
+        .match-card.meaning {
+            background: #f7fafc;
+            color: #2d3748;
+        }
+
+        .match-card:active {
+            transform: scale(0.98);
+        }
+
+        .match-card.selected {
+            border-color: #F5C857;
+            border-width: 4px;
+            box-shadow: 0 0 0 3px rgba(245, 200, 87, 0.3);
+        }
+
+        .match-card.matched {
+            background: #d1fae5 !important;
+            color: #065f46 !important;
+            border-color: #10b981;
+            animation: matchPulse 0.5s ease;
+            pointer-events: none;
+        }
+
+        .match-card.wrong {
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes matchPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .sentence-display {
+            font-size: 1.05em;
+            color: #2d3748;
+            line-height: 2;
+            text-align: center;
+            margin: 20px 0;
+            font-weight: 500;
+        }
+
+        .drop-zone {
+            display: inline-block;
+            min-width: 130px;
+            padding: 8px 15px;
+            border: 3px dashed #cbd5e0;
+            border-radius: 8px;
+            background: white;
+            margin: 0 5px;
+            transition: all 0.3s ease;
+            min-height: 45px;
+            vertical-align: middle;
+        }
+
+        .drop-zone.drag-over {
+            background: #cffafe;
+            border-color: #0891b2;
+        }
+
+        .drop-zone.filled {
+            background: linear-gradient(135deg, #6A0066 0%, #06b6d4 100%);
+            color: white;
+            border-style: solid;
+            font-weight: 600;
+        }
+
+        .drop-zone.correct {
+            background: #10b981;
+            border-color: #10b981;
+            color: white;
+        }
+
+        .drop-zone.incorrect {
+            background: #ef4444;
+            border-color: #ef4444;
+            color: white;
+            animation: shake 0.5s ease;
+        }
+
+        .adjective-options {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+       .draggable-adjective {
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #6A0066 0%, #06b6d4 100%);
+    color: white;
+    border-radius: 20px;
+    cursor: move;
+    font-weight: 600;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    user-select: none;
+    touch-action: none;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(106, 0, 102, 0.4);
+}
+
+.draggable-adjective:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(106, 0, 102, 0.6);
+    cursor: grab;
+}
+
+.draggable-adjective:active {
+    transform: scale(1.15) rotate(5deg);
+    opacity: 0.9;
+    cursor: grabbing;
+    box-shadow: 0 12px 30px rgba(106, 0, 102, 0.8);
+}
+
+.draggable-adjective.dragging {
+    opacity: 0.6;
+    transform: scale(1.2) rotate(8deg);
+    box-shadow: 0 15px 40px rgba(106, 0, 102, 0.9);
+    z-index: 1000;
+}
+
+.draggable-adjective.used {
+    opacity: 0.3;
+    pointer-events: none;
+    filter: grayscale(1);
+}
+
+        .scenario-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .scenario-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            border: 3px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+
+        .scenario-card.active {
+            border-color: #0891b2;
+            background: linear-gradient(135deg, #f0fdfa 0%, #fff9c4 100%);
+        }
+
+        .scenario-title {
+            font-size: 1.05em;
+            color: #0891b2;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .scenario-desc {
+            color: #4a5568;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+
+        .adjective-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .adjective-tile {
+            padding: 12px;
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: #2d3748;
+            font-size: 0.85em;
+            user-select: none;
+            touch-action: manipulation;
+        }
+
+        .adjective-tile:active {
+            transform: scale(0.95);
+        }
+
+        .adjective-tile.selected {
+            background: linear-gradient(135deg, #6A0066 0%, #06b6d4 100%);
+            color: white;
+            border-color: #0891b2;
+            transform: scale(1.05);
+        }
+
+        .adjective-tile.correct {
+            background: #10b981;
+            border-color: #10b981;
+            color: white;
+        }
+
+        .adjective-tile.incorrect {
+            background: #fee2e2;
+            border-color: #ef4444;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-direction: column;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px 25px;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+    background: linear-gradient(135deg, #6A0066 0%, #06b6d4 100%);
+    color: white;
+}
+
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+
+        .btn-secondary {
+            background: #e2e8f0;
+            color: #334155;
+        }
+
+        .btn-secondary:active {
+            background: #cbd5e1;
+        }
+
+        .feedback {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-weight: 500;
+            display: none;
+            animation: slideIn 0.5s ease;
+            font-size: 0.95em;
+            text-align: center;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.correct {
+            background: #d1fae5;
+            color: #065f46;
+            border-left: 4px solid #10b981;
+        }
+
+        .feedback.incorrect {
+            background: #fee2e2;
+            color: #991b1b;
+            border-left: 4px solid #ef4444;
+        }
+
+        .achievement {
+            text-align: center;
+            padding: 30px 15px;
+        }
+
+        .achievement-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+            animation: rotateIn 0.8s ease;
+        }
+
+        @keyframes rotateIn {
+            from { transform: rotate(-180deg) scale(0); }
+            to { transform: rotate(0) scale(1); }
+        }
+
+        .welcome-message {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .welcome-emoji {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .welcome-message h2 {
+    background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+
+        .welcome-message p {
+            color: #4a5568;
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        /* Desktop improvements */
+        @media (min-width: 768px) {
+            body {
+                padding: 20px;
+            }
+
+            .container {
+                border-radius: 20px;
+            }
+
+            .header {
+                padding: 30px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+                padding-right: 0;
+            }
+
+            .header p {
+                font-size: 1.1em;
+            }
+
+            .content {
+                padding: 40px 30px;
+            }
+
+            .matching-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
+            }
+            .match-card:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 8px 20px rgba(8, 145, 178, 0.3);
+            }
+
+            .scenario-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+
+            .btn-container {
+                flex-direction: row;
+                margin-top: 30px;
+                gap: 15px;
+            }
+
+            .btn {
+                flex: 1;
+                min-width: 150px;
+                padding: 15px 30px;
+                font-size: 1.1em;
+            }
+
+            .btn-primary:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 10px 20px rgba(8, 145, 178, 0.3);
+            }
+
+            .adjective-tile:hover {
+                background: #edf2f7;
+                border-color: #cbd5e0;
+            }
+
+            .adjective-tile.selected:hover {
+                background: linear-gradient(135deg, #6A0066 0%, #06b6d4 100%);
+            }
+        }
+
+        .lang-en, .lang-zh { display: none; }
+        body[data-lang="en"] .lang-en { display: inline; }
+        body[data-lang="zh"] .lang-zh { display: inline; }
+    </style>
+</head>
+<body data-lang="en">
+    <div class="container">
+        <div class="header">
+            <button class="lang-toggle" onclick="toggleLanguage()">
+                <span class="lang-en">中文</span>
+                <span class="lang-zh">English</span>
+            </button>
+            <h1>
+                <span class="lang-en">Adjectives for <br>Describing Requirements</span>
+                <span class="lang-zh">描述要求的形容詞</span>
+            </h1>
+          <p>
+                <span class="lang-en">Learn adjectives to describe the important features your product/service must include</span>
+                <span class="lang-zh">學習用形容詞來說明產品／服務必須具備的重要特點</span>
+            </p>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill">0%</div>
+            </div>
+            <div class="score-display">
+                <span class="lang-en">⭐ Completion:</span>
+                <span class="lang-zh">⭐ 完成：</span>
+                <span id="scoreDisplay">0</span> / <span id="totalScore">0</span>
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- Page 0: Welcome -->
+            <div class="page active" id="page0">
+                <div class="welcome-message">
+                    <div class="welcome-emoji">🔴 🟠 🟢</div>
+                  <h2>
+                        <span class="lang-en">Project Requirements Challenge!</span>
+                        <span class="lang-zh">項目要求挑戰！</span>
+                    </h2>
+                    <p>
+                      <span class="lang-en">Complete five interactive challenges to master adjectives for describing requirements. <br>Let's get started!</span>
+                        <span class="lang-zh">完成五個互動挑戰，掌握描述要求的形容詞。<br>讓我們開始吧！</span>
+                    </p>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-primary" onclick="nextPage()">
+                        <span class="lang-en">Start Challenge 🚀</span>
+                        <span class="lang-zh">開始挑戰 🚀</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Page 1: Speed Matching Part 1 -->
+            <div class="page" id="page1">
+                <div class="section-intro">
+                    <h2>
+                        <span class="lang-en">Level 1: Speed Matching (Part 1)</span>
+                        <span class="lang-zh">第1關：速配遊戲（第1部分）</span>
+                    </h2>
+                    <p>
+                        <span class="lang-en">Click an adjective, then click its matching meaning. Match all 5 pairs!</span>
+                        <span class="lang-zh">點擊一個形容詞，然後點擊其配對的意思。配對全部5組！</span>
+                    </p>
+                </div>
+                <div class="activity-container">
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <div class="stat-label">
+                                <span class="lang-en">⏱️ TIME</span>
+                                <span class="lang-zh">⏱️ 時間</span>
+                            </div>
+                            <div class="stat-value" id="timerDisplay1">0:00</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">
+                                <span class="lang-en">✅ MATCHED</span>
+                                <span class="lang-zh">✅ 已配對</span>
+                            </div>
+                            <div class="stat-value" id="matchedDisplay1">0 / 5</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">
+                                <span class="lang-en">🔥 STREAK</span>
+                                <span class="lang-zh">🔥 連勝</span>
+                            </div>
+                            <div class="stat-value" id="streakDisplay1">0</div>
+                        </div>
+                    </div>
+                    <div class="matching-grid" id="matchingGrid1"></div>
+                    <div class="feedback" id="matchFeedback1"></div>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-secondary" onclick="prevPage()">
+                        <span class="lang-en">← Back</span>
+                        <span class="lang-zh">← 返回</span>
+                    </button>
+                    <button class="btn btn-secondary" onclick="resetMatching(1)">
+                        <span class="lang-en">🔄 Reset</span>
+                        <span class="lang-zh">🔄 重置</span>
+                    </button>
+                    <button class="btn btn-primary" id="next1" onclick="nextPage()" style="display:none;">
+                        <span class="lang-en">Next Task →</span>
+                        <span class="lang-zh">下一任務 →</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Page 2: Speed Matching Part 2 -->
+            <div class="page" id="page2">
+                <div class="section-intro">
+                    <h2>
+                        <span class="lang-en">Level 1: Speed Matching (Part 2)</span>
+                        <span class="lang-zh">第1關：速配遊戲（第2部分）</span>
+                    </h2>
+                    <p>
+                        <span class="lang-en">Great job! Now match 5 more adjectives with their meanings!</span>
+                        <span class="lang-zh">做得好！現在再配對5個形容詞及其意思！</span>
+                    </p>
+                </div>
+                <div class="activity-container">
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <div class="stat-label">
+                                <span class="lang-en">⏱️ TIME</span>
+                                <span class="lang-zh">⏱️ 時間</span>
+                            </div>
+                            <div class="stat-value" id="timerDisplay2">0:00</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">
+                                <span class="lang-en">✅ MATCHED</span>
+                                <span class="lang-zh">✅ 已配對</span>
+                            </div>
+                            <div class="stat-value" id="matchedDisplay2">0 / 5</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">
+                                <span class="lang-en">🔥 STREAK</span>
+                                <span class="lang-zh">🔥 連勝</span>
+                            </div>
+                            <div class="stat-value" id="streakDisplay2">0</div>
+                        </div>
+                    </div>
+                    <div class="matching-grid" id="matchingGrid2"></div>
+                    <div class="feedback" id="matchFeedback2"></div>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-secondary" onclick="prevPage()">
+                        <span class="lang-en">← Back</span>
+                        <span class="lang-zh">← 返回</span>
+                    </button>
+                    <button class="btn btn-secondary" onclick="resetMatching(2)">
+                        <span class="lang-en">🔄 Reset</span>
+                        <span class="lang-zh">🔄 重置</span>
+                    </button>
+                    <button class="btn btn-primary" id="next2" onclick="nextPage()" style="display:none;">
+                        <span class="lang-en">Next Level →</span>
+                        <span class="lang-zh">下一關 →</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Page 3: Sentence Builder -->
+            <div class="page" id="page3">
+                <div class="section-intro">
+                    <h2>
+                        <span class="lang-en">Level 2: Sentence Builder</span>
+                        <span class="lang-zh">第2關：造句練習</span>
+                    </h2>
+                    <p>
+                        <span class="lang-en">Drag the correct adjective into the blank to complete each sentence.</span>
+                        <span class="lang-zh">將正確的形容詞拖入空格以完成句子。</span>
+                    </p>
+                </div>
+                <div class="activity-container">
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <div class="stat-label">
+                                <span class="lang-en">📝 QUESTION</span>
+                                <span class="lang-zh">📝 題目</span>
+                            </div>
+                            <div class="stat-value" id="questionNum">1 / 10</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">
+                                <span class="lang-en">⭐ SCORE</span>
+                                <span class="lang-zh">⭐ 得分</span>
+                            </div>
+                            <div class="stat-value" id="dragScore">0</div>
+                        </div>
+                    </div>
+                    <div style="background: #f7fafc; padding: 20px; border-radius: 12px; margin: 15px 0; border: 2px solid #e2e8f0;">
+                        <div class="sentence-display" id="sentenceDisplay"></div>
+                        <div class="adjective-options" id="adjectiveOptions"></div>
+                    </div>
+                    <div class="feedback" id="dragFeedback"></div>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-secondary" onclick="prevPage()">
+                        <span class="lang-en">← Back</span>
+                        <span class="lang-zh">← 返回</span>
+                    </button>
+                    <button class="btn btn-primary" id="checkBtn" onclick="checkDragAnswer()">
+                        <span class="lang-en">Check Answer</span>
+                        <span class="lang-zh">檢查答案</span>
+                    </button>
+                    <button class="btn btn-primary" id="nextBtn3" onclick="nextDragQuestion()" style="display:none;">
+                        <span class="lang-en">Next Question →</span>
+                        <span class="lang-zh">下一題 →</span>
+                    </button>
+                    <button class="btn btn-primary" id="finalBtn" onclick="nextPage()" style="display:none;">
+                        <span class="lang-en">Final Challenge →</span>
+                        <span class="lang-zh">最後挑戰 →</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Page 4: Project Scenario Challenge -->
+            <div class="page" id="page4">
+                <div class="section-intro">
+                    <h2>
+                        <span class="lang-en">Level 3: Scenario Challenge</span>
+                        <span class="lang-zh">第3關：情境挑戰</span>
+                    </h2>
+                    <p>
+                        <span class="lang-en">Read each project scenario and select 2-3 adjectives that BEST describe what the project should be.</span>
+                        <span class="lang-zh">閱讀每個項目情境，選擇2-3個最能描述項目的形容詞。</span>
+                    </p>
+                </div>
+                <div class="activity-container">
+                    <div class="scenario-grid" id="scenarioGrid"></div>
+                    <div style="text-align:center; margin:20px 0;">
+                        <h3 style="color:#0891b2; font-size:1.05em;">
+                            <span class="lang-en">Select 2-3 adjectives for this project:</span>
+                            <span class="lang-zh">為此項目選擇2-3個形容詞：</span>
+                        </h3>
+                    </div>
+                    <div class="adjective-grid" id="adjectiveGrid"></div>
+                    <div class="feedback" id="scenarioFeedback"></div>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-secondary" onclick="prevPage()">
+                        <span class="lang-en">← Back</span>
+                        <span class="lang-zh">← 返回</span>
+                    </button>
+                    <button class="btn btn-primary" id="checkScenarioBtn" onclick="checkScenarioAnswer()">
+                        <span class="lang-en">Check My Choices</span>
+                        <span class="lang-zh">檢查答案</span>
+                    </button>
+                    <button class="btn btn-primary" id="nextScenarioBtn" onclick="nextScenario()" style="display:none;">
+                        <span class="lang-en">Next Scenario →</span>
+                        <span class="lang-zh">下一情境 →</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Page 5: Completion -->
+            <div class="page" id="page5">
+                <div class="achievement">
+                    <div class="achievement-icon">🎊</div>
+                    <h1 style="color: #0891b2; margin-bottom: 20px;">
+                        <span class="lang-en">Congratulations!</span>
+                        <span class="lang-zh">恭喜你！</span>
+                    </h1>
+                    <p style="font-size: 1.2em; margin-bottom: 30px; color: #2d3748;">
+                        <span class="lang-en">You've completed all challenges and mastered the adjectives for describing requirements!</span>
+                        <span class="lang-zh">你已完成所有挑戰，並且已經熟悉如何用形容詞來描述要求！</span>
+                    </p>
+                    <div style="background: linear-gradient(135deg, #f0fdfa 0%, #fff9c4 100%); padding: 25px; border-radius: 12px; margin: 25px 0; border: 2px solid #e2e8f0;">
+                        <h2 style="color: #0891b2; margin-bottom: 15px; font-size: 1.2em;">
+                            <span class="lang-en">💡 Remember:</span>
+                            <span class="lang-zh">💡 記住：</span>
+                        </h2>
+                        <p style="color: #2d3748; font-size: 1em; line-height: 1.6;">
+                            <span class="lang-en">Use these adjectives when writing:<br><strong>"Our product/proposal should be..."</strong></span>
+                            <span class="lang-zh">寫作時使用這些形容詞：<br><strong>「我們的產品/方案應該是...」</strong></span>
+                        </p>
+                    </div>
+                    <div style="background: #f7fafc; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #e2e8f0;">
+                        <h3 style="color: #0891b2; margin-bottom: 10px;">
+                            <span class="lang-en">📊 Your Final Score:</span>
+                            <span class="lang-zh">📊 你的最終得分：</span>
+                        </h3>
+                        <p style="font-size: 2em; font-weight: 700; color: #0891b2;"><span id="finalScore">0</span> / 3</p>
+                    </div>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-primary" onclick="restartQuiz()">
+                        <span class="lang-en">🔄 Practise Again</span>
+                        <span class="lang-zh">🔄 再次練習</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <script>
+        // Data - Split into two sets
+        const adjectivesSet1 = [
+            { word: "affordable", meaning: "reasonably priced; not expensive", zh: "價格合理的；不貴的" },
+            { word: "user-friendly", meaning: "easy to use and understand", zh: "易於使用和理解的" },
+            { word: "eco-friendly", meaning: "not harmful to the environment", zh: "環保的；對環境無害的" },
+            { word: "efficient", meaning: "working well without wasting time", zh: "高效的；不浪費時間的" },
+            { word: "practical", meaning: "useful and sensible", zh: "實用的；明智的" }
+        ];
+
+        const adjectivesSet2 = [
+            { word: "attractive", meaning: "pleasing in appearance", zh: "外觀吸引人的" },
+            { word: "convenient", meaning: "easy to use or suitable", zh: "方便的；適合的" },
+            { word: "modern", meaning: "relating to present time", zh: "現代的；與現在有關的" },
+            { word: "flexible", meaning: "able to change easily", zh: "靈活的；易於改變的" },
+            { word: "professional", meaning: "showing high standards", zh: "專業的；高標準的" }
+        ];
+
+        const adjectiveTranslations = {
+            "affordable": "價格合理的",
+            "user-friendly": "易於使用的",
+            "eco-friendly": "環保的",
+            "efficient": "高效的",
+            "practical": "實用的",
+            "attractive": "吸引人的",
+            "convenient": "方便的",
+            "modern": "現代的",
+            "flexible": "靈活的",
+            "professional": "專業的",
+            "portable": "便攜的",
+            "stylish": "時尚的",
+            "compact": "緊湊的",
+            "durable": "耐用的",
+            "reliable": "可靠的"
+        };
+
+        const sentenceExercises = [
+            {
+                sentence: "Our product should be _____ so that students can buy it easily.",
+                sentenceZh: "我們的產品應該是_____，這樣學生就可以輕鬆購買。",
+                blank: "affordable",
+                options: ["portable","affordable", "stylish"]
+            },
+            {
+                sentence: "The app interface should be _____ for elderly users.",
+                sentenceZh: "應用程式介面應該對老年用戶來說是_____。",
+                blank: "user-friendly",
+                options: ["modern", "flexible", "user-friendly"]
+            },
+            {
+                sentence: "Our packaging should be _____ to reduce waste.",
+                sentenceZh: "我們的包裝應該是_____以減少浪費。",
+                blank: "eco-friendly",
+                options: ["compact","eco-friendly", "attractive"]
+            },
+            {
+                sentence: "The new system should be _____ to save staff time.",
+                sentenceZh: "新系統應該是_____以節省員工時間。",
+                blank: "efficient",
+                options: ["portable","efficient", "stylish"]
+            },
+            {
+                sentence: "Our design should be _____ for everyday use.",
+                sentenceZh: "我們的設計應該對日常使用來說是_____。",
+                blank: "practical",
+                options: ["practical", "modern", "flexible"]
+            },
+            {
+                sentence: "The storefront should be _____ to draw customers inside.",
+                sentenceZh: "店面應該是_____以吸引顧客進入。",
+                blank: "attractive",
+                options: ["attractive", "efficient", "durable"]
+            },
+            {
+                sentence: "Online ordering should be _____ for busy customers.",
+                sentenceZh: "網上訂購應該對忙碌的顧客來說是_____。",
+                blank: "convenient",
+                options: ["convenient", "compact", "stylish"]
+            },
+            {
+                sentence: "Our website should have a _____ look to appeal to young people.",
+                sentenceZh: "我們的網站應該有_____的外觀以吸引年輕人。",
+                blank: "modern",
+                options: ["modern", "durable", "practical"]
+            },
+            {
+                sentence: "The schedule should be _____ to accommodate different needs.",
+                sentenceZh: "時間表應該是_____以適應不同需求。",
+                blank: "flexible",
+                options: ["flexible", "portable", "affordable"]
+            },
+            {
+                sentence: "Our presentation should look _____ to impress clients.",
+                sentenceZh: "我們的演示應該看起來_____以給客戶留下深刻印象。",
+                blank: "professional",
+                options: ["compact", "eco-friendly","professional"]
+            }
+        ];
+
+        const scenarios = [
+            {
+                title: "Healthcare App for Seniors",
+                titleZh: "長者健康應用程式",
+                description: "Design a mobile app for elderly people to book medical appointments.",
+                descriptionZh: "為老年人設計一款預約醫療的手機應用程式。",
+                correct: ["user-friendly", "reliable", "convenient"],
+                allOptions: ["user-friendly", "reliable", "convenient", "modern", "stylish", "affordable"]
+            },
+            {
+                title: "Eco Shopping Bags",
+                titleZh: "環保購物袋",
+                description: "Create reusable shopping bags for supermarkets to replace plastic bags.",
+                descriptionZh: "為超市創造可重複使用的購物袋以取代塑膠袋。",
+                correct: ["eco-friendly", "durable", "affordable"],
+                allOptions: ["eco-friendly", "durable", "affordable", "attractive", "portable", "compact"]
+            },
+            {
+                title: "Co-working Space",
+                titleZh: "共享工作空間",
+                description: "Set up a shared workspace for freelancers in the city.",
+                descriptionZh: "在城市中為自由職業者設立共享工作空間。",
+                correct: ["flexible", "convenient", "professional"],
+                allOptions: ["flexible", "convenient", "professional", "modern", "affordable", "attractive"]
+            }
+        ];
+
+        // Global variables
+        let currentPage = 0;
+        let score = 0;
+        let totalQuestions = 3;
+        let currentLang = 'en';
+        let matchTimers = [null, null, null];
+        let matchSeconds = [0, 0, 0];
+        let matchedCounts = [0, 0, 0];
+        let matchStreaks = [0, 0, 0];
+        let selectedCards = [{adj: null, mean: null}, {adj: null, mean: null}];
+        let currentDragQuestion = 0;
+        let dragScore = 0;
+        let currentScenario = 0;
+        let scenarioSelections = [];
+
+        // Utility functions
+        function shuffleArray(array) {
+            const arr = array.slice();
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        function toggleLanguage() {
+            currentLang = (currentLang === 'en') ? 'zh' : 'en';
+            document.body.setAttribute('data-lang', currentLang);
+            
+            // Refresh current page content if needed
+            if (currentPage === 1) {
+                renderMatchingGrid(1, adjectivesSet1);
+            } else if (currentPage === 2) {
+                renderMatchingGrid(2, adjectivesSet2);
+            } else if (currentPage === 3) {
+                showDragQuestion();
+            } else if (currentPage === 4) {
+                showScenario();
+            }
+        }
+
+        function nextPage() {
+            const pages = document.querySelectorAll('.page');
+            pages[currentPage].classList.remove('active');
+            currentPage++;
+            if (currentPage < pages.length) {
+                pages[currentPage].classList.add('active');
+            }
+            updateProgress();
+            window.scrollTo(0, 0);
+
+            if (currentPage === 1) {
+                setupMatching(1, adjectivesSet1);
+            } else if (currentPage === 2) {
+                setupMatching(2, adjectivesSet2);
+            } else if (currentPage === 3) {
+                setupDragDrop();
+            } else if (currentPage === 4) {
+                setupScenarios();
+            } else if (currentPage === 5) {
+                document.getElementById('finalScore').textContent = score;
+            }
+        }
+function fireConfetti() {
+  confetti({
+    particleCount: 140,
+    spread: 80,
+    origin: { y: 0.6 }
+  });
+}
+
+        function prevPage() {
+            const pages = document.querySelectorAll('.page');
+            pages[currentPage].classList.remove('active');
+            currentPage--;
+            if (currentPage >= 0) {
+                pages[currentPage].classList.add('active');
+            }
+            updateProgress();
+            window.scrollTo(0, 0);
+        }
+
+        function updateProgress() {
+            const progress = (score / totalQuestions) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressFill').textContent = Math.round(progress) + '%';
+            document.getElementById('scoreDisplay').textContent = score;
+            document.getElementById('totalScore').textContent = totalQuestions;
+        }
+
+        // Matching Game (works for both parts)
+        function setupMatching(part, adjectiveSet) {
+            const idx = part - 1;
+            matchedCounts[idx] = 0;
+            matchStreaks[idx] = 0;
+            matchSeconds[idx] = 0;
+            selectedCards[idx] = {adj: null, mean: null};
+            
+            document.getElementById(`matchedDisplay${part}`).textContent = '0 / ' + adjectiveSet.length;
+            document.getElementById(`streakDisplay${part}`).textContent = '0';
+            document.getElementById(`timerDisplay${part}`).textContent = '0:00';
+            document.getElementById(`matchFeedback${part}`).style.display = 'none';
+            document.getElementById(`next${part}`).style.display = 'none';
+            
+            startMatchTimer(part);
+            renderMatchingGrid(part, adjectiveSet);
+        }
+
+        function startMatchTimer(part) {
+            const idx = part - 1;
+            clearInterval(matchTimers[idx]);
+            matchTimers[idx] = setInterval(() => {
+                matchSeconds[idx]++;
+                const mins = Math.floor(matchSeconds[idx] / 60);
+                const secs = matchSeconds[idx] % 60;
+                document.getElementById(`timerDisplay${part}`).textContent = 
+                    mins + ':' + secs.toString().padStart(2, '0');
+            }, 1000);
+        }
+
+        function renderMatchingGrid(part, adjectiveSet) {
+    const grid = document.getElementById(`matchingGrid${part}`);
+    grid.innerHTML = '';
+    
+    // Keep adjectives in order on LEFT, meanings in order on RIGHT
+    const adjectives = [...adjectiveSet];
+    const meanings = shuffleArray([...adjectiveSet]); // Only shuffle meanings
+            
+             // Render ALL adjectives first (will go in left column)
+    adjectiveSet.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'match-card adjective';
+        card.textContent = item.word;
+        card.dataset.word = item.word;
+        card.onclick = () => selectMatchCard(card, 'adjective', part, adjectiveSet);
+        grid.appendChild(card);
+    });
+    
+    // Then render ALL meanings (will go in right column) - shuffled
+    const shuffledMeanings = shuffleArray([...adjectiveSet]);
+    shuffledMeanings.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'match-card meaning';
+        card.textContent = currentLang === 'zh' ? item.zh : item.meaning;
+        card.dataset.word = item.word;
+        card.onclick = () => selectMatchCard(card, 'meaning', part, adjectiveSet);
+        grid.appendChild(card);
+    });
+}
+
+        function selectMatchCard(card, type, part, adjectiveSet) {
+            const idx = part - 1;
+            if (card.classList.contains('matched')) return;
+            
+            if (type === 'adjective') {
+                document.querySelectorAll(`#matchingGrid${part} .match-card.adjective`).forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                selectedCards[idx].adj = card.dataset.word;
+            } else {
+                document.querySelectorAll(`#matchingGrid${part} .match-card.meaning`).forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                selectedCards[idx].mean = card.dataset.word;
+            }
+            
+            if (selectedCards[idx].adj && selectedCards[idx].mean) {
+                checkMatch(part, adjectiveSet);
+            }
+        }
+
+        function checkMatch(part, adjectiveSet) {
+            const idx = part - 1;
+            const feedback = document.getElementById(`matchFeedback${part}`);
+            
+            if (selectedCards[idx].adj === selectedCards[idx].mean) {
+                const adjCard = document.querySelector(`#matchingGrid${part} .match-card.adjective[data-word="${selectedCards[idx].adj}"]`);
+                const meanCard = document.querySelector(`#matchingGrid${part} .match-card.meaning[data-word="${selectedCards[idx].mean}"]`);
+                
+                adjCard.classList.add('matched');
+                meanCard.classList.add('matched');
+                adjCard.classList.remove('selected');
+                meanCard.classList.remove('selected');
+                
+                matchedCounts[idx]++;
+                matchStreaks[idx]++;
+                
+                document.getElementById(`matchedDisplay${part}`).textContent = matchedCounts[idx] + ' / ' + adjectiveSet.length;
+                document.getElementById(`streakDisplay${part}`).textContent = matchStreaks[idx];
+                
+                feedback.className = 'feedback show correct';
+                feedback.textContent = currentLang === 'zh' ? 
+                    `✅ 完美配對！連勝：${matchStreaks[idx]}` : 
+                    `✅ Perfect match! Streak: ${matchStreaks[idx]}`;
+                
+                if (matchedCounts[idx] === adjectiveSet.length) {
+                    clearInterval(matchTimers[idx]);
+                    score++;
+                    updateProgress();
+                    fireConfetti();   
+                    setTimeout(() => {
+                        feedback.textContent = currentLang === 'zh' ? 
+                            '🎉 太棒了！你配對了所有項目！' : 
+                            '🎉 Amazing! You matched all pairs!';
+                        document.getElementById(`next${part}`).style.display = 'block';
+                    }, 800);
+                }
+            } else {
+                const adjCard = document.querySelector(`#matchingGrid${part} .match-card.adjective.selected`);
+                const meanCard = document.querySelector(`#matchingGrid${part} .match-card.meaning.selected`);
+                
+                if (adjCard) adjCard.classList.add('wrong');
+                if (meanCard) meanCard.classList.add('wrong');
+                
+                matchStreaks[idx] = 0;
+                document.getElementById(`streakDisplay${part}`).textContent = '0';
+                
+                feedback.className = 'feedback show incorrect';
+                feedback.textContent = currentLang === 'zh' ? 
+                    '❌ 不配對！再試一次。' : 
+                    '❌ Not a match! Try again.';
+                
+                setTimeout(() => {
+                    if (adjCard) adjCard.classList.remove('wrong', 'selected');
+                    if (meanCard) meanCard.classList.remove('wrong', 'selected');
+                }, 600);
+            }
+            
+            selectedCards[idx] = {adj: null, mean: null};
+        }
+
+        function resetMatching(part) {
+            const idx = part - 1;
+            clearInterval(matchTimers[idx]);
+            const adjectiveSet = part === 1 ? adjectivesSet1 : adjectivesSet2;
+            setupMatching(part, adjectiveSet);
+        }
+
+        // Drag & Drop
+        function setupDragDrop() {
+            currentDragQuestion = 0;
+            dragScore = 0;
+            document.getElementById('dragScore').textContent = '0';
+            document.getElementById('dragFeedback').style.display = 'none';
+            showDragQuestion();
+        }
+
+        function showDragQuestion() {
+            if (currentDragQuestion >= sentenceExercises.length) {
+                showDragComplete();
+                return;
+            }
+            
+            const question = sentenceExercises[currentDragQuestion];
+            document.getElementById('questionNum').textContent = 
+                (currentDragQuestion + 1) + ' / ' + sentenceExercises.length;
+            
+            const sentenceDisplay = document.getElementById('sentenceDisplay');
+            const sentence = currentLang === 'zh' ? question.sentenceZh : question.sentence;
+            const parts = sentence.split('_____');
+            sentenceDisplay.innerHTML = parts[0] + 
+                '<span class="drop-zone" id="dropZone" ondrop="drop(event)" ondragover="allowDrop(event)"></span>' + 
+                parts[1];
+            
+            const optionsContainer = document.getElementById('adjectiveOptions');
+            optionsContainer.innerHTML = '';
+            
+            shuffleArray(question.options).forEach(option => {
+                const adjDiv = document.createElement('div');
+                adjDiv.className = 'draggable-adjective';
+                adjDiv.textContent = currentLang === 'zh' ? adjectiveTranslations[option] : option;
+                adjDiv.draggable = true;
+                adjDiv.dataset.word = option;
+                adjDiv.ondragstart = drag;
+                
+                // Touch events for mobile
+                adjDiv.ontouchstart = (e) => {
+                    e.preventDefault();
+                    adjDiv.classList.add('dragging');
+                };
+                
+                adjDiv.ontouchmove = (e) => {
+                    e.preventDefault();
+                };
+                
+                adjDiv.ontouchend = (e) => {
+                    e.preventDefault();
+                    adjDiv.classList.remove('dragging');
+                    const dropZone = document.getElementById('dropZone');
+                    if (dropZone && !dropZone.classList.contains('filled')) {
+                        dropZone.textContent = currentLang === 'zh' ? adjectiveTranslations[option] : option;
+                        dropZone.classList.add('filled');
+                        dropZone.dataset.word = option;
+                        adjDiv.classList.add('used');
+                    }
+                };
+                
+                optionsContainer.appendChild(adjDiv);
+            });
+            
+            document.getElementById('checkBtn').style.display = 'block';
+            document.getElementById('nextBtn3').style.display = 'none';
+            document.getElementById('finalBtn').style.display = 'none';
+            document.getElementById('dragFeedback').style.display = 'none';
+        }
+
+        function allowDrop(event) {
+            event.preventDefault();
+            event.target.classList.add('drag-over');
+        }
+
+        function drag(event) {
+            event.dataTransfer.setData('text', event.target.dataset.word);
+            event.target.classList.add('dragging');
+        }
+
+        function drop(event) {
+            event.preventDefault();
+            event.target.classList.remove('drag-over');
+            
+            const word = event.dataTransfer.getData('text');
+            const dropZone = event.target;
+            
+            if (dropZone.classList.contains('drop-zone') && !dropZone.classList.contains('filled')) {
+                dropZone.textContent = currentLang === 'zh' ? adjectiveTranslations[word] : word;
+                dropZone.classList.add('filled');
+                dropZone.dataset.word = word;
+                
+                document.querySelectorAll('.draggable-adjective').forEach(adj => {
+                    if (adj.dataset.word === word) {
+                        adj.classList.add('used');
+                    }
+                });
+            }
+        }
+
+        function checkDragAnswer() {
+            const dropZone = document.getElementById('dropZone');
+            const feedback = document.getElementById('dragFeedback');
+            const question = sentenceExercises[currentDragQuestion];
+            
+            if (!dropZone.classList.contains('filled')) {
+                feedback.className = 'feedback show incorrect';
+                feedback.textContent = currentLang === 'zh' ? 
+                    '⚠️ 請先將形容詞拖入空格！' : 
+                    '⚠️ Please drag an adjective into the blank first!';
+                return;
+            }
+            
+            const userAnswer = dropZone.dataset.word;
+            
+            if (userAnswer === question.blank) {
+                dropZone.classList.add('correct');
+                dragScore += 10;
+                document.getElementById('dragScore').textContent = dragScore;
+                
+                feedback.className = 'feedback show correct';
+                feedback.textContent = currentLang === 'zh' ? 
+                    '✅ 完美！這是正確的形容詞！' : 
+                    '✅ Perfect! That\'s the correct adjective!';
+                
+                document.getElementById('checkBtn').style.display = 'none';
+                
+                if (currentDragQuestion < sentenceExercises.length - 1) {
+                    document.getElementById('nextBtn3').style.display = 'block';
+                } else {
+                    score++;
+                    updateProgress();
+                    fireConfetti();
+                    document.getElementById('finalBtn').style.display = 'block';
+                }
+            } else {
+                dropZone.classList.add('incorrect');
+                
+                feedback.className = 'feedback show incorrect';
+                const correctWord = currentLang === 'zh' ? adjectiveTranslations[question.blank] : question.blank;
+                feedback.textContent = currentLang === 'zh' ? 
+                    `❌ 不太對。正確答案是「${correctWord}」。` : 
+                    `❌ Not quite. The correct answer is "${question.blank}".`;
+                
+                setTimeout(() => {
+                    dropZone.classList.remove('incorrect');
+                }, 1000);
+                
+                document.getElementById('checkBtn').style.display = 'none';
+                
+                if (currentDragQuestion < sentenceExercises.length - 1) {
+                    document.getElementById('nextBtn3').style.display = 'block';
+                } else {
+                    document.getElementById('finalBtn').style.display = 'block';
+                }
+            }
+        }
+
+        function nextDragQuestion() {
+            currentDragQuestion++;
+            showDragQuestion();
+        }
+
+        function showDragComplete() {
+            const percentage = Math.round((dragScore / (sentenceExercises.length * 10)) * 100);
+            
+            document.getElementById('sentenceDisplay').innerHTML = currentLang === 'zh' ? 
+                `<div style="text-align:center; padding:30px;">
+                    <div style="font-size:3em; margin-bottom:15px;">🎉</div>
+                    <h2 style="color:#0891b2; margin-bottom:15px;">第2關完成！</h2>
+                    <p style="font-size:1.2em; color:#2d3748;">
+                        最終得分：<strong style="color:#0891b2;">${dragScore}/${sentenceExercises.length * 10}</strong> (${percentage}%)
+                    </p>
+                </div>` :
+                `<div style="text-align:center; padding:30px;">
+                    <div style="font-size:3em; margin-bottom:15px;">🎉</div>
+                    <h2 style="color:#0891b2; margin-bottom:15px;">Level 2 Complete!</h2>
+                    <p style="font-size:1.2em; color:#2d3748;">
+                        Final Score: <strong style="color:#0891b2;">${dragScore}/${sentenceExercises.length * 10}</strong> (${percentage}%)
+                    </p>
+                </div>`;
+            
+            document.getElementById('adjectiveOptions').innerHTML = '';
+            document.getElementById('checkBtn').style.display = 'none';
+            document.getElementById('nextBtn3').style.display = 'none';
+            document.getElementById('finalBtn').style.display = 'block';
+            document.getElementById('dragFeedback').style.display = 'none';
+        }
+
+        // Scenarios
+        function setupScenarios() {
+            currentScenario = 0;
+            scenarioSelections = [];
+            showScenario();
+        }
+
+        function showScenario() {
+            if (currentScenario >= scenarios.length) {
+                score++;
+                updateProgress();
+                nextPage();
+                return;
+            }
+            
+            const scenario = scenarios[currentScenario];
+            
+            const scenarioGrid = document.getElementById('scenarioGrid');
+            scenarioGrid.innerHTML = '';
+            
+            scenarios.forEach((s, index) => {
+                const card = document.createElement('div');
+                card.className = 'scenario-card';
+                if (index === currentScenario) {
+                    card.classList.add('active');
+                }
+                if (index > currentScenario) {
+                    card.style.opacity = '0.5';
+                }
+                card.innerHTML = `
+                    <div class="scenario-title">${currentLang === 'zh' ? s.titleZh : s.title}</div>
+                    <div class="scenario-desc">${currentLang === 'zh' ? s.descriptionZh : s.description}</div>
+                `;
+                scenarioGrid.appendChild(card);
+            });
+            
+            const adjectiveGrid = document.getElementById('adjectiveGrid');
+            adjectiveGrid.innerHTML = '';
+            
+            scenario.allOptions.forEach(word => {
+                const tile = document.createElement('div');
+                tile.className = 'adjective-tile';
+                tile.textContent = currentLang === 'zh' ? adjectiveTranslations[word] : word;
+                tile.dataset.word = word;
+                tile.onclick = () => toggleAdjectiveTile(tile);
+                adjectiveGrid.appendChild(tile);
+            });
+            
+            document.getElementById('checkScenarioBtn').style.display = 'block';
+            document.getElementById('nextScenarioBtn').style.display = 'none';
+            document.getElementById('scenarioFeedback').style.display = 'none';
+            scenarioSelections = [];
+        }
+
+        function toggleAdjectiveTile(tile) {
+            if (tile.classList.contains('correct') || tile.classList.contains('incorrect')) {
+                return;
+            }
+            
+            const word = tile.dataset.word;
+            
+            if (tile.classList.contains('selected')) {
+                tile.classList.remove('selected');
+                scenarioSelections = scenarioSelections.filter(w => w !== word);
+            } else {
+                if (scenarioSelections.length >= 3) {
+                    const feedback = document.getElementById('scenarioFeedback');
+                    feedback.className = 'feedback show incorrect';
+                    feedback.textContent = currentLang === 'zh' ? 
+                        '⚠️ 你只能選擇最多3個形容詞！' : 
+                        '⚠️ You can only select up to 3 adjectives!';
+                    setTimeout(() => {
+                        feedback.style.display = 'none';
+                    }, 2000);
+                } else {
+                    tile.classList.add('selected');
+                    scenarioSelections.push(word);
+                }
+            }
+        }
+
+        function checkScenarioAnswer() {
+            const feedback = document.getElementById('scenarioFeedback');
+            const scenario = scenarios[currentScenario];
+            
+            if (scenarioSelections.length < 2) {
+                feedback.className = 'feedback show incorrect';
+                feedback.textContent = currentLang === 'zh' ? 
+                    '⚠️ 請至少選擇2個形容詞！' : 
+                    '⚠️ Please select at least 2 adjectives!';
+                return;
+            }
+            
+            const correctWords = scenario.correct;
+            let correctCount = 0;
+            
+            document.querySelectorAll('.adjective-tile').forEach(tile => {
+                const word = tile.dataset.word;
+                
+                if (scenarioSelections.includes(word)) {
+                    if (correctWords.includes(word)) {
+                        tile.classList.add('correct');
+                        tile.classList.remove('selected');
+                        correctCount++;
+                    } else {
+                        tile.classList.add('incorrect');
+                        tile.classList.remove('selected');
+                    }
+                } else {
+                    if (correctWords.includes(word)) {
+                        tile.classList.add('correct');
+                        tile.style.opacity = '0.7';
+                    }
+                }
+            });
+            
+            if (correctCount >= 2) {
+                feedback.className = 'feedback show correct';
+                feedback.textContent = currentLang === 'zh' ? 
+                    `✅ 很好的選擇！你選擇了${correctCount}個合適的形容詞！` : 
+                    `✅ Great choices! You selected ${correctCount} appropriate adjectives!`;
+              fireConfetti();
+            } else {
+                feedback.className = 'feedback show incorrect';
+                feedback.textContent = currentLang === 'zh' ? 
+                    `你答對了${correctCount}個。綠色方塊顯示最佳形容詞。` : 
+                    `You got ${correctCount} correct. Green tiles show the best adjectives.`;
+              fireConfetti();
+            }
+            
+            document.getElementById('checkScenarioBtn').style.display = 'none';
+            
+            if (currentScenario < scenarios.length - 1) {
+                document.getElementById('nextScenarioBtn').style.display = 'block';
+            } else {
+                setTimeout(() => {
+                    nextPage();
+                }, 2000);
+            }
+        }
+
+        function nextScenario() {
+            currentScenario++;
+            showScenario();
+        }
+
+        function restartQuiz() {
+            score = 0;
+            currentPage = 0;
+            
+            document.querySelectorAll('.page').forEach((page, index) => {
+                page.classList.remove('active');
+                if (index === 0) page.classList.add('active');
+            });
+            
+            updateProgress();
+            window.scrollTo(0, 0);
+        }
+
+        // Initialize
+        window.addEventListener('load', function() {
+            document.getElementById('totalScore').textContent = totalQuestions;
+            updateProgress();
+        });
+    </script>
+</body>
+</html>
+    
+  </body>
+  
+</html>

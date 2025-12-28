@@ -1,0 +1,1783 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>VOT3002(LC) - (Proposal Project) Students’ Guide to Project Plan Presentation </title>
+    
+
+  </head>
+    
+  <body>
+  <!-- START COPY HERE -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>VOT3002 (LC) – Students' Guide to Project Plan Presentation</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<!-- Google Font: Poppins -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg1:#e0fdf7;     /* mint */
+  --bg2:#fff3e8;     /* peach */
+  --bg3:#fef9c3;     /* pale yellow */
+  --accent:#14b8a6;  /* teal 500 */
+  --accent-2:#f97316;/* orange 500 */
+  --ink:#393E46;
+  --muted:#64748b;
+  --card-bg: rgba(255,255,255,0.95);
+  --ring: rgba(20,184,166,0.25);
+  --shadow: 0 10px 30px rgba(15,23,42,0.08);
+  --radius: 18px;
+}
+  /* ← ADD THESE LINES HERE */
+html {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+*, *::before, *::after {
+  -webkit-tap-highlight-color: transparent;
+}
+/* END OF MOBILE TAP FIX */
+
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;}
+body{
+  font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  color:var(--ink);
+  overflow:hidden;
+}
+/* dynamic background */
+.bg{
+  position:fixed;inset:0;z-index:-1;
+  background:
+    radial-gradient(60% 60% at 20% 20%,var(--bg1),transparent 70%),
+    radial-gradient(60% 60% at 80% 30%,var(--bg2),transparent 70%),
+    radial-gradient(60% 60% at 50% 80%,var(--bg3),transparent 70%),
+    linear-gradient(120deg,#fbfdff,#ffffff 40%,#fbfdff);
+  animation:float 28s ease-in-out infinite alternate;
+}
+@keyframes float{
+  0%{filter:hue-rotate(0deg) brightness(1);}
+  100%{filter:hue-rotate(80deg) brightness(1.06);}
+}
+
+/* app layout */
+.app{
+  display:grid;grid-template-rows:auto 1fr auto;
+  height:100dvh;width:100%;
+  padding:18px clamp(12px,3vw,28px);
+}
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:12px;padding:8px 12px;
+}
+.brand{
+  display:flex;align-items:center;gap:10px;
+  font-weight:700;color:var(--accent);letter-spacing:.2px;
+}
+.brand-badge{
+  width:36px;height:36px;border-radius:10px;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  box-shadow:0 8px 20px rgba(37,99,235,0.25);
+}
+.quicknav{display:flex;gap:8px;flex-wrap:wrap;}
+.quicknav button{
+  appearance:none;
+  border:1px solid rgba(31,41,55,0.08);
+  background:#fff;
+  color:#B7B7B7;
+  padding:8px 12px;
+  border-radius:12px;
+  font-weight:500;
+  font-size:0.85rem;
+  font-family:'Poppins', system-ui, -apple-system, sans-serif;
+  cursor:pointer;
+  transition:.2s ease;
+  box-shadow: var(--shadow);
+  font-size:.82rem;
+}
+.quicknav button:hover{transform:translateY(-1px);}
+.quicknav .active{border-color:var(--accent);color:var(--accent);}
+
+/* viewport/pages */
+.viewport{
+  position:relative;height:100%;width:100%;
+  display:flex;align-items:center;justify-content:center;
+  padding:clamp(8px,2.2vw,18px);
+}
+.page{
+  position:absolute;
+  inset:0;
+  margin:auto;
+  max-width:1100px;
+  height:calc(100% - 16px);
+  width:calc(100% - 16px);
+  background:var(--card-bg);
+  backdrop-filter:blur(8px);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  border:1px solid rgba(31,41,55,0.06);
+  display:none;
+  overflow:auto;
+  scroll-behavior:smooth;
+  scrollbar-width:none;      /* Firefox */
+}
+
+/* Chrome, Edge, Safari */
+.page::-webkit-scrollbar{
+  width:0;
+  height:0;
+}
+
+  @media(max-width:600px){
+  .page{
+    width:100%;
+    height:100%;
+    border-radius:0;
+    border:none;
+    box-shadow:none;
+  }
+}
+.page.visible{display:block;animation:fadeIn .35s ease;}
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(6px);}
+  to{opacity:1;transform:none;}
+}
+.page-inner{padding:clamp(16px,3.2vw,32px);}
+
+/* typography */
+h1{font-size:clamp(1.6rem,2.2vw,2.2rem);margin:0 0 6px;color:var(--accent);}
+h2{font-size:clamp(1.2rem,1.8vw,1.6rem);margin:18px 0 10px;color:#0f172a;}
+h3{font-size:clamp(1.05rem,1.4vw,1.2rem);margin:16px 0 8px;color:#111827;}
+.lead{color:var(--muted);font-weight:500;}
+p{margin:0 0 .85rem;}
+
+.block{
+  background:#fff;border:1px solid rgba(2,6,23,0.06);
+  padding:clamp(14px,2.4vw,22px);border-radius:14px;
+  box-shadow:var(--shadow);margin:12px 0;
+}
+.kicker{
+  display:inline-block;
+  font-size:.78rem;
+  font-weight:600;
+  letter-spacing:.3px;
+  color:#047857;                 /* dark mint text */
+  background:rgba(16,185,129,0.16); /* soft mint background */
+  padding:6px 12px;
+  border-radius:999px;
+  margin-bottom:8px;
+}
+
+/* tables */
+.table-wrap{overflow:auto;border-radius:12px;border:1px solid rgba(2,6,23,0.06);}
+table{width:100%;border-collapse:collapse;background:#fff;}
+th,td{text-align:left;padding:12px 14px;vertical-align:top;font-size:.9rem;}
+thead th{
+  position:sticky;top:0;background:linear-gradient(180deg,#eff6ff,#e0ecff);
+  color:#0f172a;border-bottom:1px solid rgba(2,6,23,0.12);
+}
+tbody tr:nth-child(even){background:#f9fbff;}
+tbody tr:hover{background:#eef4ff;}
+td,th{border-bottom:1px solid rgba(2,6,23,0.06);}
+
+/* lists & callouts */
+ul{padding-left:1.2em;margin:0 0 .8rem;}
+li{margin:6px 0;}
+.checklist li::marker{color:#16a34a;}
+.callout{
+  border-left:6px solid #60a5fa;background:#f0f6ff;
+  padding:10px 12px;border-radius:10px;margin:8px 0;font-size:.9rem;
+}
+.tip{border-left-color:#f59e0b;background:#fff7ed;}
+
+/* hero */
+.hero{
+  display:grid;
+  gap:2px;
+  align-content:flex-start;  /* was center */
+  min-height:16vh;           /* was 58vh */
+  text-align:center;
+  margin-top:0x;            /* small nudge upwards */
+}
+.hero h1{font-size:clamp(1.8rem,3vw,2.6rem);
+  margin-bottom:2px;}
+.hero .cta{margin-top:5px;display:flex;gap:5px;justify-content:center;flex-wrap:wrap;}
+
+.stage-timeline {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.stage-card {
+  background: linear-gradient(135deg, #FFF8DE, #BADFDB);
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+  color: #504B38; /* change this to any color */
+}
+
+.stage-number {
+ display: inline-flex;        /* or inline-block */
+  padding: 0.25rem 0.75rem;    /* controls size but allows growth */
+  border-radius: 999px;
+  background: linear-gradient(135deg, #15B392, #FFEB55);  /* Blue to pink */
+  color: #F6F0F0;
+  font-weight: 700;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+  
+/* badges/grid */
+.badge{
+  display:inline-block;padding:6px 10px;border-radius:999px;
+  font-weight:600;font-size:.8rem;
+  background:rgba(37,99,235,0.08);color:var(--accent);margin-bottom:8px;
+}
+.grid{display:grid;gap:14px;}
+.grid-2{grid-template-columns:repeat(2,minmax(0,1fr));}
+@media(max-width:860px){.grid-2{grid-template-columns:1fr;}}
+.small{font-size:.9rem;color:var(--muted);}
+hr.sep{border:none;height:1px;background:rgba(2,6,23,0.08);margin:12px 0;}
+
+/* footer nav */
+.footer{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:10px;padding:8px 6px;
+}
+.nav-buttons{display:flex;gap:8px;flex-wrap:wrap;}
+.btn{
+  appearance:none;cursor:pointer;
+  border:1px solid rgba(31,41,55,0.12);
+  background:#fff;padding:10px 14px;border-radius:12px;
+  font-weight:600;color:var(--ink);box-shadow:var(--shadow);
+  transition:.2s;font-size:.9rem;
+}
+.btn:hover{transform:translateY(-1px);}
+.btn.primary{
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  color:#fff;border-color:transparent;
+  box-shadow:0 10px 26px var(--ring);
+}
+.btn.ghost{background:#fff;color:var(--accent);border-color:rgba(37,99,235,0.35);}
+.btn.small{padding:8px 12px;}
+.progress{
+  display:flex;align-items:center;gap:8px;color:var(--muted);font-weight:600;
+}
+.dotbar{display:flex;gap:6px;}
+.dot{
+  width:10px;height:10px;border-radius:999px;
+  background:rgba(31,41,55,0.2);
+}
+.dot.active{
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+}
+.accordion {
+  margin-top: 1.5rem;
+}
+
+/* Each item as a card */
+.accordion-item {
+  border-radius: 12px;
+  background: linear-gradient(135deg, #FFF8DE, #BADFDB);
+  box-shadow: 0 4px 12px rgba(15,23,42,0.08);
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+}
+
+/* Header line */
+.accordion-header {
+  cursor: pointer;
+  padding: 0.9rem 1.1rem;
+  background: #D0E8C5;
+  font-weight: 600;
+  font-size: 0.98rem;
+  list-style: none;
+}
+
+/* Hide default marker (Chrome/Safari) */
+.accordion-header::-webkit-details-marker {
+  display: none;
+}
+
+/* Body */
+.accordion-body {
+  padding: 0.9rem 1.1rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+/* responsive tweaks */
+@media(max-width:768px){
+  .app{
+    padding:10px;
+  }
+
+  .topbar{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:6px;
+  }
+
+  /* Hide quick jump on small screens (optional) */
+  .quicknav{
+    display:none;
+  }
+
+  .page-inner{
+    padding:14px;
+  }
+
+  .btn{
+    font-size:0.85rem;
+    padding:8px 12px;
+  }
+
+  /* Make footer elements stack better */
+  .footer{
+    flex-direction:column;
+    align-items:stretch;
+    gap:6px;
+  }
+
+  .nav-buttons{
+    width:100%;
+    justify-content:space-between;
+  }
+
+  .progress{
+    width:100%;
+    justify-content:center;
+  }
+
+  .dotbar{
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+ 
+.block-teacher {
+  position: relative;
+  padding-top: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.block-teacher:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+}
+
+.teacher-icon {
+  font-size: 2.2rem;
+  color: #4a6cf7;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+
+<div class="app" role="application" aria-label="Tutor’s Guide Navigator">
+  <!-- top bar -->
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-badge" aria-hidden="true"></div>
+      <span>VOT3002 Project Skills (LC)</span>
+    </div>
+    <div class="quicknav" role="navigation" aria-label="Quick jump">
+     <button class="qn" data-go="home">Home</button>
+<button class="qn" data-go="overview">Overview</button>
+<button class="qn" data-go="stage1">Stage 1</button>
+<button class="qn" data-go="l1">L1</button>
+<button class="qn" data-go="l2">L2</button>
+<button class="qn" data-go="l3">L3</button>
+<button class="qn" data-go="l4">L4</button>
+<button class="qn" data-go="l5">L5</button>
+<button class="qn" data-go="stage2">Stage 2</button>
+<button class="qn" data-go="l6">L6</button>
+<button class="qn" data-go="l7">L7</button>
+<button class="qn" data-go="l8">L8</button>
+<button class="qn" data-go="l9">L9</button>
+<button class="qn" data-go="l10">L10</button>
+    </div>
+  </div>
+
+  <!-- viewport -->
+  <div class="viewport" id="viewport" tabindex="0">
+    <!-- COVER -->
+    <section class="page visible" data-page="home">
+      <div class="page-inner">
+        <div class="hero">
+          <span class="badge">Language Centre</span>
+          <h1>Guide to Your<br> Project Plan Presentation</h1>
+          <p class="lead">Proposal Project</p>
+          <div class="cta">
+            <button class="btn primary" data-next>Start Here</button>
+            </div>
+        </div>
+        <div class="grid grid-2">
+          <div class="block">
+            <span class="kicker">How this guide helps you
+</span>
+            <h3>Clear, lesson-by-lesson support</h3>
+            <ul>
+              <li>Shows you what you'll do and what to prepare in each lesson</li>
+              <li>Makes it clear how you'll be assessed and how to do well</li>  
+              </ul>
+          </div>
+          <div class="block">
+            <span class="kicker">Your two-stage journey</span>
+            <h3>From ideas to presentation</h3>
+             <ul>
+              <li> Stage 1: from ideas to slides</li>
+              <li> Stage 2: from slides to delivery</li>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OVERVIEW -->
+    <section class="page" data-page="overview">
+      <div class="page-inner">
+        <span class="kicker">Overview</span>
+        <h2>What you will achieve</h2>
+        <p>By the end of Lesson 10, you will deliver a confident group presentation of your project plan using clear PPT slides.</p>
+
+        <div class="stage-timeline">
+  <div class="stage-card">
+    <div class="stage-number">Lessons 1-5: <br>From ideas to slides</div>
+    <p><strong>Focus:</strong><br>Generating and organising project ideas</p>
+    <p><strong>What you produce:</strong><br>A portfolio of ideas <strong>(TA01)</strong> + <br>draft PPT slides</p>
+  </div>
+
+  <div class="stage-card">
+    <div class="stage-number">Lessons 6-10: <br>From slides to delivery</div>
+    <p><strong>Focus:</strong> <br>Structuring and delivering a strong group presentation</p>
+    <p><strong>What you produce:</strong> <br>Polished PPT slides + <br>an oral group presentation <strong>(TA02)</strong></p>
+  </div>
+</div>
+          <div class="grid grid-2">
+         <div class="block block-teacher" style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left: 6px solid #2196f3; box-shadow: 0 4px 15px rgba(33, 150, 243, 0.2);">
+    <h3 style="color: #1565c0;">🔴🟠🟢 How LC teachers will help </h3>
+            <p>LC teachers will help you develop the vocabulary, expressions, and communication skills needed to present your project plan clearly and confidently.</p>
+           
+          </div>
+          <div class="block callout">
+            <h3>🔴🟠🟢 Note </h3>
+            <ul class="small"style="font-size: 1.1em;">
+              <li>This guide outlines a typical lesson plan, but different groups may progress at varying speeds.</li>
+              <li>Your teacher may adjust activities, timing, or materials to better suit your class needs.</li>
+</ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STAGE 1 SNAPSHOT -->
+    <section class="page" data-page="stage1">
+      <div class="page-inner">
+        <span class="kicker">Stage 1</span>
+        <h2>Individual Idea Generation </br>(Lessons 1–5)</h2>
+
+         <div class="block">
+          <h3>What you will do in Stage 1</h3>
+          <ul class="checklist">
+            <li>Explore the sections of a Project Plan</li>
+            <li>Use trade worksheets to gather key information</li>
+            <li>Learn useful project vocabulary and expressions</li>
+            <li>Turn your ideas into clear PPT slides</li>
+          </ul>
+            </div>
+          
+        <div class="block">
+          <h3>How Trade Worksheets Connect to <br>Project Plan Sections</h3>
+          <p class="small">Tap each heading to see the relevant worksheets</p>
+    
+  <div class="accordion">
+
+  <details class="accordion-item">
+    <summary class="accordion-header">Background</summary>
+    <div class="accordion-body">
+      <p><strong>Worksheets:</strong> <br>WS01 Search Information<br>WS10 Empathy Map</p>
+      <p><strong>Information:</strong> <br>context, user needs, users’ feelings and experiences</p>
+    </div>
+  </details>
+
+  <details class="accordion-item">
+    <summary class="accordion-header">Project Purpose</summary>
+    <div class="accordion-body">
+      <p><strong>Worksheets:</strong> <br>WS03 Use of Mind Map <br>WS11 Point of View</p>
+      <p><strong>Information:</strong> <br>project aims, objectives, and expected outputs</p>
+    </div>
+  </details>
+
+  <details class="accordion-item">
+    <summary class="accordion-header">Requirements / Success Criteria</summary>
+    <div class="accordion-body">
+      <p><strong>Worksheets:</strong> <br>WS02 Consolidate Information <br>WS09 How Might We</p>
+      <p><strong>Information:</strong> <br>key requirements and success criteria framed as actionable questions</p>
+    </div>
+  </details>
+
+  <details class="accordion-item">
+    <summary class="accordion-header">People Involved</summary>
+    <div class="accordion-body">
+      <p><strong>Worksheets:</strong> <br>WS07 User Segmentation <br>WS08 Persona <br>WS10 Empathy Map</p>
+      <p><strong>Information:</strong> <br>target groups, stakeholders, user profiles</p>
+    </div>
+  </details>
+
+  <details class="accordion-item">
+    <summary class="accordion-header">Potential Problems</summary>
+    <div class="accordion-body">
+      <p><strong>Worksheets:</strong> <br>WS04 Use of SWOT Analysis <br>WS10 Empathy Map</p>
+      <p><strong>Information:</strong> <br>Challenges, issues, and pain points from the users’ perspective</p>
+    </div>
+  </details>
+
+  <details class="accordion-item">
+    <summary class="accordion-header">Milestones</summary>
+    <div class="accordion-body">
+      <p><strong>Worksheet:</strong> <br>WS06 Work Schedule</p>
+      <p><strong>Information:</strong> <br>Workflow, timeline, implementation plan, task allocation</p>
+    </div>
+  </details>
+
+  <details class="accordion-item">
+    <summary class="accordion-header">Resources Needed</summary>
+    <div class="accordion-body">
+      <p><strong>Worksheet:</strong> <br>WS05 Use of Budget Table</p>
+      <p><strong>Information:</strong> <br>Required budget and resources</p>
+    </div>
+  </details>
+
+  <details class="accordion-item">
+    <summary class="accordion-header">Project Outputs</summary>
+    <div class="accordion-body">
+      <p><strong>Worksheets:</strong> <br>WS12 Lean Canvas <br> WS03 Use of Mind Map</p>
+      <p><strong>Information:</strong> <br>Final products expected</p>
+    </div>
+  </details>
+
+  <details class="accordion-item">
+    <summary class="accordion-header">Appendix</summary>
+    <div class="accordion-body">
+      <p><strong>Worksheet:</strong> <br>WS01 Search Information</p>
+      <p><strong>Information:</strong> <br>Supporting data and references</p>
+    </div>
+  </details>
+</div>
+</div>
+
+  </section>
+
+    <!-- LESSONS 1 -->
+    <section class="page" data-page="l1">
+      <div class="page-inner">
+        <span class="kicker">Stage 1</span>
+        <h2>Lesson 1: </br>Understanding the Project Plan</h2>
+        <div class="block">
+          <div class="callout">
+           <strong>In this lesson, you will:</strong> 
+          </div>
+            <ul>   
+              <li>Read a<strong> Project Plan template </strong></li>
+              <li>Learn what each section heading means</li>
+              <li>Understand what information belongs in each section of the plan</li>
+              <p style="color: #ff6b6b;">🔴🟠🟢 <strong> Important Note:</strong><br> <ul style="color: #ff6b6b;"><li>The Project Plan template is only a guide. You don't need to hand it in for this module.</li> 
+              <li> Even though you're only making a project plan presentation, it's important to understand what information to include and how to organise it.
+              <li> Use the template to help you arrange your ideas before you create your slides.</li>
+                 </ul>
+          </div>
+ <div class="block" style="margin-top: 8px;">
+  <div style="
+  display:flex;
+  flex-direction:column;
+  align-items:center;   /* centre icon + text block as a group */
+  text-align:center;   
+  gap:10px;
+  padding:10px 4px 4px;
+">
+    <!-- Icon 1 -->
+    <div style="
+      width:40px;
+      height:40px;
+      border-radius:999px;
+      background:linear-gradient(135deg,#AAC4F5,#FFCDC9);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#FFF;
+      font-size:1.2rem;
+      box-shadow:0 6px 18px rgba(15,23,42,0.18);
+    ">
+      📖
+    </div>
+
+    <div>
+      <div style="font-weight:600; font-size:0.95rem; color:#0f172a;">
+        Task 1: <br>Read a Project Plan template
+      </div>
+      <div style="font-size:0.9rem; color:#6b7280;">
+        Review the guiding questions to understand what information goes in each part
+      </div>
+    </div>
+
+    <!-- Centered button -->
+    <a href="https://vtcmca-my.sharepoint.com/:b:/g/personal/t-ymau_stu_vtc_edu_hk/IQA2bxWwIfksTqSvtBmU1yN8AbjdFyexQaGMOIVUZZdsoFA?e=NSJXdM"
+       target="_blank"
+       rel="noopener noreferrer"
+       style="
+         display:inline-block;
+         padding:8px 14px;
+         border-radius:999px;
+         background:linear-gradient(135deg,#4f46e5,#ec4899);
+         color:#ffffff;
+         font-weight:600;
+         font-size:0.85rem;
+         text-decoration:none;
+         box-shadow:0 6px 16px rgba(79,70,229,0.45);
+       ">
+      Open the file
+    </a>
+  </div>
+</div>
+<div class="block" style="margin-top: 8px;">
+  <div style="
+  display:flex;
+  flex-direction:column;
+  align-items:center;   /* centre icon + text block as a group */
+  text-align:center;   
+  gap:10px;
+  padding:10px 4px 4px;
+">
+    <!-- Icon 2-->
+    <div style="
+      width:40px;
+      height:40px;
+      border-radius:999px;
+      background:linear-gradient(135deg,#AAC4F5,#FFCDC9);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#fff;
+      font-size:1.2rem;
+      box-shadow:0 6px 18px rgba(15,23,42,0.18);
+    ">
+     🎮
+    </div>
+
+    <div>
+      <div style="font-weight:600; font-size:0.95rem; color:#0f172a;">
+        Task 2: <br>Understand the Section Headings 
+      </div>
+      <div style="font-size:0.9rem; color:#6b7280;">
+        Tap the icon to complete a quick quiz on the Project Plan headings
+      </div>
+    </div>
+
+    <!-- Centered button -->
+    <a href="l1-t2.html"
+	 target="_blank"
+       	 rel="noopener noreferrer"
+         style="
+         display:inline-block;
+         padding:8px 14px;
+         border-radius:999px;
+         background:linear-gradient(135deg,#4f46e5,#ec4899);
+         color:#ffffff;
+         font-weight:600;
+         font-size:0.85rem;
+         text-decoration:none;
+         box-shadow:0 6px 16px rgba(79,70,229,0.45);
+       ">
+      Take the quiz
+    </a>
+  </div>
+</div>
+          </div>
+         
+    </section>
+    
+<!-- LESSONS 2 -->
+    <section class="page" data-page="l2">
+      <div class="page-inner">
+        <span class="kicker">Stage 1</span>
+        <h2>Lesson 2: </br>Identify Information from a Scenario</h2>
+         <div class="block">
+         <div class="callout">
+              <strong>In this lesson, you will:</strong>
+            </div>
+            <ul>
+              <li>Read a <strong>sample project scenario</strong> and identify key information</li>
+              <li>Match each piece of information to the correct section of the Project Plan</li>
+            </ul>
+          </div>
+      </div>
+   <div class="block" style="margin-top: 8px;">
+  <div style="
+  display:flex;
+  flex-direction:column;
+  align-items:center;   /* centre icon + text block as a group */
+  text-align:center;   
+  gap:10px;
+  padding:10px 4px 4px;
+">
+    <!-- Icon 1 -->
+    <div style="
+      width:40px;
+      height:40px;
+      border-radius:999px;
+      background:linear-gradient(135deg,#AAC4F5,#FFCDC9);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#FFF;
+      font-size:1.2rem;
+      box-shadow:0 6px 18px rgba(15,23,42,0.18);
+    ">
+      📖
+    </div>
+
+    <div>
+      <div style="font-weight:600; font-size:0.95rem; color:#0f172a;">
+        Task 1: <br>Read a Sample Project Scenario
+      </div>
+      <div style="font-size:0.9rem; color:#6b7280;">
+        Read the scenario and identify useful information for your project plan 
+      </div>
+    </div>
+
+    <!-- Centered button -->
+    <a href="https://vtcmca-my.sharepoint.com/:b:/g/personal/t-ymau_stu_vtc_edu_hk/IQB_CKBJZaWuRZuGQi19YrY5AcR6kcjVA3r1L9C28gRC-gA?e=Fow3sN"
+       target="_blank"
+       rel="noopener noreferrer"
+       style="
+         display:inline-block;
+         padding:8px 14px;
+         border-radius:999px;
+         background:linear-gradient(135deg,#4f46e5,#ec4899);
+         color:#ffffff;
+         font-weight:600;
+         font-size:0.85rem;
+         text-decoration:none;
+         box-shadow:0 6px 16px rgba(79,70,229,0.45);
+       ">
+      Open the file
+    </a>
+  </div>
+</div>
+<div class="block" style="margin-top: 8px;">
+  <div style="
+  display:flex;
+  flex-direction:column;
+  align-items:center;   /* centre icon + text block as a group */
+  text-align:center;   
+  gap:10px;
+  padding:10px 4px 4px;
+">
+    <!-- Icon 2-->
+    <div style="
+      width:40px;
+      height:40px;
+      border-radius:999px;
+      background:linear-gradient(135deg,#AAC4F5,#FFCDC9);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#fff;
+      font-size:1.2rem;
+      box-shadow:0 6px 18px rgba(15,23,42,0.18);
+    ">
+     🎮
+    </div>
+
+    <div>
+      <div style="font-weight:600; font-size:0.95rem; color:#0f172a;">
+        Task 2: <br>Practise Finding Useful Information 
+      </div>
+      <div style="font-size:0.9rem; color:#6b7280;">
+        Tap the icons below to take two quick quizzes
+      </div>
+    </div>
+<div style="text-align:center;">
+    <!-- Centered button 1-->
+    <a href="l2-t2-q1-proposal.html"
+	 target="_blank"
+       	 rel="noopener noreferrer"
+         style="
+         display:inline-block;
+         padding:8px 14px;
+         border-radius:999px;
+         background:linear-gradient(135deg,#4f46e5,#ec4899);
+         color:#ffffff;
+         font-weight:600;
+         font-size:0.85rem;
+         text-decoration:none;
+         box-shadow:0 6px 16px rgba(79,70,229,0.45);
+       ">
+      Take quiz 1
+    </a>
+  </div>
+  <div style="text-align:center;">
+  <!-- Centered button 2-->
+    <a href="l2-t2-q2-proposal.html"
+       target="_blank"
+       rel="noopener noreferrer"
+       style="
+         display:inline-block;
+         padding:8px 14px;
+         border-radius:999px;
+         background:linear-gradient(135deg,#4f46e5,#ec4899);
+         color:#ffffff;
+         font-weight:600;
+         font-size:0.85rem;
+         text-decoration:none;
+         box-shadow:0 6px 16px rgba(79,70,229,0.45);
+       ">
+      Take quiz 2
+    </a>
+  </div>
+  </div>
+          </div>
+    </section>
+
+    <!-- LESSONS 3 -->
+    <section class="page" data-page="l3">
+      <div class="page-inner">
+        <span class="kicker">Stage 1</span>
+        <h2>Lesson 3: </br>Language for Project Plans</h2>
+                  <div class="block">
+           <div class="callout">
+              <strong>In this lesson, you will:</strong>
+            </div>
+            <ul>
+              <li>Read a <strong>sample Project Plan</strong> </li>
+              <li>Learn useful vocabulary and expressions you can use in your project plan</li>
+              <li>Choose expressions you like and adapt them for your project</li>
+            </ul>
+          </div>
+ <div class="block" style="margin-top: 8px;">
+  <div style="
+  display:flex;
+  flex-direction:column;
+  align-items:center;   /* centre icon + text block as a group */
+  text-align:center;   
+  gap:10px;
+  padding:10px 4px 4px;
+">
+    <!-- Icon 1 -->
+    <div style="
+      width:40px;
+      height:40px;
+      border-radius:999px;
+      background:linear-gradient(135deg,#AAC4F5,#FFCDC9);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#FFF;
+      font-size:1.2rem;
+      box-shadow:0 6px 18px rgba(15,23,42,0.18);
+    ">
+      📖
+    </div>
+
+    <div>
+      <div style="font-weight:600; font-size:0.95rem; color:#0f172a;">
+        Task 1: <br>Read a Sample Project Plan
+      </div>
+      <div style="font-size:0.9rem; color:#6b7280;">
+        Read the sample and identify how information is arranged in different sections
+      </div>
+    </div>
+
+    <!-- Centered button -->
+    <a href="https://vtcmca-my.sharepoint.com/:b:/g/personal/t-ymau_stu_vtc_edu_hk/IQCpHfE1hT-PT4Na2nmIxO0ZAbLEaXf06XzTNk9sMQ2wj5k?e=bFpSTa"
+       target="_blank"
+       rel="noopener noreferrer"
+       style="
+         display:inline-block;
+         padding:8px 14px;
+         border-radius:999px;
+         background:linear-gradient(135deg,#4f46e5,#ec4899);
+         color:#ffffff;
+         font-weight:600;
+         font-size:0.85rem;
+         text-decoration:none;
+         box-shadow:0 6px 16px rgba(79,70,229,0.45);
+       ">
+      Open the file
+    </a>
+  </div>
+</div>
+
+<div class="block" style="margin-top: 8px;">
+  <div style="
+  display:flex;
+  flex-direction:column;
+  align-items:center;   /* centre icon + text block as a group */
+  text-align:center;   
+  gap:10px;
+  padding:10px 4px 4px;
+">
+    <!-- Icon 2 -->
+    <div style="
+      width:40px;
+      height:40px;
+      border-radius:999px;
+      background:linear-gradient(135deg,#AAC4F5,#FFCDC9);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#FFF;
+      font-size:1.2rem;
+      box-shadow:0 6px 18px rgba(15,23,42,0.18);
+    ">
+      📖
+    </div>
+
+    <div>
+      <div style="font-weight:600; font-size:0.95rem; color:#0f172a;">
+        Task 2: <br>Review Project Plan Vocabulary
+      </div>
+      <div style="font-size:0.9rem; color:#6b7280;">
+        Review key vocabulary you can use in your Project Plan
+      </div>
+    </div>
+
+    <!-- Centered button -->
+    <a href="https://vtcmca-my.sharepoint.com/:b:/g/personal/t-ymau_stu_vtc_edu_hk/IQCr63pejBxKRJhgHq9D3813AcODWUJ15Cl6itJQeBt_DWE?e=rh2MmY"
+       target="_blank"
+       rel="noopener noreferrer"
+       style="
+         display:inline-block;
+         padding:8px 14px;
+         border-radius:999px;
+         background:linear-gradient(135deg,#4f46e5,#ec4899);
+         color:#ffffff;
+         font-weight:600;
+         font-size:0.85rem;
+         text-decoration:none;
+         box-shadow:0 6px 16px rgba(79,70,229,0.45);
+       ">
+      Open the file
+    </a>
+  </div>
+</div>      
+      
+<div class="block" style="margin-top: 8px;">
+  <div style="
+  display:flex;
+  flex-direction:column;
+  align-items:center;   /* centre icon + text block as a group */
+  text-align:center;   
+  gap:10px;
+  padding:10px 4px 4px;
+">
+    <!-- Icon 3-->
+    <div style="
+      width:40px;
+      height:40px;
+      border-radius:999px;
+      background:linear-gradient(135deg,#AAC4F5,#FFCDC9);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#fff;
+      font-size:1.2rem;
+      box-shadow:0 6px 18px rgba(15,23,42,0.18);
+    ">
+     ✏️
+    </div>
+
+    <div>
+      <div style="font-weight:600; font-size:0.95rem; color:#0f172a;">
+        Task 3: <br>Learn Useful Expressions
+      </div>
+      <div style="font-size:0.9rem; color:#6b7280;">
+        Tap the icons to learn expressions you can use
+      </div>
+    </div>
+<div style="text-align:center;">
+    <!-- Centered button 1-->
+    <a href="l3-t3.1-proposal.html"
+       target="_blank"
+       rel="noopener noreferrer"
+       style="
+         display:inline-block;
+         padding:8px 14px;
+         border-radius:999px;
+         background:linear-gradient(135deg,#4f46e5,#ec4899);
+         color:#ffffff;
+         font-weight:600;
+         font-size:0.85rem;
+         text-decoration:none;
+         box-shadow:0 6px 16px rgba(79,70,229,0.45);
+       ">
+      Complete the exercise
+    </a>
+  </div>
+  <div style="text-align:center;">
+  <!-- Centered button 2-->
+    <a href="l3-t3.2-proposal.html"
+       target="_blank"
+       rel="noopener noreferrer"
+       style="
+         display:inline-block;
+         padding:8px 14px;
+         border-radius:999px;
+         background:linear-gradient(135deg,#4f46e5,#ec4899);
+         color:#ffffff;
+         font-weight:600;
+         font-size:0.85rem;
+         text-decoration:none;
+         box-shadow:0 6px 16px rgba(79,70,229,0.45);
+       ">
+      Get a list of useful expressions 
+    </a>
+  </div>
+  </div>
+         </div>
+    </section>
+    
+        <!-- LESSONS 4 -->
+    <section class="page" data-page="l4">
+      <div class="page-inner">
+        <span class="kicker">Stage 1</span>
+        <h2>Lesson 4: </br>Drafting Your PPT Slides</h2>
+          <div class="block">
+          <div class="callout">
+              <strong>In this lesson, you will:</strong>
+            </div>
+            <ul>
+              <li>Read a<strong> sample PPT presentation </strong></li>
+              <li>Use Project Plan sections as slide headings</li>
+              <li>Create PPT slides for your<strong> Project Plan Presentation</strong></li>
+              
+              <li>Incorporate vocabulary and expressions from Lessons 2 and 3</li>
+              <li>Get help from your teacher to ensure information is correctly organised and language is appropriate</li>
+            </ul>
+             <div class="block" style="margin-top: 8px;">
+  <div style="
+  display:flex;
+  flex-direction:column;
+  align-items:center;   /* centre icon + text block as a group */
+  text-align:center;   
+  gap:10px;
+  padding:10px 4px 4px;
+">
+    <!-- Icon 1 -->
+    <div style="
+      width:40px;
+      height:40px;
+      border-radius:999px;
+      background:linear-gradient(135deg,#AAC4F5,#FFCDC9);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#FFF;
+      font-size:1.2rem;
+      box-shadow:0 6px 18px rgba(15,23,42,0.18);
+    ">
+      📖
+    </div>
+
+    <div>
+      <div style="font-weight:600; font-size:0.95rem; color:#0f172a;">
+        Task 1: </br>Read a Sample PPT Slide
+      </div>
+      <div style="font-size:0.9rem; color:#6b7280;">
+        Read and see how information is arranged in the PPT slides 
+      </div>
+    </div>
+
+    <!-- Centered button -->
+    <a href="https://vtcmca-my.sharepoint.com/:b:/g/personal/t-ymau_stu_vtc_edu_hk/IQAtLkYS_P0QRrN61GpwZ41FARDeviw07CBubSLh7ARdKDA?e=hVoRkJ"
+       target="_blank"
+       rel="noopener noreferrer"
+       style="
+         display:inline-block;
+         padding:8px 14px;
+         border-radius:999px;
+         background:linear-gradient(135deg,#4f46e5,#ec4899);
+         color:#ffffff;
+         font-weight:600;
+         font-size:0.85rem;
+         text-decoration:none;
+         box-shadow:0 6px 16px rgba(79,70,229,0.45);
+       ">
+     Open the file 
+    </a>
+  </div>
+</div>
+<div class="block" style="margin-top: 8px;">
+  <div style="
+  display:flex;
+  flex-direction:column;
+  align-items:center;   /* centre icon + text block as a group */
+  text-align:center;   
+  gap:10px;
+  padding:10px 4px 4px;
+">
+    <!-- Icon 2-->
+    <div style="
+      width:40px;
+      height:40px;
+      border-radius:999px;
+      background:linear-gradient(135deg,#AAC4F5,#FFCDC9);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#fff;
+      font-size:1.2rem;
+      box-shadow:0 6px 18px rgba(15,23,42,0.18);
+    ">
+     🎮
+    </div>
+
+    <div>
+      <div style="font-weight:600; font-size:0.95rem; color:#0f172a;">
+  Task 2: </br>Revise key vocabulary used in project plans 
+</div>
+<div style="font-size:0.9rem; color:#6b7280; margin-bottom:20px;">
+  Tap the icons below to take vocabulary quizzes
+</div>
+
+<!-- Button Container with Flexbox -->
+<div style="
+  display:flex; 
+  flex-direction:column; 
+  gap:15px; 
+  align-items:center;
+  max-width:600px;
+  margin:0 auto;
+  padding:0 20px;
+">
+  <!-- Button 1 -->
+  <a href="l4-t4-q1.html"
+     target="_blank"
+     rel="noopener noreferrer"
+     style="
+       display:block;
+       width:100%;
+       padding:8px 14px;
+       border-radius:999px;
+       background:linear-gradient(135deg,#4f46e5,#ec4899);
+       color:#ffffff;
+       font-weight:600;
+       font-size:0.9rem;
+       text-decoration:none;
+       text-align:center;
+       box-shadow:0 6px 16px rgba(79,70,229,0.45);
+       transition:all 0.3s ease;
+     ">
+    Take Quiz 1 <br> Verbs <br>for stating purpose
+  </a>
+
+  <!-- Button 2 -->
+  <a href="l4-t4-q2.html"
+     target="_blank"
+     rel="noopener noreferrer"
+     style="
+       display:block;
+       width:100%;
+       padding:8px 14px;
+       border-radius:999px;
+       background:linear-gradient(135deg,#4f46e5,#ec4899);
+       color:#ffffff;
+       font-weight:600;
+       font-size:0.9rem;
+       text-decoration:none;
+       text-align:center;
+       box-shadow:0 6px 16px rgba(79,70,229,0.45);
+       transition:all 0.3s ease;
+     ">
+    Take Quiz 2 <br> Adjectives <br>for describing requirements
+  </a>
+
+  <!-- Button 3 -->
+  <a href="l4-t4-q3.html"
+     target="_blank"
+     rel="noopener noreferrer"
+     style="
+       display:block;
+       width:100%;
+       padding:8px 14px;
+       border-radius:999px;
+       background:linear-gradient(135deg,#4f46e5,#ec4899);
+       color:#ffffff;
+       font-weight:600;
+       font-size:0.9rem;
+       text-decoration:none;
+       text-align:center;
+       box-shadow:0 6px 16px rgba(79,70,229,0.45);
+       transition:all 0.3s ease;
+     ">
+    Take Quiz 3 <br>Phrases <br>for describing success criteria
+  </a>
+
+  <!-- Button 4 -->
+  <a href="l4-t4-q4.html"
+     target="_blank"
+     rel="noopener noreferrer"
+     style="
+       display:block;
+       width:100%;
+       padding:8px 14px;
+       border-radius:999px;
+       background:linear-gradient(135deg,#4f46e5,#ec4899);
+       color:#ffffff;
+       font-weight:600;
+       font-size:0.9rem;
+       text-decoration:none;
+       text-align:center;
+       box-shadow:0 6px 16px rgba(79,70,229,0.45);
+       transition:all 0.3s ease;
+     ">
+    Take Quiz 4 <br> Action verbs <br>for milestone
+  </a>
+</div>
+
+         </div>
+    </section>
+
+    <!-- LESSONS 5 -->
+    <section class="page" data-page="l5">
+      <div class="page-inner">
+        <span class="kicker">Stage 1</span>
+        <h2>Lesson 5: </br>Improving Your First Draft</H2>
+          <div class="block">
+          <div class="callout">
+            <strong>In this lesson, you will:</strong>
+          </div>
+          <ul>
+            <li>Show or submit your first draft of PPT slides</li>
+            <li>Receive feedback on your ideas, language, and slide organisation</li>
+            <li>Edit and improve your slides so they are clearer and more accurate</li>
+          </ul>
+         </div>
+         </div>
+    </section>
+
+    <!-- STAGE 2 SNAPSHOT -->
+    <section class="page" data-page="stage2">
+      <div class="page-inner">
+        <span class="kicker">Stage 2</span>
+        <h2>Project Plan Presentation </br>(Lessons 6–10)</h2>
+
+        <div class="block">        
+          <p>In Stage 2, you will focus on how to organise, practise, and present your project plan as a group.</p>
+        </div>
+
+        <div class="block">
+          <h3>What you will do in Stage 2</h3>
+          <ul class="checklist">
+            <li>Learn useful presentation language and signposting expressions</li>
+            <li>Adapt the vocabulary and expressions from Stage 1 to fit your own project</li>
+            <li>Improve your PPT slides so they are clear and easy to read</li>
+            <li>Practise your delivery and get feedback on pronunciation, speed, eye contact, and body language</li>
+          </ul>
+        </div>
+      </section>
+
+    <!-- LESSONS 6 -->
+    <section class="page" data-page="l6">
+      <div class="page-inner">
+        <span class="kicker">Stage 2</span>
+        <h2>Lesson 6: </br>Understanding Presentation Outlines</h2>
+        
+    <div class="block">
+    <div class="callout">
+       <strong>In this lesson, you will:</strong>
+            </div>
+            <ul>
+              <li>Learn the importance of a <strong>well-structured presentation outline </strong>and the logical order of the key components</li>
+              <li>Complete a <strong>sample presentation script</strong> using useful expressions</li>
+            </ul>
+          </div>
+         </div>
+ <div class="block" style="margin-top: 8px;">
+  <div style="
+  display:flex;
+  flex-direction:column;
+  align-items:center;   /* centre icon + text block as a group */
+  text-align:center;   
+  gap:10px;
+  padding:10px 4px 4px;
+">
+    <!-- Icon 1 -->
+    <div style="
+      width:40px;
+      height:40px;
+      border-radius:999px;
+      background:linear-gradient(135deg,#AAC4F5,#FFCDC9);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#FFF;
+      font-size:1.2rem;
+      box-shadow:0 6px 18px rgba(15,23,42,0.18);
+    ">
+      ✏️
+    </div>
+
+    <div>
+      <div style="font-weight:600; font-size:0.95rem; color:#0f172a;">
+        Task 1: <br>Explore the presentation flow
+      </div>
+      <div style="font-size:0.9rem; color:#6b7280;">
+        Arrange the essential parts of a Project Plan Presentation in a logical sequence
+      </div>
+    </div>
+
+    <!-- Centered button -->
+    <a href="l6-t1.html"
+       target="_blank"
+       rel="noopener noreferrer"
+       style="
+         display:inline-block;
+         padding:8px 14px;
+         border-radius:999px;
+         background:linear-gradient(135deg,#4f46e5,#ec4899);
+         color:#ffffff;
+         font-weight:600;
+         font-size:0.85rem;
+         text-decoration:none;
+         box-shadow:0 6px 16px rgba(79,70,229,0.45);
+       ">
+      Complete the exercise
+    </a>
+  </div>
+</div>
+<div class="block" style="margin-top: 8px;">
+  <div style="
+  display:flex;
+  flex-direction:column;
+  align-items:center;   /* centre icon + text block as a group */
+  text-align:center;   
+  gap:10px;
+  padding:10px 4px 4px;
+">
+    <!-- Icon 2-->
+    <div style="
+      width:40px;
+      height:40px;
+      border-radius:999px;
+      background:linear-gradient(135deg,#AAC4F5,#FFCDC9);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#fff;
+      font-size:1.2rem;
+      box-shadow:0 6px 18px rgba(15,23,42,0.18);
+    ">
+     ✏️
+    </div>
+
+    <div>
+      <div style="font-weight:600; font-size:0.95rem; color:#0f172a;">
+        Task 2: <br>Complete a sample project plan presentation script
+      </div>
+      <div style="font-size:0.9rem; color:#6b7280;">
+        Fill in the blanks and listen to the sample presentation 
+      </div>
+    </div>
+<div style="text-align:center;">
+    <!-- Centered button 1-->
+    <a href="l6-t2-proposal.html"
+       target="_blank"
+       rel="noopener noreferrer"
+       style="
+         display:inline-block;
+         padding:8px 14px;
+         border-radius:999px;
+         background:linear-gradient(135deg,#4f46e5,#ec4899);
+         color:#ffffff;
+         font-weight:600;
+         font-size:0.85rem;
+         text-decoration:none;
+         box-shadow:0 6px 16px rgba(79,70,229,0.45);
+       ">
+      Complete the script
+    </a>
+  </div>
+     </section>
+ 
+    <!-- LESSONS 7 -->
+    <section class="page" data-page="l7">
+      <div class="page-inner">
+        <span class="kicker">Stage 2</span>
+        <h2>Lesson 7: </br>Useful Language and Effective Delivery</h2>
+    <div class="block">
+    <div class="callout">
+          <strong>In this lesson, you will:</strong>
+            </div>
+            <ul>
+              <li>Learn useful language and skills for presentations and handling Q&A sessions</li>
+              <li>Discover what makes a good presenter</li>
+              <li>Write your presentation script</li>
+            </ul>
+          </div>
+        </div>
+ 
+  <div class="block" style="margin-top: 8px;">
+  <div style="
+  display:flex;
+  flex-direction:column;
+  align-items:center;   /* centre icon + text block as a group */
+  text-align:center;   
+  gap:10px;
+  padding:10px 4px 4px;
+">
+    <!-- Icon 1 -->
+    <div style="
+      width:40px;
+      height:40px;
+      border-radius:999px;
+      background:linear-gradient(135deg,#AAC4F5,#FFCDC9);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#FFF;
+      font-size:1.2rem;
+      box-shadow:0 6px 18px rgba(15,23,42,0.18);
+    ">
+      🎥
+    </div>
+
+    <div>
+      <div style="font-weight:600; font-size:0.95rem; color:#0f172a;">
+        Task 1: <br> Empower your presentation skills
+      </div>
+      <div style="font-size:0.9rem; color:#6b7280;">
+        Watch the video lessons to gain insights into effetive presentation techniques
+    </div>
+
+    <!-- Centered button 1 -->
+    <a href="https://vtcmca-my.sharepoint.com/:v:/g/personal/t-edrecanc_stu_vtc_edu_hk/EfC0BXmsGz1Bgk_NKygzYCEBM7h2OYUwzoesiS7s6vDc-Q?e=2XFGuE"
+       target="_blank"
+       rel="noopener noreferrer"
+       style="
+         display:inline-block;
+         padding:8px 14px;
+         border-radius:999px;
+         background:linear-gradient(135deg,#4f46e5,#ec4899);
+         color:#ffffff;
+         font-weight:600;
+         font-size:0.85rem;
+         text-decoration:none;
+         box-shadow:0 6px 16px rgba(79,70,229,0.45);
+       ">
+      Watch "Video Lesson 1 - Presentation Skills"
+    </a>
+  </div>
+    <!-- Centered button 2 -->
+    <a href="https://vtcmca-my.sharepoint.com/personal/t-edrecanc_stu_vtc_edu_hk/_layouts/15/stream.aspx?id=%2Fpersonal%2Ft%2Dedrecanc%5Fstu%5Fvtc%5Fedu%5Fhk%2FDocuments%2FVOT3002%2DVideo%20Lessons%2FVOT3002%5FVideo%20Lesson%204%2Emp4&ga=1&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2Eb99bf1fb%2Dd4b9%2D44e7%2Da0a6%2D8f0bd999c003"
+       target="_blank"
+       rel="noopener noreferrer"
+       style="
+         display:inline-block;
+         padding:8px 14px;
+         border-radius:999px;
+         background:linear-gradient(135deg,#4f46e5,#ec4899);
+         color:#ffffff;
+         font-weight:600;
+         font-size:0.85rem;
+         text-decoration:none;
+         box-shadow:0 6px 16px rgba(79,70,229,0.45);
+       ">
+      Watch "Video Lesson 4 - Handling Q&A Sessions"
+    </a>
+  </div>
+</div>
+<div class="block" style="margin-top: 8px;">
+  <div style="
+  display:flex;
+  flex-direction:column;
+  align-items:center;   /* centre icon + text block as a group */
+  text-align:center;   
+  gap:10px;
+  padding:10px 4px 4px;
+">
+    <!-- Icon 2-->
+    <div style="
+      width:40px;
+      height:40px;
+      border-radius:999px;
+      background:linear-gradient(135deg,#AAC4F5,#FFCDC9);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#fff;
+      font-size:1.2rem;
+      box-shadow:0 6px 18px rgba(15,23,42,0.18);
+    ">
+     ✏️
+    </div>
+
+    <div>
+      <div style="font-weight:600; font-size:0.95rem; color:#0f172a;">
+        Task 2: <br> Strengthen your Q&A Handling Skills
+      </div>
+      <div style="font-size:0.9rem; color:#6b7280;">
+        Complete an exercise to solidify your understanding and skills in addressing audience questions
+      </div>
+    </div>
+<div style="text-align:center;">
+    <!-- Centered button 3-->
+    <a href="l7-t2-proposal.html"
+       target="_blank"
+       rel="noopener noreferrer"
+       style="
+         display:inline-block;
+         padding:8px 14px;
+         border-radius:999px;
+         background:linear-gradient(135deg,#4f46e5,#ec4899);
+         color:#ffffff;
+         font-weight:600;
+         font-size:0.85rem;
+         text-decoration:none;
+         box-shadow:0 6px 16px rgba(79,70,229,0.45);
+       ">
+      Complete the exercise
+    </a>
+  </div>
+       </section>
+
+    <!-- LESSONS 8 -->
+    <section class="page" data-page="l8">
+      <div class="page-inner">
+        <span class="kicker">Stage 2</span>
+        <h2>Lesson 8: </br>Polishing PPT Slides</h2>
+          <div class="block">
+          <div class="callout">
+              <strong>In this lesson, you will:</strong>
+            </div>
+            <ul>
+              <li>Improve the slides you have created</li>
+              <li>Check that all information is in the correct sections
+</li>
+              <li>Make your bullet points short, clear, and easy to read</li>
+              <li>Adjust the language to sound natural and professional</li>
+            </ul>
+          </div>
+       </div>
+    <div class="block" style="margin-top: 8px;">
+  <div style="
+  display:flex;
+  flex-direction:column;
+  align-items:center;   /* centre icon + text block as a group */
+  text-align:center;   
+  gap:10px;
+  padding:10px 4px 4px;
+">
+    <!-- Icon 1 -->
+    <div style="
+      width:40px;
+      height:40px;
+      border-radius:999px;
+      background:linear-gradient(135deg,#AAC4F5,#FFCDC9);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#FFF;
+      font-size:1.2rem;
+      box-shadow:0 6px 18px rgba(15,23,42,0.18);
+    ">
+    🎤
+    </div>
+
+    <div>
+      <div style="font-weight:600; font-size:0.95rem; color:#0f172a;">
+        Task 1:<br>Rehearse yourself
+      </div>
+      <div style="font-size:0.9rem; color:#6b7280;">
+        Practise reading aloud your script with the help of the online tool
+      </div>
+    </div>
+
+    <!-- Centered button -->
+    <a href="l8-t1-proposal.html"
+       target="_blank"
+       rel="noopener noreferrer"
+       style="
+         display:inline-block;
+         padding:8px 14px;
+         border-radius:999px;
+         background:linear-gradient(135deg,#4f46e5,#ec4899);
+         color:#ffffff;
+         font-weight:600;
+         font-size:0.85rem;
+         text-decoration:none;
+         box-shadow:0 6px 16px rgba(79,70,229,0.45);
+       ">
+      Go to the online tool 
+    </a>
+  </div>
+</div>
+    </section>
+
+          <!-- LESSONS 9 -->
+    <section class="page" data-page="l9">
+      <div class="page-inner">
+        <span class="kicker">Stage 2</span>
+        <h2>Lesson 9: </br>Rehearsal and Feedback</h2>
+          <div class="block">
+          <div class="callout">
+           <strong>In this lesson, you will:</strong>
+            </div>
+            <ul>
+              <li>Practise presenting your project plan with your team.</li>
+              <li>Take turns presenting different sections.</li>
+              <li>Use self-assessment and peer-assessment forms to give feedback.</li>
+              <li>Improve your presentation based on feedback received.</li>
+            </ul>
+          </div>
+        </div>
+       </section>
+    
+      <!-- LESSONS 10 -->
+ <section class="page" data-page="l10">
+      <div class="page-inner">
+        <span class="kicker">Stage 2</span>
+        <h2>Lesson 10: </br>Project Plan Presentations</h2>
+         <div class="block">
+         <div class="callout">
+          <strong>In this lesson, you will:</strong>
+          </div>
+          <ul>
+            <li>Demonstrate your understanding of the requirements of a project plan </li>
+            <li>Present your project plan clearly as a team</li>
+              <li>Receive feedback to help you prepare for future project reports and presentations</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- footer nav -->
+  <div class="footer">
+    <div class="nav-buttons">
+      <button class="btn small" data-home>Home</button>
+      <button class="btn" data-prev>← Back</button>
+      <button class="btn primary" id="footerNext" data-next>Next →</button>
+    </div>
+    <div class="progress">
+      <div class="dotbar" aria-hidden="true"></div>
+      <span class="small" id="progressLabel">1 / 8</span>
+    </div>
+  </div>
+</div>
+
+<script>
+const order = [
+  'home',
+  'overview',
+  'stage1',
+  'l1',
+  'l2',
+  'l3',
+  'l4',
+  'l5',
+  'stage2',
+  'l6',
+  'l7',
+  'l8',
+  'l9',
+  'l10'
+];
+const pages = [...document.querySelectorAll('.page')];
+const dotsWrap = document.querySelector('.dotbar');
+const progressLabel = document.getElementById('progressLabel');
+
+const backBtn   = document.querySelector('[data-prev]');
+const nextBtn   = document.getElementById('footerNext');
+function show(id){
+  pages.forEach(p=>p.classList.toggle('visible', p.dataset.page === id));
+
+  document.querySelectorAll('.quicknav .qn').forEach(b=>{
+    b.classList.toggle('active', b.dataset.go === id);
+  });
+
+  const idx = order.indexOf(id);
+  progressLabel.textContent = (idx + 1) + ' / ' + order.length;
+
+  dotsWrap.innerHTML = '';
+  order.forEach((k, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === idx ? ' active' : '');
+    d.title = k;
+    d.addEventListener('click', () => show(k));
+    dotsWrap.appendChild(d);
+  });
+
+  // hide Back + Next buttons on cover page
+if (id === 'home') {
+  backBtn.style.visibility = 'hidden';
+  nextBtn.style.visibility = 'hidden';
+} else {
+  backBtn.style.visibility = 'visible';
+  nextBtn.style.visibility = 'visible';
+}
+  document.getElementById('viewport').focus({ preventScroll:true });
+}
+
+function currentId(){
+  return pages.find(p=>p.classList.contains('visible'))?.dataset.page || order[0];
+}
+function go(delta){
+  const idx=order.indexOf(currentId());
+  const nextIdx=Math.min(Math.max(idx+delta,0),order.length-1);
+  show(order[nextIdx]);
+}
+document.querySelectorAll('[data-next]').forEach(b=>b.addEventListener('click',()=>go(1)));
+document.querySelectorAll('[data-prev]').forEach(b=>b.addEventListener('click',()=>go(-1)));
+document.querySelectorAll('[data-home]').forEach(b=>b.addEventListener('click',()=>show('home')));
+document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',e=>show(e.currentTarget.dataset.go)));
+window.addEventListener('keydown',e=>{
+  if(['ArrowRight','PageDown'].includes(e.key)) go(1);
+  if(['ArrowLeft','PageUp'].includes(e.key)) go(-1);
+  if(e.key==='Home') show('home');
+});
+show('home');
+  // Prevent auto-focus outline on page load
+window.addEventListener('load', function() {
+    // Remove focus from any focused element
+    if (document.activeElement) {
+        document.activeElement.blur();
+    }
+    
+    // Prevent outline on first click
+    document.body.style.outline = 'none';
+});
+
+// Re-enable outline for keyboard users (accessibility)
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Tab') {
+        document.body.style.outline = '';
+    }
+});
+
+</script>
+</body>
+</html>
+<!-- END COPY HERE -->
+    
+  </body>
+  
+</html>

@@ -1,0 +1,2204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>L3 - (Proposal Project) Project Plan Expressions Exercise</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L3 - (Proposal Project) Useful Expressions for Project Plan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Canvas-confetti library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(-45deg,#FDEDED, #F7F6D3, #AAC4F5);
+            min-height: 100vh;
+            padding: 10px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg,#06b6d4 0%, #FFFD8F 100%);
+            color: white;
+            padding: 20px 15px;
+            text-align: center;
+            position: relative;
+        }
+
+        .lang-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.75em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .lang-toggle:hover {
+            background: white;
+            color: #0891b2;
+        }
+
+        .header h1 {
+            font-size: 1.5em;
+            margin-bottom: 8px;
+            font-weight: 700;
+            padding: 0;
+        }
+
+        .header p {
+            font-size: 0.9em;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .progress-container {
+            background: white;
+            padding: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 25px;
+            background: #e0e0e0;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #F5C857 0%, #F875AA 100%);
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.8em;
+        }
+
+        .score-display {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 1em;
+            font-weight: 600;
+            color: #0891b2;
+        }
+
+        .content {
+            padding: 20px 15px;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-intro {
+            background: linear-gradient(135deg, #14b8a6 0%, #06b6d4 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .section-intro h2 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .section-intro p {
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        .expression-box {
+            background: #f0fdfa;
+            border-left: 4px solid #0891b2;
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 8px;
+        }
+
+        .expression-box strong {
+            color: #0891b2;
+            font-size: 1em;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .activity-container {
+            background: #fff;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px 15px;
+            margin: 15px 0;
+        }
+
+        .activity-title {
+            font-size: 1.2em;
+            color: #0891b2;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .activity-icon {
+            font-size: 1.2em;
+        }
+
+        .drag-source {
+            margin: 15px 0;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 8px;
+            min-height: 60px;
+        }
+
+        .drag-item {
+            background: linear-gradient(135deg, #6A0066 0%, #06b6d4 100%);
+            color: white;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 8px 0;
+            cursor: move;
+            display: block;
+            font-weight: 500;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            user-select: none;
+            touch-action: none;
+            font-size: 0.95em;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .drag-item:active {
+           transform: scale(1.05);
+           opacity: 0.9;
+           box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .drag-item.dragging {
+            opacity: 0.7;
+            transform: scale(1.1) rotate(3deg);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            z-index: 1000;
+        }
+
+        .drop-zone {
+            min-height: 80px;
+            border: 2px dashed #cbd5e1;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 12px 0;
+            background: #f8fafc;
+            transition: all 0.3s ease;
+        }
+
+        body.dragging-active .drop-zone {
+            animation: pulse 1s infinite;
+            border-color: #0891b2;
+        }
+
+        @keyframes pulse {
+            0%, 100% { 
+                border-width: 2px; 
+                background: #f8fafc;
+            }
+            50% { 
+                border-width: 3px; 
+                background: #ecfeff;
+            }
+        }
+
+        .drop-zone.drag-over {
+            border-color: #0891b2;
+            background: #cffafe;
+            border-width: 4px;
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(8, 145, 178, 0.3);
+        }
+
+        .drop-zone.correct {
+            border-color: #10b981;
+            background: #d1fae5;
+        }
+
+        .drop-zone.incorrect {
+            border-color: #ef4444;
+            background: #fee2e2;
+        }
+
+        .drop-zone-title {
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 10px;
+            font-size: 0.95em;
+        }
+
+        .choice-btn {
+            background: white;
+            border: 2px solid #0891b2;
+            color: #0891b2;
+            padding: 12px 18px;
+            border-radius: 8px;
+            margin: 8px 0;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: block;
+            width: 100%;
+            text-align: left;
+        }
+
+        .choice-btn:active {
+            background: #0891b2;
+            color: white;
+        }
+
+        .choice-btn.selected {
+            background: #0891b2;
+            color: white;
+        }
+
+        .choice-btn.correct {
+            background: #10b981;
+            border-color: #10b981;
+            color: white;
+        }
+
+        .choice-btn.incorrect {
+            background: #ef4444;
+            border-color: #ef4444;
+            color: white;
+        }
+
+        .feedback {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-weight: 500;
+            display: none;
+            animation: slideIn 0.5s ease;
+            font-size: 0.95em;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.correct {
+            background: #d1fae5;
+            color: #065f46;
+            border-left: 4px solid #10b981;
+        }
+
+        .feedback.incorrect {
+            background: #fee2e2;
+            color: #991b1b;
+            border-left: 4px solid #ef4444;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95em;
+            margin: 8px 0;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #0891b2;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-direction: column;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px 25px;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #8B5DFF 0%, #73EC8B 100%);
+            color: white;
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+
+        .btn-secondary {
+            background: #e2e8f0;
+            color: #334155;
+        }
+
+        .btn-secondary:active {
+            background: #cbd5e1;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #fbbf24;
+            color: #78350f;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-weight: 600;
+            margin: 5px;
+            font-size: 0.85em;
+            animation: bounce 0.5s ease;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .achievement {
+            text-align: center;
+            padding: 30px 15px;
+        }
+
+        .achievement-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+            animation: rotateIn 0.8s ease;
+        }
+
+        @keyframes rotateIn {
+            from { transform: rotate(-180deg) scale(0); }
+            to { transform: rotate(0) scale(1); }
+        }
+
+        .word-bank {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .word-chip {
+            background: #0891b2;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.9em;
+        }
+
+        .word-chip:active {
+            transform: scale(0.95);
+        }
+
+        .word-chip.used {
+            background: #94a3b8;
+            cursor: not-allowed;
+        }
+
+        .sentence-builder {
+            min-height: 60px;
+            border: 2px dashed #0891b2;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+            font-size: 0.95em;
+        }
+
+        .inline-input-short {
+            display: inline-block;
+            width: 80px;
+            max-width: 30%;
+            vertical-align: middle;
+        }
+
+        .inline-input-long {
+            display: inline-block;
+            width: 140px;
+            max-width: 45%;
+            vertical-align: middle;
+        }
+
+        .inline-input-medium {
+            display: inline-block;
+            width: 120px;
+            max-width: 40%;
+            vertical-align: middle;
+        }
+
+        .fill-blank-text {
+            font-size: 1em;
+            line-height: 2.2;
+            word-wrap: break-word;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        .input-field {
+            box-sizing: border-box;
+            max-width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            body {
+                padding: 20px;
+            }
+
+            .container {
+                border-radius: 20px;
+            }
+
+            .header {
+                padding: 30px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+                padding-right: 0;
+            }
+
+            .header p {
+                font-size: 1.1em;
+            }
+
+            .lang-toggle {
+                top: 20px;
+                right: 20px;
+                font-size: 0.9em;
+                padding: 8px 16px;
+            }
+
+            .progress-bar {
+                height: 30px;
+            }
+
+            .progress-fill {
+                font-size: 0.9em;
+            }
+
+            .score-display {
+                font-size: 1.2em;
+            }
+
+            .content {
+                padding: 40px 30px;
+            }
+
+            .section-intro {
+                padding: 25px;
+            }
+
+            .section-intro h2 {
+                font-size: 1.8em;
+            }
+
+            .section-intro p {
+                font-size: 1.05em;
+                line-height: 1.6;
+            }
+
+            .expression-box {
+                padding: 20px;
+                margin: 15px 0;
+            }
+
+            .expression-box:hover {
+                transform: translateX(5px);
+                box-shadow: 0 5px 15px rgba(8, 145, 178, 0.2);
+            }
+
+            .expression-box strong {
+                font-size: 1.1em;
+            }
+
+            .activity-container {
+                padding: 30px;
+                margin: 20px 0;
+            }
+
+            .activity-title {
+                font-size: 1.5em;
+            }
+
+            .activity-icon {
+                font-size: 1.3em;
+            }
+
+            .drag-source {
+                margin: 20px 0;
+                padding: 20px;
+                min-height: 80px;
+            }
+
+            .drag-item {
+                display: inline-block;
+                margin: 10px;
+                padding: 15px 20px;
+                font-size: 1em;
+            }
+
+            .drag-item:hover {
+                transform: scale(1.05);
+            }
+
+            .drop-zone {
+                min-height: 120px;
+                padding: 20px;
+                margin: 15px 0;
+                border-width: 3px;
+            }
+
+            .drop-zone-title {
+                font-size: 1.1em;
+                margin-bottom: 15px;
+            }
+
+            .choice-btn {
+                padding: 15px 25px;
+                margin: 10px 0;
+                font-size: 1em;
+            }
+
+            .choice-btn:hover {
+                background: #0891b2;
+                color: white;
+                transform: translateX(10px);
+            }
+
+            .feedback {
+                padding: 20px;
+                margin: 20px 0;
+                font-size: 1em;
+            }
+
+            .input-field {
+                padding: 15px;
+                font-size: 1em;
+                margin: 10px 0;
+            }
+
+            .inline-input-short {
+                width: 150px;
+            }
+
+            .inline-input-long {
+                width: 250px;
+            }
+
+            .inline-input-medium {
+                width: 180px;
+            }
+
+            .fill-blank-text {
+                font-size: 1.1em;
+            }
+
+            .btn-container {
+                flex-direction: row;
+                margin-top: 30px;
+                gap: 15px;
+            }
+
+            .btn {
+                flex: 1;
+                min-width: 150px;
+                padding: 15px 30px;
+                font-size: 1.1em;
+            }
+
+            .btn-primary:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 10px 20px rgba(8, 145, 178, 0.3);
+            }
+
+            .btn-secondary:hover {
+                background: #cbd5e1;
+            }
+
+            .badge {
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+
+            .achievement {
+                padding: 40px;
+            }
+
+            .achievement-icon {
+                font-size: 5em;
+                margin-bottom: 20px;
+            }
+
+            .word-bank {
+                gap: 10px;
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+
+            .word-chip {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+
+            .word-chip:hover {
+                background: #0e7490;
+                transform: scale(1.05);
+            }
+
+            .sentence-builder {
+                min-height: 80px;
+                padding: 20px;
+                margin: 20px 0;
+                gap: 10px;
+                font-size: 1em;
+            }
+        }
+
+        .emoji {
+            font-size: 1.2em;
+        }
+
+        .lang-en, .lang-zh { display: none; }
+        body[data-lang="en"] .lang-en { display: inline; }
+        body[data-lang="zh"] .lang-zh { display: inline; }
+    </style>
+</head>
+<body data-lang="en">
+    <div class="container">
+        <div class="header">
+            <button class="lang-toggle" onclick="toggleLanguage()">
+                <span class="lang-en">中文</span>
+                <span class="lang-zh">English</span>
+            </button>
+            <h1>
+                <span class="lang-en">Project Plan Expressions<br> (Proposal Project) </span>
+                <span class="lang-zh">項目計劃常用語句<br>(提案項目計劃)</span>
+            </h1>
+            <p>
+                <span class="lang-en">Master useful expressions for writing project plans</span>
+                <span class="lang-zh">掌握撰寫項目計劃的常用語句</span>
+            </p>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill">0%</div>
+            </div>
+            <div class="score-display">
+                <span class="lang-en">⭐Score:</span>
+                <span class="lang-zh">⭐得分：</span>
+                <span id="scoreDisplay">0</span> / <span id="totalScore">0</span> ⭐
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- Page 0: Welcome -->
+            <div class="page active" id="page0">
+                <div class="section-intro">
+                    <h2>
+                        <span class="lang-en"> Your Learning Journey!🚀</span>
+                        <span class="lang-zh">你的學習之旅！🚀 </span>
+                    </h2>
+                    <p>
+                        <span class="lang-en">You'll learn expressions used in different sections of a project plan. Complete each activity to unlock the next level!</span>
+                        <span class="lang-zh">你將學習專題計劃中不同部分的常用語句。完成每個活動以解鎖下一關！</span>
+                    </p>
+                </div>
+                <div class="activity-container">
+                    <h3>
+                        <span class="lang-en">What You'll Learn:</span>
+                        <span class="lang-zh">學習內容：</span>
+                    </h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
+                        <div class="expression-box">
+                            <strong>
+                                <span class="lang-en">📋 Background</span>
+                                <span class="lang-zh">📋 背景</span>
+                            </strong>
+                            <span class="lang-en">Setting context</span>
+                            <span class="lang-zh">說明問題/情況</span>
+                        </div>
+                        <div class="expression-box">
+                            <strong>
+                                <span class="lang-en">🎯 Project Purpose</span>
+                                <span class="lang-zh">🎯 專題計劃的目的</span>
+                            </strong>
+                            <span class="lang-en">Stating objectives</span>
+                            <span class="lang-zh">說明專題計劃的目標</span>
+                        </div>
+                        <div class="expression-box">
+                            <strong>
+                                <span class="lang-en">📝 Requirements</span>
+                                <span class="lang-zh">📝 要求</span>
+                            </strong>
+                            <span class="lang-en">Describing needs/key features of the products/services</span>
+                            <span class="lang-zh">描述需求或產品、服務要具備的要素</span>
+                        </div>
+                        <div class="expression-box">
+                            <strong>
+                                <span class="lang-en">✅ Success Criteria</span>
+                                <span class="lang-zh">✅ 成功準則</span>
+                            </strong>
+                            <span class="lang-en">Defining outcomes</span>
+                            <span class="lang-zh">定義成果</span>
+                        </div>
+                        <div class="expression-box">
+                            <strong>
+                                <span class="lang-en">👥 People Involved</span>
+                                <span class="lang-zh">👥 相關人員</span>
+                            </strong>
+                            <span class="lang-en">Identifying stakeholders</span>
+                            <span class="lang-zh">識別持份者</span>
+                        </div>
+                        <div class="expression-box">
+                            <strong>
+                                <span class="lang-en">⚠️ Potential Problems</span>
+                                <span class="lang-zh">⚠️ 潛在問題</span>
+                            </strong>
+                            <span class="lang-en">Anticipating challenges</span>
+                            <span class="lang-zh">預測挑戰</span>
+                        </div>
+                        <div class="expression-box">
+                            <strong>
+                                <span class="lang-en">📅 Milestones</span>
+                                <span class="lang-zh">📅 里程碑</span>
+                            </strong>
+                            <span class="lang-en">Planning timeline</span>
+                            <span class="lang-zh">規劃時間表</span>
+                        </div>
+                        <div class="expression-box">
+                            <strong>
+                                <span class="lang-en">🛠️ Resources Needed</span>
+                                <span class="lang-zh">🛠️ 所需資源</span>
+                            </strong>
+                            <span class="lang-en">Listing requirements</span>
+                            <span class="lang-zh">列出所需項目</span>
+                        </div>
+                        <div class="expression-box">
+                            <strong>
+                                <span class="lang-en">📦 Project Outputs</span>
+                                <span class="lang-zh">📦 專題計劃的成果</span>
+                            </strong>
+                            <span class="lang-en">Specifying deliverables</span>
+                            <span class="lang-zh">指明交付成果</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-primary" onclick="nextPage()">
+                        <span class="lang-en">Start Learning 🎮</span>
+                        <span class="lang-zh">開始學習 🎮</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Page 1: Section Matching -->
+            <div class="page" id="page1">
+                <div class="section-intro">
+                    <h2>
+                        <span class="lang-en">Level 1: Section Matching</span>
+                        <span class="lang-zh">第1關：配對部分</span>
+                    </h2>
+                    <p>
+                        <span class="lang-en">Match each section name to its purpose. Drag and drop!</span>
+                        <span class="lang-zh">將每個部分名稱與其目的配對。拖放操作！</span>
+                    </p>
+                </div>
+                <div class="activity-container">
+                    <div class="activity-title">
+                        <span class="activity-icon">🎯</span>
+                        <span>
+                            <span class="lang-en">Drag sections to their purposes</span>
+                            <span class="lang-zh">將標題拖到相應的目的</span>
+                        </span>
+                    </div>
+                    <div class="drag-source" id="dragSource1">
+                        <div class="drag-item" draggable="true" data-section="background">
+                            <span class="lang-en">📋 Background</span>
+                            <span class="lang-zh">📋 背景</span>
+                        </div>
+                        <div class="drag-item" draggable="true" data-section="purpose">
+                            <span class="lang-en">🎯 Project Purpose</span>
+                            <span class="lang-zh">🎯 專題計劃的目的</span>
+                        </div>
+                        <div class="drag-item" draggable="true" data-section="requirements">
+                            <span class="lang-en">📝 Requirements</span>
+                            <span class="lang-zh">📝 要求</span>
+                        </div>
+                        <div class="drag-item" draggable="true" data-section="criteria">
+                            <span class="lang-en">✅ Success Criteria</span>
+                            <span class="lang-zh">✅ 成功準則</span>
+                        </div>
+                    </div>
+                    <div class="drop-zone" data-answer="background">
+                        <div class="drop-zone-title">
+                            <span class="lang-en">Explains the situation and context of the project</span>
+                            <span class="lang-zh">解釋專題計劃的情況和背景</span>
+                        </div>
+                    </div>
+                    <div class="drop-zone" data-answer="purpose">
+                        <div class="drop-zone-title">
+                            <span class="lang-en">States what the project aims to achieve</span>
+                            <span class="lang-zh">說明專題計劃希望達到的目標</span>
+                        </div>
+                    </div>
+                    <div class="drop-zone" data-answer="requirements">
+                        <div class="drop-zone-title">
+                            <span class="lang-en">Lists what the project must include or deliver</span>
+                            <span class="lang-zh">列出專題計劃必須包含或交付的內容</span>
+                        </div>
+                    </div>
+                    <div class="drop-zone" data-answer="criteria">
+                        <div class="drop-zone-title">
+                            <span class="lang-en">Defines how to measure if the project is successful</span>
+                            <span class="lang-zh">定義如何衡量專題計劃是否成功</span>
+                        </div>
+                    </div>
+                    <div class="feedback" id="feedback1"></div>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-secondary" onclick="prevPage()">
+                        <span class="lang-en">← Back</span>
+                        <span class="lang-zh">← 返回</span>
+                    </button>
+                    <button class="btn btn-primary" id="check1" onclick="checkActivity1()">
+                        <span class="lang-en">Check Answers</span>
+                        <span class="lang-zh">檢查答案</span>
+                    </button>
+                    <button class="btn btn-primary" id="next1" onclick="nextPage()" style="display:none;">
+                        <span class="lang-en">Next Level →</span>
+                        <span class="lang-zh">下一關 →</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Page 2: Background Expressions -->
+            <div class="page" id="page2">
+                <div class="section-intro">
+                    <h2>
+                        <span class="lang-en">Level 2: Background</span>
+                        <span class="lang-zh">第2關：背景</span>
+                    </h2>
+                    <p>
+                        <span class="lang-en">Learn expressions for setting context in your project plan</span>
+                        <span class="lang-zh">學習在專題計劃中說明背景的語句</span>
+                    </p>
+                </div>
+                <div class="activity-container">
+                    <h3>
+                        <span class="lang-en">📋 Key Expressions:</span>
+                        <span class="lang-zh">📋 常用語句：</span>
+                    </h3>
+                    <div class="expression-box">
+                        <strong>"[Company/Organisation] will..." <span class="lang-zh">／「[公司/機構]將會...」</span></strong>
+                        <span class="lang-en">Example: Ocean Shopping Mall will open in Tsim Sha Tsui in December 2026.</span>
+                        <span class="lang-zh">例子：海洋購物中心將於2026年12月在尖沙咀開業。</span>
+                    </div>
+                    <div class="expression-box">
+                        <strong>"has invited our company to..." <span class="lang-zh">／「已邀請我們公司...」</span></strong>
+                        <span class="lang-en">Example: The mall has invited our company to design a customer service counter.</span>
+                        <span class="lang-zh">例子：該商場已邀請我們公司設計顧客服務櫃台。</span>
+                    </div>
+                    <div class="expression-box">
+                        <strong>"There is/are..." <span class="lang-zh">／「有...」</span></strong>
+                        <span class="lang-en">Example: There is a need for better customer service facilities.</span>
+                        <span class="lang-zh">例子：有需要改善顧客服務設施。</span>
+                    </div>
+                </div>
+                <div class="activity-container">
+                    <div class="activity-title">
+                        <span class="activity-icon">✍️</span>
+                        <span>
+                            <span class="lang-en">Fill in the Blank</span>
+                            <span class="lang-zh">填充</span>
+                        </span>
+                    </div>
+                    <p style="margin-bottom: 15px;">
+                        <span class="lang-en">Complete the background statement:</span>
+                        <span class="lang-zh">完成以下背景陳述：</span>
+                    </p>
+                    <p class="fill-blank-text">
+                        ABC Company <input type="text" class="input-field inline-input-short" id="blank1" placeholder="Type here"> launch a new website next month. They <input type="text" class="input-field inline-input-long" id="blank2" placeholder="Type here"> us to design the homepage.
+                    </p>
+                    <div style="background: #ecfeff; padding: 15px; border-radius: 10px; margin-top: 15px;">
+                        <strong>💡 <span class="lang-en">Hints:</span><span class="lang-zh">提示：</span></strong> 
+                        <span class="lang-en">Use 'will' for future events (e.g., 'will open'). Use 'have + past participle' for events that connect the past to the present (e.g., 'have invited').</span>
+                        <span class="lang-zh">將來的事件用 'will'（例如：'will open'）。用 'have + 過去分詞' 表達連繫過去與現在的事件（例如：'have invited')</span>
+                    </div>
+                    <div class="feedback" id="feedback2"></div>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-secondary" onclick="prevPage()">
+                        <span class="lang-en">← Back</span>
+                        <span class="lang-zh">← 返回</span>
+                    </button>
+                    <button class="btn btn-primary" onclick="checkActivity2()">
+                        <span class="lang-en">Check Answers</span>
+                        <span class="lang-zh">檢查答案</span>
+                    </button>
+                    <button class="btn btn-primary" id="next2" onclick="nextPage()" style="display:none;">
+                        <span class="lang-en">Next Level →</span>
+                        <span class="lang-zh">下一關 →</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Page 3: Purpose & Requirements -->
+            <div class="page" id="page3">
+                <div class="section-intro">
+                    <h2>
+                        <span class="lang-en">Level 3: Purpose & Requirements</span>
+                        <span class="lang-zh">第3關：目的與要求</span>
+                    </h2>
+                    <p>
+                        <span class="lang-en">Choose the correct expressions for stating project goals and requirements</span>
+                        <span class="lang-zh">選擇正確的語句表達專題計劃的目標與要求</span>
+                    </p>
+                </div>
+                <div class="activity-container">
+                    <h3>
+                        <span class="lang-en">🎯 Key Expressions:</span>
+                        <span class="lang-zh">🎯 常用語句：</span>
+                    </h3>
+                    <div class="expression-box">
+                        <strong>
+                            <span class="lang-en">Project Purpose: "To [verb]..."</span>
+                            <span class="lang-zh">項目目的：「To [動詞]...」</span>
+                        </strong>
+                        <span class="lang-en">Example: To propose a practical and user-friendly customer service counter.</span>
+                        <span class="lang-zh">例子：為顧客服務櫃檯提出實用及方便使用的方案。</span>
+                    </div>
+                    <div class="expression-box">
+                        <strong>
+                            <span class="lang-en">Requirements: "should be..." / "should provide..."</span>
+                            <span class="lang-zh">要求：「should be...」／「should provide...」</span>
+                        </strong>
+                        <span class="lang-en">Example: The counter should be modern, informative and easy to notice.</span>
+                        <span class="lang-zh">例子：櫃檯應具備現代化、資訊清晰及顯眼的特點。</span>
+                    </div>
+                </div>
+                <div class="activity-container">
+                    <div class="activity-title">
+                        <span class="activity-icon">🎲</span>
+                        <span>
+                            <span class="lang-en">Multiple Choice Challenge</span>
+                            <span class="lang-zh">選擇題挑戰</span>
+                        </span>
+                    </div>
+                    <p style="margin-bottom: 15px;">
+                        <strong>
+                            <span class="lang-en">Question 1:</span>
+                            <span class="lang-zh">問題1：</span>
+                        </strong>
+                        <span class="lang-en">Which expression correctly states a project purpose?</span>
+                        <span class="lang-zh">哪個表達方式能正確地陳述專題計劃的<strong>目的</strong>？</span>
+                    </p>
+                    <button class="choice-btn" onclick="selectChoice(this, 'q1', false)">
+                        <span class="lang-en">A) The project will design a new logo</span>
+                        <span class="lang-zh">A) 該專題計劃將設計一個新標誌</span>
+                    </button>
+                    <button class="choice-btn" onclick="selectChoice(this, 'q1', true)">
+                        <span class="lang-en">B) To create an attractive and memorable logo for the company</span>
+                        <span class="lang-zh">B) 為公司設計一個吸引且令人印象深刻的標誌</span>
+                    </button>
+                    <button class="choice-btn" onclick="selectChoice(this, 'q1', false)">
+                        <span class="lang-en">C) We are designing a logo</span>
+                        <span class="lang-zh">C) 我們正在設計一個標誌</span>
+                    </button>
+                    
+                    <p style="margin: 30px 0 15px 0;">
+                        <strong>
+                            <span class="lang-en">Question 2:</span>
+                            <span class="lang-zh">問題2：</span>
+                        </strong>
+                        <span class="lang-en">Which expression describes a requirement?</span>
+                        <span class="lang-zh">哪個表達方式能正確地陳述專題計劃的<strong>要求</strong>?</span>
+                    </p>
+                    <button class="choice-btn" onclick="selectChoice(this, 'q2', false)">
+                        <span class="lang-en">A) The website will launch next week</span>
+                        <span class="lang-zh">A) 網站將於下週推出</span>
+                    </button>
+                    <button class="choice-btn" onclick="selectChoice(this, 'q2', true)">
+                        <span class="lang-en">B) The website should be mobile-friendly and easy to navigate</span>
+                        <span class="lang-zh">B) 網站應該適合手機瀏覽及易於使用</span>
+                    </button>
+                    <button class="choice-btn" onclick="selectChoice(this, 'q2', false)">
+                        <span class="lang-en">C) To build a website for our company</span>
+                        <span class="lang-zh">C) 為我們公司建立網站</span>
+                    </button>
+                    <div class="feedback" id="feedback3"></div>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-secondary" onclick="prevPage()">
+                        <span class="lang-en">← Back</span>
+                        <span class="lang-zh">← 返回</span>
+                    </button>
+                    <button class="btn btn-primary" onclick="checkActivity3()">
+                        <span class="lang-en">Check Answers</span>
+                        <span class="lang-zh">檢查答案</span>
+                    </button>
+                    <button class="btn btn-primary" id="next3" onclick="nextPage()" style="display:none;">
+                        <span class="lang-en">Next Level →</span>
+                        <span class="lang-zh">下一關 →</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Page 4: Success Criteria -->
+            <div class="page" id="page4">
+                <div class="section-intro">
+                    <h2>
+                        <span class="lang-en">Level 4: Success Criteria</span>
+                        <span class="lang-zh">第4關：成功準則</span>
+                    </h2>
+                    <p>
+                        <span class="lang-en">Build sentences using success criteria expressions</span>
+                        <span class="lang-zh">使用成功準則語句組合句子</span>
+                    </p>
+                </div>
+                <div class="activity-container">
+                    <h3>
+                        <span class="lang-en">✅ Key Expressions:</span>
+                        <span class="lang-zh">✅ 常用語句：</span>
+                    </h3>
+                    <div class="expression-box">
+                        <strong>"[Action] is/are achieved" <span class="lang-zh">／「[行動]達成」</span></strong>
+                        <span class="lang-en">Example: Customer satisfaction of 90% or above is achieved.</span>
+                        <span class="lang-zh">例子：達到90%或以上的顧客滿意度。</span>
+                    </div>
+                    <div class="expression-box">
+                        <strong>"[Action] is/are completed within..." <span class="lang-zh">／「[行動]在...內完成」</span></strong>
+                        <span class="lang-en">Example: All tasks are completed within 2 weeks.</span>
+                        <span class="lang-zh">例子：所有任務在2週內完成。</span>
+                    </div>
+                    <div class="expression-box">
+                        <strong>"[Outcome] is received" <span class="lang-zh">／「收到[結果]」</span></strong>
+                        <span class="lang-en">Example: Positive feedback from mall management and tenants is received.</span>
+                        <span class="lang-zh">例子：取得商場管理層及租戶的正面評價。</span>
+                    </div>
+                </div>
+                <div class="activity-container">
+                    <div class="activity-title">
+                        <span class="activity-icon">🧩</span>
+                        <span>
+                            <span class="lang-en">Sentence Builder</span>
+                            <span class="lang-zh">句子組合</span>
+                        </span>
+                    </div>
+                    <p style="margin-bottom: 15px;">
+                        <span class="lang-en">Click words to build a success criteria statement:</span>
+                        <span class="lang-zh">點擊單詞來組成成功準則句子：</span>
+                    </p>
+                    <div class="word-bank" id="wordBank4">
+                        <div class="word-chip" onclick="addWord(this)">achieved</div>
+                        <div class="word-chip" onclick="addWord(this)">satisfaction</div>
+                        <div class="word-chip" onclick="addWord(this)">is</div>
+                        <div class="word-chip" onclick="addWord(this)">75%</div>
+                        <div class="word-chip" onclick="addWord(this)">of</div>
+                        <div class="word-chip" onclick="addWord(this)">Visitors</div>
+                    </div>
+                    <div class="sentence-builder" id="sentenceBuilder">
+                        <span style="color: #999;">
+                            <span class="lang-en">Click words above to build your sentence...</span>
+                            <span class="lang-zh">點擊上方的詞語組合句子...</span>
+                        </span>
+                    </div>
+                    <button class="btn btn-secondary" onclick="clearSentence()" style="margin-top: 10px;">
+                        <span class="lang-en">Clear Sentence</span>
+                        <span class="lang-zh">清除句子</span>
+                    </button>
+                    <div class="feedback" id="feedback4"></div>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-secondary" onclick="prevPage()">
+                        <span class="lang-en">← Back</span>
+                        <span class="lang-zh">← 返回</span>
+                    </button>
+                    <button class="btn btn-primary" onclick="checkActivity4()">
+                        <span class="lang-en">Check Answer</span>
+                        <span class="lang-zh">檢查答案</span>
+                    </button>
+                    <button class="btn btn-primary" id="next4" onclick="nextPage()" style="display:none;">
+                        <span class="lang-en">Next Level →</span>
+                        <span class="lang-zh">下一關 →</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Page 5: People & Problems -->
+            <div class="page" id="page5">
+                <div class="section-intro">
+                    <h2>
+                        <span class="lang-en">Level 5: People Involved & Potential Problems</span>
+                        <span class="lang-zh">第5關：相關人員與潛在問題</span>
+                    </h2>
+                    <p>
+                        <span class="lang-en">Match expressions to the correct section</span>
+                        <span class="lang-zh">將語句配對到正確的部分</span>
+                    </p>
+                </div>
+                <div class="activity-container">
+                    <h3>
+                        <span class="lang-en">Key Expressions:</span>
+                        <span class="lang-zh">常用語句：</span>
+                    </h3>
+                    <div class="expression-box">
+                        <strong>
+                            <span class="lang-en">👥 People Involved: List stakeholders</span>
+                            <span class="lang-zh">👥 相關人員：列出持份者</span>
+                        </strong>
+                        <span class="lang-en">Example: Shoppers and visitors / Mall management team</span>
+                        <span class="lang-zh">例子：顧客和訪客／商場管理團隊</span>
+                    </div>
+                    <div class="expression-box">
+                        <strong>
+                            <span class="lang-en">⚠️ Potential Problems: "may occur" / "may lead to"</span>
+                            <span class="lang-zh">⚠️ 潛在問題：「may occur」／「may lead to」</span>
+                        </strong>
+                        <span class="lang-en">Example: Manpower shortages may occur during peak hours.</span>
+                        <span class="lang-zh">例子：高峰時段可能出現人手短缺。</span>
+                    </div>
+                </div>
+                <div class="activity-container">
+                    <div class="activity-title">
+                        <span class="activity-icon">🔀</span>
+                        <span>
+                            <span class="lang-en">Sort the Expressions</span>
+                            <span class="lang-zh">分類語句</span>
+                        </span>
+                    </div>
+                    <div class="drag-source" id="dragSource5">
+                        <div class="drag-item" draggable="true" data-category="people">
+                            <span class="lang-en">Project team members</span>
+                            <span class="lang-zh">項目團隊成員</span>
+                        </div>
+                        <div class="drag-item" draggable="true" data-category="problems">
+                            <span class="lang-en">Limited budget may affect quality</span>
+                            <span class="lang-zh">有限的預算可能影響質量</span>
+                        </div>
+                        <div class="drag-item" draggable="true" data-category="people">
+                            <span class="lang-en">External consultants</span>
+                            <span class="lang-zh">外部顧問</span>
+                        </div>
+                        <div class="drag-item" draggable="true" data-category="problems">
+                            <span class="lang-en">Delays may occur due to weather</span>
+                            <span class="lang-zh">天氣可能導致延誤</span>
+                        </div>
+                    </div>
+                    <div class="drop-zone" data-answer="people">
+                        <div class="drop-zone-title">
+                            <span class="lang-en">👥 People Involved</span>
+                            <span class="lang-zh">👥 相關人員</span>
+                        </div>
+                    </div>
+                    <div class="drop-zone" data-answer="problems">
+                        <div class="drop-zone-title">
+                            <span class="lang-en">⚠️ Potential Problems</span>
+                            <span class="lang-zh">⚠️ 潛在問題</span>
+                        </div>
+                    </div>
+                    <div class="feedback" id="feedback5"></div>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-secondary" onclick="prevPage()">
+                        <span class="lang-en">← Back</span>
+                        <span class="lang-zh">← 返回</span>
+                    </button>
+                    <button class="btn btn-primary" onclick="checkActivity5()">
+                        <span class="lang-en">Check Answers</span>
+                        <span class="lang-zh">檢查答案</span>
+                    </button>
+                    <button class="btn btn-primary" id="next5" onclick="nextPage()" style="display:none;">
+                        <span class="lang-en">Next Level →</span>
+                        <span class="lang-zh">下一關 →</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Page 6: Milestones -->
+            <div class="page" id="page6">
+                <div class="section-intro">
+                    <h2>
+                        <span class="lang-en">Level 6: Milestones & Timeline</span>
+                        <span class="lang-zh">第6關：里程碑與時間表</span>
+                    </h2>
+                    <p>
+                        <span class="lang-en">Learn expressions for planning project tasks</span>
+                        <span class="lang-zh">學習規劃項目任務的語句</span>
+                    </p>
+                </div>
+                <div class="activity-container">
+                    <h3>
+                        <span class="lang-en">📅 Key Expressions:</span>
+                        <span class="lang-zh">📅 常用語句：</span>
+                    </h3>
+                    <div class="expression-box">
+                        <strong>"Conduct [research/study]" <span class="lang-zh">／「進行[研究/調查]」</span></strong>
+                        <span class="lang-en">Example: Conduct Internet research on customer service counters</span>
+                        <span class="lang-zh">例子：在網上搜尋有關顧客服務櫃檯的資料</span>
+                    </div>
+                    <div class="expression-box">
+                        <strong>"Analyse the data" <span class="lang-zh">／「分析數據」</span></strong>
+                        <span class="lang-en">Example: Analyse the data of empathy maps</span>
+                        <span class="lang-zh">例子：分析同理心地圖的數據</span>
+                    </div>
+                    <div class="expression-box">
+                        <strong>"Draft/Submit [deliverable]" <span class="lang-zh">／「起草/提交[成果]」</span></strong>
+                        <span class="lang-en">Example: Draft a design / Submit progress report</span>
+                        <span class="lang-zh">例子：起草設計／提交進度報告</span>
+                    </div>
+                </div>
+                <div class="activity-container">
+                    <div class="activity-title">
+                        <span class="activity-icon">✏️</span>
+                        <span>
+                            <span class="lang-en">Complete the Milestone</span>
+                            <span class="lang-zh">完成里程碑</span>
+                        </span>
+                    </div>
+                    <p style="margin-bottom: 15px;">
+                        <span class="lang-en">Fill in the blanks with appropriate verbs:</span>
+                        <span class="lang-zh">填入適當的動詞：</span>
+                    </p>
+                    <div style="background: #f8fafc; padding: 20px; border-radius: 10px; line-height: 2.5;">
+                        <p>1. <input type="text" class="input-field inline-input-medium" id="milestone1"> research on market trends</p>
+                        <p>2. <input type="text" class="input-field inline-input-medium" id="milestone2"> the survey results</p>
+                        <p>3. <input type="text" class="input-field inline-input-medium" id="milestone3"> the final report</p>
+                    </div>
+                    <div style="background: #ecfeff; padding: 15px; border-radius: 10px; margin-top: 15px;">
+                        <strong>💡 <span class="lang-en">Word Bank:</span><span class="lang-zh">詞庫：</span></strong> Analyse | Submit | Conduct
+                    </div>
+                    <div class="feedback" id="feedback6"></div>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-secondary" onclick="prevPage()">
+                        <span class="lang-en">← Back</span>
+                        <span class="lang-zh">← 返回</span>
+                    </button>
+                    <button class="btn btn-primary" onclick="checkActivity6()">
+                        <span class="lang-en">Check Answers</span>
+                        <span class="lang-zh">檢查答案</span>
+                    </button>
+                    <button class="btn btn-primary" id="next6" onclick="nextPage()" style="display:none;">
+                        <span class="lang-en">Next Level →</span>
+                        <span class="lang-zh">下一關 →</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Page 7: Resources -->
+            <div class="page" id="page7">
+                <div class="section-intro">
+                    <h2>
+                        <span class="lang-en">Level 7: Resources Needed</span>
+                        <span class="lang-zh">第7關：所需資源</span>
+                    </h2>
+                    <p>
+                        <span class="lang-en">Identify expressions for listing project resources</span>
+                        <span class="lang-zh">找出用於列出項目資源的表達方式</span>
+                    </p>
+                </div>
+                <div class="activity-container">
+                    <h3>
+                        <span class="lang-en">🛠️ Key Resource Categories:</span>
+                        <span class="lang-zh">🛠️ 主要資源類別：</span>
+                    </h3>
+                    <div class="expression-box">
+                        <strong>
+                            <span class="lang-en">Human resources: "[Role] to [action]"</span>
+                            <span class="lang-zh">人力資源：「[角色] to [行動]」</span>
+                        </strong>
+                        <span class="lang-en">Example: Design team to create the counter layout</span>
+                        <span class="lang-zh">例子：設計團隊創建櫃台佈局</span>
+                    </div>
+                    <div class="expression-box">
+                        <strong>
+                            <span class="lang-en">Equipment: List with commas</span>
+                            <span class="lang-zh">設備：用逗號列出</span>
+                        </strong>
+                        <span class="lang-en">Example: Computers, phones and information system</span>
+                        <span class="lang-zh">例子：電腦、電話和資訊系統</span>
+                    </div>
+                    <div class="expression-box">
+                        <strong>
+                            <span class="lang-en">Venue: "designated [location]" / "budget for..."</span>
+                            <span class="lang-zh">場地：「designated [地點]」／「budget for...」</span>
+                        </strong>
+                        <span class="lang-en">Example: Designated floor space in a visible location</span>
+                        <span class="lang-zh">例子：在顯眼位置指定的樓面空間</span>
+                    </div>
+                </div>
+                <div class="activity-container">
+                    <div class="activity-title">
+                        <span class="activity-icon">🎯</span>
+                        <span>
+                            <span class="lang-en">Categorise Resources</span>
+                            <span class="lang-zh">資源分類</span>
+                        </span>
+                    </div>
+                    <p style="margin-bottom: 15px;">
+                        <span class="lang-en">Which category does each resource belong to?</span>
+                        <span class="lang-zh">每項資源屬於哪個類別？</span>
+                    </p>
+                    <div style="background: #f8fafc; padding: 20px; border-radius: 10px; margin-bottom: 15px;">
+                        <strong>
+                            <span class="lang-en">Resource:</span>
+                            <span class="lang-zh">資源：</span>
+                        </strong> "Project manager to oversee implementation"
+                    </div>
+                    <button class="choice-btn" onclick="selectChoice(this, 'r1', true)">
+                        <span class="lang-en">Human resources</span>
+                        <span class="lang-zh">人力資源</span>
+                    </button>
+                    <button class="choice-btn" onclick="selectChoice(this, 'r1', false)">
+                        <span class="lang-en">Equipment and materials</span>
+                        <span class="lang-zh">設備和材料</span>
+                    </button>
+                    <button class="choice-btn" onclick="selectChoice(this, 'r1', false)">
+                        <span class="lang-en">Venue and logistics</span>
+                        <span class="lang-zh">場地和後勤</span>
+                    </button>
+                    
+                    <div style="background: #f8fafc; padding: 20px; border-radius: 10px; margin: 30px 0 15px 0;">
+                        <strong>
+                            <span class="lang-en">Resource:</span>
+                            <span class="lang-zh">資源：</span>
+                        </strong> "Budget for design, construction and printing"
+                    </div>
+                    <button class="choice-btn" onclick="selectChoice(this, 'r2', false)">
+                        <span class="lang-en">Human resources</span>
+                        <span class="lang-zh">人力資源</span>
+                    </button>
+                    <button class="choice-btn" onclick="selectChoice(this, 'r2', true)">
+                        <span class="lang-en">Equipment and materials</span>
+                        <span class="lang-zh">設備和材料</span>
+                    </button>
+                    <button class="choice-btn" onclick="selectChoice(this, 'r2', false)">
+                        <span class="lang-en">Venue and logistics</span>
+                        <span class="lang-zh">場地和後勤</span>
+                    </button>
+                    <div class="feedback" id="feedback7"></div>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-secondary" onclick="prevPage()">
+                        <span class="lang-en">← Back</span>
+                        <span class="lang-zh">← 返回</span>
+                    </button>
+                    <button class="btn btn-primary" onclick="checkActivity7()">
+                        <span class="lang-en">Check Answers</span>
+                        <span class="lang-zh">檢查答案</span>
+                    </button>
+                    <button class="btn btn-primary" id="next7" onclick="nextPage()" style="display:none;">
+                        <span class="lang-en">Next Level →</span>
+                        <span class="lang-zh">下一關 →</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Page 8: Project Outputs -->
+            <div class="page" id="page8">
+                <div class="section-intro">
+                    <h2>
+                        <span class="lang-en">Level 8: Project Outputs</span>
+                        <span class="lang-zh">第8關：項目成果</span>
+                    </h2>
+                    <p>
+                        <span class="lang-en">Learn how to list project deliverables</span>
+                        <span class="lang-zh">學習如何列出項目交付成果</span>
+                    </p>
+                </div>
+                <div class="activity-container">
+                    <h3>
+                        <span class="lang-en">📦 Key Expressions:</span>
+                        <span class="lang-zh">📦 常用語句：</span>
+                    </h3>
+                    <div class="expression-box">
+                        <strong>
+                            <span class="lang-en">Simple listing format</span>
+                            <span class="lang-zh">簡單列表格式</span>
+                        </strong>
+                        <span class="lang-en">Example: Project plan presentation / Progress report / Final report</span>
+                        <span class="lang-zh">例子：項目計劃簡報／進度報告／最終報告</span>
+                    </div>
+                    <div class="expression-box">
+                        <strong>
+                            <span class="lang-en">With details: "[Output] ([specifications])"</span>
+                            <span class="lang-zh">附詳情：「[成果]([規格])」</span>
+                        </strong>
+                        <span class="lang-en">Example: Counter design drawings (layout plan, 3D sketch or rendering)</span>
+                        <span class="lang-zh">例子：櫃台設計圖（佈局平面圖、3D草圖或效果圖）</span>
+                    </div>
+                </div>
+                <div class="activity-container">
+                    <div class="activity-title">
+                        <span class="activity-icon">📝</span>
+                        <span>
+                            <span class="lang-en">Write Your Own</span>
+                            <span class="lang-zh">自己寫</span>
+                        </span>
+                    </div>
+                    <p style="margin-bottom: 15px;">
+                        <span class="lang-en">List 3 project outputs for a website design project:</span>
+                        <span class="lang-zh">列出網站設計項目的3項成果：</span>
+                    </p>
+                    <div style="line-height: 2.5;">
+                        <p>1. <input type="text" class="input-field" id="output1" placeholder="e.g., Website mockup"></p>
+                        <p>2. <input type="text" class="input-field" id="output2" placeholder="e.g., User testing report"></p>
+                        <p>3. <input type="text" class="input-field" id="output3" placeholder="e.g., Final presentation"></p>
+                    </div>
+                    <div style="background: #ecfeff; padding: 15px; border-radius: 10px; margin-top: 15px;">
+                        <strong>💡 <span class="lang-en">Tips:</span><span class="lang-zh">提示：</span></strong> 
+                        <span class="lang-en">Think about documents, presentations, designs, or reports that the project will produce</span>
+                        <span class="lang-zh">考慮項目所需製作的文件、簡報、設計或報告</span>
+                    </div>
+                    <div class="feedback" id="feedback8"></div>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-secondary" onclick="prevPage()">
+                        <span class="lang-en">← Back</span>
+                        <span class="lang-zh">← 返回</span>
+                    </button>
+                    <button class="btn btn-primary" onclick="checkActivity8()">
+                        <span class="lang-en">Check Answers</span>
+                        <span class="lang-zh">檢查答案</span>
+                    </button>
+                    <button class="btn btn-primary" id="next8" onclick="nextPage()" style="display:none;">
+                        <span class="lang-en">Complete! →</span>
+                        <span class="lang-zh">完成！ →</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Page 9: Completion -->
+            <div class="page" id="page9">
+                <div class="achievement">
+                    <div class="achievement-icon">🏆</div>
+                    <h1 style="color: #0891b2; margin-bottom: 20px;">
+                        <span class="lang-en">Congratulations!</span>
+                        <span class="lang-zh">恭喜你！</span>
+                    </h1>
+                    <p style="font-size: 1.3em; margin-bottom: 30px;">
+                        <span class="lang-en">You've mastered the expressions of all 9 sections of a project plan!</span>
+                        <span class="lang-zh">你已經學會了專題計劃9個部分的用語！</span>
+                    </p>
+                    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 30px 0;">
+                        <span class="badge">
+                            <span class="lang-en">📋 Background Master</span>
+                            <span class="lang-zh">📋 背景大師</span>
+                        </span>
+                        <span class="badge">
+                            <span class="lang-en">🎯 Purpose Pro</span>
+                            <span class="lang-zh">🎯 目的專家</span>
+                        </span>
+                        <span class="badge">
+                            <span class="lang-en">📝 Requirements Expert</span>
+                            <span class="lang-zh">📝 要求專家</span>
+                        </span>
+                        <span class="badge">
+                            <span class="lang-en">✅ Criteria Champion</span>
+                            <span class="lang-zh">✅ 標準冠軍</span>
+                        </span>
+                        <span class="badge">
+                            <span class="lang-en">👥 People Person</span>
+                            <span class="lang-zh">👥 人際達人</span>
+                        </span>
+                        <span class="badge">
+                            <span class="lang-en">⚠️ Problem Solver</span>
+                            <span class="lang-zh">⚠️ 問題解決者</span>
+                        </span>
+                        <span class="badge">
+                            <span class="lang-en">📅 Timeline Tactician</span>
+                            <span class="lang-zh">📅 時間策略家</span>
+                        </span>
+                        <span class="badge">
+                            <span class="lang-en">🛠️ Resource Manager</span>
+                            <span class="lang-zh">🛠️ 資源管理者</span>
+                        </span>
+                        <span class="badge">
+                            <span class="lang-en">📦 Output Organiser</span>
+                            <span class="lang-zh">📦 成果組織者</span>
+                        </span>
+                    </div>
+                    <div style="background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%); color: white; padding: 30px; border-radius: 15px; margin-top: 30px;">
+                        <h2 style="margin-bottom: 15px;">
+                            <span class="lang-en">Your Final Score</span>
+                            <span class="lang-zh">你的最終得分</span>
+                        </h2>
+                        <p style="font-size: 3em; font-weight: 700;"><span id="finalScore">0</span> / <span id="finalTotal">0</span></p>
+                        <p style="font-size: 1.2em; margin-top: 15px;" id="scoreMessage"></p>
+                    </div>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-primary" onclick="restartQuiz()">
+                        <span class="lang-en">🔄 Practise Again</span>
+                        <span class="lang-zh">🔄 再次練習</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentPage = 0;
+        let score = 0;
+        let totalQuestions = 8;
+        let answersQ1 = { q1: null, q2: null };
+        let answersQ3 = { r1: null, r2: null };
+        let builtSentence = [];
+        let currentLang = 'en';
+
+        window.addEventListener('load', function() {
+            document.getElementById('totalScore').textContent = totalQuestions;
+            setupDragAndDrop();
+        });
+
+        function toggleLanguage() {
+            currentLang = (currentLang === 'en') ? 'zh' : 'en';
+            document.body.setAttribute('data-lang', currentLang);
+        }
+
+        function nextPage() {
+            const pages = document.querySelectorAll('.page');
+            pages[currentPage].classList.remove('active');
+            currentPage++;
+            if (currentPage < pages.length) {
+                pages[currentPage].classList.add('active');
+            }
+            updateProgress();
+            window.scrollTo(0, 0);
+
+            if (currentPage === 9) {
+                showFinalScore();
+            }
+        }
+
+        function prevPage() {
+            const pages = document.querySelectorAll('.page');
+            pages[currentPage].classList.remove('active');
+            currentPage--;
+            if (currentPage >= 0) {
+                pages[currentPage].classList.add('active');
+            }
+            updateProgress();
+            window.scrollTo(0, 0);
+        }
+
+        function updateProgress() {
+            const progress = (currentPage / 9) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressFill').textContent = Math.round(progress) + '%';
+            document.getElementById('scoreDisplay').textContent = score;
+        }
+
+        function showFinalScore() {
+            document.getElementById('finalScore').textContent = score;
+            document.getElementById('finalTotal').textContent = totalQuestions;
+
+            const langIsZh = (currentLang === 'zh');
+            const percentage = (score / totalQuestions) * 100;
+            let message = '';
+
+            if (percentage === 100) {
+                message = langIsZh ? '🎉 完美表現！你掌握了所有內容！' : '🎉 Perfect performance! You mastered everything!';
+                // Trigger confetti for perfect score
+                confetti({
+                    particleCount: 200,
+                    spread: 100,
+                    origin: { y: 0.5 }
+                });
+            } else if (percentage >= 75) {
+                message = langIsZh ? '👏 做得很好！繼續努力！' : '👏 Great job! Keep it up!';
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            } else if (percentage >= 50) {
+                message = langIsZh ? '💪 不錯！再練習一次會更好！' : '💪 Good effort! Try again to improve!';
+            } else {
+                message = langIsZh ? '📚 繼續學習！再試一次！' : '📚 Keep learning! Give it another try!';
+            }
+
+            document.getElementById('scoreMessage').textContent = message;
+        }
+
+        function setupDragAndDrop() {
+            const draggables = document.querySelectorAll('.drag-item');
+            const dropZones = document.querySelectorAll('.drop-zone');
+
+            let touchDragItem = null;
+            let touchCurrentDrop = null;
+
+            function getDropZoneFromTouch(touch) {
+                const el = document.elementFromPoint(touch.clientX, touch.clientY);
+                if (!el) return null;
+                return el.closest('.drop-zone');
+            }
+
+            draggables.forEach(draggable => {
+                draggable.addEventListener('dragstart', (e) => {
+                    draggable.classList.add('dragging');
+                    if (e.dataTransfer) {
+                        e.dataTransfer.effectAllowed = 'move';
+                    }
+                });
+
+                draggable.addEventListener('dragend', () => {
+                    draggable.classList.remove('dragging');
+                });
+
+                draggable.addEventListener('touchstart', (e) => {
+                    touchDragItem = draggable;
+                    draggable.classList.add('dragging');
+                    document.body.classList.add('dragging-active');
+                    e.preventDefault();
+                }, { passive: false });
+
+                draggable.addEventListener('touchmove', (e) => {
+                    if (!touchDragItem) return;
+                    const touch = e.touches[0];
+                    const zone = getDropZoneFromTouch(touch);
+
+                    if (touchCurrentDrop && touchCurrentDrop !== zone) {
+                        touchCurrentDrop.classList.remove('drag-over');
+                    }
+
+                    if (zone) {
+                        zone.classList.add('drag-over');
+                    }
+                    touchCurrentDrop = zone;
+
+                    e.preventDefault();
+                }, { passive: false });
+
+                draggable.addEventListener('touchend', (e) => {
+                    if (touchDragItem && touchCurrentDrop) {
+                        const zone = touchCurrentDrop;
+                        zone.classList.remove('drag-over');
+
+                        const existing = zone.querySelector('.drag-item');
+                        if (existing && existing !== touchDragItem) {
+                            const page = zone.closest('.page');
+                            const source = page ? page.querySelector('.drag-source') : null;
+                            if (source) {
+                                source.appendChild(existing);
+                            }
+                        }
+
+                        zone.appendChild(touchDragItem);
+                    }
+
+                    if (touchDragItem) {
+                        touchDragItem.classList.remove('dragging');
+                        document.body.classList.remove('dragging-active');
+                    }
+
+                    touchDragItem = null;
+                    touchCurrentDrop = null;
+                    e.preventDefault();
+                }, { passive: false });
+            });
+
+            dropZones.forEach(zone => {
+                zone.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    zone.classList.add('drag-over');
+                });
+
+                zone.addEventListener('dragleave', () => {
+                    zone.classList.remove('drag-over');
+                });
+
+                zone.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    zone.classList.remove('drag-over');
+                    const dragging = document.querySelector('.dragging');
+                    if (dragging) {
+                        const existing = zone.querySelector('.drag-item');
+                        if (existing && existing !== dragging) {
+                            const page = zone.closest('.page');
+                            const source = page ? page.querySelector('.drag-source') : null;
+                            if (source) {
+                                source.appendChild(existing);
+                            }
+                        }
+                        zone.appendChild(dragging);
+                    }
+                });
+            });
+        }
+
+        function checkActivity1() {
+            const dropZones = document.querySelectorAll('#page1 .drop-zone');
+            let correct = 0;
+            let allFilled = true;
+
+            dropZones.forEach(zone => {
+                const item = zone.querySelector('.drag-item');
+                if (!item) {
+                    allFilled = false;
+                    return;
+                }
+                const answer = zone.dataset.answer;
+                const section = item.dataset.section;
+                if (answer === section) {
+                    zone.classList.add('correct');
+                    zone.classList.remove('incorrect');
+                    correct++;
+                } else {
+                    zone.classList.add('incorrect');
+                    zone.classList.remove('correct');
+                }
+            });
+
+            const feedback = document.getElementById('feedback1');
+            const langIsZh = (currentLang === 'zh');
+
+            if (!allFilled) {
+                feedback.className = 'feedback show incorrect';
+                feedback.innerHTML = langIsZh ? '請將所有部分拖放到相應的目的！' : 'Please drag all sections to their matching purposes!';
+                return;
+            }
+
+            if (correct === 4) {
+                feedback.className = 'feedback show correct';
+                feedback.innerHTML = langIsZh ? '✅ 完美！你成功配對了所有部分！+1分' : '✅ Perfect! You matched all sections correctly! +1 point';
+                score++;
+                updateProgress();
+                document.getElementById('check1').style.display = 'none';
+                document.getElementById('next1').style.display = 'block';
+                // Trigger confetti
+                confetti({
+                    particleCount: 100,
+                    spread: 60,
+                    origin: { y: 0.6 }
+                });
+            } else {
+                feedback.className = 'feedback show incorrect';
+                feedback.innerHTML = langIsZh ? `你答對了 ${correct}/4。再試一次！` : `You got ${correct} out of 4 correct. Try again!`;
+            }
+        }
+
+        function checkActivity2() {
+            const blank1 = document.getElementById('blank1').value.trim().toLowerCase();
+            const blank2 = document.getElementById('blank2').value.trim().toLowerCase();
+            const feedback = document.getElementById('feedback2');
+            const langIsZh = (currentLang === 'zh');
+
+            const correct1 = (blank1 === 'will');
+            const correct2 = (blank2.includes('has invited') || blank2.includes('have invited'));
+
+            if (correct1 && correct2) {
+                feedback.className = 'feedback show correct';
+                feedback.innerHTML = langIsZh ? '✅ 太好了！你的背景陳述正確！+1分' : '✅ Excellent! Your background statement is correct! +1 point';
+                score++;
+                updateProgress();
+                document.getElementById('next2').style.display = 'block';
+                confetti({
+                    particleCount: 100,
+                    spread: 60,
+                    origin: { y: 0.6 }
+                });
+            } else {
+                feedback.className = 'feedback show incorrect';
+                let message = langIsZh ? '不完全正確。' : 'Not quite right. ';
+                if (!correct1) {
+                    message += langIsZh ? '第一空格應填 "will"。' : 'First blank should be "will". ';
+                }
+                if (!correct2) {
+                    message += langIsZh ? '第二空格應包含 "have invited" 或 "has invited"。' : 'Second blank should be "have invited".';
+                }
+                feedback.innerHTML = message;
+            }
+        }
+
+        function selectChoice(btn, question, isCorrect) {
+            const questionBtns = document.querySelectorAll(`[onclick*="${question}"]`);
+            questionBtns.forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+
+            if (question === 'q1') {
+                answersQ1.q1 = isCorrect;
+            } else if (question === 'q2') {
+                answersQ1.q2 = isCorrect;
+            } else if (question === 'r1') {
+                answersQ3.r1 = isCorrect;
+            } else if (question === 'r2') {
+                answersQ3.r2 = isCorrect;
+            }
+        }
+
+        function checkActivity3() {
+            const langIsZh = (currentLang === 'zh');
+
+            if (answersQ1.q1 === null || answersQ1.q2 === null) {
+                const feedback = document.getElementById('feedback3');
+                feedback.className = 'feedback show incorrect';
+                feedback.innerHTML = langIsZh ? '請回答兩個問題！' : 'Please answer both questions!';
+                return;
+            }
+
+            const feedback = document.getElementById('feedback3');
+            if (answersQ1.q1 && answersQ1.q2) {
+                feedback.className = 'feedback show correct';
+                feedback.innerHTML = langIsZh ? '✅ 完美！你理解了目的和要求的表達方式！+1分' : '✅ Perfect! You understand purpose and requirements! +1 point';
+                score++;
+                updateProgress();
+                document.getElementById('next3').style.display = 'block';
+                confetti({
+                    particleCount: 100,
+                    spread: 60,
+                    origin: { y: 0.6 }
+                });
+            } else {
+                feedback.className = 'feedback show incorrect';
+                feedback.innerHTML = langIsZh ? '再想想。記住：目的以 "To [動詞]..." 開頭，要求使用 "should be..."' : 'Review the expressions and try again. Remember: Purpose starts with "To [verb]..." and Requirements use "should be..."';
+            }
+        }
+
+        function addWord(chip) {
+            if (chip.classList.contains('used')) return;
+
+            const builder = document.getElementById('sentenceBuilder');
+            if (builtSentence.length === 0) {
+                builder.innerHTML = '';
+            }
+
+            const word = chip.textContent;
+            builtSentence.push(word);
+            chip.classList.add('used');
+
+            const wordSpan = document.createElement('span');
+            wordSpan.textContent = word + ' ';
+            wordSpan.style.fontSize = '1.1em';
+            builder.appendChild(wordSpan);
+        }
+
+        function clearSentence() {
+            const langIsZh = (currentLang === 'zh');
+            builtSentence = [];
+            document.getElementById('sentenceBuilder').innerHTML = langIsZh ? 
+                '<span style="color: #999;">點擊上方的詞語組合句子...</span>' : 
+                '<span style="color: #999;">Click words above to build your sentence...</span>';
+            document.querySelectorAll('#wordBank4 .word-chip').forEach(chip => chip.classList.remove('used'));
+        }
+
+        function checkActivity4() {
+            const correctSentence = 'Visitors satisfaction of 75% is achieved';
+            const userSentence = builtSentence.join(' ').trim();
+            const feedback = document.getElementById('feedback4');
+            const langIsZh = (currentLang === 'zh');
+
+            if (userSentence === correctSentence) {
+                feedback.className = 'feedback show correct';
+                feedback.innerHTML = langIsZh ? '✅ 完美的句子！你理解了成功準則的表達方式！+1分' : '✅ Perfect sentence! You understand success criteria expressions! +1 point';
+                score++;
+                updateProgress();
+                document.getElementById('next4').style.display = 'block';
+                confetti({
+                    particleCount: 100,
+                    spread: 60,
+                    origin: { y: 0.6 }
+                });
+            } else {
+                feedback.className = 'feedback show incorrect';
+                feedback.innerHTML = langIsZh ? 
+                    '不完全正確。試試：Visitors satisfaction of 75% is achieved' : 
+                    'Not quite right. Try: Visitors satisfaction of 75% is achieved';
+            }
+        }
+
+        function checkActivity5() {
+            const dropZones = document.querySelectorAll('#page5 .drop-zone');
+            let correct = 0;
+            let allFilled = true;
+            const langIsZh = (currentLang === 'zh');
+
+            dropZones.forEach(zone => {
+                const item = zone.querySelector('.drag-item');
+                if (!item) {
+                    allFilled = false;
+                    return;
+                }
+                const answer = zone.dataset.answer;
+                const category = item.dataset.category;
+                if (answer === category) {
+                    zone.classList.add('correct');
+                    zone.classList.remove('incorrect');
+                    correct++;
+                } else {
+                    zone.classList.add('incorrect');
+                    zone.classList.remove('correct');
+                }
+            });
+
+            const feedback = document.getElementById('feedback5');
+            if (!allFilled) {
+                feedback.className = 'feedback show incorrect';
+                feedback.innerHTML = langIsZh ? '請將所有項目分類！' : 'Please sort all expressions!';
+                return;
+            }
+
+            if (correct === 2) {
+                feedback.className = 'feedback show correct';
+                feedback.innerHTML = langIsZh ? '✅ 分類正確！你理解了相關人員和潛在問題部分！+1分' : '✅ Great sorting! You understand people and problems sections! +1 point';
+                score++;
+                updateProgress();
+                document.getElementById('next5').style.display = 'block';
+                confetti({
+                    particleCount: 100,
+                    spread: 60,
+                    origin: { y: 0.6 }
+                });
+            } else {
+                feedback.className = 'feedback show incorrect';
+                feedback.innerHTML = langIsZh ? '再試一次。想想：誰 vs. 可能出錯的事。' : 'Try again. Think about: who vs. what might go wrong.';
+            }
+        }
+
+        function checkActivity6() {
+            const m1 = document.getElementById('milestone1').value.trim().toLowerCase();
+            const m2 = document.getElementById('milestone2').value.trim().toLowerCase();
+            const m3 = document.getElementById('milestone3').value.trim().toLowerCase();
+            const feedback = document.getElementById('feedback6');
+            const langIsZh = (currentLang === 'zh');
+
+            const correct1 = (m1 === 'conduct');
+            const correct2 = (m2 === 'analyse' || m2 === 'analyze');
+            const correct3 = (m3 === 'submit');
+
+            if (correct1 && correct2 && correct3) {
+                feedback.className = 'feedback show correct';
+                feedback.innerHTML = langIsZh ? '✅ 太好了！所有里程碑動詞都正確！+1分' : '✅ Excellent! All milestone verbs are correct! +1 point';
+                score++;
+                updateProgress();
+                document.getElementById('next6').style.display = 'block';
+                confetti({
+                    particleCount: 100,
+                    spread: 60,
+                    origin: { y: 0.6 }
+                });
+            } else {
+                feedback.className = 'feedback show incorrect';
+                feedback.innerHTML = langIsZh ? 
+                    '查看詞庫並再試一次。將每個動詞與其上下文配對。' : 
+                    'Check the word bank and try again. Match each verb to its context.';
+            }
+        }
+
+        function checkActivity7() {
+            const langIsZh = (currentLang === 'zh');
+
+            if (answersQ3.r1 === null || answersQ3.r2 === null) {
+                const feedback = document.getElementById('feedback7');
+                feedback.className = 'feedback show incorrect';
+                feedback.innerHTML = langIsZh ? '請回答兩個問題！' : 'Please answer both questions!';
+                return;
+            }
+
+            const feedback = document.getElementById('feedback7');
+            if (answersQ3.r1 && answersQ3.r2) {
+                feedback.className = 'feedback show correct';
+                feedback.innerHTML = langIsZh ? '✅ 完美！你能正確分類資源！+1分' : '✅ Perfect! You can categorise resources correctly! +1 point';
+                score++;
+                updateProgress();
+                document.getElementById('next7').style.display = 'block';
+                confetti({
+                    particleCount: 100,
+                    spread: 60,
+                    origin: { y: 0.6 }
+                });
+            } else {
+                feedback.className = 'feedback show incorrect';
+                feedback.innerHTML = langIsZh ? '想想：是人、物品還是地點/金錢？' : 'Think about: Is it a person, an item, or a place/money?';
+            }
+        }
+
+        function checkActivity8() {
+            const o1 = document.getElementById('output1').value.trim();
+            const o2 = document.getElementById('output2').value.trim();
+            const o3 = document.getElementById('output3').value.trim();
+            const feedback = document.getElementById('feedback8');
+            const langIsZh = (currentLang === 'zh');
+
+            if (!o1 || !o2 || !o3) {
+                feedback.className = 'feedback show incorrect';
+                feedback.innerHTML = langIsZh ? '請填寫所有三個輸出！' : 'Please fill in all three outputs!';
+                return;
+            }
+
+            if (o1.length < 3 || o2.length < 3 || o3.length < 3) {
+                feedback.className = 'feedback show incorrect';
+                feedback.innerHTML = langIsZh ? 
+                    '請提供更詳細的答案（每個至少3個字符）。' : 
+                    'Please provide more detailed answers (at least 3 characters each).';
+                return;
+            }
+
+            const validKeywords = [
+                'report', 'presentation', 'design', 'plan', 'document', 'mockup', 
+                'prototype', 'testing', 'research', 'analysis', 'proposal', 
+                'website', 'layout', 'sketch', 'drawing', 'model', 'demo', 
+                'video', 'guide', 'manual', 'review', 'feedback', 'survey', 
+                'data', 
+                '報告', '簡報', '設計', '計劃', '文檔', '原型', '測試', '研究', 
+                '分析', '提案', '網站', '佈局', '草圖', '模型', '演示', '指南', 
+                '手冊', '評估', '反饋', '數據', 
+            ];
+
+            const allInputs = (o1 + ' ' + o2 + ' ' + o3).toLowerCase();
+            const hasRelevantContent = validKeywords.some(keyword => 
+                allInputs.includes(keyword.toLowerCase())
+            );
+
+            if (hasRelevantContent) {
+                feedback.className = 'feedback show correct';
+                feedback.innerHTML = langIsZh ? 
+                    `✅ 很好！你列出了有意義的專題計劃輸出！+1分<br><small>你的答案：1. ${o1} 2. ${o2} 3. ${o3}</small>` : 
+                    `✅ Great job! You listed meaningful project outputs! +1 point<br><small>Your answers: 1. ${o1} 2. ${o2} 3. ${o3}</small>`;
+                score++;
+                updateProgress();
+                document.getElementById('next8').style.display = 'block';
+                confetti({
+                    particleCount: 100,
+                    spread: 60,
+                    origin: { y: 0.6 }
+                });
+            } else {
+                feedback.className = 'feedback show incorrect';
+                feedback.innerHTML = langIsZh ? 
+                    '你的答案需要更具體。專題計劃輸出通常包括報告、簡報、設計、計劃等。請再試一次。' : 
+                    'Your answers need to be more specific. Project outputs usually include reports, presentations, designs, plans, etc. Please try again.';
+            }
+        }
+
+        function restartQuiz() {
+            score = 0;
+            currentPage = 0;
+            answersQ1 = { q1: null, q2: null };
+            answersQ3 = { r1: null, r2: null };
+            builtSentence = [];
+
+            document.querySelectorAll('.page').forEach((page, index) => {
+                page.classList.remove('active');
+                if (index === 0) page.classList.add('active');
+            });
+
+            document.querySelectorAll('.feedback').forEach(f => f.classList.remove('show'));
+
+            document.querySelectorAll('.drop-zone').forEach(z => {
+                z.classList.remove('correct', 'incorrect');
+                const items = z.querySelectorAll('.drag-item');
+                items.forEach(item => {
+                    const pageId = z.closest('.page').id;
+                    const sourceId = (pageId === 'page1') ? 'dragSource1' : 'dragSource5';
+                    const source = document.getElementById(sourceId);
+                    if (source) source.appendChild(item);
+                });
+            });
+
+            document.querySelectorAll('.choice-btn').forEach(btn => {
+                btn.classList.remove('selected', 'correct', 'incorrect');
+            });
+
+            document.querySelectorAll('input').forEach(input => input.value = '');
+
+            clearSentence();
+
+            for (let i = 1; i <= 8; i++) {
+                const checkBtn = document.getElementById('check' + i);
+                const nextBtn = document.getElementById('next' + i);
+                if (checkBtn) checkBtn.style.display = 'block';
+                if (nextBtn) nextBtn.style.display = 'none';
+            }
+
+            updateProgress();
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
+    
+  </body>
+  
+</html>

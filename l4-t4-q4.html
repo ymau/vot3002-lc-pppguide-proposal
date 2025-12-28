@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>L4 - Project Plan (Action Verbs for Milestones)</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Plan - Action Verbs for Project Milestones</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg1:#e0fdf7;
+            --bg2:#fff3e8;
+            --bg3:#fef9c3;
+            --accent:#14b8a6;
+            --accent-2:#f97316;
+            --ink:#393E46;
+            --muted:#64748b;
+            --card-bg: rgba(255,255,255,0.95);
+            --ring: rgba(20,184,166,0.25);
+            --shadow: 0 10px 30px rgba(15,23,42,0.08);
+            --radius: 18px;
+        }
+        
+        /* Mobile tap optimization */
+        html {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-text-size-adjust: 100%;
+        }
+        body {
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+        *, *::before, *::after {
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(-45deg, #FDEDED, #F7F6D3, #AAC4F5);
+            min-height: 100vh;
+            padding: 10px;
+        }
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        .container:focus { outline: none; }
+        .header {
+            background: linear-gradient(135deg, #2196f3 0%, #6a7fff 50%, #9c27b0 100%);
+            color: white;
+            padding: 20px 15px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .lang-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.75em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .lang-toggle:hover { background: white; color: #0891b2; }
+        .header h1 {
+            font-size: 1.5em;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+        .header p {
+            font-size: 0.9em;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+        .progress-container {
+            background: white;
+            padding: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 25px;
+            background: #e0e0e0;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #F5C857 0%, #F875AA 100%);
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.8em;
+        }
+        .score-display {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 1em;
+            font-weight: 600;
+            color: #0891b2;
+        }
+        .content { padding: 20px 15px; }
+        .page { display: none; }
+        .page.active { display: block; animation: fadeIn 0.5s ease; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .section-intro {
+            background: linear-gradient(135deg, #14b8a6 0%, #06b6d4 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .section-intro h2 { font-size: 1.2em; margin-bottom: 10px; }
+        .section-intro p { font-size: 0.95em; line-height: 1.5; }
+        .activity-container {
+            background: #fff;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px 15px;
+            margin: 15px 0;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .stat-box {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #e2e8f0;
+        }
+        .stat-label {
+            font-size: 0.75em;
+            color: #718096;
+            margin-bottom: 5px;
+        }
+        .stat-value {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #0891b2;
+        }
+        .matching-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-auto-flow: column;
+            grid-template-rows: repeat(5, auto);
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .match-card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 3px solid #e0e0e0;
+            transition: all 0.3s ease;
+            text-align: center;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.95em;
+            font-weight: 500;
+            user-select: none;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .match-card.verb {
+            background: linear-gradient(135deg, #6A0066 0%, #06b6d4 100%);
+            color: white;
+        }
+        .match-card.meaning {
+            background: #f7fafc;
+            color: #2d3748;
+        }
+        .match-card:active { transform: scale(0.98); }
+        .match-card.selected {
+            border-color: #F5C857;
+            border-width: 4px;
+            box-shadow: 0 0 0 3px rgba(245, 200, 87, 0.3);
+        }
+        .match-card.matched {
+            background: #d1fae5 !important;
+            color: #065f46 !important;
+            border-color: #10b981;
+            animation: matchPulse 0.5s ease;
+            pointer-events: none;
+        }
+        .match-card.wrong { animation: shake 0.5s ease; }
+        @keyframes matchPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+        .verb-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+        @media (max-width: 480px) {
+            .verb-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        .verb-tile {
+            padding: 15px 10px;
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: #2d3748;
+            font-size: 0.9em;
+            user-select: none;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .verb-tile:active { transform: scale(0.95); }
+        .verb-tile.selected {
+            background: linear-gradient(135deg, #6A0066 0%, #06b6d4 100%);
+            color: white;
+            border-color: #0891b2;
+            transform: scale(1.05);
+        }
+        .verb-tile.correct {
+            background: #10b981;
+            border-color: #10b981;
+            color: white;
+        }
+        .verb-tile.incorrect {
+            background: #fee2e2;
+            border-color: #ef4444;
+        }
+        .scenario-box {
+            background: linear-gradient(135deg, #f0fdfa 0%, #fff9c4 100%);
+            border: 3px solid #14b8a6;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .scenario-title {
+            font-size: 1.1em;
+            color: #0891b2;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .scenario-desc {
+            color: #4a5568;
+            font-size: 0.95em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .btn-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-direction: column;
+        }
+        .btn {
+            width: 100%;
+            padding: 14px 25px;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #6A0066 0%, #06b6d4 100%);
+            color: white;
+        }
+        .btn-primary:active { transform: scale(0.98); }
+        .btn-secondary { background: #e2e8f0; color: #334155; }
+        .btn-secondary:active { background: #cbd5e1; }
+        .feedback {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-weight: 500;
+            display: none;
+            animation: slideIn 0.5s ease;
+            font-size: 0.95em;
+            text-align: center;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .feedback.show { display: block; }
+        .feedback.correct {
+            background: #d1fae5;
+            color: #065f46;
+            border-left: 4px solid #10b981;
+        }
+        .feedback.incorrect {
+            background: #fee2e2;
+            color: #991b1b;
+            border-left: 4px solid #ef4444;
+        }
+        .achievement {
+            text-align: center;
+            padding: 30px 15px;
+        }
+        .achievement-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+            animation: rotateIn 0.8s ease;
+        }
+        @keyframes rotateIn {
+            from { transform: rotate(-180deg) scale(0); }
+            to { transform: rotate(0) scale(1); }
+        }
+        .welcome-message {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .welcome-emoji {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .welcome-message h2 {
+    background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+        .welcome-message p {
+            color: #4a5568;
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        @media (min-width: 768px) {
+            body { padding: 20px; }
+            .container { border-radius: 20px; }
+            .header { padding: 30px; }
+            .header h1 { font-size: 2em; padding-right: 0; }
+            .header p { font-size: 1.1em; }
+            .content { padding: 40px 30px; }
+            .match-card:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 8px 20px rgba(8, 145, 178, 0.3);
+            }
+            .verb-grid { grid-template-columns: repeat(3, 1fr); }
+            .btn-container {
+                flex-direction: row;
+                margin-top: 30px;
+                gap: 15px;
+            }
+            .btn {
+                flex: 1;
+                min-width: 150px;
+                padding: 15px 30px;
+                font-size: 1.1em;
+            }
+            .btn-primary:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 10px 20px rgba(8, 145, 178, 0.3);
+            }
+        }
+        .lang-en, .lang-zh { display: none; }
+        body[data-lang="en"] .lang-en { display: inline; }
+        body[data-lang="zh"] .lang-zh { display: inline; }
+    </style>
+</head>
+<body data-lang="en">
+    <div class="container">
+        <div class="header">
+            <button class="lang-toggle" onclick="toggleLanguage()">
+                <span class="lang-en">中文</span>
+                <span class="lang-zh">English</span>
+            </button>
+            <h1>
+                <span class="lang-en">Action Verbs <br> for Project Milestones</span>
+                <span class="lang-zh">項目里程碑的行動動詞</span>
+            </h1>
+            <p>
+                <span class="lang-en">Master verbs to describe what you'll do in your work schedule</span>
+                <span class="lang-zh">掌握動詞來描述工作時間表中要做的事情</span>
+            </p>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill">0%</div>
+            </div>
+            <div class="score-display">
+                <span class="lang-en">⭐ Completion:</span>
+                <span class="lang-zh">⭐ 完成：</span>
+                <span id="scoreDisplay">0</span> / <span id="totalScore">0</span>
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- Page 0: Welcome -->
+            <div class="page active" id="page0">
+                <div class="welcome-message">
+                    <div class="welcome-emoji">🔴🟠🟢</div>
+                    <h2>
+                        <span class="lang-en">Milestone Verbs Challenge!</span>
+                        <span class="lang-zh">里程碑動詞挑戰！</span>
+                    </h2>
+                    <p>
+                        <span class="lang-en">Complete three interactive challenges to master action verbs for describing project milestones and work schedules. <br>Let's get started!</span>
+                        <span class="lang-zh">完成三個互動挑戰，掌握描述項目里程碑和工作時間表的行動動詞。<br>讓我們開始吧！</span>
+                    </p>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-primary" id="startBtn">
+                        <span class="lang-en">Start Challenge 🚀</span>
+                        <span class="lang-zh">開始挑戰 🚀</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Page 1: Matching Part 1 -->
+            <div class="page" id="page1">
+                <div class="section-intro">
+                    <h2>
+                        <span class="lang-en">Level 1: Speed Matching (Part 1)</span>
+                        <span class="lang-zh">第1關：配對動詞（第1部分）</span>
+                    </h2>
+                    <p>
+                        <span class="lang-en">Click a verb, then click its matching meaning. Match all 5 pairs!</span>
+                        <span class="lang-zh">點擊一個動詞，然後點擊其配對的意思。配對全部5組！</span>
+                    </p>
+                </div>
+                <div class="activity-container">
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <div class="stat-label">
+                                <span class="lang-en">⏱️ TIME</span>
+                                <span class="lang-zh">⏱️ 時間</span>
+                            </div>
+                            <div class="stat-value" id="timerDisplay1">0:00</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">
+                                <span class="lang-en">✅ MATCHED</span>
+                                <span class="lang-zh">✅ 已配對</span>
+                            </div>
+                            <div class="stat-value" id="matchedDisplay1">0 / 5</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">
+                                <span class="lang-en">🔥 STREAK</span>
+                                <span class="lang-zh">🔥 連勝</span>
+                            </div>
+                            <div class="stat-value" id="streakDisplay1">0</div>
+                        </div>
+                    </div>
+                    <div class="matching-grid" id="matchingGrid1"></div>
+                    <div class="feedback" id="matchFeedback1"></div>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-secondary" onclick="prevPage()">
+                        <span class="lang-en">← Back</span>
+                        <span class="lang-zh">← 返回</span>
+                    </button>
+                    <button class="btn btn-secondary" onclick="resetMatching(1)">
+                        <span class="lang-en">🔄 Reset</span>
+                        <span class="lang-zh">🔄 重置</span>
+                    </button>
+                    <button class="btn btn-primary" id="next1" onclick="nextPage()" style="display:none;">
+                        <span class="lang-en">Next Task →</span>
+                        <span class="lang-zh">下一任務 →</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Page 2: Matching Part 2 -->
+            <div class="page" id="page2">
+                <div class="section-intro">
+                    <h2>
+                        <span class="lang-en">Level 1 - Speed Matching (Part 2)</span>
+                        <span class="lang-zh">第1關 - 任務2：配對動詞（第2部分）</span>
+                    </h2>
+                    <p>
+                        <span class="lang-en">Great job! Now match 5 more action verbs!</span>
+                        <span class="lang-zh">做得好！現在再配對5個行動動詞！</span>
+                    </p>
+                </div>
+                <div class="activity-container">
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <div class="stat-label">
+                                <span class="lang-en">⏱️ TIME</span>
+                                <span class="lang-zh">⏱️ 時間</span>
+                            </div>
+                            <div class="stat-value" id="timerDisplay2">0:00</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">
+                                <span class="lang-en">✅ MATCHED</span>
+                                <span class="lang-zh">✅ 已配對</span>
+                            </div>
+                            <div class="stat-value" id="matchedDisplay2">0 / 5</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">
+                                <span class="lang-en">🔥 STREAK</span>
+                                <span class="lang-zh">🔥 連勝</span>
+                            </div>
+                            <div class="stat-value" id="streakDisplay2">0</div>
+                        </div>
+                    </div>
+                    <div class="matching-grid" id="matchingGrid2"></div>
+                    <div class="feedback" id="matchFeedback2"></div>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-secondary" onclick="prevPage()">
+                        <span class="lang-en">← Back</span>
+                        <span class="lang-zh">← 返回</span>
+                    </button>
+                    <button class="btn btn-secondary" onclick="resetMatching(2)">
+                        <span class="lang-en">🔄 Reset</span>
+                        <span class="lang-zh">🔄 重置</span>
+                    </button>
+                    <button class="btn btn-primary" id="next2" onclick="nextPage()" style="display:none;">
+                        <span class="lang-en">Next Level →</span>
+                        <span class="lang-zh">下一關 →</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Page 3: Scenario Selection -->
+            <div class="page" id="page3">
+                <div class="section-intro">
+                    <h2>
+                        <span class="lang-en">Level 2: Choose Actions for Scenarios</span>
+                        <span class="lang-zh">第2關：為情境選擇行動</span>
+                    </h2>
+                    <p>
+                        <span class="lang-en">Read each project scenario and select 3 verbs that describe what to do.</span>
+                        <span class="lang-zh">閱讀每個項目情境，選擇3個描述要做什麼的動詞。</span>
+                    </p>
+                </div>
+                <div class="activity-container">
+                    <div class="scenario-box" id="scenarioBox"></div>
+                    <div style="text-align:center; margin:20px 0;">
+                        <h3 style="color:#0891b2; font-size:1.05em;">
+                            <span class="lang-en">Select 3 actions for this milestone:</span>
+                            <span class="lang-zh">為此里程碑選擇3個行動：</span>
+                        </h3>
+                    </div>
+                    <div class="verb-grid" id="verbGrid"></div>
+                    <div class="feedback" id="scenarioFeedback"></div>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-secondary" onclick="prevPage()">
+                        <span class="lang-en">← Back</span>
+                        <span class="lang-zh">← 返回</span>
+                    </button>
+                    <button class="btn btn-primary" id="checkScenarioBtn" onclick="checkScenarioAnswer()">
+                        <span class="lang-en">Check My Choices</span>
+                        <span class="lang-zh">檢查答案</span>
+                    </button>
+                    <button class="btn btn-primary" id="nextScenarioBtn" onclick="nextScenario()" style="display:none;">
+                        <span class="lang-en">Next Scenario →</span>
+                        <span class="lang-zh">下一情境 →</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Page 4: Completion -->
+            <div class="page" id="page4">
+                <div class="achievement">
+                    <div class="achievement-icon">🎊</div>
+                    <h1 style="color: #0891b2; margin-bottom: 20px;">
+                        <span class="lang-en">Congratulations!</span>
+                        <span class="lang-zh">恭喜你！</span>
+                    </h1>
+                    <p style="font-size: 1.2em; margin-bottom: 30px; color: #2d3748;">
+                        <span class="lang-en">You've mastered action verbs for describing project milestones and work schedules!</span>
+                        <span class="lang-zh">你已掌握描述項目里程碑和工作時間表的行動動詞！</span>
+                    </p>
+                    <div style="background: linear-gradient(135deg, #f0fdfa 0%, #fff9c4 100%); padding: 25px; border-radius: 12px; margin: 25px 0; border: 2px solid #e2e8f0;">
+                        <h2 style="color: #0891b2; margin-bottom: 15px; font-size: 1.2em;">
+                            <span class="lang-en">💡 Remember:</span>
+                            <span class="lang-zh">💡 記住：</span>
+                        </h2>
+                        <p style="color: #2d3748; font-size: 1em; line-height: 1.6;">
+                            <span class="lang-en">Use these verbs when writing:<br><strong>"What are you going to do?"</strong></span>
+                            <span class="lang-zh">寫作時使用這些動詞：<br><strong>「你將要做什麼？」</strong></span>
+                        </p>
+                    </div>
+                    <div style="background: #f7fafc; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid #e2e8f0;">
+                        <h3 style="color: #0891b2; margin-bottom: 10px;">
+                            <span class="lang-en">📊 Your Final Score:</span>
+                            <span class="lang-zh">📊 你的最終得分：</span>
+                        </h3>
+                        <p style="font-size: 2em; font-weight: 700; color: #0891b2;"><span id="finalScore">0</span> / 3</p>
+                    </div>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-primary" onclick="restartQuiz()">
+                        <span class="lang-en">🔄 Practise Again</span>
+                        <span class="lang-zh">🔄 再次練習</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+    <script>
+        // Data - Action Verbs (from your slides)
+        const verbsSet1 = [
+            { verb: "suggest", meaning: "to mention an idea for consideration", zh: "suggest", meaningZh: "提出想法供考慮" },
+            { verb: "conduct (research/interview)", meaning: "to organise and do an activity", zh: "conduct (research/interview)", meaningZh: "組織並進行活動" },
+            { verb: "list", meaning: "to write items one by one", zh: "list", meaningZh: "逐一寫下項目" },
+            { verb: "discuss", meaning: "to talk about something with others", zh: "discuss", meaningZh: "與他人談論某事" },
+            { verb: "measure", meaning: "to find the size, amount, or degree of something", zh: "measure", meaningZh: "找出事物的大小、數量或程度" }
+        ];
+
+        const verbsSet2 = [
+            { verb: "test", meaning: "to try something to see if it works", zh: "test", meaningZh: "嘗試某事看看是否有效" },
+            { verb: "analyse", meaning: "to examine something in detail", zh: "analyse", meaningZh: "詳細檢查某事" },
+            { verb: "draft (document)", meaning: "to prepare the first version of a written text", zh: "draft (document)", meaningZh: "準備書面文本的初稿" },
+            { verb: "brainstorm", meaning: "to produce ideas in a group", zh: "brainstorm", meaningZh: "在小組中產生想法、集思廣益" },
+            { verb: "collect", meaning: "to bring things together", zh: "collect", meaningZh: "把東西聚集在一起" }
+        ];
+
+       const verbTranslations = {
+  conduct: {
+    en: "conduct a customer survey",
+    zh: "進行一次顧客問卷調查"
+  },
+  analyse: {
+    en: "analyse the survey results",
+    zh: "分析問卷結果"
+  },
+  collect: {
+    en: "collect feedback from at least 100 people",
+    zh: "收集最少 100 位顧客的意見"
+  },
+  suggest: {
+    en: "suggest a new logo",
+    zh: "建議一個新標誌"
+  },
+  test: {
+    en: "test the final product / test the product before launch",
+    zh: "測試最終產品／在推出前測試產品"
+  },
+  draft: {
+    en: "draft the final report / draft the final launch email",
+    zh: "撰寫最終報告草稿／撰寫最終發佈電郵草稿"
+  },
+  brainstorm: {
+    en: "brainstorm ideas for the homepage / launch slogan",
+    zh: "為首頁設計或宣傳口號集思廣益"
+  },
+  list: {
+    en: "list the project risks / list the tasks for next month",
+    zh: "列出這個專題的風險／列出下個月需要完成的工作"
+  },
+  discuss: {
+    en: "discuss the design/budget with your teammates/manager",
+    zh: "與組員或經理討論設計或預算"
+  },
+  sketch: {
+    en: "sketch the first page layouts",
+    zh: "繪畫首頁的初步版面草圖"
+  },
+  measure: {
+    en: "measure customer satisfaction",
+    zh: "量度顧客滿意度"
+  },
+  check: {
+    en: "check all posters and leaflets",
+    zh: "檢查所有海報和單張"
+  },
+  prepare: {
+    en: "prepare the launch presentation",
+    zh: "準備發佈簡報"
+  },
+  present: {
+    en: "present last year’s results",
+    zh: "匯報去年的結果"
+  },
+  evaluate: {
+    en: "evaluate the team’s performance next term",
+    zh: "評估下學期團隊的表現"
+  },
+  report: {
+    en: "report the final results to the headteacher",
+    zh: "向校長匯報最終結果"
+  }
+};
+
+       const scenarios = [
+  {
+    // Scenario 1: Market Research Project
+    title: "Market Research Project",
+    titleZh: "市場研究項目",
+    description: "Your team needs to understand customer needs before launching a new product. What will you do in Week 1?",
+    descriptionZh: "你的團隊需要在推出新產品之前了解顧客需求。你在第1週會做什麼？",
+
+    // verb keys used for checking
+    correct: ["conduct", "analyse", "collect"],
+
+    // all options as verb keys (for dataset + checking)
+    allOptions: ["conduct", "collect", "suggest", "test", "analyse", "draft", "brainstorm", "list", "discuss"]
+  },
+  {
+    // Scenario 2: Website Design Milestone
+    title: "Website Design Milestone",
+    titleZh: "網站設計里程碑",
+    description: "Your team is starting a new website project. What will you do in the planning phase?",
+    descriptionZh: "你的團隊正在開始一個新的網站項目。你在規劃階段會做什麼？",
+
+    correct: ["sketch", "brainstorm", "discuss"],
+    allOptions: ["discuss", "suggest", "sketch", "draft", "measure", "test", "brainstorm", "analyse", "list"]
+  },
+  {
+    // Scenario 3: Product Launch Schedule
+    title: "Product Launch Schedule",
+    titleZh: "產品推出時間表",
+    description: "Your product is ready for launch next month. What will you do in the final week?",
+    descriptionZh: "你的產品準備在下個月推出。你在最後一週會做什麼？",
+
+    correct: ["test", "check", "prepare"],
+    allOptions: [ "prepare", "measure", "present", "test", "collect", "analyse", "evaluate", "report", "check" ]
+  }
+];
+
+
+        // Global variables
+        let currentPage = 0;
+        let score = 0;
+        let totalQuestions = 3;
+        let currentLang = 'en';
+        let matchTimers = [null, null, null];
+        let matchSeconds = [0, 0, 0];
+        let matchedCounts = [0, 0, 0];
+        let matchStreaks = [0, 0, 0];
+        let selectedCards = [{verb: null, mean: null}, {verb: null, mean: null}];
+        let currentScenario = 0;
+        let scenarioSelections = [];
+
+        // Utility functions
+        function shuffleArray(array) {
+            const arr = array.slice();
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        function toggleLanguage() {
+            currentLang = (currentLang === 'en') ? 'zh' : 'en';
+            document.body.setAttribute('data-lang', currentLang);
+            
+            if (currentPage === 1) {
+                renderMatchingGrid(1, verbsSet1);
+            } else if (currentPage === 2) {
+                renderMatchingGrid(2, verbsSet2);
+            } else if (currentPage === 3) {
+                showScenario();
+            }
+        }
+
+      function nextPage() {
+  const pages = document.querySelectorAll('.page');
+  pages[currentPage].classList.remove('active');
+  currentPage++;
+  pages[currentPage].classList.add('active');
+
+  const currentId = pages[currentPage].id;
+
+  if (currentId === 'page1') {
+    // build Level 1 Part 1 cards
+    resetMatching(1);          // or initMatching1(); use the function you used before
+  }
+
+  if (currentId === 'page2') {
+    // build Level 1 Part 2 cards
+    resetMatching(2);          // or initMatching2();
+  }
+
+  if (currentId === 'page3') {
+    // build Level 2 scenarios
+    currentScenario = 0;
+    scenarioSelections = [];
+    showScenario();
+  }
+}
+
+       function prevPage() {
+  const pages = document.querySelectorAll('.page');
+  pages[currentPage].classList.remove('active');
+  currentPage--;
+  pages[currentPage].classList.add('active');
+
+  const currentId = pages[currentPage].id;
+
+  if (currentId === 'page1') resetMatching(1);
+  if (currentId === 'page2') resetMatching(2);
+}
+
+        function updateProgress() {
+            const progress = (score / totalQuestions) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressFill').textContent = Math.round(progress) + '%';
+            document.getElementById('scoreDisplay').textContent = score;
+            document.getElementById('totalScore').textContent = totalQuestions;
+        }
+
+      function fireConfetti() {
+  confetti({
+    particleCount: 140,
+    spread: 80,
+    origin: { y: 0.6 }
+  });
+}
+
+        // Matching Game
+        function setupMatching(part, verbSet) {
+            const idx = part - 1;
+            matchedCounts[idx] = 0;
+            matchStreaks[idx] = 0;
+            matchSeconds[idx] = 0;
+            selectedCards[idx] = {verb: null, mean: null};
+            
+            document.getElementById(`matchedDisplay${part}`).textContent = `0 / ${verbSet.length}`;
+            document.getElementById(`streakDisplay${part}`).textContent = '0';
+            document.getElementById(`timerDisplay${part}`).textContent = '0:00';
+            document.getElementById(`matchFeedback${part}`).style.display = 'none';
+            document.getElementById(`next${part}`).style.display = 'none';
+            
+            startMatchTimer(part);
+            renderMatchingGrid(part, verbSet);
+        }
+
+        function startMatchTimer(part) {
+            const idx = part - 1;
+            clearInterval(matchTimers[idx]);
+            matchTimers[idx] = setInterval(() => {
+                matchSeconds[idx]++;
+                const mins = Math.floor(matchSeconds[idx] / 60);
+                const secs = matchSeconds[idx] % 60;
+                document.getElementById(`timerDisplay${part}`).textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
+            }, 1000);
+        }
+
+        function renderMatchingGrid(part, verbSet) {
+            const grid = document.getElementById(`matchingGrid${part}`);
+            grid.innerHTML = '';
+            
+            // Render ALL verbs first (left column)
+            verbSet.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'match-card verb';
+                card.textContent = currentLang === 'zh' ? item.zh : item.verb;
+                card.dataset.verb = item.verb;
+                card.onclick = () => selectMatchCard(card, 'verb', part, verbSet);
+                grid.appendChild(card);
+            });
+            
+            // Then render ALL meanings shuffled (right column)
+            const shuffledMeanings = shuffleArray([...verbSet]);
+            shuffledMeanings.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'match-card meaning';
+                card.textContent = currentLang === 'zh' ? item.meaningZh : item.meaning;
+                card.dataset.verb = item.verb;
+                card.onclick = () => selectMatchCard(card, 'meaning', part, verbSet);
+                grid.appendChild(card);
+            });
+        }
+
+        function selectMatchCard(card, type, part, verbSet) {
+            const idx = part - 1;
+            
+            if (card.classList.contains('matched')) return;
+            
+            if (type === 'verb') {
+                document.querySelectorAll(`#matchingGrid${part} .match-card.verb`).forEach(c => 
+                    c.classList.remove('selected'));
+                card.classList.add('selected');
+                selectedCards[idx].verb = card.dataset.verb;
+            } else {
+                document.querySelectorAll(`#matchingGrid${part} .match-card.meaning`).forEach(c => 
+                    c.classList.remove('selected'));
+                card.classList.add('selected');
+                selectedCards[idx].mean = card.dataset.verb;
+            }
+            
+            if (selectedCards[idx].verb && selectedCards[idx].mean) {
+                checkMatch(part, verbSet);
+            }
+        }
+
+        function checkMatch(part, verbSet) {
+            const idx = part - 1;
+            const feedback = document.getElementById(`matchFeedback${part}`);
+            
+            if (selectedCards[idx].verb === selectedCards[idx].mean) {
+                const verbCard = document.querySelector(`#matchingGrid${part} .match-card.verb[data-verb="${selectedCards[idx].verb}"]`);
+                const meanCard = document.querySelector(`#matchingGrid${part} .match-card.meaning[data-verb="${selectedCards[idx].mean}"]`);
+                
+                verbCard.classList.add('matched');
+                meanCard.classList.add('matched');
+                verbCard.classList.remove('selected');
+                meanCard.classList.remove('selected');
+                
+                matchedCounts[idx]++;
+                matchStreaks[idx]++;
+                
+                document.getElementById(`matchedDisplay${part}`).textContent = `${matchedCounts[idx]} / ${verbSet.length}`;
+                document.getElementById(`streakDisplay${part}`).textContent = matchStreaks[idx];
+                
+                feedback.className = 'feedback show correct';
+                feedback.textContent = currentLang === 'zh' ? 
+                    `完美配對！連勝 ${matchStreaks[idx]}` : 
+                    `Perfect match! Streak ${matchStreaks[idx]}`;
+                
+                if (matchedCounts[idx] === verbSet.length) {
+                    clearInterval(matchTimers[idx]);
+                    score++;
+                    updateProgress();
+                    
+                    setTimeout(() => {
+                        feedback.textContent = currentLang === 'zh' ? 
+                            '太棒了！你配對了所有動詞！' : 
+                            'Amazing! You matched all verbs!';
+                        document.getElementById(`next${part}`).style.display = 'block';
+                    }, 800);
+                   fireConfetti();   // 🎉 
+                }
+            } else {
+                const verbCard = document.querySelector(`#matchingGrid${part} .match-card.verb.selected`);
+                const meanCard = document.querySelector(`#matchingGrid${part} .match-card.meaning.selected`);
+                
+                if (verbCard) verbCard.classList.add('wrong');
+                if (meanCard) meanCard.classList.add('wrong');
+                
+                matchStreaks[idx] = 0;
+                document.getElementById(`streakDisplay${part}`).textContent = '0';
+                
+                feedback.className = 'feedback show incorrect';
+                feedback.textContent = currentLang === 'zh' ? 
+                    '不匹配！再試一次。' : 
+                    'Not a match! Try again.';
+                
+                setTimeout(() => {
+                    if (verbCard) verbCard.classList.remove('wrong', 'selected');
+                    if (meanCard) meanCard.classList.remove('wrong', 'selected');
+                }, 600);
+            }
+            
+            selectedCards[idx] = {verb: null, mean: null};
+        }
+
+        function resetMatching(part) {
+            const idx = part - 1;
+            clearInterval(matchTimers[idx]);
+            const verbSet = (part === 1) ? verbsSet1 : verbsSet2;
+            setupMatching(part, verbSet);
+        }
+
+        // Scenarios
+        function setupScenarios() {
+            currentScenario = 0;
+            scenarioSelections = [];
+            showScenario();
+        }
+
+       function showScenario() {
+  const scenarioBox = document.getElementById('scenarioBox');
+  const scenario = scenarios[currentScenario];
+
+  // title + description
+  scenarioBox.innerHTML = `
+    <div class="scenario-title">
+      ${currentLang === 'zh' ? scenario.titleZh : scenario.title}
+    </div>
+    <div class="scenario-desc">
+      ${currentLang === 'zh' ? scenario.descriptionZh : scenario.description}
+    </div>
+  `;
+
+  const verbGrid = document.getElementById('verbGrid');
+  verbGrid.innerHTML = '';
+
+  scenario.allOptions.forEach(verb => {
+    const tile = document.createElement('div');
+    tile.className = 'verb-tile';
+    tile.textContent = currentLang === 'zh'
+  ? verbTranslations[verb].zh
+  : verbTranslations[verb].en;                  // uses the map above
+    tile.dataset.verb = verb;
+    tile.onclick = () => toggleVerbTile(tile);
+    verbGrid.appendChild(tile);
+  });
+
+  const fb = document.getElementById('scenarioFeedback');
+  fb.className = 'feedback';
+  fb.style.display = 'none';
+  fb.textContent = '';
+  document.getElementById('checkScenarioBtn').style.display = 'block';
+  document.getElementById('nextScenarioBtn').style.display = 'none';
+  scenarioSelections = [];
+  }
+
+        function toggleVerbTile(tile) {
+            if (tile.classList.contains('correct') || tile.classList.contains('incorrect')) return;
+
+            const verb = tile.dataset.verb;
+            
+            if (tile.classList.contains('selected')) {
+                tile.classList.remove('selected');
+                scenarioSelections = scenarioSelections.filter(v => v !== verb);
+            } else {
+                if (scenarioSelections.length >= 3) {
+                    const feedback = document.getElementById('scenarioFeedback');
+                    feedback.className = 'feedback show incorrect';
+                    feedback.textContent = currentLang === 'zh' ? 
+                        '你只能選擇3個動詞！' : 
+                        'You can only select 3 verbs!';
+                    setTimeout(() => feedback.style.display = 'none', 2000);
+                } else {
+                    tile.classList.add('selected');
+                    scenarioSelections.push(verb);
+                }
+            }
+        }
+
+        function checkScenarioAnswer() {
+            const feedback = document.getElementById('scenarioFeedback');
+            const scenario = scenarios[currentScenario];
+            
+            if (scenarioSelections.length < 3) {
+                feedback.className = 'feedback show incorrect';
+                feedback.textContent = currentLang === 'zh' ? 
+                    '請選擇3個動詞！' : 
+                    'Please select 3 verbs!';
+                return;
+            }
+
+            const correctVerbs = scenario.correct;
+            let correctCount = 0;
+
+            document.querySelectorAll('.verb-tile').forEach(tile => {
+                const verb = tile.dataset.verb;
+                if (scenarioSelections.includes(verb)) {
+                    if (correctVerbs.includes(verb)) {
+                        tile.classList.add('correct');
+                        tile.classList.remove('selected');
+                        correctCount++;
+                    } else {
+                        tile.classList.add('incorrect');
+                        tile.classList.remove('selected');
+                    }
+                } else if (correctVerbs.includes(verb)) {
+                    tile.classList.add('correct');
+                    tile.style.opacity = '0.7';
+                }
+            });
+
+            if (correctCount === 3) {
+                feedback.className = 'feedback show correct';
+                feedback.textContent = currentLang === 'zh' ? 
+                    '完美！你選擇了所有正確的動詞！' : 
+                    'Perfect! You selected all the correct verbs!';
+               fireConfetti();   // 🎉 only when all 3 verbs are correct
+            } else {
+                feedback.className = 'feedback show incorrect';
+                feedback.textContent = currentLang === 'zh' ? 
+                    `你選對了 ${correctCount} 個。綠色方格顯示最佳動詞。` : 
+                    `You got ${correctCount} correct. Green tiles show the best verbs.`;
+            }
+
+            document.getElementById('checkScenarioBtn').style.display = 'none';
+            
+            if (currentScenario < scenarios.length - 1) {
+                document.getElementById('nextScenarioBtn').style.display = 'block';
+            } else {
+                setTimeout(() => {
+                    score++;
+                    updateProgress();
+                    nextPage();
+                }, 2000);
+            }
+        }
+
+        function nextScenario() {
+            currentScenario++;
+            showScenario();
+        }
+
+        function restartQuiz() {
+            score = 0;
+            currentPage = 0;
+            document.querySelectorAll('.page').forEach((page, index) => {
+                page.classList.remove('active');
+                if (index === 0) page.classList.add('active');
+            });
+            updateProgress();
+            window.scrollTo(0, 0);
+        }
+
+       // Initialize
+window.addEventListener('load', function() {
+  document.getElementById('totalScore').textContent = totalQuestions;
+  updateProgress();
+
+  const startBtn = document.getElementById('startBtn');
+  if (startBtn) {
+    startBtn.addEventListener('click', () => {
+      currentPage = 0;      // starting from intro page0
+      nextPage();           // go to page1 (matching)
+    });
+  }
+});
+</script>
+</body>
+</html>
+    
+  </body>
+  
+</html>

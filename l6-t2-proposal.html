@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>L6 - (Proposal Project) Completing a Sample Project Plan Presentation Script</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>L6 - (Proposal Project) Presentation Script Practice</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 1rem;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    body::-webkit-scrollbar { display: none; }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 1.5rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    header {
+      background: linear-gradient(120deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      border-radius: 15px;
+      padding: 2rem 1.5rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      color: white;
+      text-align: center;
+    }
+
+    .lang-toggle {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.15));
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      border-radius: 20px;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: white;
+      font-weight: 600;
+      font-size: 0.9rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .lang-toggle:hover {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.25));
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+      padding-right: 0;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      opacity: 0.95;
+      font-weight: 400;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    button {
+      padding: 0.6rem 1.5rem;
+      border: none;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #5568d3 0%, #6a408e 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+    }
+
+    .btn-secondary {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      color: white;
+      box-shadow: 0 4px 15px rgba(240, 147, 251, 0.4);
+    }
+
+    .btn-secondary:hover {
+      background: linear-gradient(135deg, #e77ef0 0%, #e04759 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(240, 147, 251, 0.5);
+    }
+
+    .instruction {
+      text-align: center;
+      color: #4a5568;
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
+      padding: 0.75rem;
+      background: linear-gradient(135deg, #e0e7ff 0%, #f3e7ff 100%);
+      border-radius: 10px;
+    }
+
+    .feedback {
+      text-align: center;
+      font-size: 0.95rem;
+      font-weight: 600;
+      min-height: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .feedback.correct { color: #10b981; }
+    .feedback.wrong { color: #ef4444; }
+
+    .sections-area {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .section-card {
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+      border-radius: 15px;
+      padding: 1.25rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      border: 2px solid #e2e8f0;
+      transition: all 0.3s ease;
+    }
+
+    .section-card.correct {
+      border-color: #10b981;
+      background: linear-gradient(135deg, #f0fdf4 0%, #d1fae5 100%);
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.2);
+    }
+
+    .section-card.wrong {
+      border-color: #ef4444;
+      background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+      box-shadow: 0 6px 20px rgba(239, 68, 68, 0.2);
+    }
+
+    .section-label {
+      display: inline-block;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      box-shadow: 0 3px 10px rgba(102, 126, 234, 0.35);
+    }
+
+    .section-text {
+      font-size: 0.9rem;
+      line-height: 1.9;
+      color: #334155;
+      margin-bottom: 1rem;
+    }
+
+    .blank-select {
+      display: inline-block;
+      min-width: 140px;
+      padding: 0.4rem 0.8rem;
+      margin: 0 0.2rem;
+      background: linear-gradient(135deg, #e0e7ff 0%, #f3e7ff 100%);
+      border: 2px solid #667eea;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #334155;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      vertical-align: middle;
+      -webkit-appearance: none;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23667eea' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.5rem center;
+      padding-right: 2rem;
+    }
+
+    .blank-select:focus {
+      outline: none;
+      border-color: #4f46e5;
+      background: linear-gradient(135deg, #c7d2fe 0%, #ddd6fe 100%);
+      transform: scale(1.02);
+    }
+
+    .blank-select.filled {
+      background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+      border-color: #3b82f6;
+    }
+
+    .blank-select.correct {
+      background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+      border-color: #10b981;
+    }
+
+    .blank-select.wrong {
+      background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+      border-color: #ef4444;
+    }
+
+    .overview-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 1000;
+      padding: 1rem;
+      overflow-y: auto;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .overview-modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .overview-content {
+      background: white;
+      border-radius: 20px;
+      max-width: 800px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      animation: slideUp 0.3s ease;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .overview-content::-webkit-scrollbar { display: none; }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .overview-header {
+      background: linear-gradient(120deg, #10b981 0%, #059669 50%, #06b6d4 100%);
+      color: white;
+      padding: 2rem 1.5rem;
+      border-radius: 20px 20px 0 0;
+      text-align: center;
+    }
+
+    .overview-header h2 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .overview-body {
+      padding: 2rem 1.5rem;
+    }
+
+    .overview-section {
+      background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+      border-radius: 15px;
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+      border-left: 5px solid #10b981;
+      box-shadow: 0 3px 12px rgba(16, 185, 129, 0.15);
+    }
+
+    .overview-section-title {
+      background: linear-gradient(135deg, #059669 0%, #047857 100%);
+      color: white;
+      padding: 0.35rem 1rem;
+      border-radius: 15px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      display: inline-block;
+      margin-bottom: 0.5rem;
+      box-shadow: 0 3px 10px rgba(5, 150, 105, 0.35);
+    }
+
+    .overview-text {
+      font-size: 0.9rem;
+      color: #047857;
+      line-height: 1.6;
+    }
+
+    .overview-footer {
+      padding: 0 1.5rem 2rem;
+      text-align: center;
+    }
+
+    .btn-close {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 0.75rem 2rem;
+      border-radius: 25px;
+      border: none;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .btn-close:hover {
+      background: linear-gradient(135deg, #5568d3 0%, #6a408e 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+    }
+
+    .lang-en { display: inline; }
+    .lang-zh { display: none; }
+
+    .tts-controls {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 2px solid rgba(5, 150, 105, 0.2);
+    }
+
+    .btn-tts {
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+      color: white;
+      padding: 0.6rem 1.5rem;
+      border-radius: 25px;
+      border: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-tts:hover {
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+    }
+
+    .btn-tts:disabled {
+      background: linear-gradient(135deg, #9ca3af 0%, #6b7280 100%);
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .btn-tts.speaking {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+    }
+
+    @media (max-width: 640px) {
+      .container { padding: 1rem; }
+      header { padding: 1.5rem 1rem; }
+      h1 { font-size: 1.3rem; }
+      .subtitle { font-size: 0.85rem; }
+      .section-text { font-size: 0.85rem; line-height: 1.8; }
+      .blank-select { 
+        min-width: 120px; 
+        font-size: 0.8rem;
+        padding: 0.35rem 0.6rem;
+      }
+      .lang-toggle {
+        top: 0.75rem;
+        right: 0.75rem;
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <button class="lang-toggle" id="langToggle">中文</button>
+      <h1>
+        <span class="lang-en">Project Plan Presentation Script Practice</span>
+        <span class="lang-zh">專題計劃簡報稿練習</span>
+      </h1>
+      <p class="subtitle">
+        <span class="lang-en">Revision on the Useful Expressions for Your Project Plan Presentation<br><strong>(Proposal Project)</strong></span>
+        <span class="lang-zh">重溫專題計劃簡報中常用的語句<br><strong>(提案項目計劃)</strong></span>
+      </p>
+    </header>
+
+    <div class="controls">
+      <button class="btn-secondary" id="resetBtn">
+        🔄 <span class="lang-en">Reset</span><span class="lang-zh">重設</span>
+      </button>
+      <button class="btn-primary" id="checkBtn">
+        ✓ <span class="lang-en">Check Answers</span><span class="lang-zh">檢查答案</span>
+      </button>
+    </div>
+
+    <p class="instruction">
+      <span class="lang-en">💡 Tip: Select the correct phrase from each dropdown menu to complete the sentences.</span>
+      <span class="lang-zh">💡 提示：從每個下拉選單中選擇正確的詞語以完成句子。</span>
+    </p>
+
+    <div id="feedback" class="feedback"></div>
+
+    <div class="sections-area" id="sectionsArea"></div>
+  </div>
+
+  <div id="overviewModal" class="overview-modal">
+    <div class="overview-content">
+      <div class="overview-header">
+        <h2>
+          🎉 <span class="lang-en">Perfect Work!</span><span class="lang-zh">完美！</span>
+        </h2>
+        <p>
+          <span class="lang-en">Here are the correct answers for the presentation script</span>
+          <span class="lang-zh">這裡是簡報稿的正確答案</span>
+        </p>
+      </div>
+      <div class="overview-body" id="overviewBody"></div>
+      <div class="overview-footer">
+        <button class="btn-close" id="closeOverview">
+          <span class="lang-en">Close</span><span class="lang-zh">關閉</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const sections = [
+      {
+        id: 1,
+        labelEn: "Greetings & stating the purpose of the presentation",
+        labelZh: "問候語及說明簡報的目的",
+        textEn: "Good morning/afternoon, everyone. I'm Rita. Today, <blank> to <blank> you an <blank> of our <blank>.",
+        textZh: "大家早晨/午安。我是Rita。今天，<blank>會<blank>你們我們專題的<blank>。",
+        optionsEn: ["we're going", "we'll", "give", "produce", "overview", "summary", "project", "report"],
+        optionsZh: ["我們將", "我們預算", "給", "製作", "概述", "總結", "專題", "報告"],
+        fullTextEn: "Good morning/afternoon, everyone. I'm Rita. Today, we're going to give you an overview of our project.",
+        fullTextZh: "大家早晨/午安。我是Rita。今天，我們將會給你們我們專題的概述。"
+      },
+      {
+        id: 2,
+        labelEn: "Introducing team members & outlining the presentation",
+        labelZh: "介紹團隊成員及簡報概要",
+        textEn: "Before we start, let me <blank> my team members and the <blank> of our presentation. <blank>, <blank> Jason and he will <blank> you the background and purpose of our project. <blank> Jason, Tracy <blank> talk about the project requirements, success criteria, people involved in the project and also the potential problems. <blank>, Raymond will tell you more about the milestone, the resources needed and the project outputs. Let me <blank> the time <blank> Jason now.",
+        textZh: "在我們開始之前，讓我<blank>我的團隊成員及我們簡報的<blank>。<blank>，<blank>Jason，他<blank>告訴你們我們專題的背景及目的。在Jason<blank>，Tracy<blank>談論專題要求、成功準則、參與專題的人員以及潛在問題。<blank>，Raymond會告訴你們更多關於里程碑、所需資源及專題成果。現在讓我把時間<blank><blank>Jason。",
+        optionsEn: ["introduce", "outline", "this is", "here is", "tell", "told", "First", "Following", "will", "would", "Finally", "pass", "past", "to", "from"],
+        optionsZh: ["介紹", "概要", "這位是", "這裡是", "會", "告訴了", "首先", "之後", "最後", "交", "過去", "給", "從", "說明"],
+        fullTextEn: "Before we start, let me introduce my team members and the outline of our presentation. First, this is Jason and he will tell you the background and purpose of our project. Following Jason, Tracy will talk about the project requirements, success criteria, people involved in the project and also the potential problems. Finally, Raymond will tell you more about the milestone, the resources needed and the project outputs. Let me pass the time to Jason now.",
+        fullTextZh: "在我們開始之前，讓我介紹我的團隊成員及我們簡報的概要。首先，這位是Jason，他會告訴你們我們專題的背景及目的。在Jason之後，Tracy會談論專題要求、成功準則、參與專題的人員以及潛在問題。最後，Raymond會告訴你們更多關於里程碑、所需資源及專題成果。現在讓我把時間交給Jason。"
+      },
+      {
+        id: 3,
+        labelEn: "Introducing project topic, background & purpose",
+        labelZh: "介紹專題主題、背景及目的",
+        textEn: "Thanks, Rita. First, our project topic is <blank> a customer service counter for Ocean Shopping Mall. <blank> Ocean Shopping Mall is going to <blank> in Tsim Sha Tsui in December 2026, they <blank> us to design a customer service counter <blank> them. So, the purpose of our project is to <blank> a customer service counter <blank> Ocean Shopping Mall.",
+        textZh: "謝謝，Rita。首先，我們的專題主題是<blank>Ocean Shopping Mall<blank>一個顧客服務櫃檯。<blank>Ocean Shopping Mall將於2026年12月在尖沙咀<blank>，他們<blank>我們為他們設計一個顧客服務櫃檯。所以，我們專題的目的是<blank>Ocean Shopping Mall<blank>一個顧客服務櫃檯方案。",
+        optionsEn: ["designing", "design", "As", "Because", "open", "opened", "invited", "have invited", "for", "with", "propose", "provide"],
+        optionsZh: ["為", "設計", "由於", "因為", "開業", "開業了", "邀請", "邀請了", "和", "為", "構思", "提出"],
+        fullTextEn: "Thanks, Rita. First, our project topic is designing a customer service counter for Ocean Shopping Mall. As Ocean Shopping Mall is going to open in Tsim Sha Tsui in December 2026, they have invited us to design a customer service counter for them. So, the purpose of our project is to propose a customer service counter for Ocean Shopping Mall.",
+        fullTextZh: "謝謝，Rita。首先，我們的專題主題是為Ocean Shopping Mall設計一個顧客服務櫃檯。由於Ocean Shopping Mall將於2026年12月在尖沙咀開業，他們邀請了我們為他們設計一個顧客服務櫃檯。所以，我們專題的目的是為Ocean Shopping Mall構思一個顧客服務櫃檯方案。"
+      },
+      {
+        id: 4,
+        labelEn: "Describing project requirements & success criteria",
+        labelZh: "描述專題要求及成功準則",
+        textEn: "So, what are the requirements of the customer service counter? We <blank> that the counter <blank> be modern, informative and practical. It <blank> also provide efficient customer services for customers. As for the success criteria, we hope we can <blank> customers' enquiries within 2 minutes and <blank> 90% customer satisfaction.",
+        textZh: "那麼，顧客服務櫃檯的要求是什麼？我們<blank>櫃檯<blank>要現代化、有資訊性及實用。它也<blank>為顧客提供高效的顧客服務。至於成功準則，我們希望我們能在2分鐘內<blank>顧客的查詢，並<blank>90%的顧客滿意度。",
+        optionsEn: ["think", "thought", "should", "might", "could", "solve", "solving", "achieve", "achieving"],
+        optionsZh: ["認為", "想", "應該", "可能", "能夠", "解決", "解決了", "達到", "達到了"],
+        fullTextEn: "So, what are the requirements of the customer service counter? We think that the counter should be modern, informative and practical. It should also provide efficient customer services for customers. As for the success criteria, we hope we can solve customers' enquiries within 2 minutes and achieve 90% customer satisfaction.",
+        fullTextZh: "那麼，顧客服務櫃檯的要求是什麼？我們認為櫃檯應該要現代化、有資訊性及實用。它也應該為顧客提供高效的顧客服務。至於成功準則，我們希望我們能在2分鐘內解決顧客的查詢，並達到90%的顧客滿意度。"
+      },
+      {
+        id: 5,
+        labelEn: "Explaining people involved & potential problems",
+        labelZh: "解釋相關人員及潛在問題",
+        textEn: "A number of people <blank> in our project, <blank> shoppers, mall tenants, media, and the general public. <blank>, there are two potential problems. There <blank> not be enough space available for the counter and we <blank> lack manpower. We <blank> work out some solutions later.",
+        textZh: "我們的專題<blank>多方人士，<blank>購物者、商場租戶、媒體及公眾。<blank>，我們預計有兩個潛在問題: 一, 商場<blank>沒有足夠的空間放置櫃檯; 二, 我們<blank>缺乏人手。我們稍後<blank>想出一些解決方案。",
+        optionsEn: ["are involved", "involved", "include", "including", "Also", "Next", "may", "might", "will", "would", "must"],
+        optionsZh: ["涉及", "影響", "包含", "包括", "此外", "而且", "可能", "一定", "會", "已經", "必須"],
+        fullTextEn: "A number of people are involved in our project, including shoppers, mall tenants, media, and the general public. Also, there are two potential problems. There may not be enough space available for the counter and we may lack manpower. We will work out some solutions later.",
+        fullTextZh: "我們的專題涉及多方人士，包括購物者、商場租戶、媒體及公眾。此外，我們預計有兩個潛在問題: 一, 商場可能沒有足夠的空間放置櫃檯; 二, 我們可能缺乏人手。我們稍後會想出一些解決方案。"
+      },
+      {
+        id: 6,
+        labelEn: "Explaining the milestone, stating the resources needed & project outputs",
+        labelZh: "解釋里程碑、說明所需資源及專題成果",
+        textEn: "So far, our group <blank> some Internet research on common services provided <blank> different customer service counters and visited three shopping malls. In the coming weeks, we <blank> conduct the interview and draft a design of the customer service counter ... <blank>, in week 22, we <blank> submit a final report and give a presentation on our final project. And here are the resources <blank>. For this project, we need a questionnaire for the interview and software to do the draft design. Our project outputs <blank> include a progress report, a final report and a final presentation.",
+        textZh: "到目前為止，我們小組已經進行了一些關於不同顧客服務櫃檯提供的常見服務的網上研究，並參觀了三個購物商場。在未來幾週，我們<blank>進行訪談並草擬顧客服務櫃檯的設計……<blank>，在第22週，我們<blank>提交最終報告並就我們的最終專題作簡報。而這裡是<blank>的資源。對於這個專題，我們需要訪談用的問卷及用來草擬設計的軟件。我們的專題成果<blank>包括進度報告、最終報告及最終簡報。",
+        optionsEn: ["has already conducted", "conducted", "have done", "to", "by", "from", "will", "would", "At last", "Finally", "needed", "need"],
+        optionsZh: ["已經進行了", "完成了", "做了", "去", "由", "從", "將", "已經", "最終", "最後", "所需", "需要"],
+        fullTextEn: "So far, our group has already conducted some Internet research on common services provided by different customer service counters and visited three shopping malls. In the coming weeks, we will conduct the interview and draft a design of the customer service counter ... Finally, in week 22, we will submit a final report and give a presentation on our final project. And here are the resources needed. For this project, we need a questionnaire for the interview and software to do the draft design. Our project outputs will include a progress report, a final report and a final presentation.",
+        fullTextZh: "到目前為止，我們小組已經進行了一些關於不同顧客服務櫃檯提供的常見服務的網上研究，並參觀了三個購物商場。在未來幾週，我們將進行訪談並草擬顧客服務櫃檯的設計……最後，在第22週，我們將提交最終報告並就我們的最終專題作簡報。而這裡是所需的資源。對於這個專題，我們需要訪談用的問卷及用來草擬設計的軟件。我們的專題成果將包括進度報告、最終報告及最終簡報。"
+      },
+      {
+        id: 7,
+        labelEn: "Conclusion",
+        labelZh: "總結",
+        textEn: "That's <blank> for our presentation today. <blank> you have <blank> questions? <blank> all for listening.",
+        textZh: "這就是我們今天簡報的<blank>內容。你們有<blank>問題嗎？<blank>大家的聆聽。",
+        optionsEn: ["all", "every", "Do", "Does", "Are", "some", "any", "Thank you"],
+        optionsZh: ["全部", "每個", "你們有", "他有", "一些", "任何", "感謝"],
+        fullTextEn: "That's all for our presentation today. Do you have any questions? Thank you all for listening.",
+        fullTextZh: "這就是我們今天簡報的全部內容。你們有任何問題嗎？感謝大家的聆聽。"
+      }
+    ];
+
+    let currentLang = "en";
+    const sectionsArea = document.getElementById('sectionsArea');
+    const feedback = document.getElementById('feedback');
+    const overviewModal = document.getElementById('overviewModal');
+    const langToggle = document.getElementById('langToggle');
+
+    let currentUtterance = null;
+    let isSpeaking = false;
+
+    function createSections() {
+      sectionsArea.innerHTML = '';
+      
+      sections.forEach(section => {
+        const card = document.createElement('div');
+        card.className = 'section-card';
+        card.dataset.sectionId = section.id;
+
+        const label = document.createElement('div');
+        label.className = 'section-label';
+        label.innerHTML = `
+          <span class="lang-en">${section.labelEn}</span>
+          <span class="lang-zh">${section.labelZh}</span>
+        `;
+
+        const textContainer = document.createElement('div');
+        textContainer.className = 'section-text';
+
+        let htmlEn = section.textEn;
+        let blankIndexEn = 0;
+        htmlEn = htmlEn.replace(/<blank>/g, () => {
+          const selectId = `s${section.id}-en-b${blankIndexEn}`;
+          blankIndexEn++;
+          return `<select class="blank-select" data-lang="en" data-section="${section.id}" id="${selectId}">
+            <option value="">-- Select --</option>
+            ${section.optionsEn.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
+          </select>`;
+        });
+
+        let htmlZh = section.textZh;
+        let blankIndexZh = 0;
+        htmlZh = htmlZh.replace(/<blank>/g, () => {
+          const selectId = `s${section.id}-zh-b${blankIndexZh}`;
+          blankIndexZh++;
+          return `<select class="blank-select" data-lang="zh" data-section="${section.id}" id="${selectId}">
+            <option value="">-- 選擇 --</option>
+            ${section.optionsZh.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
+          </select>`;
+        });
+
+        textContainer.innerHTML = `
+          <div class="lang-en">${htmlEn}</div>
+          <div class="lang-zh">${htmlZh}</div>
+        `;
+
+        card.appendChild(label);
+        card.appendChild(textContainer);
+        sectionsArea.appendChild(card);
+      });
+
+      document.querySelectorAll('.blank-select').forEach(select => {
+        select.addEventListener('change', (e) => {
+          if (e.target.value) {
+            e.target.classList.add('filled');
+          } else {
+            e.target.classList.remove('filled');
+          }
+          clearFeedback();
+        });
+      });
+
+      updateLanguage();
+    }
+
+    function clearFeedback() {
+      feedback.textContent = '';
+      feedback.className = 'feedback';
+      document.querySelectorAll('.section-card').forEach(card => {
+        card.classList.remove('correct', 'wrong');
+      });
+      document.querySelectorAll('.blank-select').forEach(select => {
+        select.classList.remove('correct', 'wrong');
+      });
+    }
+
+    function reconstructText(sectionId, lang) {
+      const section = sections.find(s => s.id === sectionId);
+      const template = lang === 'en' ? section.textEn : section.textZh;
+      const selects = document.querySelectorAll(`.blank-select[data-section="${sectionId}"][data-lang="${lang}"]`);
+      
+      let reconstructed = template;
+      let allFilled = true;
+      
+      selects.forEach(select => {
+        if (select.value) {
+          reconstructed = reconstructed.replace('<blank>', select.value);
+        } else {
+          allFilled = false;
+          reconstructed = reconstructed.replace('<blank>', '[EMPTY]');
+        }
+      });
+      
+      return { text: reconstructed, allFilled };
+    }
+
+    function normalizeZh(str) {
+  return str
+    .trim()
+    .replace(/\s+/g, "")           // remove all spaces
+    .replace(/[，。、：；？！]/g, ""); // remove Chinese punctuation
+}
+
+    function checkAnswers() {
+      let allCorrect = true;
+      const lang = currentLang;
+
+      sections.forEach(section => {
+        const { text: userText, allFilled } = reconstructText(section.id, lang);
+        const correctText = lang === 'en' ? section.fullTextEn : section.fullTextZh;
+        
+        const isCorrect = lang === 'zh' 
+        ? normalizeZh(userText) === normalizeZh(correctText)
+        : userText === correctText;
+
+        
+        const card = document.querySelector(`.section-card[data-section-id="${section.id}"]`);
+        const selects = document.querySelectorAll(`.blank-select[data-section="${section.id}"][data-lang="${lang}"]`);
+        
+        if (isCorrect) {
+          card.classList.add('correct');
+          card.classList.remove('wrong');
+          selects.forEach(select => {
+            if (select.value) {
+              select.classList.add('correct');
+              select.classList.remove('wrong');
+            }
+          });
+        } else {
+          card.classList.add('wrong');
+          card.classList.remove('correct');
+          allCorrect = false;
+          
+          selects.forEach(select => {
+            if (select.value) {
+              select.classList.add('wrong');
+              select.classList.remove('correct');
+            } else {
+              select.classList.add('wrong');
+            }
+          });
+        }
+      });
+
+      if (allCorrect) {
+        feedback.innerHTML = currentLang === 'en' 
+          ? '🎉 Excellent! All answers are correct!' 
+          : '🎉 太好了！所有答案都正確！';
+        feedback.className = 'feedback correct';
+        
+        celebrateWithConfetti();
+        setTimeout(() => showOverview(), 2500);
+      } else {
+        feedback.innerHTML = currentLang === 'en'
+          ? '❌ Some answers are incorrect. Check the highlighted sections and try again.'
+          : '❌ 有些答案不正確。檢查標示的部分並再試一次。';
+        feedback.className = 'feedback wrong';
+      }
+    }
+
+    function celebrateWithConfetti() {
+      confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+      setTimeout(() => { confetti({ particleCount: 50, angle: 60, spread: 55, origin: { x: 0 } }); }, 250);
+      setTimeout(() => { confetti({ particleCount: 50, angle: 120, spread: 55, origin: { x: 1 } }); }, 500);
+      setTimeout(() => { confetti({ particleCount: 100, spread: 100, origin: { y: 0.6 }, colors: ['#667eea', '#764ba2', '#f093fb', '#10b981', '#3b82f6'] }); }, 1000);
+    }
+
+    function showOverview() {
+      const overviewBody = document.getElementById('overviewBody');
+      overviewBody.innerHTML = '';
+
+      sections.forEach(section => {
+        const sectionDiv = document.createElement('div');
+        sectionDiv.className = 'overview-section';
+
+        sectionDiv.innerHTML = `
+          <div class="overview-section-title">
+            <span class="lang-en">${section.labelEn}</span>
+            <span class="lang-zh">${section.labelZh}</span>
+          </div>
+          <div class="overview-text">
+            <span class="lang-en">${section.fullTextEn}</span>
+            <span class="lang-zh">${section.fullTextZh}</span>
+          </div>
+        `;
+
+        overviewBody.appendChild(sectionDiv);
+      });
+
+      const ttsControls = document.createElement('div');
+      ttsControls.className = 'tts-controls';
+      ttsControls.innerHTML = `
+        <button class="btn-tts" id="playTTS">
+          <span>🔊</span>
+          <span class="lang-en">Play Audio</span>
+          <span class="lang-zh">播放語音</span>
+        </button>
+        <button class="btn-tts" id="stopTTS">
+          <span>⏹️</span>
+          <span class="lang-en">Stop</span>
+          <span class="lang-zh">停止</span>
+        </button>
+      `;
+      overviewBody.appendChild(ttsControls);
+
+      setupTTS();
+      updateLanguage();
+      overviewModal.classList.add('active');
+    }
+
+    function setupTTS() {
+      const playBtn = document.getElementById('playTTS');
+      const stopBtn = document.getElementById('stopTTS');
+
+      if (!playBtn || !stopBtn) return;
+
+      if (!('speechSynthesis' in window)) {
+        playBtn.disabled = true;
+        playBtn.innerHTML = `<span>🔇</span><span class="lang-en">TTS Not Supported</span><span class="lang-zh">不支援語音</span>`;
+        stopBtn.disabled = true;
+        return;
+      }
+
+      stopBtn.disabled = true;
+
+      playBtn.addEventListener('click', () => {
+        if (isSpeaking) {
+          window.speechSynthesis.cancel();
+          return;
+        }
+
+        const lang = currentLang;
+        const fullText = sections.map(section => {
+          return lang === 'en' ? section.fullTextEn : section.fullTextZh;
+        }).join(' ... ');
+
+        currentUtterance = new SpeechSynthesisUtterance(fullText);
+        
+        if (lang === 'en') {
+          currentUtterance.lang = 'en-GB';
+          currentUtterance.voice = getBestVoice('en-GB');
+        } else {
+          currentUtterance.lang = 'zh-HK';
+          currentUtterance.voice = getBestVoice('zh-HK') || getBestVoice('zh-CN');
+        }
+
+        currentUtterance.rate = 0.9;
+        currentUtterance.pitch = 1.0;
+        currentUtterance.volume = 1.0;
+
+        currentUtterance.onstart = () => {
+          isSpeaking = true;
+          playBtn.classList.add('speaking');
+          playBtn.innerHTML = `<span>⏸️</span><span class="lang-en">Pause</span><span class="lang-zh">暫停</span>`;
+          stopBtn.disabled = false;
+        };
+
+        currentUtterance.onend = () => {
+          isSpeaking = false;
+          playBtn.classList.remove('speaking');
+          playBtn.innerHTML = `<span>🔊</span><span class="lang-en">Play Audio</span><span class="lang-zh">播放語音</span>`;
+          stopBtn.disabled = true;
+          updateLanguage();
+        };
+
+        currentUtterance.onerror = (event) => {
+          console.error('Speech synthesis error:', event);
+          isSpeaking = false;
+          playBtn.classList.remove('speaking');
+          stopBtn.disabled = true;
+        };
+
+        window.speechSynthesis.speak(currentUtterance);
+      });
+
+      stopBtn.addEventListener('click', () => {
+        if (window.speechSynthesis.speaking) {
+          window.speechSynthesis.cancel();
+          isSpeaking = false;
+          playBtn.classList.remove('speaking');
+          playBtn.innerHTML = `<span>🔊</span><span class="lang-en">Play Audio</span><span class="lang-zh">播放語音</span>`;
+          stopBtn.disabled = true;
+          updateLanguage();
+        }
+      });
+    }
+
+    function getBestVoice(langCode) {
+      const voices = window.speechSynthesis.getVoices();
+      let voice = voices.find(v => v.lang === langCode);
+      if (!voice) {
+        const langPrefix = langCode.split('-')[0];
+        voice = voices.find(v => v.lang.startsWith(langPrefix));
+      }
+      if (!voice) {
+        voice = voices.find(v => v.lang.startsWith(langCode.split('-')[0]) && v.localService);
+      }
+      return voice || voices[0];
+    }
+
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.onvoiceschanged = () => {};
+    }
+
+    function updateLanguage() {
+      const showEn = currentLang === 'en';
+      document.querySelectorAll('.lang-en').forEach(el => {
+        el.style.display = showEn ? 'inline' : 'none';
+      });
+      document.querySelectorAll('.lang-zh').forEach(el => {
+        el.style.display = showEn ? 'none' : 'inline';
+      });
+      langToggle.textContent = showEn ? '中文' : 'English';
+    }
+
+    function reset() {
+      createSections();
+      clearFeedback();
+    }
+
+    langToggle.addEventListener('click', () => {
+      currentLang = currentLang === 'en' ? 'zh' : 'en';
+      updateLanguage();
+      clearFeedback();
+    });
+
+    document.getElementById('checkBtn').addEventListener('click', checkAnswers);
+    document.getElementById('resetBtn').addEventListener('click', reset);
+    document.getElementById('closeOverview').addEventListener('click', () => {
+      overviewModal.classList.remove('active');
+    });
+
+    overviewModal.addEventListener('click', (e) => {
+      if (e.target === overviewModal) {
+        overviewModal.classList.remove('active');
+      }
+    });
+
+    createSections();
+  </script>
+</body>
+</html>
+    
+  </body>
+  
+</html>

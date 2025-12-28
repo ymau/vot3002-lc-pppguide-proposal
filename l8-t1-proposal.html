@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>L8 - (Proposal Project) Presentation Practice Tool </title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Presentation Practice Tool</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #EBFFD8 0%, #FFF2F2 50%, #DDEB9D 100%);
+      min-height: 100vh;
+      padding: 1rem;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    body::-webkit-scrollbar { display: none; }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.98);
+      border-radius: 20px;
+      padding: 1.5rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    header {
+  background: linear-gradient(120deg, #4D2B8C 0%, #8C00FF 50%, #00FFDE 100%);
+  border-radius: 15px;
+  padding: 2rem 1.5rem;
+  padding-top: 3.5rem; /* Add top padding to push content down */
+  margin-bottom: 1.5rem;
+  position: relative;
+  color: white;
+  text-align: center;
+}
+
+.lang-toggle {
+  position: absolute;
+  top: 0.75rem; /* Move up to the very top */
+  right: 1rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.15));
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.lang-toggle:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.25));
+  transform: scale(1.05);
+}
+
+h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  line-height: 1.3; /* Improve line spacing */
+}
+
+.subtitle {
+  font-size: 1rem;
+  opacity: 0.95;
+  font-weight: 400;
+  line-height: 1.5; /* Improve line spacing */
+}
+
+@media (max-width: 768px) {
+  header { 
+    padding: 3rem 1rem 1.5rem 1rem; /* Top, Right, Bottom, Left */
+  }
+  
+  .lang-toggle {
+    top: 0.5rem;
+    right: 0.75rem;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+  }
+  
+  h1 { 
+    font-size: 1.4rem;
+    line-height: 1.4;
+  }
+  
+  .subtitle { 
+    font-size: 0.9rem;
+  }
+}
+
+    .instruction-box {
+      background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%);
+      border-left: 5px solid #06b6d4;
+      padding: 1.25rem;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 3px 12px rgba(6, 182, 212, 0.15);
+    }
+
+    .instruction-box h3 {
+      color: #0891b2;
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .instruction-box p {
+      color: #0f766e;
+      line-height: 1.7;
+      margin-bottom: 0.5rem;
+    }
+
+    .script-section {
+      background: white;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .script-section h3 {
+      color: #0891b2;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 200px;
+      padding: 1rem;
+      border: 2px solid #cbd5e1;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      line-height: 1.8;
+      resize: vertical;
+      transition: all 0.3s ease;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: #06b6d4;
+      box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
+    }
+
+.controls-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.control-item {
+  background: white;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.control-item:first-child {
+  background: linear-gradient(135deg, #DDF6D2 0%, #FFE8CD 100%);
+  border-color: white;
+}
+
+.control-item:last-child {
+ background: linear-gradient(135deg, #FFE8CD 0%, #DDF6D2 100%);
+  border-color: white
+}
+
+.control-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.control-item label {
+  display: block;
+  color: #0891b2;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.control-item select,
+.control-item input[type="range"] {
+  width: 100%;
+  padding: 0.6rem;
+  border: 2px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.control-item select:focus,
+.control-item input[type="range"]:focus {
+  outline: none;
+  border-color: #06b6d4;
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
+}
+
+.control-item input[type="range"] {
+  padding: 0;
+  height: 8px;
+  background: linear-gradient(to right, #06b6d4 0%, #06b6d4 40%, #e2e8f0 40%, #e2e8f0 100%);
+  border: none;
+  border-radius: 10px;
+  outline: none;
+}
+
+.control-item input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FCF8F8 0%, #0891b2 100%);
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(6, 182, 212, 0.4);
+  transition: all 0.3s ease;
+}
+
+.control-item input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 4px 12px rgba(6, 182, 212, 0.6);
+}
+
+.control-item input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 8px rgba(6, 182, 212, 0.4);
+  transition: all 0.3s ease;
+}
+
+.control-item input[type="range"]::-moz-range-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 4px 12px rgba(6, 182, 212, 0.6);
+}
+
+    .speed-display {
+  text-align: center;
+  color: #0891b2;
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-top: 0.75rem;
+  text-shadow: 0 2px 4px rgba(8, 145, 178, 0.1);
+}
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.btn {
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 15px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.btn span {
+  position: relative;
+  z-index: 1;
+}
+
+.btn:disabled {
+  background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  color: #94a3b8;
+  opacity: 0.6;
+}
+
+.btn:disabled::before {
+  display: none;
+}
+
+.btn-play {
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+  color: white;
+  border: 2px solid transparent;
+}
+
+.btn-play:hover:not(:disabled) {
+  background: linear-gradient(135deg, #5568d3 0%, #63408a 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+}
+
+.btn-play.playing {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  animation: pulse 2s infinite;
+  border-color: #11998e;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+.btn-stop {
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)
+  color: white;
+  border: 2px solid transparent;
+}
+
+.btn-stop:hover:not(:disabled) {
+  background: linear-gradient(135deg, #e881eb 0%, #e3465a 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(240, 147, 251, 0.5);
+}
+
+.btn-record {
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+  color: white;
+  border: 2px solid transparent;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.btn-record:hover:not(:disabled) {
+  background: linear-gradient(135deg, #f85e8a 0%, #fdd830 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(250, 112, 154, 0.5);
+}
+
+.btn-record.recording {
+  background: linear-gradient(135deg, #fc6076 0%, #ff9a44 100%);
+  animation: recordPulse 1.5s infinite;
+  border-color: #fc6076;
+}
+
+@keyframes recordPulse {
+  0%, 100% { 
+    box-shadow: 0 0 0 0 rgba(252, 96, 118, 0.7);
+  }
+  50% { 
+    box-shadow: 0 0 0 15px rgba(252, 96, 118, 0);
+  }
+}
+
+.btn-clear {
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+  color: #334155;
+  border: 2px solid transparent;
+  font-weight: 700;
+}
+
+.btn-clear:hover:not(:disabled) {
+  background: linear-gradient(135deg, #96e0dd 0%, #fcc5d6 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(168, 237, 234, 0.5);
+}
+
+    .status-box {
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      border: 2px solid #f59e0b;
+      border-radius: 10px;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-weight: 600;
+      color: #92400e;
+      display: none;
+    }
+
+    .status-box.active {
+      display: block;
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .recordings-section {
+      background: white;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .recordings-section h3 {
+      color: #0891b2;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .recording-item {
+      background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%);
+      border: 2px solid #06b6d4;
+      border-radius: 10px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .recording-info {
+      flex: 1;
+    }
+
+    .recording-name {
+      color: #0891b2;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .recording-duration {
+      color: #0f766e;
+      font-size: 0.85rem;
+    }
+
+    .recording-controls {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+    }
+
+    .icon-btn.play {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: 2px solid transparent;
+}
+
+
+    .icon-btn.delete {
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      color: white;
+    }
+
+    .icon-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .empty-state {
+      text-align: center;
+      color: #64748b;
+      padding: 2rem;
+      font-style: italic;
+    }
+
+    /* Language Toggle */
+    body:not(.zh) .lang-zh { display: none; }
+    body.zh .lang-en { display: none; }
+    body:not(.zh) .lang-en { display: inline; }
+    body.zh .lang-zh { display: inline; }
+
+    @media (max-width: 768px) {
+      .container { padding: 1rem; }
+      header { 
+        padding: 1.5rem 1rem;
+        padding-right: 6rem;
+      }
+      h1 { font-size: 1.4rem; }
+      .subtitle { font-size: 0.9rem; }
+      
+      .lang-toggle {
+        top: 0.75rem;
+        right: 0.75rem;
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+      }
+
+      .controls-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .button-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .recording-item {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      textarea {
+        min-height: 150px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <button class="lang-toggle" id="langToggle">中文</button>
+      <h1>
+        <span class="lang-en">Presentation Practice Tool</span>
+        <span class="lang-zh">簡報練習工具</span>
+      </h1>
+      <p class="subtitle">
+        <span class="lang-en">Practise Your Script with Text-to-Speech & Recording Functions <br> <strong>(Proposal Project)</strong> </span>
+          <span class="lang-zh">使用文字轉語音和錄音功能練習你的講稿 <br> <strong>(提案項目計劃)</strong> </span></p>
+    </header>
+
+    <div class="instruction-box">
+      <h3>
+        <span>📝</span>
+        <span class="lang-en">How to Use</span>
+        <span class="lang-zh">使用方法</span>
+      </h3>
+      <p class="lang-en">1. Paste or type your presentation script below<br>2. Adjust the speech speed and listen to the AI narration<br>3. Press "Record" to practice your own delivery<br>4. Listen to your recording and compare it with the AI version</p>
+      <p class="lang-zh">1. 在下方貼上或輸入你的簡報講稿<br>2. 調整語速並聆聽AI朗讀<br>3. 按「錄音」練習你自己的表達<br>4. 聆聽你的錄音並與AI版本比較</p>
+    </div>
+
+    <div class="script-section">
+      <h3>
+        <span class="lang-en">📄 Your Presentation Script</span>
+        <span class="lang-zh">📄 你的簡報講稿</span>
+      </h3>
+      <textarea id="scriptInput" placeholder="Paste your presentation script here...
+
+English Example:
+Good morning everyone. Today I'm going to present our project about the Smart Information Counter at Ocean Shopping Mall.
+
+Our counter is designed to help customers find information quickly and efficiently. It will provide directions, store information, and promotional updates.
+
+The key features include: a touchscreen interface, multilingual support, and 24/7 availability. We believe this will greatly improve the customer experience.
+
+Thank you for your attention. I'm happy to answer any questions.
+                                              
+中文例子：
+大家好。今日我會介紹我哋關於海洋商場智能資訊櫃嘅專題。
+
+呢個櫃枱設計係用嚟幫助顧客快速搵到資訊。佢會提供方向指示、商店資訊同埋推廣消息。
+
+主要功能包括：觸控螢幕、多語言支援、同埋24小時服務。我哋相信呢個會大大改善顧客體驗。
+
+多謝大家嘅時間，我好樂意解答任何問題。"></textarea>
+    </div>
+
+    <div class="controls-grid">
+      <div class="control-item">
+        <label>
+          <span class="lang-en">🎛️ Speech Speed</span>
+          <span class="lang-zh">🎛️ 語速</span>
+        </label>
+        <input type="range" id="speedSlider" min="0.5" max="1.5" step="0.1" value="0.9">
+        <div class="speed-display" id="speedDisplay">0.9x</div>
+      </div>
+
+      <div class="control-item">
+        <label>
+          <span class="lang-en">🗣️ Voice</span>
+          <span class="lang-zh">🗣️ 語音</span>
+        </label>
+        <select id="voiceSelect">
+          <option value="auto">Auto-select Best UK Voice</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="status-box" id="statusBox"></div>
+
+    <div class="button-grid">
+      <button class="btn btn-play" id="playBtn">
+        <span>🔊</span>
+        <span>
+          <span class="lang-en">Listen</span>
+          <span class="lang-zh">聆聽</span>
+        </span>
+      </button>
+
+      <button class="btn btn-stop" id="stopBtn" disabled>
+        <span>⏹️</span>
+        <span>
+          <span class="lang-en">Stop</span>
+          <span class="lang-zh">停止</span>
+        </span>
+      </button>
+
+      <button class="btn btn-record" id="recordBtn">
+        <span>🎙️</span>
+        <span>
+          <span class="lang-en">Record</span>
+          <span class="lang-zh">錄音</span>
+        </span>
+      </button>
+
+      <button class="btn btn-clear" id="clearBtn">
+        <span>🗑️</span>
+        <span>
+          <span class="lang-en">Clear Script</span>
+          <span class="lang-zh">清除講稿</span>
+        </span>
+      </button>
+    </div>
+
+    <div class="recordings-section">
+      <h3>
+        <span class="lang-en">🎙️ Your Recordings</span>
+        <span class="lang-zh">🎙️ 你的錄音</span>
+      </h3>
+      <div id="recordingsList">
+        <div class="empty-state">
+          <span class="lang-en">No recordings yet. Press "Record" to start practicing!</span>
+          <span class="lang-zh">還沒有錄音。按「錄音」開始練習！</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // State
+    let currentLang = 'en';
+    let currentUtterance = null;
+    let mediaRecorder = null;
+    let audioChunks = [];
+    let recordings = [];
+    let recordingStartTime = 0;
+    let currentPlayingAudio = null;
+    let scriptLanguage = 'en'; // Track the language of the script
+
+    // Initialize
+    function init() {
+      setupLanguageToggle();
+      loadVoices();
+      setupEventListeners();
+      updateSpeedDisplay();
+      detectScriptLanguage();
+    }
+
+    // Language Toggle
+    function setupLanguageToggle() {
+      const toggle = document.getElementById('langToggle');
+      toggle.addEventListener('click', () => {
+        currentLang = currentLang === 'en' ? 'zh' : 'en';
+        document.body.classList.toggle('zh');
+        toggle.textContent = currentLang === 'en' ? '中文' : 'English';
+      });
+    }
+
+    // Detect Script Language
+    function detectScriptLanguage() {
+      const scriptInput = document.getElementById('scriptInput');
+      
+      scriptInput.addEventListener('input', () => {
+        const text = scriptInput.value;
+        const chineseChars = text.match(/[\u4e00-\u9fa5]/g);
+        const totalChars = text.replace(/\s/g, '').length;
+        
+        // If more than 30% Chinese characters, treat as Chinese script
+        if (chineseChars && totalChars > 0) {
+          const chineseRatio = chineseChars.length / totalChars;
+          scriptLanguage = chineseRatio > 0.3 ? 'zh' : 'en';
+        } else {
+          scriptLanguage = 'en';
+        }
+        
+        // Update voice select label
+        updateVoiceSelectLabel();
+      });
+    }
+
+    // Update Voice Select Label
+    function updateVoiceSelectLabel() {
+      const voiceSelect = document.getElementById('voiceSelect');
+      const firstOption = voiceSelect.options[0];
+      
+      if (scriptLanguage === 'zh') {
+        firstOption.textContent = 'Auto-select Best Cantonese Voice';
+      } else {
+        firstOption.textContent = 'Auto-select Best UK Voice';
+      }
+    }
+
+    // Load Available Voices
+    function loadVoices() {
+      const voiceSelect = document.getElementById('voiceSelect');
+      
+      function populateVoices() {
+        const voices = window.speechSynthesis.getVoices();
+        
+        // English UK voices
+        const ukVoices = voices.filter(v => 
+          v.lang.includes('en-GB') || 
+          v.lang.includes('en-UK') ||
+          v.name.toLowerCase().includes('british') ||
+          v.name.toLowerCase().includes('uk')
+        );
+        
+        // Cantonese voices
+        const cantoneseVoices = voices.filter(v => 
+          v.lang.includes('zh-HK') || 
+          v.lang.includes('zh-TW') ||
+          v.lang.includes('yue') ||
+          v.name.toLowerCase().includes('cantonese') ||
+          v.name.toLowerCase().includes('hong kong')
+        );
+        
+        // Mandarin voices (fallback)
+        const mandarinVoices = voices.filter(v => 
+          (v.lang.includes('zh-CN') || v.lang.includes('zh')) &&
+          !v.lang.includes('zh-HK') && !v.lang.includes('zh-TW')
+        );
+        
+        voiceSelect.innerHTML = '<option value="auto">Auto-select Best Voice</option>';
+        
+        // Add separator and English voices
+        if (ukVoices.length > 0) {
+          const optgroup = document.createElement('optgroup');
+          optgroup.label = '🇬🇧 English (UK)';
+          ukVoices.forEach(voice => {
+            const option = document.createElement('option');
+            option.value = voice.name;
+            option.textContent = `${voice.name}`;
+            optgroup.appendChild(option);
+          });
+          voiceSelect.appendChild(optgroup);
+        }
+        
+        // Add Cantonese voices
+        if (cantoneseVoices.length > 0) {
+          const optgroup = document.createElement('optgroup');
+          optgroup.label = '🇭🇰 粵語 (Cantonese)';
+          cantoneseVoices.forEach(voice => {
+            const option = document.createElement('option');
+            option.value = voice.name;
+            option.textContent = `${voice.name}`;
+            optgroup.appendChild(option);
+          });
+          voiceSelect.appendChild(optgroup);
+        }
+        
+        // Add Mandarin voices as fallback
+        if (mandarinVoices.length > 0) {
+          const optgroup = document.createElement('optgroup');
+          optgroup.label = '🇨🇳 普通話 (Mandarin - Fallback)';
+          mandarinVoices.forEach(voice => {
+            const option = document.createElement('option');
+            option.value = voice.name;
+            option.textContent = `${voice.name}`;
+            optgroup.appendChild(option);
+          });
+          voiceSelect.appendChild(optgroup);
+        }
+      }
+      
+      populateVoices();
+      if (speechSynthesis.onvoiceschanged !== undefined) {
+        speechSynthesis.onvoiceschanged = populateVoices;
+      }
+    }
+
+    // Get Best Voice
+    function getBestVoice() {
+      const voiceSelect = document.getElementById('voiceSelect');
+      const voices = window.speechSynthesis.getVoices();
+      
+      if (voiceSelect.value !== 'auto') {
+        return voices.find(v => v.name === voiceSelect.value);
+      }
+      
+      if (scriptLanguage === 'zh') {
+        // Priority for Cantonese voices
+        const cantonesePreferred = [
+          'Google 粵語', 'Sinji', 'Sin-ji', 'Google 廣東話',
+          'Microsoft HiuGaai', 'Microsoft HiuMaan',
+          'Tingting', 'Huihui' // Some systems use these for HK
+        ];
+        
+        for (const name of cantonesePreferred) {
+          const voice = voices.find(v => v.name.includes(name));
+          if (voice) return voice;
+        }
+        
+        // Fallback to any HK/TW voice
+        const hkVoice = voices.find(v => 
+          v.lang.includes('zh-HK') || v.lang.includes('zh-TW')
+        );
+        if (hkVoice) return hkVoice;
+        
+        // Last resort: any Chinese voice
+        const chineseVoice = voices.find(v => v.lang.includes('zh'));
+        if (chineseVoice) return chineseVoice;
+        
+      } else {
+        // Priority list for natural UK voices
+        const preferredNames = [
+          'Daniel', 'Serena', 'Kate', 'Oliver', 'Google UK English Female', 
+          'Google UK English Male', 'Microsoft Hazel', 'Microsoft George'
+        ];
+        
+        for (const name of preferredNames) {
+          const voice = voices.find(v => v.name.includes(name));
+          if (voice) return voice;
+        }
+        
+        // Fallback to any UK voice
+        const ukVoice = voices.find(v => v.lang.includes('en-GB'));
+        if (ukVoice) return ukVoice;
+      }
+      
+      // Ultimate fallback
+      return voices[0];
+    }
+
+    // Update Speed Display
+    function updateSpeedDisplay() {
+      const slider = document.getElementById('speedSlider');
+      const display = document.getElementById('speedDisplay');
+      display.textContent = slider.value + 'x';
+    }
+
+    // Show Status
+    function showStatus(message, duration = 3000) {
+      const statusBox = document.getElementById('statusBox');
+      statusBox.textContent = message;
+      statusBox.classList.add('active');
+      
+      setTimeout(() => {
+        statusBox.classList.remove('active');
+      }, duration);
+    }
+
+    // Play Script with TTS
+    function playScript() {
+      const script = document.getElementById('scriptInput').value.trim();
+      
+      if (!script) {
+        showStatus(currentLang === 'en' ? '⚠️ Please enter a script first!' : '⚠️ 請先輸入講稿！');
+        return;
+      }
+      
+      if (currentUtterance) {
+        window.speechSynthesis.cancel();
+      }
+      
+      currentUtterance = new SpeechSynthesisUtterance(script);
+      const selectedVoice = getBestVoice();
+      currentUtterance.voice = selectedVoice;
+      currentUtterance.rate = parseFloat(document.getElementById('speedSlider').value);
+      currentUtterance.pitch = 1.0;
+      currentUtterance.volume = 1.0;
+      
+      // Set language based on detected script language
+      if (scriptLanguage === 'zh') {
+        currentUtterance.lang = 'zh-HK'; // Prefer Cantonese
+      } else {
+        currentUtterance.lang = 'en-GB';
+      }
+      
+      const playBtn = document.getElementById('playBtn');
+      const stopBtn = document.getElementById('stopBtn');
+      
+      playBtn.classList.add('playing');
+      playBtn.disabled = true;
+      stopBtn.disabled = false;
+      
+      currentUtterance.onend = () => {
+        playBtn.classList.remove('playing');
+        playBtn.disabled = false;
+        stopBtn.disabled = true;
+        showStatus(currentLang === 'en' ? '✅ Playback finished' : '✅ 播放完畢');
+      };
+      
+      currentUtterance.onerror = () => {
+        playBtn.classList.remove('playing');
+        playBtn.disabled = false;
+        stopBtn.disabled = true;
+        showStatus(currentLang === 'en' ? '❌ Playback error' : '❌ 播放錯誤');
+      };
+      
+      window.speechSynthesis.speak(currentUtterance);
+      
+      const voiceInfo = selectedVoice ? ` (${selectedVoice.name})` : '';
+      showStatus(
+        currentLang === 'en' 
+          ? `🔊 Playing script${voiceInfo}...` 
+          : `🔊 正在播放講稿${voiceInfo}...`, 
+        2000
+      );
+    }
+
+    // Stop Playback
+    function stopPlayback() {
+      if (currentUtterance) {
+        window.speechSynthesis.cancel();
+        const playBtn = document.getElementById('playBtn');
+        playBtn.classList.remove('playing');
+        playBtn.disabled = false;
+        document.getElementById('stopBtn').disabled = true;
+        showStatus(currentLang === 'en' ? '⏹️ Stopped' : '⏹️ 已停止');
+      }
+    }
+
+    // Start Recording
+    async function startRecording() {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        
+        mediaRecorder = new MediaRecorder(stream);
+        audioChunks = [];
+        recordingStartTime = Date.now();
+        
+        mediaRecorder.ondataavailable = (event) => {
+          audioChunks.push(event.data);
+        };
+        
+        mediaRecorder.onstop = () => {
+          const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+          const duration = Math.round((Date.now() - recordingStartTime) / 1000);
+          saveRecording(audioBlob, duration);
+          stream.getTracks().forEach(track => track.stop());
+        };
+        
+        mediaRecorder.start();
+        
+        const recordBtn = document.getElementById('recordBtn');
+        recordBtn.classList.add('recording');
+        recordBtn.innerHTML = `<span>⏹️</span><span><span class="lang-en">Stop Recording</span><span class="lang-zh">停止錄音</span></span>`;
+        
+        showStatus(currentLang === 'en' ? '🎙️ Recording...' : '🎙️ 錄音中...', 999999);
+        
+      } catch (error) {
+        console.error('Error accessing microphone:', error);
+        showStatus(currentLang === 'en' ? '❌ Microphone access denied' : '❌ 無法存取麥克風');
+      }
+    }
+
+    // Stop Recording
+    function stopRecording() {
+      if (mediaRecorder && mediaRecorder.state === 'recording') {
+        mediaRecorder.stop();
+        
+        const recordBtn = document.getElementById('recordBtn');
+        recordBtn.classList.remove('recording');
+        recordBtn.innerHTML = `<span>⏺️</span><span><span class="lang-en">Record</span><span class="lang-zh">錄音</span></span>`;
+        
+        document.getElementById('statusBox').classList.remove('active');
+      }
+    }
+
+    // Toggle Recording
+    function toggleRecording() {
+      if (mediaRecorder && mediaRecorder.state === 'recording') {
+        stopRecording();
+      } else {
+        startRecording();
+      }
+    }
+
+    // Save Recording
+    function saveRecording(blob, duration) {
+      const recording = {
+        id: Date.now(),
+        blob: blob,
+        url: URL.createObjectURL(blob),
+        duration: duration,
+        timestamp: new Date().toLocaleString(),
+        language: scriptLanguage === 'zh' ? '粵語' : 'English'
+      };
+      
+      recordings.unshift(recording);
+      renderRecordings();
+      showStatus(currentLang === 'en' ? '✅ Recording saved!' : '✅ 錄音已儲存！');
+    }
+
+    // Render Recordings
+    function renderRecordings() {
+      const list = document.getElementById('recordingsList');
+      
+      if (recordings.length === 0) {
+        list.innerHTML = `
+          <div class="empty-state">
+            <span class="lang-en">No recordings yet. Press "Record" to start practicing!</span>
+            <span class="lang-zh">還沒有錄音。按「錄音」開始練習！</span>
+          </div>
+        `;
+        return;
+      }
+      
+      list.innerHTML = recordings.map((rec, index) => `
+        <div class="recording-item">
+          <div class="recording-info">
+            <div class="recording-name">
+              <span class="lang-en">Recording ${recordings.length - index}</span>
+              <span class="lang-zh">錄音 ${recordings.length - index}</span>
+              • ${rec.language}
+            </div>
+            <div class="recording-duration">
+              ${rec.timestamp} • ${rec.duration}s
+            </div>
+          </div>
+          <div class="recording-controls">
+            <button class="icon-btn play" onclick="playRecording(${rec.id})">▶️</button>
+            <button class="icon-btn delete" onclick="deleteRecording(${rec.id})">🗑️</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Play Recording
+    function playRecording(id) {
+      const recording = recordings.find(r => r.id === id);
+      if (!recording) return;
+      
+      if (currentPlayingAudio) {
+        currentPlayingAudio.pause();
+        currentPlayingAudio = null;
+      }
+      
+      currentPlayingAudio = new Audio(recording.url);
+      currentPlayingAudio.play();
+      
+      currentPlayingAudio.onended = () => {
+        currentPlayingAudio = null;
+        showStatus(currentLang === 'en' ? '✅ Playback finished' : '✅ 播放完畢');
+      };
+      
+      showStatus(currentLang === 'en' ? '🔊 Playing recording...' : '🔊 正在播放錄音...', 2000);
+    }
+
+    // Delete Recording
+    function deleteRecording(id) {
+      const confirmed = confirm(
+        currentLang === 'en' 
+          ? 'Are you sure you want to delete this recording?' 
+          : '確定要刪除這個錄音嗎？'
+      );
+      
+      if (confirmed) {
+        recordings = recordings.filter(r => r.id !== id);
+        renderRecordings();
+        showStatus(currentLang === 'en' ? '🗑️ Recording deleted' : '🗑️ 錄音已刪除');
+      }
+    }
+
+    // Clear Script
+    function clearScript() {
+      const confirmed = confirm(
+        currentLang === 'en' 
+          ? 'Are you sure you want to clear the script?' 
+          : '確定要清除講稿嗎？'
+      );
+      
+      if (confirmed) {
+        document.getElementById('scriptInput').value = '';
+        showStatus(currentLang === 'en' ? '🗑️ Script cleared' : '🗑️ 講稿已清除');
+      }
+    }
+
+    // Event Listeners
+    function setupEventListeners() {
+      document.getElementById('speedSlider').addEventListener('input', updateSpeedDisplay);
+      document.getElementById('playBtn').addEventListener('click', playScript);
+      document.getElementById('stopBtn').addEventListener('click', stopPlayback);
+      document.getElementById('recordBtn').addEventListener('click', toggleRecording);
+      document.getElementById('clearBtn').addEventListener('click', clearScript);
+    }
+
+    // Initialize on load
+    window.addEventListener('load', init);
+  </script>
+</body>
+</html>
+    
+  </body>
+  
+</html>

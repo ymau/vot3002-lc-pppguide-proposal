@@ -1,0 +1,2410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>L7 - (Proposal Project) Q&amp;A Handling Skills Practice</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>L7 - (Proposal Project) Q&A Handling Skills Practice</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #06b6d4 0%, #0891b2 50%, #fb923c 100%);
+      min-height: 100vh;
+      padding: 1rem;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    body::-webkit-scrollbar { display: none; }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.98);
+      border-radius: 20px;
+      padding: 1.5rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    header {
+  background: linear-gradient(120deg, #6AECE1 0%, #0891b2 50%, #FFB76C 100%);
+  border-radius: 15px;
+  padding: 2rem 1.5rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  color: white;
+  text-align: center;
+}
+
+.lang-toggle {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.15));
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  z-index: 10; /* Ensure button stays on top */
+}
+
+    .lang-toggle:hover {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.25));
+      transform: scale(1.05);
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      opacity: 0.95;
+      font-weight: 400;
+    }
+
+    .progress-dots {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #cbd5e1;
+      transition: all 0.3s ease;
+    }
+
+    .dot.active {
+      background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+      transform: scale(1.3);
+      box-shadow: 0 0 15px rgba(6, 182, 212, 0.6);
+    }
+
+    .dot.completed {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+    }
+
+    .activity {
+      display: none;
+      animation: slideIn 0.4s ease;
+    }
+
+    .activity.active {
+      display: block;
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .activity-title {
+      background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
+    }
+
+    .tips-box, .instruction-box {
+      background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%);
+      border-left: 5px solid #06b6d4;
+      padding: 1.25rem;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 3px 12px rgba(6, 182, 212, 0.15);
+    }
+
+    .explanation-box h3, .tips-box h3, .instruction-box h3 {
+      color: #0891b2;
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .explanation-box p, .tips-box p, .instruction-box p {
+      color: #0f766e;
+      line-height: 1.7;
+      margin-bottom: 0.5rem;
+    }
+.explanation-box ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+  color: #0f766e;
+}
+
+.explanation-box ul li {
+  margin-bottom: 0.35rem;
+  line-height: 1.6;
+}
+
+.explanation-box p strong {
+  font-size: 1rem;
+  color: #0891b2;
+  margin-top: 0.75rem;
+  display: inline-block;
+}
+.question-type-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.type-card {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(6, 182, 212, 0.15);
+  transition: all 0.3s ease;
+}
+
+.type-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(6, 182, 212, 0.25);
+}
+
+.type-header {
+  padding: 0.75rem 1rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: white;
+  text-align: center;
+}
+
+.type-header.clarification {
+ background: linear-gradient(90deg,#6a5cf6,#6a84ff,#54cfff,#3be0c4);
+}
+
+.type-header.challenge {
+  background:linear-gradient(90deg,#f97373,#f6ad55,#a3e635)
+
+}
+
+.type-header.extension {
+  background: linear-gradient(135deg, #4caf50 0%, #2fb6a0 50%, #2196f3 100%);
+}
+
+.type-header.practical {
+  background: linear-gradient(135deg, #2196f3 0%, #6a7fff 50%, #9c27b0 100%);
+}
+
+.type-card ul {
+  list-style: none;
+  padding: 1rem;
+  margin: 0;
+}
+
+.type-card ul li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+  color: #334155;
+  font-size: 0.88rem;
+}
+
+.type-card ul li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #06b6d4;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.type-card ul li:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .question-type-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+    .tips-box ul {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .tips-box li {
+      background: white;
+      padding: 0.75rem;
+      border-radius: 8px;
+      color: #0369a1;
+      font-size: 0.9rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+    }
+
+    .tips-box li:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    }
+
+    .tips-box strong {
+      color: #0891b2;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    /* Activity 1: Matching - ALWAYS 2 COLUMNS */
+    .matching-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .matching-column h4 {
+      color: #0891b2;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .question-item, .category-item {
+      background: white;
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 0.9rem;
+      margin-bottom: 0.75rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .question-item:hover, .category-item:hover {
+      border-color: #06b6d4;
+      transform: translateX(5px);
+      box-shadow: 0 4px 15px rgba(6, 182, 212, 0.2);
+    }
+
+    .question-item.selected {
+      background: linear-gradient(135deg, #4338ca 0%, #6366f1 40%, #22c1c3 100%);
+      color: white;
+      border-color: #06b6d4;
+      transform: scale(1.05);
+    }
+
+    .category-item.matched {
+      background: linear-gradient(135deg, #A0D5E0 0%, #A7E399 100%);
+      color: green;
+      border-color: #10b981;
+      cursor: default;
+    }
+
+    .category-item .matched-question {
+      margin-top: 0.5rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.3);
+      font-size: 0.85rem;
+    }
+
+    /* Activity 2: Fill in the blanks */
+    .sentence-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .sentence-item {
+      background: white;
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 1rem;
+      font-size: 0.9rem;
+      line-height: 1.8;
+      transition: all 0.3s ease;
+    }
+
+    .sentence-item.correct {
+      border-color: #10b981;
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    }
+
+    .sentence-item.wrong {
+      border-color: #ef4444;
+      background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+    }
+
+    .blank-select {
+      display: inline-block;
+      min-width: 180px;
+      padding: 0.4rem 0.8rem;
+      margin: 0 0.3rem;
+      background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+      border: 2px solid #06b6d4;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #0c4a6e;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      vertical-align: middle;
+    }
+
+    .blank-select:focus {
+      outline: none;
+      border-color: #0891b2;
+      transform: scale(1.03);
+    }
+
+    .blank-select.correct {
+      background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+      border-color: #10b981;
+    }
+
+    .blank-select.wrong {
+      background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+      border-color: #ef4444;
+    }
+.hint-box {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border: 2px solid #f59e0b;
+  border-radius: 8px;
+  padding: 0.6rem 0.8rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #92400e;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.15);
+}
+
+.hint-icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.hint-text {
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.sentence-item:hover .hint-box {
+  background: linear-gradient(135deg, #fde68a 0%, #fcd34d 100%);
+  transform: scale(1.02);
+  transition: all 0.3s ease;
+}
+
+    /* Activity 3: Ordering */
+    .ordering-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .order-item {
+      background: white;
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 1rem 1rem 1rem 3rem;
+      font-size: 0.9rem;
+      cursor: move;
+      transition: all 0.3s ease;
+      position: relative;
+      user-select: none;
+    }
+
+    .order-item:hover {
+      border-color: #06b6d4;
+      box-shadow: 0 4px 15px rgba(6, 182, 212, 0.2);
+    }
+
+    .order-item.dragging {
+      opacity: 0.5;
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(6, 182, 212, 0.4);
+    }
+
+    .order-item .drag-handle {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.2rem;
+      color: #94a3b8;
+      cursor: grab;
+    }
+
+    .order-item .order-number {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .order-item.correct {
+      border-color: #10b981;
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    }
+
+    .order-item.correct .order-number {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    }
+
+    /* Activity 4: Multiple Choice */
+    .quiz-container {
+      margin-bottom: 1.5rem;
+    }
+
+    .quiz-question {
+      background: white;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .quiz-question h4 {
+      color: #0891b2;
+      margin-bottom: 1rem;
+      font-size: 1.05rem;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .quiz-option {
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .quiz-option:hover {
+      border-color: #06b6d4;
+      transform: translateX(5px);
+      box-shadow: 0 4px 12px rgba(6, 182, 212, 0.15);
+    }
+
+    .quiz-option.selected {
+      background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+      border-color: #06b6d4;
+    }
+
+    .quiz-option.correct {
+      background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+      border-color: #10b981;
+      cursor: default;
+    }
+
+    .quiz-option.wrong {
+      background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+      border-color: #ef4444;
+      cursor: default;
+    }
+
+    .tts-btn {
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .tts-btn:hover {
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      transform: scale(1.1);
+    }
+
+    .tts-btn.speaking {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+
+    /* Activity 5: Checklist */
+    .checklist {
+      background: white;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .checklist-item:hover {
+      background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%);
+    }
+
+    .checklist-item input[type="checkbox"] {
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      accent-color: #06b6d4;
+    }
+
+    .checklist-item.checked {
+      background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+    }
+
+    .checklist-item label {
+      cursor: pointer;
+      line-height: 1.6;
+      color: #334155;
+    }
+
+    /* Navigation buttons */
+    .nav-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 2px solid #e2e8f0;
+    }
+
+    .btn {
+      padding: 0.75rem 2rem;
+      border: none;
+      border-radius: 25px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(6, 182, 212, 0.4);
+    }
+
+    .btn-secondary {
+      background: linear-gradient(135deg, #f472b6 0%, #ec4899 100%);
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(244, 114, 182, 0.4);
+    }
+
+    .btn:disabled {
+      background: linear-gradient(135deg, #cbd5e1 0%, #94a3b8 100%);
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .btn-check {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: white;
+    }
+
+    .btn-check:hover {
+      background: linear-gradient(135deg, #059669 0%, #047857 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+    }
+
+    .feedback {
+      text-align: center;
+      padding: 1rem;
+      border-radius: 10px;
+      font-weight: 600;
+      margin: 1rem 0;
+      animation: slideIn 0.3s ease;
+    }
+
+    .feedback.success {
+      background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+      color: #065f46;
+      border: 2px solid #10b981;
+    }
+
+    .feedback.error {
+      background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+      color: #991b1b;
+      border: 2px solid #ef4444;
+    }
+
+    /* Completion Modal */
+    .completion-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.75);
+      z-index: 1000;
+      padding: 1rem;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .completion-modal.active {
+      display: flex;
+    }
+
+    .completion-content {
+      background: white;
+      border-radius: 20px;
+      max-width: 600px;
+      width: 100%;
+      padding: 3rem 2rem;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+      animation: scaleIn 0.4s ease;
+    }
+
+    @keyframes scaleIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .completion-content h2 {
+      font-size: 2rem;
+      color: #0891b2;
+      margin-bottom: 1rem;
+    }
+
+    .completion-content p {
+      font-size: 1.1rem;
+      color: #64748b;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .stars {
+      font-size: 3rem;
+      margin: 1rem 0;
+      animation: starBounce 0.6s ease;
+    }
+
+    @keyframes starBounce {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    /* Language Toggle - FIXED */
+    body:not(.zh) .lang-zh { display: none; }
+    body.zh .lang-en { display: none; }
+    body:not(.zh) .lang-en { display: inline; }
+    body.zh .lang-zh { display: inline; }
+
+    @media (max-width: 768px) {
+      .container { padding: 1rem; }
+      header { padding: 1.5rem 1rem; 
+      padding-right: 6rem; /* Less padding on mobile */
+  }
+      h1 { font-size: 1.4rem; }
+      .subtitle { font-size: 0.9rem; }
+      
+      .lang-toggle {
+    top: 0.75rem;
+    right: 0.75rem;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+  }
+      /* Keep 2 columns on mobile, just reduce spacing */
+      .matching-container {
+        gap: 0.75rem;
+      }
+      
+      .question-item, .category-item {
+        padding: 0.75rem;
+        font-size: 0.82rem;
+        line-height: 1.4;
+      }
+      
+      .matching-column h4 {
+        font-size: 0.95rem;
+        margin-bottom: 0.75rem;
+      }
+      
+      .tips-box ul {
+        grid-template-columns: 1fr;
+      }
+      
+      .nav-buttons {
+        flex-direction: column;
+      }
+      
+      .btn {
+        width: 100%;
+      }
+      
+      .blank-select {
+        min-width: 150px;
+        font-size: 0.8rem;
+      }
+     }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <button class="lang-toggle" id="langToggle">中文</button>
+      <h1>
+        <span class="lang-en">Q&A Handling Skills Practice</span>
+        <span class="lang-zh">問答處理技巧練習</span>
+      </h1>
+      <p class="subtitle">
+        <span class="lang-en">Master the Art of Answering Questions After Your Presentation<br> <strong>(Proposal Project)</strong></span>
+        <span class="lang-zh">掌握簡報後回答問題的技巧<br> <strong>(提案項目計劃)</strong></span>
+      </p>
+    </header>
+
+    <div class="progress-dots" id="progressDots"></div>
+
+    <!-- Activity 1: Matching Question Types -->
+    <div class="activity active" id="activity1">
+      <div class="activity-title">
+        <span class="lang-en">Activity 1: <br>Recognising Question Types</span>
+        <span class="lang-zh">活動一：識別問題類型</span>
+      </div>
+
+     <div class="explanation-box">
+  <h3>
+    <span>💡</span>
+    <span class="lang-en">Understanding Different Question Types</span>
+    <span class="lang-zh">了解不同的問題類型</span>
+  </h3>
+  
+  <div class="question-type-grid">
+    <div class="type-card">
+      <div class="type-header clarification">
+        <span class="lang-en">Clarification</span>
+        <span class="lang-zh">澄清問題</span>
+      </div>
+      <ul class="lang-en">
+        <li>Questions asking you to explain something again</li>
+        <li>Requests for more details about what you already said</li>
+      </ul>
+      <ul class="lang-zh">
+        <li>要求你再次解釋某些內容的問題</li>
+        <li>要求提供更多你已說過內容的細節</li>
+      </ul>
+    </div>
+    
+    <div class="type-card">
+      <div class="type-header challenge">
+        <span class="lang-en">Challenge</span>
+        <span class="lang-zh">挑戰問題</span>
+      </div>
+      <ul class="lang-en">
+        <li>Questions that question your assumptions</li>
+        <li>Point out potential problems</li>
+        <li>Suggest alternative approaches</li>
+      </ul>
+      <ul class="lang-zh">
+        <li>質疑你的假設的問題</li>
+        <li>指出潛在問題</li>
+        <li>建議其他方法</li>
+      </ul>
+    </div>
+    
+    <div class="type-card">
+      <div class="type-header extension">
+        <span class="lang-en">Extension</span>
+        <span class="lang-zh">延伸問題</span>
+      </div>
+      <ul class="lang-en">
+        <li>Questions about future plans and next steps</li>
+        <li>How your project might develop further</li>
+      </ul>
+      <ul class="lang-zh">
+        <li>詢問未來計劃和下一步的問題</li>
+        <li>專題如何進一步發展</li>
+      </ul>
+    </div>
+    
+    <div class="type-card">
+      <div class="type-header practical">
+        <span class="lang-en">Practical Application</span>
+        <span class="lang-zh">實際應用問題</span>
+      </div>
+      <ul class="lang-en">
+        <li>Questions about real-world implementation</li>
+        <li>Costs, timeline, resources needed</li>
+        <li>How to put your plan into action</li>
+      </ul>
+      <ul class="lang-zh">
+        <li>關於實際執行的問題</li>
+        <li>成本、時間表、所需資源</li>
+        <li>如何實施計劃</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+      <div class="instruction-box">
+        <h3>
+          <span>📝</span>
+          <span class="lang-en">How to Complete This Activity</span>
+          <span class="lang-zh">如何完成此活動</span>
+        </h3>
+        <p class="lang-en">1. Tap a question on the left<br>2. Tap the matching category on the right<br>3. Match all 8 questions!</p>
+        <p class="lang-zh">1. 點擊左邊的問題<br>2. 點擊右邊相應的類別<br>3. 配對全部8個問題！</p>
+      </div>
+
+      <div class="matching-container">
+        <div class="matching-column">
+          <h4>
+            <span class="lang-en">Questions</span>
+            <span class="lang-zh">問題</span>
+          </h4>
+          <div id="questionsList"></div>
+        </div>
+        <div class="matching-column">
+          <h4>
+            <span class="lang-en">Question Types</span>
+            <span class="lang-zh">問題類型</span>
+          </h4>
+          <div id="categoriesList"></div>
+        </div>
+      </div>
+
+      <div id="feedback1" class="feedback"></div>
+
+      <div class="nav-buttons">
+        <button class="btn btn-primary" id="nextBtn1" disabled>
+          <span class="lang-en">Next Activity →</span>
+          <span class="lang-zh">下一個活動 →</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Activity 2: Fill in the Blanks -->
+    <div class="activity" id="activity2">
+      <div class="activity-title">
+        <span class="lang-en">Activity 2: <br>Building Polite Response Phrases</span>
+        <span class="lang-zh">活動二：建立禮貌回應語句</span>
+      </div>
+
+      <div class="tips-box">
+        <h3>
+          <span>💬</span>
+          <span class="lang-en">Quick Reference: Commonly Used Polite Phrases</span>
+          <span class="lang-zh">快速參考：常用禮貌用語</span>
+        </h3>
+        <ul>
+          <li><span class="lang-en"><strong>Opening:</strong> Thank you for your question...</span><span class="lang-zh"><strong>開場：</strong> 謝謝你的問題...</span></li>
+          <li><span class="lang-en"><strong>Opening:</strong> That's a good point...</span><span class="lang-zh"><strong>開場：</strong> 這是一個好問題...</span></li>
+          <li><span class="lang-en"><strong>Opening:</strong> I'm glad you asked...</span><span class="lang-zh"><strong>開場：</strong> 很高興你問這個...</span></li>
+          <li><span class="lang-en"><strong>Buying Time:</strong> Let me think about that...</span><span class="lang-zh"><strong>爭取時間：</strong> 讓我想一想...</span></li>
+          <li><span class="lang-en"><strong>Buying Time:</strong> That's an interesting question...</span><span class="lang-zh"><strong>爭取時間：</strong> 這是一個有趣的問題...</span></li>
+          <li><span class="lang-en"><strong>Clarifying:</strong> Just to clarify...</span><span class="lang-zh"><strong>澄清：</strong> 讓我澄清一下...</span></li>
+          <li><span class="lang-en"><strong>Clarifying:</strong> What I meant was...</span><span class="lang-zh"><strong>澄清：</strong> 我的意思是...</span></li>
+          <li><span class="lang-en"><strong>Clarifying:</strong> Let me explain further...</span><span class="lang-zh"><strong>澄清：</strong> 讓我進一步解釋...</span></li>
+          <li><span class="lang-en"><strong>Closing:</strong> Does that answer your question?</span><span class="lang-zh"><strong>結束：</strong> 這樣回答了你的問題嗎？</span></li>
+          <li><span class="lang-en"><strong>Closing:</strong> I hope that helps...</span><span class="lang-zh"><strong>結束：</strong> 希望這有幫助...</span></li>
+          <li><span class="lang-en"><strong>Deferring:</strong> Could I get back to you on that?</span><span class="lang-zh"><strong>延後回答：</strong> 我能稍後再回覆你嗎？</span></li>
+          <li><span class="lang-en"><strong>Deferring:</strong> I'll need to check and follow up...</span><span class="lang-zh"><strong>延後回答：</strong> 我需要查證後再跟進...</span></li>
+        </ul>
+      </div>
+
+      <div class="instruction-box">
+        <h3>
+          <span>📝</span>
+          <span class="lang-en">Instructions</span>
+          <span class="lang-zh">說明</span>
+        </h3>
+        <p class="lang-en">Select the most appropriate polite phrase from each dropdown menu to complete the responses. Use the reference tips above for guidance!</p>
+        <p class="lang-zh">從每個下拉選單中選擇最合適的禮貌用語來完成回應。使用上面的參考提示作指引！</p>
+      </div>
+
+      <div class="sentence-list" id="sentenceList"></div>
+
+      <div id="feedback2" class="feedback"></div>
+
+      <div class="nav-buttons">
+        <button class="btn btn-secondary" id="prevBtn2">
+          <span class="lang-en">← Previous</span>
+          <span class="lang-zh">← 上一個</span>
+        </button>
+        <button class="btn btn-check" id="checkBtn2">
+          <span class="lang-en">✓ Check Answers</span>
+          <span class="lang-zh">✓ 檢查答案</span>
+        </button>
+        <button class="btn btn-primary" id="nextBtn2" disabled>
+          <span class="lang-en">Next Activity →</span>
+          <span class="lang-zh">下一個活動 →</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Activity 3: Ordering Steps -->
+    <div class="activity" id="activity3">
+      <div class="activity-title">
+        <span class="lang-en">Activity 3: <br>Sequencing Response Steps</span>
+        <span class="lang-zh">活動三：排序回應步驟</span>
+      </div>
+
+      <div class="instruction-box">
+        <h3>
+          <span>🔢</span>
+          <span class="lang-en">How to Order the Steps</span>
+          <span class="lang-zh">如何排序步驟</span>
+        </h3>
+        <p class="lang-en">Drag the steps using the ≡ handle to arrange them in the correct order (1 → 5). The numbers on the right show each step's current position.</p>
+        <p class="lang-zh">使用≡圖示拖動步驟，將它們按正確順序排列（1 → 5）。右側數字顯示每個步驟的當前位置。</p>
+      </div>
+
+      <div class="ordering-container" id="orderingContainer"></div>
+
+      <div id="feedback3" class="feedback"></div>
+
+      <div class="nav-buttons">
+        <button class="btn btn-secondary" id="prevBtn3">
+          <span class="lang-en">← Previous</span>
+          <span class="lang-zh">← 上一個</span>
+        </button>
+        <button class="btn btn-check" id="checkBtn3">
+          <span class="lang-en">✓ Check Order</span>
+          <span class="lang-zh">✓ 檢查順序</span>
+        </button>
+        <button class="btn btn-primary" id="nextBtn3" disabled>
+          <span class="lang-en">Next Activity →</span>
+          <span class="lang-zh">下一個活動 →</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Activity 4: Multiple Choice Quiz -->
+    <div class="activity" id="activity4">
+      <div class="activity-title">
+        <span class="lang-en">Activity 4: <br>Response Practice Quiz</span>
+        <span class="lang-zh">活動四：回應練習測驗</span>
+      </div>
+
+      <div class="instruction-box">
+        <h3>
+          <span>✏️</span>
+          <span class="lang-en">Instructions</span>
+          <span class="lang-zh">說明</span>
+        </h3>
+        <p class="lang-en">Read each question scenario and select the best response. Click the 🔊 button to hear each option read aloud!</p>
+        <p class="lang-zh">閱讀每個問題情境並選擇最佳回應。點擊🔊按鈕聆聽每個選項！</p>
+      </div>
+
+      <div class="quiz-container" id="quizContainer"></div>
+
+      <div id="feedback4" class="feedback"></div>
+
+      <div class="nav-buttons">
+        <button class="btn btn-secondary" id="prevBtn4">
+          <span class="lang-en">← Previous</span>
+          <span class="lang-zh">← 上一個</span>
+        </button>
+        <button class="btn btn-check" id="checkBtn4">
+          <span class="lang-en">✓ Check Answers</span>
+          <span class="lang-zh">✓ 檢查答案</span>
+        </button>
+        <button class="btn btn-primary" id="nextBtn4" disabled>
+          <span class="lang-en">Next Activity →</span>
+          <span class="lang-zh">下一個活動 →</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Activity 5: Self-Assessment Checklist -->
+    <div class="activity" id="activity5">
+      <div class="activity-title">
+        <span class="lang-en">Activity 5: <br>Q&A Skills Self-Assessment</span>
+        <span class="lang-zh">活動五：問答技巧自我評估</span>
+      </div>
+
+      <div class="instruction-box">
+        <h3>
+          <span>✅</span>
+          <span class="lang-en">Review Your Skills</span>
+          <span class="lang-zh">檢視你的技巧</span>
+        </h3>
+        <p class="lang-en">Check off each skill you feel confident about. This helps you identify areas where you might need more practice!</p>
+        <p class="lang-zh">勾選你有信心的技巧。這有助於你識別可能需要更多練習的領域！</p>
+      </div>
+
+      <div class="checklist" id="checklist"></div>
+
+      <div id="feedback5" class="feedback"></div>
+
+      <div class="nav-buttons">
+        <button class="btn btn-secondary" id="prevBtn5">
+          <span class="lang-en">← Previous</span>
+          <span class="lang-zh">← 上一個</span>
+        </button>
+        <button class="btn btn-check" id="completeBtn5">
+          <span class="lang-en">🎉 Complete All Activities</span>
+          <span class="lang-zh">🎉 完成所有活動</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Completion Modal -->
+  <div class="completion-modal" id="completionModal">
+    <div class="completion-content">
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+      <h2>
+        <span class="lang-en">Congratulations!</span>
+        <span class="lang-zh">恭喜你！</span>
+      </h2>
+      <p>
+        <span class="lang-en">You've completed all 5 Q&A handling activities! You're now better prepared to confidently answer questions after your presentations.</span>
+        <span class="lang-zh">你已完成全部5個問答處理活動！你現在更有信心在簡報後回答問題了。</span>
+      </p>
+      <button class="btn btn-primary" id="homeBtn">
+        <span class="lang-en">🏠 Return to Home</span>
+        <span class="lang-zh">🏠 返回主頁</span>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // Data
+    const matchingData = {
+      questions: [
+        {
+          id: 'q1',
+          en: 'Can you explain slide 5 about the project timeline again?',
+          zh: '你能再解釋一次關於專題時間表的第5張投影片嗎？',
+          type: 'clarification'
+        },
+        {
+          id: 'q2',
+          en: 'What if you don\'t have enough budget for the counter design?',
+          zh: '如果你們沒有足夠的預算來設計櫃檯怎麼辦？',
+          type: 'challenge'
+        },
+        {
+          id: 'q3',
+          en: 'What are your plans after completing this project?',
+          zh: '完成這個專題後你們有什麼計劃？',
+          type: 'extension'
+        },
+        {
+          id: 'q4',
+          en: 'How much will the actual implementation cost?',
+          zh: '實際執行需要多少成本？',
+          type: 'practical'
+        },
+        {
+          id: 'q5',
+          en: 'Could you give us more details about the customer survey?',
+          zh: '你能給我們更多關於顧客調查的細節嗎？',
+          type: 'clarification'
+        },
+        {
+          id: 'q6',
+          en: 'Have you considered that some customers might prefer human staff over a counter?',
+          zh: '你們有考慮過一些顧客可能更喜歡真人服務而不是櫃檯嗎？',
+          type: 'challenge'
+        },
+        {
+          id: 'q7',
+          en: 'Could this project be adapted for other shopping malls?',
+          zh: '這個專題能否應用於其他購物商場？',
+          type: 'extension'
+        },
+        {
+          id: 'q8',
+          en: 'When exactly will the counter be installed in the mall?',
+          zh: '櫃檯具體什麼時候會安裝在商場？',
+          type: 'practical'
+        }
+      ],
+      categories: [
+        {
+          id: 'clarification',
+          en: 'Clarification',
+          zh: '澄清問題'
+        },
+        {
+          id: 'challenge',
+          en: 'Challenge',
+          zh: '挑戰問題'
+        },
+        {
+          id: 'extension',
+          en: 'Extension',
+          zh: '延伸問題'
+        },
+        {
+          id: 'practical',
+          en: 'Practical Application',
+          zh: '實際應用問題'
+        }
+      ]
+    };
+
+    const sentencesData = [
+  {
+    id: 's1',
+    textEn: '<blank>, I\'d like to address your concern about the budget.',
+    textZh: '<blank>，我想解答你對預算的疑慮。',
+    answer: 'Thank you for your question',
+    hintEn: 'Opening: Use a polite phrase to acknowledge the question',
+    hintZh: '開場：使用禮貌用語來回應問題'
+  },
+  {
+    id: 's2',
+    textEn: '<blank> about the project timeline. We actually plan to complete it by week 22.',
+    textZh: '關於專題時間表，<blank>。我們實際上計劃在第22週完成。',
+    answer: 'Let me clarify',
+    hintEn: 'Clarifying: You need to explain something more clearly',
+    hintZh: '澄清：你需要更清楚地解釋某些內容'
+  },
+  {
+    id: 's3',
+    textEn: '<blank>. Could you rephrase your question about the customer survey?',
+    textZh: '<blank>。你能重新表述一下關於顧客調查的問題嗎？',
+    answer: 'I\'m not sure I understand',
+    hintEn: 'Clarifying: You don\'t fully understand the question',
+    hintZh: '澄清：你不完全理解問題'
+  },
+  {
+    id: 's4',
+    textEn: 'The success criteria are based on customer satisfaction. <blank>?',
+    textZh: '成功準則是基於顧客滿意度。<blank>？',
+    answer: 'Does that answer your question',
+    hintEn: 'Closing: Check if your answer was sufficient',
+    hintZh: '結束：確認你的答案是否充分'
+  },
+  {
+    id: 's5',
+    textEn: '<blank>. We haven\'t finalised the exact cost yet, but I can follow up with you.',
+    textZh: '<blank>。我們還沒有確定確切的成本，但我可以之後跟進。',
+    answer: 'That\'s a good point',
+    hintEn: 'Opening: Acknowledge a valid concern positively',
+    hintZh: '開場：積極地認同一個合理的疑慮'
+  },
+  {
+    id: 's6',
+    textEn: '<blank> for a moment. Yes, we could adapt this design for other malls.',
+    textZh: '<blank>。是的，我們可以將這個設計應用於其他商場。',
+    answer: 'Let me think about that',
+    hintEn: 'Buying Time: You need time to consider the answer',
+    hintZh: '爭取時間：你需要時間思考答案'
+  },
+  {
+    id: 's7',
+    textEn: '<blank>, we did consider having human staff, but the counter provides 24/7 service.',
+    textZh: '<blank>，我們確實考慮過真人服務，但櫃檯能提供全天候服務。',
+    answer: 'I\'m glad you asked',
+    hintEn: 'Opening: Show enthusiasm about answering the question',
+    hintZh: '開場：表現出樂於回答問題的態度'
+  },
+  {
+    id: 's8',
+    textEn: '<blank> was that the counter should be modern and practical, not just informative.',
+    textZh: '<blank>，櫃檯應該是現代化和實用的，而不僅僅是提供資訊。',
+    answer: 'What I meant',
+    hintEn: 'Clarifying: Rephrase to make your point clearer',
+    hintZh: '澄清：重新表述以使你的觀點更清晰'
+  },
+  {
+    id: 's9',
+    textEn: '<blank>. We\'re planning the installation for December 2026 when the mall opens.',
+    textZh: '<blank>。我們計劃在2026年12月商場開業時安裝。',
+    answer: 'Let me explain further',
+    hintEn: 'Clarifying: Provide more details about your plan',
+    hintZh: '澄清：提供更多關於你計劃的細節'
+  },
+  {
+    id: 's10',
+    textEn: 'I don\'t have the exact figures right now. <blank>?',
+    textZh: '我現在沒有確切的數字。<blank>？',
+    answer: 'Could I get back to you on that',
+    hintEn: 'Deferring: You need to check information before answering',
+    hintZh: '延後回答：你需要查證資料後才能回答'
+  }
+];
+
+    const phraseOptions = [
+      'Thank you for your question',
+      'That\'s a good point',
+      'I\'m glad you asked',
+      'Let me clarify',
+      'Let me think about that',
+      'I\'m not sure I understand',
+      'What I meant',
+      'Let me explain further',
+      'Does that answer your question',
+      'Could I get back to you on that'
+    ];
+const phraseOptionsZh = [
+  { en: 'Thank you for your question', zh: '謝謝你的提問' },
+  { en: 'That\'s a good point', zh: '這個問題提得很好' },
+  { en: 'I\'m glad you asked', zh: '很高興你提出這個問題' },
+  { en: 'Let me clarify', zh: '讓我澄清一下' },
+  { en: 'Let me think about that', zh: '讓我想想' },
+  { en: 'I\'m not sure I understand', zh: '我不太明白你的意思' },
+  { en: 'What I meant', zh: '我的意思是' },
+  { en: 'Let me explain further', zh: '讓我進一步解釋' },
+  { en: 'Does that answer your question', zh: '這樣回答了你的問題嗎' },
+  { en: 'Could I get back to you on that', zh: '我能稍後再回覆你嗎' }
+];
+
+    const orderingSteps = [
+      {
+        id: 1,
+        en: 'Listen actively and maintain eye contact with the questioner',
+        zh: '積極聆聽並與提問者保持目光接觸',
+        correct: 1
+      },
+      {
+        id: 2,
+        en: 'Thank the questioner politely',
+        zh: '禮貌地感謝提問者',
+        correct: 2
+      },
+      {
+        id: 3,
+        en: 'Reiterate or clarify the question to ensure understanding',
+        zh: '重申或澄清問題以確保理解',
+        correct: 3
+      },
+      {
+        id: 4,
+        en: 'Provide your answer clearly and concisely',
+        zh: '清晰簡潔地提供你的答案',
+        correct: 4
+      },
+      {
+        id: 5,
+        en: 'Check if the answer was sufficient',
+        zh: '檢查答案是否充分',
+        correct: 5
+      }
+    ];
+
+    const quizData = [
+      {
+        id: 'quiz1',
+        questionEn: 'Someone asks: "Your budget seems too low. How will you afford quality materials?" What\'s the best response?',
+        questionZh: '有人問：「你們的預算似乎太低了。你們如何負擔高質量的材料？」最佳回應是什麼？',
+        options: [
+          {
+            textEn: 'You\'re wrong about the budget.',
+            textZh: '你對預算的看法是錯的。',
+            correct: false
+          },
+          {
+            textEn: 'That\'s a good point. We\'ve researched cost-effective suppliers who maintain quality standards. Let me explain our budget breakdown.',
+            textZh: '這是一個好問題。我們已經研究了維持質量標準的經濟實惠供應商。讓我解釋一下我們的預算分配。',
+            correct: true
+          },
+          {
+            textEn: 'I don\'t know about the materials.',
+            textZh: '我不知道關於材料的事。',
+            correct: false
+          }
+        ]
+      },
+      {
+        id: 'quiz2',
+        questionEn: 'Someone asks: "Could you explain the customer satisfaction criteria again?" What\'s the best response?',
+        questionZh: '有人問：「你能再解釋一次顧客滿意度準則嗎？」最佳回應是什麼？',
+        options: [
+          {
+            textEn: 'I already explained that in the presentation.',
+            textZh: '我在簡報中已經解釋過了。',
+            correct: false
+          },
+          {
+            textEn: 'Thank you for asking. Let me clarify - we aim to achieve 90% customer satisfaction by resolving enquiries within 2 minutes.',
+            textZh: '謝謝你的提問。讓我澄清一下 - 我們的目標是通過在2分鐘內解決查詢來達到90%的顧客滿意度。',
+            correct: true
+          },
+          {
+            textEn: 'It\'s on slide 8.',
+            textZh: '在第8張投影片上。',
+            correct: false
+          }
+        ]
+      },
+      {
+        id: 'quiz3',
+        questionEn: 'Someone asks: "What happens if the mall location changes?" What\'s the best response?',
+        questionZh: '有人問：「如果商場位置改變了怎麼辦？」最佳回應是什麼？',
+        options: [
+          {
+            textEn: 'That\'s not going to happen.',
+            textZh: '那不會發生的。',
+            correct: false
+          },
+          {
+            textEn: 'That\'s an interesting question. Let me think about that for a moment. Our design is flexible and can be adapted to different locations.',
+            textZh: '這是一個有趣的問題。讓我想一想。我們的設計是靈活的，可以適應不同的位置。',
+            correct: true
+          },
+          {
+            textEn: 'We didn\'t plan for that.',
+            textZh: '我們沒有為此做計劃。',
+            correct: false
+          }
+        ]
+      },
+      {
+        id: 'quiz4',
+        questionEn: 'Someone asks: "How many staff members will operate the counter?" What\'s the best response?',
+        questionZh: '有人問：「多少員工會操作櫃檯？」最佳回應是什麼？',
+        options: [
+          {
+            textEn: 'I don\'t know the exact number right now. Could I get back to you on that after checking with the mall management?',
+            textZh: '我現在不知道確切的數字。我能在與商場管理層確認後再回覆你嗎？',
+            correct: true
+          },
+          {
+            textEn: 'That\'s not my responsibility.',
+            textZh: '那不是我的責任。',
+            correct: false
+          },
+          {
+            textEn: 'Maybe 5 or 6 people.',
+            textZh: '可能5或6個人。',
+            correct: false
+          }
+        ]
+      },
+      {
+        id: 'quiz5',
+        questionEn: 'Someone asks: "Why choose Tsim Sha Tsui for the location?" What\'s the best response?',
+        questionZh: '有人問：「為什麼選擇尖沙咀作為地點？」最佳回應是什麼？',
+        options: [
+          {
+            textEn: 'I\'m glad you asked. Tsim Sha Tsui is a high-traffic area with many tourists and local shoppers, making it ideal for our project.',
+            textZh: '很高興你問這個。尖沙咀是一個高人流的地區，有許多遊客和本地購物者，使其成為我們專題的理想地點。',
+            correct: true
+          },
+          {
+            textEn: 'Because Ocean Mall decided that.',
+            textZh: '因為Ocean Mall決定的。',
+            correct: false
+          },
+          {
+            textEn: 'It\'s a random choice.',
+            textZh: '這是隨機選擇的。',
+            correct: false
+          }
+        ]
+      },
+      {
+        id: 'quiz6',
+        questionEn: 'Someone asks: "Can you show us the counter design now?" What\'s the best response?',
+        questionZh: '有人問：「你能現在給我們看櫃檯設計嗎？」最佳回應是什麼？',
+        options: [
+          {
+            textEn: 'No, we don\'t have it.',
+            textZh: '不，我們沒有。',
+            correct: false
+          },
+          {
+            textEn: 'Thank you for your interest. We\'re currently in the draft design phase. We\'ll be able to share visuals in our final presentation.',
+            textZh: '謝謝你的關注。我們目前正處於設計草案階段。我們將能在最終簡報中分享視覺效果。',
+            correct: true
+          },
+          {
+            textEn: 'Just imagine it yourself.',
+            textZh: '你自己想像一下吧。',
+            correct: false
+          }
+        ]
+      },
+      {
+        id: 'quiz7',
+        questionEn: 'Someone asks: "Have you visited Ocean Shopping Mall before?" What\'s the best response?',
+        questionZh: '有人問：「你們之前去過Ocean Shopping Mall嗎？」最佳回應是什麼？',
+        options: [
+          {
+            textEn: 'That\'s not relevant to our project.',
+            textZh: '這與我們的專題無關。',
+            correct: false
+          },
+          {
+            textEn: 'Let me clarify - Ocean Mall hasn\'t opened yet. It will open in December 2026. We\'ve visited similar malls for research.',
+            textZh: '讓我澄清一下 - Ocean Mall還沒有開業。它將在2026年12月開業。我們參觀了類似的商場進行研究。',
+            correct: true
+          },
+          {
+            textEn: 'Yes, many times.',
+            textZh: '是的，很多次。',
+            correct: false
+          }
+        ]
+      },
+      {
+        id: 'quiz8',
+        questionEn: 'Someone asks: "What software will you use for the design?" What\'s the best response?',
+        questionZh: '有人問：「你們會使用什麼軟件來設計？」最佳回應是什麼？',
+        options: [
+          {
+            textEn: 'That\'s a good question. We plan to use professional design software like AutoCAD and SketchUp for our counter design.',
+            textZh: '這是一個好問題。我們計劃使用專業設計軟件，如AutoCAD和SketchUp來設計我們的櫃檯。',
+            correct: true
+          },
+          {
+            textEn: 'We haven\'t decided yet.',
+            textZh: '我們還沒有決定。',
+            correct: false
+          },
+          {
+            textEn: 'Whatever software is available.',
+            textZh: '任何可用的軟件。',
+            correct: false
+          }
+        ]
+      },
+      {
+        id: 'quiz9',
+        questionEn: 'Someone asks: "Could this counter handle multiple languages?" What\'s the best response?',
+        questionZh: '有人問：「這個櫃檯能處理多種語言嗎？」最佳回應是什麼？',
+        options: [
+          {
+            textEn: 'We didn\'t think about that.',
+            textZh: '我們沒有想到這一點。',
+            correct: false
+          },
+          {
+            textEn: 'That\'s an excellent question. Yes, we envision the counter supporting both English and Chinese to serve diverse customers.',
+            textZh: '這是一個很好的問題。是的，我們設想櫃檯支援英語和中文以服務多元化的顧客。',
+            correct: true
+          },
+          {
+            textEn: 'Only English.',
+            textZh: '只有英語。',
+            correct: false
+          }
+        ]
+      },
+      {
+        id: 'quiz10',
+        questionEn: 'Someone asks: "What if customers prefer asking staff directly instead of using the counter?" What\'s the best response?',
+        questionZh: '有人問：「如果顧客更喜歡直接詢問員工而不是使用櫃檯怎麼辦？」最佳回應是什麼？',
+        options: [
+          {
+            textEn: 'That won\'t happen.',
+            textZh: '那不會發生的。',
+            correct: false
+          },
+          {
+            textEn: 'That\'s a valid concern. The counter is designed to complement, not replace, human staff. Customers can choose their preferred option.',
+            textZh: '這是一個合理的擔憂。櫃檯是為了補充而不是取代真人員工。顧客可以選擇他們喜歡的方式。',
+            correct: true
+          },
+          {
+            textEn: 'They have to use the counter.',
+            textZh: '他們必須使用櫃檯。',
+            correct: false
+          }
+        ]
+      }
+    ];
+
+    const checklistItems = [
+      {
+        id: 'check1',
+        en: 'I can identify different types of questions (clarification, challenge, extension, practical)',
+        zh: '我能識別不同類型的問題（澄清、挑戰、延伸、實際應用）'
+      },
+      {
+        id: 'check2',
+        en: 'I can use polite opening phrases like "Thank you for your question"',
+        zh: '我能使用禮貌的開場白，如「謝謝你的問題」'
+      },
+      {
+        id: 'check3',
+        en: 'I know how to buy time when I need to think (e.g., "Let me think about that...")',
+        zh: '我知道如何在需要思考時爭取時間（例如「讓我想一想...」）'
+      },
+      {
+        id: 'check4',
+        en: 'I can clarify questions when I don\'t understand them fully',
+        zh: '當我不完全理解問題時，我能夠澄清問題'
+      },
+      {
+        id: 'check5',
+        en: 'I understand the correct sequence of steps when answering questions',
+        zh: '我理解回答問題時的正確步驟順序'
+      },
+      {
+        id: 'check6',
+        en: 'I can maintain eye contact and listen actively',
+        zh: '我能保持目光接觸並積極聆聽'
+      },
+      {
+        id: 'check7',
+        en: 'I know how to handle challenging questions professionally',
+        zh: '我知道如何專業地處理挑戰性問題'
+      },
+      {
+        id: 'check8',
+        en: 'I can check if my answer was sufficient by asking "Does that answer your question?"',
+        zh: '我能通過詢問「這樣回答了你的問題嗎？」來確認我的答案是否充分'
+      },
+      {
+        id: 'check9',
+        en: 'I know when to say "Could I get back to you on that?" instead of guessing',
+        zh: '我知道什麼時候該說「我能稍後再回覆你嗎？」而不是猜測'
+      },
+      {
+        id: 'check10',
+        en: 'I feel confident about handling Q&A sessions after presentations',
+        zh: '我對簡報後處理問答環節感到有信心'
+      }
+    ];
+
+    // State
+    let currentActivity = 1;
+    const activityCompleted = [false, false, false, false, false];
+    let currentLang = 'en';
+    let selectedQuestion = null;
+    let matchedPairs = {};
+    let currentUtterance = null;
+    let orderArray = [...orderingSteps];
+
+    // Initialize
+    function init() {
+      createProgressDots();
+      initActivity1();
+      initActivity2();
+      initActivity3();
+      initActivity4();
+      initActivity5();
+      setupNavigation();
+      setupLanguageToggle();
+    }
+
+    function createProgressDots() {
+      const dotsContainer = document.getElementById('progressDots');
+      for (let i = 1; i <= 5; i++) {
+        const dot = document.createElement('div');
+        dot.className = `dot ${i === 1 ? 'active' : ''}`;
+        dot.dataset.activity = i;
+        dotsContainer.appendChild(dot);
+      }
+    }
+
+    function updateProgressDots() {
+      document.querySelectorAll('.dot').forEach((dot, index) => {
+        dot.classList.remove('active', 'completed');
+        if (index + 1 === currentActivity) {
+          dot.classList.add('active');
+        } else if (activityCompleted[index]) {
+          dot.classList.add('completed');
+        }
+      });
+    }
+
+    function switchActivity(activityNum) {
+      document.querySelectorAll('.activity').forEach(a => a.classList.remove('active'));
+      document.getElementById(`activity${activityNum}`).classList.add('active');
+      currentActivity = activityNum;
+      updateProgressDots();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Activity 1: Matching
+function initActivity1() {
+  const questionsList = document.getElementById('questionsList');
+  const categoriesList = document.getElementById('categoriesList');
+  
+  matchingData.questions.forEach(q => {
+    const div = document.createElement('div');
+    div.className = 'question-item';
+    div.dataset.id = q.id;
+    div.dataset.type = q.type;
+    div.innerHTML = `
+      <span class="lang-en">${q.en}</span>
+      <span class="lang-zh">${q.zh}</span>
+    `;
+    div.addEventListener('click', () => selectQuestion(q.id));
+    questionsList.appendChild(div);
+  });
+  
+  matchingData.categories.forEach(c => {
+    const div = document.createElement('div');
+    div.className = 'category-item';
+    div.dataset.type = c.id;
+    div.innerHTML = `
+      <strong>
+        <span class="lang-en">${c.en}</span>
+        <span class="lang-zh">${c.zh}</span>
+      </strong>
+    `;
+    div.addEventListener('click', () => matchCategory(c.id));
+    categoriesList.appendChild(div);
+  });
+}
+      function selectQuestion(questionId) {
+      if (matchedPairs[questionId]) return;
+      
+      document.querySelectorAll('.question-item').forEach(q => q.classList.remove('selected'));
+      const questionEl = document.querySelector(`.question-item[data-id="${questionId}"]`);
+      questionEl.classList.add('selected');
+      selectedQuestion = questionId;
+    }
+
+    function matchCategory(categoryId) {
+      if (!selectedQuestion) return;
+      
+      const questionEl = document.querySelector(`.question-item[data-id="${selectedQuestion}"]`);
+      const questionType = questionEl.dataset.type;
+      
+      if (questionType === categoryId) {
+        matchedPairs[selectedQuestion] = categoryId;
+        
+        const categoryEl = document.querySelector(`.category-item[data-type="${categoryId}"]`);
+        categoryEl.classList.add('matched');
+        
+        const matchedDiv = document.createElement('div');
+        matchedDiv.className = 'matched-question';
+        matchedDiv.innerHTML = questionEl.innerHTML;
+        categoryEl.appendChild(matchedDiv);
+        
+        questionEl.style.opacity = '0.3';
+        questionEl.style.pointerEvents = 'none';
+        
+        selectedQuestion = null;
+        
+        if (Object.keys(matchedPairs).length === matchingData.questions.length) {
+          setTimeout(() => {
+            document.getElementById('feedback1').className = 'feedback success';
+            document.getElementById('feedback1').innerHTML = `
+              <span class="lang-en">🎉 Perfect! All questions matched correctly!</span>
+              <span class="lang-zh">🎉 完美！所有問題都配對正確！</span>
+            `;
+            confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+            activityCompleted[0] = true;
+            updateProgressDots();
+            document.getElementById('nextBtn1').disabled = false;
+          }, 300);
+        }
+      } else {
+        document.getElementById('feedback1').className = 'feedback error';
+        document.getElementById('feedback1').innerHTML = `
+          <span class="lang-en">❌ Not quite right. Try again!</span>
+          <span class="lang-zh">❌ 不太對。再試一次！</span>
+        `;
+        setTimeout(() => {
+          document.getElementById('feedback1').textContent = '';
+          document.getElementById('feedback1').className = 'feedback';
+          questionEl.classList.remove('selected');
+          selectedQuestion = null;
+        }, 1500);
+      }
+    }
+
+    // Activity 2: Fill in the blanks
+    function initActivity2() {
+  const sentenceList = document.getElementById('sentenceList');
+  
+  sentencesData.forEach(s => {
+    const div = document.createElement('div');
+    div.className = 'sentence-item';
+    div.dataset.id = s.id;
+    
+    const selectId = `select-${s.id}`;
+    
+    // Create hint box
+    const hintBox = `<div class="hint-box">
+      <span class="hint-icon">💡</span>
+      <span class="hint-text">
+        <span class="lang-en">${s.hintEn}</span>
+        <span class="lang-zh">${s.hintZh}</span>
+      </span>
+    </div>`;
+    
+    // Create two separate selects - one for EN, one for ZH
+    const selectHtmlEn = `<select class="blank-select lang-en" id="${selectId}-en" data-answer="${s.answer}">
+      <option value="">-- Select --</option>
+      ${phraseOptions.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
+    </select>`;
+    
+    const selectHtmlZh = `<select class="blank-select lang-zh" id="${selectId}-zh" data-answer="${s.answer}">
+      <option value="">-- 選擇 --</option>
+      ${phraseOptionsZh.map(opt => `<option value="${opt.en}">${opt.zh}</option>`).join('')}
+    </select>`;
+    
+    const textEn = s.textEn.replace('<blank>', selectHtmlEn);
+    const textZh = s.textZh.replace('<blank>', selectHtmlZh);
+    
+    // FIXED: Include hintBox in the innerHTML
+    div.innerHTML = `
+      ${hintBox}
+      <div class="lang-en">${textEn}</div>
+      <div class="lang-zh">${textZh}</div>
+    `;
+    
+    sentenceList.appendChild(div);
+  });
+}
+
+    function checkActivity2() {
+  let allCorrect = true;
+  let allFilled = true;
+  
+  sentencesData.forEach(s => {
+    // Check the appropriate select based on current language
+    const selectId = currentLang === 'en' ? `select-${s.id}-en` : `select-${s.id}-zh`;
+    const select = document.getElementById(selectId);
+    const sentenceItem = select.closest('.sentence-item');
+    
+    if (!select.value) {
+      allFilled = false;
+      return;
+    }
+    
+    if (select.value === s.answer) {
+      select.classList.add('correct');
+      select.classList.remove('wrong');
+      sentenceItem.classList.add('correct');
+      sentenceItem.classList.remove('wrong');
+    } else {
+      select.classList.add('wrong');
+      select.classList.remove('correct');
+      sentenceItem.classList.add('wrong');
+      sentenceItem.classList.remove('correct');
+      allCorrect = false;
+    }
+  });
+  
+  if (!allFilled) {
+    document.getElementById('feedback2').className = 'feedback error';
+    document.getElementById('feedback2').innerHTML = `
+      <span class="lang-en">⚠️ Please complete all sentences first.</span>
+      <span class="lang-zh">⚠️ 請先完成所有句子。</span>
+    `;
+    return;
+  }
+  
+  if (allCorrect) {
+    document.getElementById('feedback2').className = 'feedback success';
+    document.getElementById('feedback2').innerHTML = `
+      <span class="lang-en">🎉 Excellent! All phrases are correct!</span>
+      <span class="lang-zh">🎉 太好了！所有用語都正確！</span>
+    `;
+    confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+    activityCompleted[1] = true;
+    updateProgressDots();
+    document.getElementById('nextBtn2').disabled = false;
+  } else {
+    document.getElementById('feedback2').className = 'feedback error';
+    document.getElementById('feedback2').innerHTML = `
+      <span class="lang-en">❌ Some answers are incorrect. Check the highlighted ones and try again.</span>
+      <span class="lang-zh">❌ 有些答案不正確。檢查標示的部分並再試一次。</span>
+    `;
+  }
+}
+
+    // Activity 3: Ordering
+    // Activity 3: Ordering
+function initActivity3() {
+  orderArray = [...orderingSteps];
+  orderArray.sort(() => Math.random() - 0.5);
+  renderOrderItems();
+}
+
+function renderOrderItems() {
+  const container = document.getElementById('orderingContainer');
+  container.innerHTML = '';
+  
+  orderArray.forEach((step, index) => {
+    const div = document.createElement('div');
+    div.className = 'order-item';
+    div.dataset.id = step.id;
+    div.draggable = true;
+    div.innerHTML = `
+      <span class="drag-handle">≡</span>
+      <span class="lang-en">${step.en}</span>
+      <span class="lang-zh">${step.zh}</span>
+      <span class="order-number">${index + 1}</span>
+    `;
+    
+    // Desktop drag events
+    div.addEventListener('dragstart', handleDragStart);
+    div.addEventListener('dragover', handleDragOver);
+    div.addEventListener('drop', handleDrop);
+    div.addEventListener('dragend', handleDragEnd);
+    
+    // Mobile touch events
+    div.addEventListener('touchstart', handleTouchStart, { passive: false });
+    div.addEventListener('touchmove', handleTouchMove, { passive: false });
+    div.addEventListener('touchend', handleTouchEnd);
+    
+    container.appendChild(div);
+  });
+}
+
+let draggedItem = null;
+let touchClone = null;
+let touchStartY = 0;
+let originalIndex = -1;
+
+// Desktop handlers
+function handleDragStart(e) {
+  draggedItem = this;
+  this.classList.add('dragging');
+  e.dataTransfer.effectAllowed = 'move';
+}
+
+function handleDragOver(e) {
+  e.preventDefault();
+  e.dataTransfer.dropEffect = 'move';
+  return false;
+}
+
+function handleDrop(e) {
+  e.stopPropagation();
+  e.preventDefault();
+  
+  if (draggedItem !== this) {
+    const draggedIndex = Array.from(draggedItem.parentNode.children).indexOf(draggedItem);
+    const targetIndex = Array.from(this.parentNode.children).indexOf(this);
+    
+    const temp = orderArray[draggedIndex];
+    orderArray[draggedIndex] = orderArray[targetIndex];
+    orderArray[targetIndex] = temp;
+    
+    renderOrderItems();
+  }
+  return false;
+}
+
+function handleDragEnd(e) {
+  this.classList.remove('dragging');
+}
+
+// Mobile touch handlers - FIXED VERSION
+function handleTouchStart(e) {
+  if (e.target.closest('.order-number')) return; // Don't drag by the number
+  
+  e.preventDefault();
+  e.stopPropagation();
+  
+  draggedItem = this;
+  const items = Array.from(this.parentNode.children);
+  originalIndex = items.indexOf(this);
+  touchStartY = e.touches[0].clientY;
+  
+  // Create visual clone
+  touchClone = this.cloneNode(true);
+  touchClone.style.position = 'fixed';
+  touchClone.style.left = this.getBoundingClientRect().left + 'px';
+  touchClone.style.top = this.getBoundingClientRect().top + 'px';
+  touchClone.style.width = this.offsetWidth + 'px';
+  touchClone.style.opacity = '0.8';
+  touchClone.style.zIndex = '1000';
+  touchClone.style.pointerEvents = 'none';
+  touchClone.style.transform = 'scale(1.05)';
+  touchClone.style.boxShadow = '0 8px 25px rgba(6, 182, 212, 0.4)';
+  document.body.appendChild(touchClone);
+  
+  this.style.opacity = '0.3';
+}
+
+function handleTouchMove(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  
+  if (!touchClone || !draggedItem) return;
+  
+  const touch = e.touches[0];
+  const deltaY = touch.clientY - touchStartY;
+  
+  // Move the clone
+  const rect = draggedItem.getBoundingClientRect();
+  touchClone.style.top = (rect.top + deltaY) + 'px';
+  
+  // Find what element we're over
+  const items = Array.from(draggedItem.parentNode.children);
+  const currentIndex = items.indexOf(draggedItem);
+  
+  // Check each item to see if we should swap
+  items.forEach((item, index) => {
+    if (item === draggedItem) return;
+    
+    const itemRect = item.getBoundingClientRect();
+    const itemMiddle = itemRect.top + itemRect.height / 2;
+    
+    if (touch.clientY > itemMiddle && index === currentIndex + 1) {
+      // Swap down
+      swapItems(currentIndex, index);
+    } else if (touch.clientY < itemMiddle && index === currentIndex - 1) {
+      // Swap up
+      swapItems(currentIndex, index);
+    }
+  });
+}
+
+function handleTouchEnd(e) {
+  e.preventDefault();
+  
+  if (touchClone) {
+    document.body.removeChild(touchClone);
+    touchClone = null;
+  }
+  
+  if (draggedItem) {
+    draggedItem.style.opacity = '1';
+    draggedItem = null;
+  }
+  
+  touchStartY = 0;
+  originalIndex = -1;
+}
+
+function swapItems(index1, index2) {
+  const temp = orderArray[index1];
+  orderArray[index1] = orderArray[index2];
+  orderArray[index2] = temp;
+  
+  const container = draggedItem.parentNode;
+  const items = Array.from(container.children);
+  
+  // Physically swap DOM elements without full re-render
+  if (index1 < index2) {
+    container.insertBefore(items[index1], items[index2].nextSibling);
+  } else {
+    container.insertBefore(items[index1], items[index2]);
+  }
+  
+  // Update the order numbers
+  Array.from(container.children).forEach((item, idx) => {
+    const numberSpan = item.querySelector('.order-number');
+    if (numberSpan) numberSpan.textContent = idx + 1;
+  });
+  
+  // Update draggedItem reference
+  draggedItem = container.children[index2];
+  draggedItem.style.opacity = '0.3';
+}
+
+function checkActivity3() {
+  let allCorrect = true;
+  
+  orderArray.forEach((step, index) => {
+    const itemEl = document.querySelector(`.order-item[data-id="${step.id}"]`);
+    if (step.correct === index + 1) {
+      itemEl.classList.add('correct');
+    } else {
+      itemEl.classList.remove('correct');
+      allCorrect = false;
+    }
+  });
+  
+  if (allCorrect) {
+    document.getElementById('feedback3').className = 'feedback success';
+    document.getElementById('feedback3').innerHTML = `
+      <span class="lang-en">🎉 Perfect sequence! You understand the Q&A handling process!</span>
+      <span class="lang-zh">🎉 完美順序！你理解問答處理流程！</span>
+    `;
+    confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+    activityCompleted[2] = true;
+    updateProgressDots();
+    document.getElementById('nextBtn3').disabled = false;
+  } else {
+    document.getElementById('feedback3').className = 'feedback error';
+    document.getElementById('feedback3').innerHTML = `
+      <span class="lang-en">❌ Not quite right. Try rearranging the steps again.</span>
+      <span class="lang-zh">❌ 不太對。再試一次排列步驟。</span>
+    `;
+  }
+}
+
+
+    // Activity 4: Quiz
+    function initActivity4() {
+      const container = document.getElementById('quizContainer');
+      
+      quizData.forEach((q, qIndex) => {
+        const questionDiv = document.createElement('div');
+        questionDiv.className = 'quiz-question';
+        questionDiv.dataset.id = q.id;
+        
+        const questionTitle = document.createElement('h4');
+        questionTitle.innerHTML = `
+          <span class="lang-en">Q${qIndex + 1}: ${q.questionEn}</span>
+          <span class="lang-zh">問題${qIndex + 1}：${q.questionZh}</span>
+        `;
+        questionDiv.appendChild(questionTitle);
+        
+        const optionsDiv = document.createElement('div');
+        optionsDiv.className = 'quiz-options';
+        
+        q.options.forEach((opt, oIndex) => {
+          const optionDiv = document.createElement('div');
+          optionDiv.className = 'quiz-option';
+          optionDiv.dataset.correct = opt.correct;
+          
+          const ttsBtn = document.createElement('button');
+          ttsBtn.className = 'tts-btn';
+          ttsBtn.innerHTML = '🔊';
+          ttsBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            speakText(opt.textEn, opt.textZh, ttsBtn);
+          });
+          
+          const textSpan = document.createElement('span');
+          textSpan.innerHTML = `
+            <span class="lang-en">${opt.textEn}</span>
+            <span class="lang-zh">${opt.textZh}</span>
+          `;
+          
+          optionDiv.appendChild(ttsBtn);
+          optionDiv.appendChild(textSpan);
+          
+          optionDiv.addEventListener('click', () => {
+            optionsDiv.querySelectorAll('.quiz-option').forEach(o => {
+              if (!o.classList.contains('correct') && !o.classList.contains('wrong')) {
+                o.classList.remove('selected');
+              }
+            });
+            
+            if (!optionDiv.classList.contains('correct') && !optionDiv.classList.contains('wrong')) {
+              optionDiv.classList.add('selected');
+            }
+          });
+          
+          optionsDiv.appendChild(optionDiv);
+        });
+        
+        questionDiv.appendChild(optionsDiv);
+        container.appendChild(questionDiv);
+      });
+    }
+
+    function speakText(textEn, textZh, btn) {
+      if (currentUtterance) {
+        window.speechSynthesis.cancel();
+      }
+      
+      const text = currentLang === 'en' ? textEn : textZh;
+      currentUtterance = new SpeechSynthesisUtterance(text);
+      
+      if (currentLang === 'en') {
+        currentUtterance.lang = 'en-GB';
+        currentUtterance.voice = getBestVoice('en-GB');
+      } else {
+        currentUtterance.lang = 'zh-HK';
+        currentUtterance.voice = getBestVoice('zh-HK') || getBestVoice('zh-CN');
+      }
+      
+      currentUtterance.rate = 0.9;
+      
+      btn.classList.add('speaking');
+      
+      currentUtterance.onend = () => {
+        btn.classList.remove('speaking');
+      };
+      
+      window.speechSynthesis.speak(currentUtterance);
+    }
+
+    function getBestVoice(langCode) {
+      const voices = window.speechSynthesis.getVoices();
+      let voice = voices.find(v => v.lang === langCode);
+      if (!voice) {
+        const langPrefix = langCode.split('-')[0];
+        voice = voices.find(v => v.lang.startsWith(langPrefix));
+      }
+      return voice || voices[0];
+    }
+
+    function checkActivity4() {
+      let allCorrect = true;
+      let allAnswered = true;
+      
+      quizData.forEach(q => {
+        const questionDiv = document.querySelector(`.quiz-question[data-id="${q.id}"]`);
+        const options = questionDiv.querySelectorAll('.quiz-option');
+        const selected = questionDiv.querySelector('.quiz-option.selected');
+        
+        if (!selected) {
+          allAnswered = false;
+          return;
+        }
+        
+        options.forEach(opt => {
+          const isCorrect = opt.dataset.correct === 'true';
+          const isSelected = opt.classList.contains('selected');
+          
+          if (isCorrect) {
+            opt.classList.add('correct');
+            opt.classList.remove('selected');
+          } else if (isSelected) {
+            opt.classList.add('wrong');
+            opt.classList.remove('selected');
+            allCorrect = false;
+          }
+        });
+      });
+      
+      if (!allAnswered) {
+        document.getElementById('feedback4').className = 'feedback error';
+        document.getElementById('feedback4').innerHTML = `
+          <span class="lang-en">⚠️ Please answer all questions first.</span>
+          <span class="lang-zh">⚠️ 請先回答所有問題。</span>
+        `;
+        return;
+      }
+      
+      if (allCorrect) {
+        document.getElementById('feedback4').className = 'feedback success';
+        document.getElementById('feedback4').innerHTML = `
+          <span class="lang-en">🎉 Outstanding! You chose all the best responses!</span>
+          <span class="lang-zh">🎉 太棒了！你選擇了所有最佳回應！</span>
+        `;
+        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+        activityCompleted[3] = true;
+        updateProgressDots();
+        document.getElementById('nextBtn4').disabled = false;
+      } else {
+        document.getElementById('feedback4').className = 'feedback error';
+        document.getElementById('feedback4').innerHTML = `
+          <span class="lang-en">❌ Some answers need improvement. Review the correct ones and try again.</span>
+          <span class="lang-zh">❌ 有些答案需要改進。檢視正確的答案並再試一次。</span>
+        `;
+      }
+    }
+
+    // Activity 5: Checklist
+    function initActivity5() {
+      const checklist = document.getElementById('checklist');
+      
+      checklistItems.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'checklist-item';
+        
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.id = item.id;
+        
+        const label = document.createElement('label');
+        label.htmlFor = item.id;
+        label.innerHTML = `
+          <span class="lang-en">${item.en}</span>
+          <span class="lang-zh">${item.zh}</span>
+        `;
+        
+        checkbox.addEventListener('change', () => {
+          if (checkbox.checked) {
+            div.classList.add('checked');
+          } else {
+            div.classList.remove('checked');
+          }
+        });
+        
+        div.appendChild(checkbox);
+        div.appendChild(label);
+        checklist.appendChild(div);
+      });
+    }
+
+    function completeActivity5() {
+      const checkedCount = document.querySelectorAll('#checklist input:checked').length;
+      
+      if (checkedCount >= 7) {
+        document.getElementById('feedback5').className = 'feedback success';
+        document.getElementById('feedback5').innerHTML = `
+          <span class="lang-en">✅ Great self-awareness! You checked ${checkedCount}/10 skills. Ready for Q&A!</span>
+          <span class="lang-zh">✅ 很好的自我認知！你勾選了${checkedCount}/10項技巧。準備好回答問題了！</span>
+        `;
+        activityCompleted[4] = true;
+        updateProgressDots();
+        
+        setTimeout(() => {
+          confetti({ particleCount: 150, spread: 100, origin: { y: 0.5 } });
+          document.getElementById('completionModal').classList.add('active');
+        }, 1000);
+      } else {
+        document.getElementById('feedback5').className = 'feedback error';
+        document.getElementById('feedback5').innerHTML = `
+          <span class="lang-en">⚠️ Consider checking more skills you've learned from these activities!</span>
+          <span class="lang-zh">⚠️ 考慮勾選更多你從這些活動中學到的技巧！</span>
+        `;
+      }
+    }
+
+    // Navigation
+    function setupNavigation() {
+      document.getElementById('nextBtn1').addEventListener('click', () => switchActivity(2));
+      
+      document.getElementById('prevBtn2').addEventListener('click', () => switchActivity(1));
+      document.getElementById('checkBtn2').addEventListener('click', checkActivity2);
+      document.getElementById('nextBtn2').addEventListener('click', () => switchActivity(3));
+      
+      document.getElementById('prevBtn3').addEventListener('click', () => switchActivity(2));
+      document.getElementById('checkBtn3').addEventListener('click', checkActivity3);
+      document.getElementById('nextBtn3').addEventListener('click', () => switchActivity(4));
+      
+      document.getElementById('prevBtn4').addEventListener('click', () => switchActivity(3));
+      document.getElementById('checkBtn4').addEventListener('click', checkActivity4);
+      document.getElementById('nextBtn4').addEventListener('click', () => switchActivity(5));
+      
+      document.getElementById('prevBtn5').addEventListener('click', () => switchActivity(4));
+      document.getElementById('completeBtn5').addEventListener('click', completeActivity5);
+      
+      document.getElementById('homeBtn').addEventListener('click', () => {
+  document.getElementById('completionModal').classList.remove('active');
+  
+  // Reset all activities
+  activityCompleted.fill(false);
+  matchedPairs = {};
+  selectedQuestion = null;
+  
+  // Reset to Activity 1
+  switchActivity(1);
+  
+  // Re-initialize all activities
+  initActivity1();
+  initActivity2();
+  initActivity3();
+  initActivity4();
+  initActivity5();
+  
+  // Clear all feedback
+  for (let i = 1; i <= 5; i++) {
+    const feedback = document.getElementById(`feedback${i}`);
+    if (feedback) {
+      feedback.className = 'feedback';
+      feedback.innerHTML = '';
+    }
+  }
+  
+  // Reset all "Next" buttons
+  document.getElementById('nextBtn1').disabled = true;
+  document.getElementById('nextBtn2').disabled = true;
+  document.getElementById('nextBtn3').disabled = true;
+  document.getElementById('nextBtn4').disabled = true;
+  
+  // Scroll to top
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+    }
+
+    // Language toggle - FIXED
+    function setupLanguageToggle() {
+      const langToggle = document.getElementById('langToggle');
+      
+      langToggle.addEventListener('click', () => {
+        currentLang = currentLang === 'en' ? 'zh' : 'en';
+        
+        if (currentLang === 'zh') {
+          document.body.classList.add('zh');
+          langToggle.textContent = 'English';
+        } else {
+          document.body.classList.remove('zh');
+          langToggle.textContent = '中文';
+        }
+      });
+    }
+
+    // Load voices
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.onvoiceschanged = () => {};
+    }
+
+    // Initialize
+    init();
+  </script>
+</body>
+</html>
+    
+  </body>
+  
+</html>

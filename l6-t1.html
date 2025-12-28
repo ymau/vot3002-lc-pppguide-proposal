@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>L6 - Exploring the flow of a Project Plan Presentation</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Project Plan Presentation Flow</title>
+  <!-- Canvas-confetti library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 1rem;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    body::-webkit-scrollbar { display: none; }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 1.5rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    header {
+      background: linear-gradient(120deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      border-radius: 15px;
+      padding: 2rem 1.5rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      color: white;
+      text-align: center;
+    }
+
+    .lang-toggle {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.15));
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      border-radius: 20px;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: white;
+      font-weight: 600;
+      font-size: 0.9rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .lang-toggle:hover {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.25));
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      opacity: 0.95;
+      font-weight: 400;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    button {
+      padding: 0.6rem 1.5rem;
+      border: none;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #5568d3 0%, #6a408e 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+    }
+
+    .btn-secondary {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      color: white;
+      box-shadow: 0 4px 15px rgba(240, 147, 251, 0.4);
+    }
+
+    .btn-secondary:hover {
+      background: linear-gradient(135deg, #e77ef0 0%, #e04759 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(240, 147, 251, 0.5);
+    }
+
+    .instruction {
+      text-align: center;
+      color: #4a5568;
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
+      padding: 0.75rem;
+      background: linear-gradient(135deg, #e0e7ff 0%, #f3e7ff 100%);
+      border-radius: 10px;
+    }
+
+    .feedback {
+      text-align: center;
+      font-size: 0.95rem;
+      font-weight: 600;
+      min-height: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .feedback.correct { color: #10b981; }
+    .feedback.wrong { color: #ef4444; }
+
+    /* rows so numbers and cards line up */
+    .rows {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 0.75rem;
+      align-items: stretch;
+    }
+
+    .position-slot {
+      background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 110px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #64748b;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .position-slot.matched {
+      background: linear-gradient(135deg, #d1fae5 0%, #6ee7b7 100%);
+      color: #065f46;
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+      border-color: #10b981;
+    }
+
+    .position-slot.unmatched {
+      background: linear-gradient(135deg, #fee2e2 0%, #fca5a5 100%);
+      color: #991b1b;
+      box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+      border-color: #ef4444;
+    }
+
+    .card {
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+      border-radius: 15px;
+      padding: 1rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      border: 3px solid transparent;
+      transition: all 0.3s ease;
+      display: flex;
+      gap: 1rem;
+      align-items: stretch;
+      min-height: 110px;
+    }
+
+    .card:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .card.correct-position {
+      border-color: #10b981;
+      background: linear-gradient(135deg, #f0fdf4 0%, #d1fae5 100%);
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.2);
+    }
+
+    .card.wrong-position {
+      border-color: #ef4444;
+      background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+      box-shadow: 0 6px 20px rgba(239, 68, 68, 0.2);
+    }
+
+    .card-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-header-line {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-bottom: 0.4rem;
+    }
+
+    .card-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(102, 126, 234, 0.35);
+      max-width: 100%;
+    }
+
+    .card-detail {
+      font-size: 0.85rem;
+      color: #6b7280;
+      line-height: 1.5;
+      margin-top: 0.35rem;
+    }
+
+    .card-pill-zh,
+    .card-detail-zh { display: none; }
+
+    .card-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+
+    .move-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+      color: white;
+      border: none;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      padding: 0;
+      box-shadow: 0 3px 10px rgba(59, 130, 246, 0.3);
+    }
+
+    .move-btn:disabled {
+      background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
+      color: #9ca3af;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .move-btn:not(:disabled):hover {
+      background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+      transform: scale(1.1);
+      box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+    }
+
+    .move-btn:not(:disabled):active {
+      transform: scale(0.95);
+    }
+
+    /* Overview Modal */
+    .overview-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 1000;
+      padding: 1rem;
+      overflow-y: auto;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .overview-modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .overview-content {
+      background: white;
+      border-radius: 20px;
+      max-width: 800px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      animation: slideUp 0.3s ease;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .overview-content::-webkit-scrollbar { display: none; }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .overview-header {
+      background: linear-gradient(120deg, #10b981 0%, #059669 50%, #06b6d4 100%);
+      color: white;
+      padding: 2rem 1.5rem;
+      border-radius: 20px 20px 0 0;
+      text-align: center;
+    }
+
+    .overview-header h2 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .overview-header p {
+      opacity: 0.95;
+      font-size: 1rem;
+    }
+
+    .overview-body {
+      padding: 2rem 1.5rem;
+    }
+
+    .overview-card {
+      background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+      border-radius: 15px;
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+      border-left: 5px solid #10b981;
+      box-shadow: 0 3px 12px rgba(16, 185, 129, 0.15);
+      transition: all 0.3s ease;
+    }
+
+    .overview-card:hover {
+      transform: translateX(5px);
+      box-shadow: 0 5px 18px rgba(16, 185, 129, 0.25);
+    }
+
+    .overview-header-line {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .overview-step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: white;
+      border-radius: 50%;
+      font-weight: 700;
+      font-size: 0.9rem;
+      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+    }
+
+    .overview-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.35rem 1rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #059669 0%, #047857 100%);
+      color: white;
+      font-size: 0.9rem;
+      font-weight: 700;
+      max-width: 100%;
+      box-shadow: 0 3px 10px rgba(5, 150, 105, 0.35);
+    }
+
+    .overview-pill-zh,
+    .overview-card-detail-zh { display: none; }
+
+    .overview-card-detail {
+      font-size: 0.9rem;
+      color: #047857;
+      line-height: 1.5;
+      margin-top: 0.4rem;
+    }
+
+    .overview-footer {
+      padding: 0 1.5rem 2rem;
+      text-align: center;
+    }
+
+    .btn-close {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 0.75rem 2rem;
+      border-radius: 25px;
+      border: none;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .btn-close:hover {
+      background: linear-gradient(135deg, #5568d3 0%, #6a408e 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+    }
+
+    @media (max-width: 768px) {
+      .row { grid-template-columns: 80px 1fr; }
+      .position-slot { min-height: 100px; font-size: 1.2rem; }
+      .card { min-height: 100px; }
+    }
+
+    @media (max-width: 640px) {
+      .container { padding: 1rem; }
+      header { padding: 1.5rem 1rem; }
+      h1 { font-size: 1.3rem; padding-right: 3rem; }
+      .subtitle { font-size: 0.85rem; }
+
+      .lang-toggle {
+        top: 0.75rem;
+        right: 0.75rem;
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+      }
+
+      .row {
+        grid-template-columns: 70px 1fr;
+        gap: 0.6rem;
+      }
+
+      .position-slot {
+        min-height: 95px;
+        font-size: 1rem;
+      }
+
+      .card {
+        padding: 0.9rem;
+        min-height: 95px;
+      }
+
+      .card-detail { font-size: 0.75rem; }
+      .move-btn { width: 36px; height: 36px; font-size: 1rem; }
+      .overview-header h2 { font-size: 1.4rem; }
+      .overview-body { padding: 1.5rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <button class="lang-toggle" id="langToggle">中文</button>
+      <h1 id="mainTitle">Exploring the flow of a Project Plan Presentation </h1>
+      <p class="subtitle" id="mainSubtitle">Think about how presentations flow from beginning to end.</p>
+    </header>
+
+    <div class="controls">
+      <button class="btn-secondary" id="shuffleBtn">🔀 <span id="shuffleText">Shuffle Cards</span></button>
+      <button class="btn-primary" id="checkBtn">✓ <span id="checkText">Check Sequence</span></button>
+    </div>
+
+    <p class="instruction" id="instructionText">
+      💡 Tip: Use the arrow buttons to arrange the cards in the correct sequence. Tap ↑ or ↓ to reorder each card.
+    </p>
+
+    <div id="feedback" class="feedback"></div>
+
+    <div class="rows" id="rowsContainer"></div>
+  </div>
+
+  <!-- Overview Modal -->
+  <div id="overviewModal" class="overview-modal">
+    <div class="overview-content">
+      <div class="overview-header">
+        <h2>🎉 <span id="overviewTitle">Perfect Sequence!</span></h2>
+        <p id="overviewSubtitle">Here's the correct structure for a project plan presentation</p>
+      </div>
+      <div class="overview-body" id="overviewBody"></div>
+      <div class="overview-footer">
+        <button class="btn-close" id="closeOverview"><span id="closeText">Close</span></button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const steps = [
+      {
+        id: "A",
+        titleEn: "Introducing the People Involved & Potential Problems",
+        titleZh: "介紹相關人員及潛在問題",
+        detailEn: "Identify key stakeholders and discuss any potential challenges or problems that may arise.",
+        detailZh: "確定主要持份者，並討論可能出現的挑戰或問題。"
+      },
+      {
+        id: "B",
+        titleEn: "Stating the Resources Needed & Project Outputs",
+        titleZh: "說明所需資源及專題成果",
+        detailEn: "Describe the resources (budget, time, materials) required and what outputs the project will deliver.",
+        detailZh: "描述所需的資源（預算、時間、物資）及專題將交付的成果。"
+      },
+      {
+        id: "C",
+        titleEn: "Stating the Purpose of the Presentation",
+        titleZh: "說明簡報的目的",
+        detailEn: "Clearly state what you aim to achieve with this presentation and what information the audience will get.",
+        detailZh: "清楚說明此簡報的目標，以及觀眾將獲得的資訊。"
+      },
+      {
+        id: "D",
+        titleEn: "Introducing Project Topic, Background & Purpose",
+        titleZh: "介紹專題主題、背景及目的",
+        detailEn: "Provide context by explaining the project's topic, why it was chosen, and its overall purpose.",
+        detailZh: "通過解釋專題的主題、選擇原因及整體目的來提供背景資料。"
+      },
+      {
+        id: "E",
+        titleEn: "Greetings",
+        titleZh: "問候語",
+        detailEn: "Welcome your audience warmly and set a positive tone for your presentation.",
+        detailZh: "熱情歡迎各位觀眾，為簡報營造正面氣氛。"
+      },
+      {
+        id: "F",
+        titleEn: "Explaining the Milestones",
+        titleZh: "解釋里程碑",
+        detailEn: "Highlight key stages, completion deadline, or checkpoints throughout the project timeline.",
+        detailZh: "說明整個專題時間表中的完成期限、截止日期或檢查點。"
+      },
+      {
+        id: "G",
+        titleEn: "Conclusion",
+        titleZh: "總結",
+        detailEn: "Summarise the main points, thank the audience, and invite questions or feedback.",
+        detailZh: "總結要點，感謝觀眾，並邀請提問或回饋。"
+      },
+      {
+        id: "H",
+        titleEn: "Describing Project Requirements & Success Criteria",
+        titleZh: "描述專題要求及成功準則",
+        detailEn: "Outline what must be completed and how success will be measured or evaluated.",
+        detailZh: "概述必須完成的工作，以及如何衡量或評估成功。"
+      },
+      {
+        id: "I",
+        titleEn: "Introducing Team Members & Outlining the Presentation",
+        titleZh: "介紹團隊成員及簡報概要",
+        detailEn: "Introduce each team member and give a brief overview of what the presentation will cover.",
+        detailZh: "介紹每位團隊成員，並簡要概述簡報將涵蓋的內容。"
+      }
+    ];
+
+    // School sequence: E, C, I, D, H, A, F, B, G
+    const correctOrder = ["E", "C", "I", "D", "H", "A", "F", "B", "G"];
+
+    const translations = {
+      en: {
+        mainTitle: "Exploring the flow of a Project Plan Presentation",
+        mainSubtitle: "Think about how presentations flow from beginning to end",
+        shuffleText: "Shuffle Cards",
+        checkText: "Check Sequence",
+        instructionText:
+          "💡 Tip: Use the arrow buttons to arrange the cards in the correct sequence. Tap ↑ or ↓ to reorder each card.",
+        correctFeedback: "🎉 Excellent! Your presentation sequence is perfect!",
+        wrongFeedback: "❌ Not quite right. Look at the highlighted positions and try again.",
+        overviewTitle: "Perfect Sequence!",
+        overviewSubtitle: "Here's the correct structure for a project plan presentation",
+        closeText: "Close",
+        langToggleText: "中文"
+      },
+      zh: {
+        mainTitle: "探索專題計劃的簡報順序",
+        mainSubtitle: "想一想簡報從開始到結束的資料排序",
+        shuffleText: "隨機排列卡片",
+        checkText: "檢查順序",
+        instructionText:
+          "💡 提示：使用箭頭按鈕將卡片排列成正確順序。點擊 ↑ 或 ↓ 來重新排序卡片。",
+        correctFeedback: "🎉 太好了！您的簡報順序完全正確！",
+        wrongFeedback: "❌ 還不太對。查看標示的位置並再試一次。",
+        overviewTitle: "完美順序！",
+        overviewSubtitle: "這是專題計劃簡報的正確結構",
+        closeText: "關閉",
+        langToggleText: "English"
+      }
+    };
+
+    let currentLang = "en";
+
+    const rowsContainer = document.getElementById("rowsContainer");
+    const feedback = document.getElementById("feedback");
+    const shuffleBtn = document.getElementById("shuffleBtn");
+    const checkBtn = document.getElementById("checkBtn");
+    const langToggle = document.getElementById("langToggle");
+    const overviewModal = document.getElementById("overviewModal");
+
+    function shuffle(arr) {
+      const newArr = [...arr];
+      for (let i = newArr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
+      }
+      return newArr;
+    }
+
+    function renderRows(order) {
+      rowsContainer.innerHTML = "";
+      order.forEach((id, index) => {
+        const step = steps.find((s) => s.id === id);
+
+        const row = document.createElement("div");
+        row.className = "row";
+
+        const slot = document.createElement("div");
+        slot.className = "position-slot";
+        slot.textContent = index + 1;
+        slot.dataset.position = index + 1;
+
+        const card = document.createElement("div");
+        card.className = "card";
+        card.dataset.id = step.id;
+
+        card.innerHTML = `
+          <div class="card-content">
+            <div class="card-header-line">
+              <span class="card-pill card-pill-en">${step.titleEn}</span>
+              <span class="card-pill card-pill-zh" style="display:none;">${step.titleZh}</span>
+            </div>
+            <div class="card-detail card-detail-en">${step.detailEn}</div>
+            <div class="card-detail card-detail-zh" style="display:none;">${step.detailZh}</div>
+          </div>
+          <div class="card-buttons">
+            <button class="move-btn move-up" aria-label="Move up" ${
+              index === 0 ? "disabled" : ""
+            }>↑</button>
+            <button class="move-btn move-down" aria-label="Move down" ${
+              index === order.length - 1 ? "disabled" : ""
+            }>↓</button>
+          </div>
+        `;
+
+        row.appendChild(slot);
+        row.appendChild(card);
+        rowsContainer.appendChild(row);
+      });
+
+      document.querySelectorAll(".move-up").forEach((btn, idx) => {
+        btn.addEventListener("click", () => moveCard(idx, -1));
+      });
+
+      document.querySelectorAll(".move-down").forEach((btn, idx) => {
+        btn.addEventListener("click", () => moveCard(idx, 1));
+      });
+
+      updateLanguage();
+    }
+
+    function getCurrentOrder() {
+      return [...rowsContainer.querySelectorAll(".card")].map(
+        (card) => card.dataset.id
+      );
+    }
+
+    function moveCard(index, direction) {
+      const currentOrder = getCurrentOrder();
+      const newIndex = index + direction;
+      if (newIndex < 0 || newIndex >= currentOrder.length) return;
+
+      [currentOrder[index], currentOrder[newIndex]] = [
+        currentOrder[newIndex],
+        currentOrder[index]
+      ];
+      renderRows(currentOrder);
+      clearFeedback();
+
+      setTimeout(() => {
+        const rows = rowsContainer.querySelectorAll(".row");
+        rows[newIndex].scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }, 50);
+    }
+
+    function showOverview() {
+      const overviewBody = document.getElementById("overviewBody");
+      overviewBody.innerHTML = "";
+
+      correctOrder.forEach((id, index) => {
+        const step = steps.find((s) => s.id === id);
+        const overviewCard = document.createElement("div");
+        overviewCard.className = "overview-card";
+
+        overviewCard.innerHTML = `
+          <div class="overview-header-line">
+            <span class="overview-step-number">${index + 1}</span>
+            <span class="overview-pill overview-pill-en">${step.titleEn}</span>
+            <span class="overview-pill overview-pill-zh" style="display:none;">${step.titleZh}</span>
+          </div>
+          <div class="overview-card-detail overview-card-detail-en">${step.detailEn}</div>
+          <div class="overview-card-detail overview-card-detail-zh" style="display:none;">${step.detailZh}</div>
+        `;
+
+        overviewBody.appendChild(overviewCard);
+      });
+
+      updateLanguage();
+      overviewModal.classList.add("active");
+    }
+
+    function checkSequence() {
+      const current = getCurrentOrder();
+      const allCorrect =
+        JSON.stringify(current) === JSON.stringify(correctOrder);
+
+      const slots = rowsContainer.querySelectorAll(".position-slot");
+      const cards = rowsContainer.querySelectorAll(".card");
+
+      slots.forEach((slot, idx) => {
+        slot.classList.remove("matched", "unmatched");
+        cards[idx].classList.remove("correct-position", "wrong-position");
+        if (current[idx] === correctOrder[idx]) {
+          slot.classList.add("matched");
+          cards[idx].classList.add("correct-position");
+        } else {
+          slot.classList.add("unmatched");
+          cards[idx].classList.add("wrong-position");
+        }
+      });
+
+      if (allCorrect) {
+        feedback.textContent = translations[currentLang].correctFeedback;
+        feedback.className = "feedback correct";
+        
+        // Trigger confetti for perfect sequence
+        confetti({
+          particleCount: 150,
+          spread: 80,
+          origin: { y: 0.6 }
+        });
+        
+        setTimeout(showOverview, 800);
+      } else {
+        feedback.textContent = translations[currentLang].wrongFeedback;
+        feedback.className = "feedback wrong";
+      }
+    }
+
+    function clearFeedback() {
+      feedback.textContent = "";
+      feedback.className = "feedback";
+      rowsContainer.querySelectorAll(".position-slot").forEach((slot) => {
+        slot.classList.remove("matched", "unmatched");
+      });
+      rowsContainer.querySelectorAll(".card").forEach((card) => {
+        card.classList.remove("correct-position", "wrong-position");
+      });
+    }
+
+    function updateLanguage() {
+      const t = translations[currentLang];
+      const showEn = currentLang === "en";
+
+      document.getElementById("mainTitle").textContent = t.mainTitle;
+      document.getElementById("mainSubtitle").textContent = t.mainSubtitle;
+      document.getElementById("shuffleText").textContent = t.shuffleText;
+      document.getElementById("checkText").textContent = t.checkText;
+      document.getElementById("instructionText").textContent = t.instructionText;
+      document.getElementById("overviewTitle").textContent = t.overviewTitle;
+      document.getElementById("overviewSubtitle").textContent =
+        t.overviewSubtitle;
+      document.getElementById("closeText").textContent = t.closeText;
+      langToggle.textContent = t.langToggleText;
+
+      document
+        .querySelectorAll(
+          ".card-pill-en, .card-detail-en, .overview-pill-en, .overview-card-detail-en"
+        )
+        .forEach((el) => (el.style.display = showEn ? "inline-flex" : "none"));
+      document
+        .querySelectorAll(
+          ".card-pill-zh, .card-detail-zh, .overview-pill-zh, .overview-card-detail-zh"
+        )
+        .forEach((el) => (el.style.display = showEn ? "none" : "inline-flex"));
+    }
+
+    shuffleBtn.addEventListener("click", () => {
+      renderRows(shuffle(correctOrder));
+      clearFeedback();
+    });
+
+    checkBtn.addEventListener("click", checkSequence);
+
+    langToggle.addEventListener("click", () => {
+      currentLang = currentLang === "en" ? "zh" : "en";
+      updateLanguage();
+    });
+
+    document
+      .getElementById("closeOverview")
+      .addEventListener("click", () => overviewModal.classList.remove("active"));
+
+    overviewModal.addEventListener("click", (e) => {
+      if (e.target === overviewModal) {
+        overviewModal.classList.remove("active");
+      }
+    });
+
+    // Initial render
+    renderRows(shuffle(correctOrder));
+  </script>
+</body>
+</html>
+    
+  </body>
+  
+</html>

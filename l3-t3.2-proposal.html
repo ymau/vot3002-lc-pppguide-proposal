@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>L3 - (Proposal Project) Project Plan Expression Reference</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>(Proposal Project) Project Plan Expression Reference</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Poppins',sans-serif;background:linear-gradient(-45deg,#FDEDED,#F7F6D3,#AAC4F5);min-height:100vh;padding:20px}
+    .container{max-width:1000px;margin:0 auto;background:#fff;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,.2);overflow:hidden}
+    .header{
+      background:linear-gradient(135deg,#06b6d4 0%,#FFFD8F 100%);
+      color:#fff;
+      padding:24px 20px;
+      text-align:center;
+      position:relative}
+    
+    .lang-toggle{
+      position:absolute;
+      top:16px;
+      right:16px;
+      background:rgba(255,255,255,.2);
+      border:2px solid #fff;
+      color:#fff;
+      padding:6px 14px;
+      border-radius:20px;
+      cursor:pointer;
+      font-size:.8em;
+      font-weight:600;
+      transition:.3s}
+    
+    .lang-toggle:hover{background:#fff;color:#0891b2}
+    .header h1{font-size:1.7em;margin-bottom:6px;font-weight:700}
+    .header p{font-size:.95em;opacity:.95}
+    .nav-tabs{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;background:#f1f5f9;padding:10px 12px;border-bottom:1px solid #e2e8f0}
+    .tab-btn{flex:1 1 30%;min-width:90px;border:none;background:#e2e8f0;color:#0f172a;padding:8px 10px;border-radius:999px;font-size:.8em;font-weight:600;cursor:pointer;transition:.3s}
+    .tab-btn.active{background:linear-gradient(135deg,#14b8a6,#06b6d4);color:#fff;box-shadow:0 4px 10px rgba(8,145,178,.3)}
+    .content{padding:20px 16px 28px}
+    .section-page{display:none;animation:fadeIn .4s ease}
+    .section-page.active{display:block}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+    .section-header{background:linear-gradient(135deg,#FFDB5C,#C3FF93, #A0DEFF);color:#fff;padding:16px;border-radius:12px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+    .section-title{font-size:1.15em;font-weight:600;display:flex;align-items:center;gap:8px}
+    .emoji{font-size:1.25em}
+    .speak-all-btn{background:rgba(255,255,255,.2);border:2px solid #fff;color:#fff;padding:6px 12px;border-radius:20px;cursor:pointer;font-size:.75em;font-weight:600;display:flex;align-items:center;gap:4px;transition:.3s;white-space:nowrap}
+    .speak-all-btn:hover{background:#fff;color:#0891b2}
+    .expression-card{background:#f0fdfa;border-left:4px solid #0891b2;padding:14px 14px 12px;margin:10px 0;border-radius:10px;transition:.3s}
+    .expression-card:hover{transform:translateX(3px);box-shadow:0 4px 12px rgba(8,145,178,.18)}
+    .expression-pattern{font-size:.98em;font-weight:600;color:#0891b2;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+    .speak-btn{background:#0891b2;color:#fff;border:none;padding:4px 10px;border-radius:14px;cursor:pointer;font-size:.7em;font-weight:600;display:flex;align-items:center;gap:4px;transition:.2s;flex-shrink:0}
+    .speak-btn:hover{background:#0e7490;transform:scale(1.03)}
+    .speak-btn:active{transform:scale(.95)}
+    .example{color:#334155;line-height:1.5;margin:4px 0 2px 0;padding-left:10px;border-left:2px solid #cbd5e1;font-size:.9em;text-align: left}
+   .example strong {
+  color:#73BBA3;
+  display: block;
+  margin-bottom: 4px;
+}
+    .note{background:#ecfeff;padding:8px 10px;border-radius:8px;margin-top:6px;font-size:.8em;color:#0e7490;font-style:italic}
+    .lang-en,.lang-zh{display:none}
+    body[data-lang="en"] .lang-en{display:inline}
+    body[data-lang="zh"] .lang-zh{display:inline}
+    @media(max-width:768px){body{padding:10px}.container{border-radius:15px}.header{padding:18px 14px}.header h1{font-size:1.4em;padding-right:60px}.header p{font-size:.9em}.nav-tabs{gap:4px}.tab-btn{font-size:.7em;padding:6px 8px}.section-header{flex-direction:column;align-items:flex-start}.section-title{font-size:1.05em}.expression-pattern{flex-direction:column;align-items:flex-start}}
+  </style>
+</head>
+<body data-lang="en">
+<div class="container">
+  <div class="header">
+    <button class="lang-toggle" onclick="toggleLanguage()">
+      <span class="lang-en">中文</span><span class="lang-zh">English</span>
+    </button>
+    <h1><span class="lang-en">Project Plan <br>Expression Reference</span><span class="lang-zh">專題計劃常用語句參考</span></h1>
+    <p>
+      <span class="lang-en">Useful patterns for every section of a project plan<br> <strong>(Proposal Project)</strong></span>
+      <span class="lang-zh">專題計劃各部分的實用句型<br><strong>(提案計劃)</strong></span></p>
+   
+ <div class="nav-tabs">
+  <button class="tab-btn active" data-target="page-background" onclick="showPage(event)">
+    <span class="lang-en">Background</span><span class="lang-zh">背景</span>
+  </button>
+  <button class="tab-btn" data-target="page-purpose" onclick="showPage(event)">
+    <span class="lang-en">Purpose</span><span class="lang-zh">目的</span>
+  </button>
+  <button class="tab-btn" data-target="page-requirements" onclick="showPage(event)">
+    <span class="lang-en">Requirements</span><span class="lang-zh">要求</span>
+  </button>
+  <button class="tab-btn" data-target="page-criteria" onclick="showPage(event)">
+    <span class="lang-en">Success</span><span class="lang-zh">成功準則</span>
+  </button>
+  <button class="tab-btn" data-target="page-people" onclick="showPage(event)">
+    <span class="lang-en">People Involved</span><span class="lang-zh">相關人員</span>
+  </button>
+  <button class="tab-btn" data-target="page-problems" onclick="showPage(event)">
+    <span class="lang-en">Problems</span><span class="lang-zh">潛在問題</span>
+  </button>
+  <button class="tab-btn" data-target="page-milestones" onclick="showPage(event)">
+    <span class="lang-en">Milestones</span><span class="lang-zh">里程碑</span>
+  </button>
+  <button class="tab-btn" data-target="page-resources" onclick="showPage(event)">
+    <span class="lang-en">Resources</span><span class="lang-zh">所需資源</span>
+  </button>
+  <button class="tab-btn" data-target="page-outputs" onclick="showPage(event)">
+    <span class="lang-en">Outputs</span><span class="lang-zh">成果</span>
+  </button>
+</div>
+
+
+  <div class="content">
+
+    <!-- BACKGROUND PAGE -->
+    <div class="section-page active" id="page-background">
+      <div class="section-header">
+        <div class="section-title"><span class="emoji">📋</span><span><span class="lang-en">Background</span><span class="lang-zh">背景</span></span></div>
+        <button class="speak-all-btn" onclick="speakAll('page-background')"><span>🔊</span><span class="lang-en">Read all</span><span class="lang-zh">朗讀全部</span></button>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>[Company/organisation] will + verb...</span>
+          <button class="speak-btn"
+                  data-text-en="Ocean Shopping Mall will open in Taim Sha Tsui in December twenty twenty six" 
+                  data-text-zh="Ocean 購物中心將於二零二六年十二月在尖沙咀開業"                             onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Ocean Shopping Mall will open in Tsim Sha Tsui in December 2026.</span> <span class="lang-zh">Ocean 購物中心將於 2026 年 12 月在尖沙咀開業。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>[Organisation] has invited our company to...</span>
+          <button class="speak-btn" 
+                  data-text-en="The mall has invited our company to design a customer service counter"
+                  data-text-zh="商場邀請了我們公司設計顧客服務櫃檯" 
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">The mall has invited our company to design a customer service counter.</span> <span class="lang-zh">商場邀請了我們公司設計顧客服務櫃檯。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>There is/are + need or problem...</span>
+          <button class="speak-btn" 
+                  data-text-en="There is a need for better customer service facilities" 
+                  data-text-zh="商場需要更完善的顧客服務設施" 
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">There is a need for better customer service facilities.</span> <span class="lang-zh">商場需要更完善的顧客服務設施。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>[Company/organisation] is planning to + verb...</span>
+          <button class="speak-btn" 
+                  data-text-en="The school is planning to upgrade its library facilities"
+                  data-text-zh="學校正籌劃改善圖書館設施" 
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">The school is planning to upgrade its library facilities.</span> <span class="lang-zh">學校正籌劃改善圖書館設施。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>Recently, [organisation] has noticed that + problem...</span>
+          <button class="speak-btn" 
+                  data-text-en="Recently, the mall has noticed that many customers find it difficult to get information"
+                  data-text-zh="最近，商場發現許多顧客難以取得所需資訊" 
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Recently, the mall has noticed that many customers find it difficult to get information.</span> <span class="lang-zh">最近，商場發現許多顧客難以取得所需資訊。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>Due to + trend or problem, there is a need to...</span>
+          <button class="speak-btn" 
+                  data-text-en="Due to the growing number of visitors, there is a need to improve crowd management"
+                  data-text-zh="由於訪客數量日益增加，商場需要提升人流管理效能" 
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Due to the growing number of visitors, there is a need to improve crowd management.</span> <span class="lang-zh">由於訪客數量日益增加，商場需要提升人流管理效能。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>In order to + aim, [organisation] has decided to...</span>
+          <button class="speak-btn" 
+                  data-text-en="In order to provide better customer support, the company has decided to redesign the help desk"
+                  data-text-zh="為了向顧客提供更優質的支援服務，公司決定重新設計服務櫃" 
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">In order to provide better customer support, the company has decided to redesign the help desk.</span> <span class="lang-zh">為了向顧客提供更優質的支援服務，公司決定重新設計服務櫃。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>[Place] is expected to + verb (effect)...</span>
+          <button class="speak-btn" 
+                  data-text-en="The new shopping mall is expected to attract more tourists to the district"
+                  data-text-zh="預計新購物商將吸引更多遊客到該區" onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">The new shopping mall is expected to attract more tourists to the district.</span> <span class="lang-zh">預計新購物商場將吸引更多遊客到該區。</span></div>
+      </div>
+    </div>
+
+    <!-- PURPOSE PAGE -->
+    <div class="section-page" id="page-purpose">
+      <div class="section-header">
+        <div class="section-title"><span class="emoji">🎯</span><span><span class="lang-en">Project Purpose</span><span class="lang-zh">項目目的</span></span></div>
+        <button class="speak-all-btn" onclick="speakAll('page-purpose')"><span>🔊</span><span class="lang-en">Read all</span><span class="lang-zh">朗讀全部</span></button>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>To + verb + adjective + noun</span>
+          <button class="speak-btn" 
+                  data-text-en="To propose a practical and user friendly customer service counter"
+                  data-text-zh="為商場提出實用及方便使用的顧客服務櫃台"
+          onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">To propose a practical and user-friendly customer service counter.</span> <span class="lang-zh">為商場提出實用及方便使用的顧客服務櫃台。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>To + verb + outcome</span>
+          <button class="speak-btn" 
+                  data-text-en="To design an innovative mobile app for online shopping" 
+                  data-text-zh="開發一個創新的線上購物流動應用程式"
+          onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">To design an innovative mobile app for online shopping.</span> <span class="lang-zh">開發一個創新的線上購物流動應用程式。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>To + create / develop / improve + solution</span>
+          <button class="speak-btn" 
+                  data-text-en="To create an effective marketing strategy for the new product launch"
+                  data-text-zh="為新產品上市制定一套有效的市場營銷方案"
+          onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">To create an effective marketing strategy for the new product launch.</span> <span class="lang-zh">為新產品上市制定一套有效的市場營銷方案。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>To improve + area + by + -ing</span>
+          <button class="speak-btn" 
+                  data-text-en="To improve customer satisfaction by redesigning the service counter" 
+                  data-text-zh="通過重新設計服務櫃檯來提升顧客滿意度"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">To improve customer satisfaction by redesigning the service counter.</span> <span class="lang-zh">通過重新設計服務櫃檯來提升顧客滿意度。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>To provide + group + with + noun</span>
+          <button class="speak-btn" 
+                  data-text-en="To provide shoppers with clear and up to date information" 
+                  data-text-zh="為顧客提供清晰及最新的資訊"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">To provide shoppers with clear and up-to-date information.</span> <span class="lang-zh">為顧客提供清晰及最新的資訊。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>To reduce + problem + by + -ing</span>
+          <button class="speak-btn" 
+                  data-text-en="To reduce waiting time by introducing a ticketing system"
+                  data-text-zh="通過引入取籌系統來減少輪候時間"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">To reduce waiting time by introducing a ticketing system.</span> <span class="lang-zh">通過引入取籌系統來減少輪候時間。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>To enhance + noun + for + group</span>
+          <button class="speak-btn" 
+                  data-text-en="To enhance safety for elderly customers" 
+                  data-text-zh="提升長者顧客的安全"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">To enhance safety for elderly customers.</span> <span class="lang-zh">提升長者顧客的安全。</span></div>
+      </div>
+    </div>
+
+    <!-- REQUIREMENTS PAGE -->
+    <div class="section-page" id="page-requirements">
+      <div class="section-header">
+        <div class="section-title"><span class="emoji">📝</span><span><span class="lang-en">Requirements</span><span class="lang-zh">要求</span></span></div>
+        <button class="speak-all-btn" onclick="speakAll('page-requirements')"><span>🔊</span><span class="lang-en">Read all</span><span class="lang-zh">朗讀全部</span></button>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>[Subject] should be + adjectives</span>
+          <button class="speak-btn" 
+                  data-text-en="The counter should be modern informative and easy to notice"
+                  data-text-zh="櫃台應具備現代化、資訊清晰及顯眼的特點"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">The counter should be modern, informative and easy to notice.</span> <span class="lang-zh">櫃台應具備現代化、資訊清晰及顯眼的特點。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>It should + verb + feature</span>
+          <button class="speak-btn" 
+                  data-text-en="It should provide clear information about shops facilities and events"
+                  data-text-zh="櫃台應提供清晰的商店、設施及活動資訊"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">It should provide clear information about shops, facilities and events.</span> <span class="lang-zh">櫃台應提供清晰的商店、設施及活動資訊。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>It should be able to + verb phrase</span>
+          <button class="speak-btn" 
+                  data-text-en="It should be able to handle enquiries from different languages"
+                  data-text-zh="櫃台應能夠應對來自不同語言的顧客查詢"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">It should be able to handle enquiries from different languages.</span> <span class="lang-zh">櫃台應能夠應對來自不同語言的顧客查詢。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>The system should allow users to + verb</span>
+          <button class="speak-btn" 
+                  data-text-en="The system should allow users to search for shops quickly"
+                  data-text-zh="系統應支援用戶快速搜尋店舖"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">The system should allow users to search for shops quickly.</span> <span class="lang-zh">系統應支援用戶快速搜尋店舖。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>The design should include + item list</span>
+          <button class="speak-btn" 
+                  data-text-en="The design should include clear signage floor maps and emergency information"
+                  data-text-zh="設計應包括清晰指示牌、樓層平面圖及緊急資訊"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">The design should include clear signage, floor maps and emergency information.</span> <span class="lang-zh">設計應包括清晰指示牌、樓層平面圖及緊急資訊。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>The project should follow + standard or policy</span>
+          <button class="speak-btn" 
+                  data-text-en="The project should follow the mall safety guidelines and branding policy"
+                  data-text-zh="項目必須遵守商場的安全守則及品牌政策"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">The project should follow the mall safety guidelines and branding policy.</span> <span class="lang-zh">項目必須遵守商場的安全守則及品牌政策。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>The layout should offer + feature</span>
+          <button class="speak-btn" 
+                  data-text-en="The layout should offer barrier free access for wheelchair users" 
+                  data-text-zh="佈局設計應符合無障礙通道要求，方便輪椅使用者"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">The layout should offer barrier-free access for wheelchair users.</span> <span class="lang-zh">佈局設計應符合無障礙通道要求，方便輪椅使用者。</span></div>
+      </div>
+
+      <div class="note"><span class="lang-en">💡 Use “should” for general requirements and “must” for very strict ones.</span><span class="lang-zh">💡 一般要求可用 should，非常重要或必須的要求可用 must。</span></div>
+    </div>
+
+    <!-- SUCCESS CRITERIA PAGE -->
+    <div class="section-page" id="page-criteria">
+      <div class="section-header">
+        <div class="section-title"><span class="emoji">✅</span><span><span class="lang-en">Success Criteria</span><span class="lang-zh">成功準則</span></span></div>
+        <button class="speak-all-btn" onclick="speakAll('page-criteria')"><span>🔊</span><span class="lang-en">Read all</span><span class="lang-zh">朗讀全部</span></button>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>[Outcome] is / are achieved</span>
+          <button class="speak-btn" 
+                  data-text-en="Customer satisfaction of ninety per cent or above is achieved"
+                  data-text-zh="顧客滿意度需達90%或以上"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Customer satisfaction of 90% or above is achieved.</span> <span class="lang-zh">顧客滿意度需達90%或以上。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>[Action] is / are completed within + time</span>
+          <button class="speak-btn" 
+                  data-text-en="Customer enquiries are handled within two minutes"
+                  data-text-zh="所有顧客查詢須於2分鐘內處理"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Customer enquiries are handled within 2 minutes.</span> <span class="lang-zh">所有顧客查詢須於2分鐘內處理。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>[Result] is received from + stakeholder</span>
+          <button class="speak-btn" 
+                  data-text-en="Positive feedback from mall management and tenants is received"
+                  data-text-zh="獲商場管理層及租戶給予正面評價"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Positive feedback from mall management and tenants is received.</span> <span class="lang-zh">獲商場管理層及租戶給予正面評價。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>[Number or percentage] of users are satisfied with + item</span>
+          <button class="speak-btn" 
+                  data-text-en="Eighty per cent of users are satisfied with the new counter design" 
+                  data-text-zh="八成用戶對新櫃台設計感到滿意"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">80% of users are satisfied with the new counter design.</span> <span class="lang-zh">八成用戶對新櫃台設計感到滿意。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>At least + number + item is / are completed by + time</span>
+          <button class="speak-btn" 
+                  data-text-en="At least three trial sessions are completed by Week ten"
+                  data-text-zh="在第十週前至少完成三次測試"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">At least three trial sessions are completed by Week 10.</span> <span class="lang-zh">在第十週前至少完成三次測試。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>An increase of + percentage in + measure is achieved</span>
+          <button class="speak-btn" 
+                  data-text-en="An increase of twenty per cent in customer visits is achieved"
+                  data-text-zh="顧客到訪量增加20%"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">An increase of 20% in customer visits is achieved.</span> <span class="lang-zh">顧客到訪量增加20%。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>All required documents are submitted on or before + date</span>
+          <button class="speak-btn" 
+                  data-text-en="All required documents are submitted on or before the deadline"
+                  data-text-en="所有所需文件須於截止日期或之前提交"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">All required documents are submitted on or before the deadline.</span> <span class="lang-zh">所有所需文件須於截止日期或之前提交。</span></div>
+      </div>
+
+      <div class="note"><span class="lang-en">💡 Success criteria should be clear, specific and measurable.</span><span class="lang-zh">💡 成功準則要清晰、具體，而且可以量度。</span></div>
+    </div>
+
+    <!-- PEOPLE INVOLVED PAGE -->
+    <div class="section-page" id="page-people">
+      <div class="section-header">
+        <div class="section-title"><span class="emoji">👥</span><span><span class="lang-en">People Involved</span><span class="lang-zh">相關人員</span></span></div>
+        <button class="speak-all-btn" onclick="speakAll('page-people')"><span>🔊</span><span class="lang-en">Read all</span><span class="lang-zh">朗讀全部</span></button>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>[Stakeholder group] (simple list)</span>
+          <button class="speak-btn" 
+                  data-text-en="Shoppers and visitors, mall tenants and their staff, mall management team"
+                  data-text-zh="購物者及訪客；商場租戶及其員工；商場管理團隊；媒體與公眾"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Examples:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Shoppers and visitors; mall tenants and their staff; mall management team; media and general public.</span> <span class="lang-zh">購物者及訪客；商場租戶及其員工；商場管理團隊；媒體與公眾。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>[Group] who will + role or action</span>
+          <button class="speak-btn" 
+                  data-text-en="Customers who will use the service, staff who will operate the counter" 
+                  data-text-zh="將使用服務的顧客；負責操作櫃台的員工" 
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Examples:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Customers who will use the service; staff who will operate the counter.</span> <span class="lang-zh">將使用服務的顧客；負責操作櫃台的員工。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>Project team members such as + roles</span>
+          <button class="speak-btn" 
+                  data-text-en="Project team members such as leader designer researcher and presenter"
+                  data-text-zh="項目小組成員，例如組長、設計員、研究員及匯報員"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Project team members such as leader, designer, researcher and presenter.</span> <span class="lang-zh">項目小組成員，例如組長、設計員、研究員及匯報員。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>Teachers or supervisors who will + action</span>
+          <button class="speak-btn" 
+                  data-text-en="Teachers who will monitor progress and give feedback" 
+                  data-text-zh="負責監察進度並提供意見的導師"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Teachers who will monitor progress and give feedback.</span> <span class="lang-zh">負責監察進度並提供意見的導師。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>External partners who will provide + support</span>
+          <button class="speak-btn" 
+                  data-text-en="External partners who will provide professional advice and sponsorship"
+                  data-text-zh="提供專業意見及贊助的外部合作夥伴"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">External partners who will provide professional advice and sponsorship.</span> <span class="lang-zh">提供專業意見及贊助的外部合作夥伴。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>Target users who will test + product or service</span>
+          <button class="speak-btn" 
+                  data-text-en="Target users who will test the new counter design and give comments" 
+                  data-text-zh="會測試新櫃台設計並提供意見的目標用家"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Target users who will test the new counter design and give comments.</span> <span class="lang-zh">會測試新櫃台設計並提供意見的目標用家。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>Support staff who will + task</span>
+          <button class="speak-btn" 
+                  data-text-en="Support staff who will set up equipment and arrange the venue"
+                  data-text-zh="負責安裝設備及安排場地的支援人員"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Support staff who will set up equipment and arrange the venue.</span> <span class="lang-zh">負責安裝設備及安排場地的支援人員。</span></div>
+      </div>
+
+      <div class="note"><span class="lang-en">💡 List everyone who affects or is affected by the project.</span><span class="lang-zh">💡 要列出所有會影響或受項目影響的人。</span></div>
+    </div>
+
+    <!-- POTENTIAL PROBLEMS PAGE -->
+    <div class="section-page" id="page-problems">
+      <div class="section-header">
+        <div class="section-title"><span class="emoji">⚠️</span><span><span class="lang-en">Potential Problems</span><span class="lang-zh">潛在問題</span></span></div>
+        <button class="speak-all-btn" onclick="speakAll('page-problems')"><span>🔊</span><span class="lang-en">Read all</span><span class="lang-zh">朗讀全部</span></button>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>[Problem] is available / exists</span>
+          <button class="speak-btn" 
+                  data-text-en="Limited space is available for the customer service counter" 
+                  data-text-zh="客戶服務櫃台的空間有限"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Limited space is available for the customer service counter.</span> <span class="lang-zh">客戶服務櫃台的空間有限。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>[Issue] may occur during + situation</span>
+          <button class="speak-btn" 
+                  data-text-en="Manpower shortages may occur during peak hours" 
+                  data-text-zh="高峰時段可能出現人手短缺"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Manpower shortages may occur during peak hours.</span> <span class="lang-zh">高峰時段可能出現人手短缺。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>[Cause] may lead to / result in + consequence</span>
+          <button class="speak-btn" 
+                  data-text-en="Poor counter location may lead to low visibility for customers"
+                  data-text-zh="櫃台位置欠佳可能導致顧客難以察覺"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Poor counter location may lead to low visibility for customers.</span> <span class="lang-zh">櫃台位置欠佳可能導致顧客難以察覺。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>Lack of / insufficient + resource may + negative effect</span>
+          <button class="speak-btn" 
+                  data-text-en="Insufficient equipment may hinder service delivery" 
+                  data-text-zh="設備短缺可能會影響服務質素"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Insufficient equipment may hinder service delivery.</span> <span class="lang-zh">設備短缺可能會影響服務質素。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>Time / cost / manpower may not be sufficient for + task</span>
+          <button class="speak-btn" 
+                  data-text-en="Time may not be sufficient for testing all design ideas" 
+                  data-text-zh="未必有足夠時間測試所有設計意念"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Time may not be sufficient for testing all design ideas.</span> <span class="lang-zh">未必有足夠時間測試所有設計意念。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>Unexpected technical problems may affect + area</span>
+          <button class="speak-btn" 
+                  data-text-en="Unexpected technical problems may affect the booking system" 
+                  data-text-zh="突發技術故障可能會影響預約系統的運作"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Unexpected technical problems may affect the booking system.</span> <span class="lang-zh">突發技術故障可能會影響預約系統的運作。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>Communication problems may occur between + groups</span>
+          <button class="speak-btn" 
+                  data-text-en="Communication problems may occur between tenants and management" 
+                  data-text-zh="租戶與管理層之間可能出現溝通問題"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Communication problems may occur between tenants and management.</span> <span class="lang-zh">租戶與管理層之間可能出現溝通問題。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>Changes in schedule may delay + task</span>
+          <button class="speak-btn" 
+                  data-text-en="Changes in schedule may delay the installation work" 
+                  data-text-zh="工程時間表變動可能導致安裝工程延誤"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Changes in schedule may delay the installation work.</span> <span class="lang-zh">工程時間表變動可能導致安裝工程延誤。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>Weather or safety issues may disrupt + activity</span>
+          <button class="speak-btn" 
+                  data-text-en="Bad weather may disrupt outdoor promotional activities" 
+                  data-text-zh="惡劣天氣可能影響戶外宣傳活動"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Bad weather may disrupt outdoor promotional activities.</span> <span class="lang-zh">惡劣天氣可能影響戶外宣傳活動。</span></div>
+      </div>
+
+      <div class="note"><span class="lang-en">💡 Use “may”, “might” or “could” to show that the problem is possible, not certain.</span><span class="lang-zh">💡 用 may、might 或 could 表示問題「可能」發生，而不是一定會發生。</span></div>
+    </div>
+
+    <!-- MILESTONES PAGE -->
+    <div class="section-page" id="page-milestones">
+      <div class="section-header">
+        <div class="section-title"><span class="emoji">📅</span><span><span class="lang-en">Milestones</span><span class="lang-zh">里程碑</span></span></div>
+        <button class="speak-all-btn" onclick="speakAll('page-milestones')"><span>🔊</span><span class="lang-en">Read all</span><span class="lang-zh">朗讀全部</span></button>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>Conduct + research / study / investigation</span>
+          <button class="speak-btn" 
+                  data-text-en="Conduct Internet research on customer service counters" 
+                  data-text-zh="進行有關客戶服務櫃台的網上資料搜集"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Conduct Internet research on customer service counters.</span> <span class="lang-zh">進行有關客戶服務櫃台的網上資料搜集。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>Analyse / analyse the + data or results</span>
+          <button class="speak-btn" 
+                  data-text-en="Analyse the data of empathy maps" 
+                  data-text-zh="分析同理心地圖的數據"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Analyse the data of empathy maps.</span> <span class="lang-zh">分析同理心地圖的數據。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>Draft / submit + deliverable</span>
+          <button class="speak-btn" 
+                  data-text-en="Draft a design of the customer service counter and submit a progress report"
+                  data-text-zh="草擬客戶服務櫃台設計；提交進度報告"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Examples:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Draft a design of the customer service counter; submit progress report.</span> <span class="lang-zh">草擬客戶服務櫃台設計；提交進度報告。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>Prepare + document by Week + number</span>
+          <button class="speak-btn" 
+                  data-text-en="Prepare the project plan presentation by Week eight" 
+                  data-text-zh="於第八週前準備好專題計劃簡報"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Prepare the project plan presentation by Week 8.</span> <span class="lang-zh">於第八週前準備好專題計劃簡報。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>Hold a meeting to + verb</span>
+          <button class="speak-btn" 
+                  data-text-en="Hold a meeting to discuss the draft design" 
+                  data-text-zh="召開會議討論設計草稿"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Hold a meeting to discuss the draft design.</span> <span class="lang-zh">召開會議討論設計草稿。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>Collect feedback from + group</span>
+          <button class="speak-btn" 
+                  data-text-en="Collect feedback from shoppers after the trial run" 
+                  data-text-zh="試行後收集顧客意見"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Collect feedback from shoppers after the trial run.</span> <span class="lang-zh">試行後收集顧客意見。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>Revise the design according to + feedback</span>
+          <button class="speak-btn" 
+                  data-text-en="Revise the design according to feedback from the supervisor" 
+                  data-text-zh="根據導師的意見修改設計"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Revise the design according to feedback from the supervisor.</span> <span class="lang-zh">根據導師的意見修改設計。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>Present the final product to + audience</span>
+          <button class="speak-btn" 
+                  data-text-en="Present the final product to mall management and tenants" 
+                  data-text-zh="向商場管理層及租戶匯報最終成果"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Present the final product to mall management and tenants.</span> <span class="lang-zh">向商場管理層及租戶匯報最終成果。</span></div>
+      </div>
+
+      <div class="note"><span class="lang-en">💡 Use action verbs such as conduct, analyse, prepare, discuss, collect, revise and present.</span><span class="lang-zh">💡 里程碑多用行動動詞，例如 conduct、analyse、prepare、discuss、collect、revise、present。</span></div>
+    </div>
+
+    <!-- RESOURCES PAGE -->
+    <div class="section-page" id="page-resources">
+      <div class="section-header">
+        <div class="section-title"><span class="emoji">🛠️</span><span><span class="lang-en">Resources Needed</span><span class="lang-zh">所需資源</span></span></div>
+        <button class="speak-all-btn" onclick="speakAll('page-resources')"><span>🔊</span><span class="lang-en">Read all</span><span class="lang-zh">朗讀全部</span></button>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>[Role] to + action or purpose</span>
+          <button class="speak-btn" 
+                  data-text-en="Design team to create the counter layout and visuals" 
+                  data-text-zh="設計團隊負責制定櫃台佈局及視覺效果"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example (human resources):</span><span class="lang-zh">例子（人力資源）：</span></strong> <span class="lang-en">Design team to create the counter layout and visuals.</span> <span class="lang-zh">設計團隊負責制定櫃台佈局及視覺效果。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>[Equipment or materials] (list with commas)</span>
+          <button class="speak-btn" 
+                  data-text-en="Computers phones and information system for enquiries" 
+                  data-text-zh="用於查詢的電腦、電話及資訊系統"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example (equipment):</span><span class="lang-zh">例子（設備）：</span></strong> <span class="lang-en">Computers, phones and information system for enquiries.</span> <span class="lang-zh">用於查詢的電腦、電話及資訊系統。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>Designated + place or location + detail</span>
+          <button class="speak-btn" 
+                  data-tex-en="Designated floor space in a visible location" 
+                  data-tex-zh="商場當眼位置的指定場地"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example (venue):</span><span class="lang-zh">例子（場地）：</span></strong> <span class="lang-en">Designated floor space in a visible location.</span> <span class="lang-zh">商場當眼位置的指定場地。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>Budget for + purpose or items</span>
+          <button class="speak-btn" 
+                  data-text-en="Budget for design construction equipment and printing" 
+                  data-text-zh="用於設計、建造、設備及印刷的預算"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example (budget):</span><span class="lang-zh">例子（預算）：</span></strong> <span class="lang-en">Budget for design, construction, equipment and printing.</span> <span class="lang-zh">用於設計、建造、設備及印刷的預算。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>Additional staff to support + task</span>
+          <button class="speak-btn" 
+                  data-text-en="Additional staff to support crowd control during events" 
+                  data-text-zh="額外人手在活動期間協助人流管理"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Additional staff to support crowd control during events.</span> <span class="lang-zh">額外人手在活動期間協助人流管理。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>Software tools for + purpose</span>
+          <button class="speak-btn" 
+                  data-text-en="Software tools for designing floor plans and 3D models"  
+                  data-text-zh="用於繪製平面圖及 3D 模型的軟件工具"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Software tools for designing floor plans and 3D models.</span> <span class="lang-zh">用於繪製平面圖及 3D 模型的軟件工具。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>Printing materials for + item</span>
+          <button class="speak-btn" 
+                  data-text-en="Printing materials for posters leaflets and name cards" 
+                  data-text-zh="印製海報、單張及姓名卡的物料"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Printing materials for posters, leaflets and name cards.</span> <span class="lang-zh">印製海報、單張及姓名卡的物料。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>Transport for moving equipment to + place</span>
+          <button class="speak-btn" 
+                  data-text-en="Transport for moving equipment to the shopping mall" 
+                  data-text-zh="把設備運送到商場的交通安排"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Transport for moving equipment to the shopping mall.</span> <span class="lang-zh">把設備運送到商場的交通安排。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>Contingency budget for unexpected costs</span>
+          <button class="speak-btn" 
+                  data-text-en="Contingency budget for unexpected costs such as maintenance or replacement" 
+                  data-text-zh="預留後備預算，以應付維修或更換等額外開支"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Contingency budget for unexpected costs such as maintenance or replacement.</span> <span class="lang-zh">預留後備預算，以應付維修或更換等額外開支。</span></div>
+      </div>
+
+      <div class="note"><span class="lang-en">💡 Group resources into human, equipment / materials and venue / logistics.</span><span class="lang-zh">💡 可把資源分為人力、設備／物料及場地／物流三大類。</span></div>
+    </div>
+
+    <!-- OUTPUTS PAGE -->
+    <div class="section-page" id="page-outputs">
+      <div class="section-header">
+        <div class="section-title"><span class="emoji">📦</span><span><span class="lang-en">Project Outputs</span><span class="lang-zh">項目成果</span></span></div>
+        <button class="speak-all-btn" onclick="speakAll('page-outputs')"><span>🔊</span><span class="lang-en">Read all</span><span class="lang-zh">朗讀全部</span></button>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>[Document or report] (simple list)</span>
+          <button class="speak-btn" 
+                  data-text-en="Project plan presentation, progress report, final report, final report presentation" 
+                  data-text-zh="專題計劃簡報；進度報告；最終報告；最終報告簡報"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Examples:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Project plan presentation; progress report; final report; final report presentation.</span> <span class="lang-zh">專題計劃簡報；進度報告；最終報告；最終報告簡報。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>[Output] + details in brackets</span>
+          <button class="speak-btn" 
+                  data-text-en="Counter design drawings, including layout plan and three D sketch or rendering" 
+                  data-text-zh="櫃台設計圖（平面圖、3D 草圖或渲染圖）"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Counter design drawings (layout plan, 3D sketch or rendering).</span> <span class="lang-zh">櫃台設計圖（平面圖、3D 草圖或渲染圖）。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>User guide or instruction booklet</span>
+          <button class="speak-btn" 
+                  data-text-en="User guide or instruction booklet for staff" 
+                  data-text-zh="給員工使用的使用指南或說明小冊子"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">User guide or instruction booklet for staff.</span> <span class="lang-zh">給員工使用的使用指南或說明小冊子。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>Online survey results summary</span>
+          <button class="speak-btn" 
+                  data-text-en="Online survey results summary about customer needs" 
+                  data-text-zh="關於顧客需求的網上問卷結果摘要"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Online survey results summary about customer needs.</span> <span class="lang-zh">關於顧客需求的網上問卷結果摘要。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>Prototype or model of the product</span>
+          <button class="speak-btn" 
+                  data-text-en="Prototype or model of the new customer service counter" 
+                  data-text-zh="新客戶服務櫃台的模型或原型"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Prototype or model of the new customer service counter.</span> <span class="lang-zh">新客戶服務櫃台的模型或原型。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>Photo or video record of the activity</span>
+          <button class="speak-btn" 
+                  data-text-en="Photo or video record of the trial counter" 
+                  data-text-zh="試用櫃台的相片或影片記"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Photo or video record of the trial counter.</span> <span class="lang-zh">試用櫃台的相片或影片記錄。</span></div>
+      </div>
+
+      <div class="expression-card">
+        <div class="expression-pattern"><span>Poster or leaflet for promotion</span>
+          <button class="speak-btn" 
+                  data-text-en="Poster or leaflet for promoting the new counter service" 
+                  data-text-zh="宣傳新櫃台服務的海報或宣傳單張"
+                  onclick="speakText(this)"><span>🔊</span><span class="lang-en">Listen</span><span class="lang-zh">聽</span></button>
+        </div>
+        <div class="example"><strong><span class="lang-en">Example:</span><span class="lang-zh">例子：</span></strong> <span class="lang-en">Poster or leaflet for promoting the new counter service.</span> <span class="lang-zh">宣傳新櫃台服務的海報或宣傳單張。</span></div>
+      </div>
+
+      <div class="note"><span class="lang-en">💡 Outputs are the final products that the project will produce.</span><span class="lang-zh">💡 項目成果是計劃最後要「交出」的成品。</span></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+let currentLang = 'en';
+const synth = window.speechSynthesis;
+let preferredEnVoice = null;
+let preferredZhVoice = null;
+
+// Load and select the best available voices
+function loadVoices() {
+  const voices = synth.getVoices();
+  
+  // Try to find a high-quality UK English voice
+  preferredEnVoice = 
+    voices.find(v => v.lang.startsWith('en-GB') && /Female|Hazel|Libby|Sonia|Daniel|UK|British/i.test(v.name)) ||
+    voices.find(v => v.lang.startsWith('en-GB')) ||
+    voices.find(v => v.lang.startsWith('en-') && /UK|British/i.test(v.name)) ||
+    voices.find(v => v.lang.startsWith('en')) ||
+    null;
+
+  // Try to find Hong Kong Cantonese voice
+  preferredZhVoice = 
+    voices.find(v => v.lang.toLowerCase().startsWith('zh-hk')) ||
+    voices.find(v => v.lang.toLowerCase().startsWith('yue')) ||
+    voices.find(v => v.lang.toLowerCase().startsWith('zh')) ||
+    null;
+
+  // Optional: log the selected voices to console for debugging
+  if (preferredEnVoice) console.log('English voice:', preferredEnVoice.name, preferredEnVoice.lang);
+  if (preferredZhVoice) console.log('Chinese voice:', preferredZhVoice.name, preferredZhVoice.lang);
+}
+
+// Load voices when ready (different browsers load at different times)
+if (typeof speechSynthesis !== 'undefined') {
+  if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = loadVoices;
+  }
+  loadVoices();
+}
+
+function toggleLanguage() {
+  currentLang = currentLang === 'en' ? 'zh' : 'en';
+  document.body.setAttribute('data-lang', currentLang);
+  if (synth.speaking) synth.cancel();
+}
+
+function speakText(btn) {
+  // Choose text based on current language
+  const text = currentLang === 'zh' 
+    ? btn.getAttribute('data-text-zh') 
+    : btn.getAttribute('data-text-en');
+    
+  if (!text) return;
+  if (synth.speaking) synth.cancel();
+  
+  const u = new SpeechSynthesisUtterance(text);
+  
+  if (currentLang === 'zh') {
+    u.lang = 'zh-HK';
+    if (preferredZhVoice) u.voice = preferredZhVoice;
+    u.rate = 0.9;
+  } else {
+    u.lang = 'en-GB';
+    if (preferredEnVoice) u.voice = preferredEnVoice;
+    u.rate = 0.9;
+  }
+  
+  btn.style.background = '#f59e0b';
+  u.onend = () => { btn.style.background = '#0891b2'; };
+  synth.speak(u);
+}
+
+function speakAll(pageId) {
+  if (synth.speaking) {
+    synth.cancel();
+    return;
+  }
+  
+  const page = document.getElementById(pageId);
+  if (!page) return;
+  
+  const btns = page.querySelectorAll('.speak-btn');
+  let i = 0;
+  
+  const playNext = () => {
+    if (i >= btns.length) return;
+    
+    const b = btns[i];
+    const t = b.getAttribute('data-text');
+    
+    if (!t) {
+      i++;
+      playNext();
+      return;
+    }
+    
+    const u = new SpeechSynthesisUtterance(t);
+    
+    if (currentLang === 'zh') {
+      u.lang = 'zh-HK';
+      if (preferredZhVoice) u.voice = preferredZhVoice;
+      u.rate = 0.9;
+    } else {
+      u.lang = 'en-GB';
+      if (preferredEnVoice) u.voice = preferredEnVoice;
+      u.rate = 0.9;
+    }
+    
+    b.style.background = '#f59e0b';
+    u.onend = () => {
+      b.style.background = '#0891b2';
+      i++;
+      setTimeout(playNext, 300);
+    };
+    
+    synth.speak(u);
+  };
+  
+  playNext();
+}
+
+function showPage(e) {
+  const target = e.currentTarget.dataset.target;
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  e.currentTarget.classList.add('active');
+  document.querySelectorAll('.section-page').forEach(p => p.classList.remove('active'));
+  document.getElementById(target).classList.add('active');
+  if (synth.speaking) synth.cancel();
+}
+
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden && synth.speaking) synth.cancel();
+});
+  
+  function speakText(btn){
+    const langIsZh = (document.body.dataset.lang === 'zh');
+    const text = langIsZh
+      ? btn.getAttribute('data-text-zh')
+      : btn.getAttribute('data-text-en');
+
+    if (!('speechSynthesis' in window) || !text) return;
+
+    window.speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = langIsZh ? 'zh-HK' : 'en-HK';
+    window.speechSynthesis.speak(utter);
+  }
+
+  function speakAll(sectionId){
+    const langIsZh = (document.body.dataset.lang === 'zh');
+    const section = document.getElementById(sectionId);
+    if (!section || !('speechSynthesis' in window)) return;
+
+    const btns = section.querySelectorAll('.speak-btn');
+    const queue = [];
+
+    btns.forEach(b=>{
+      const t = langIsZh
+        ? b.getAttribute('data-text-zh')
+        : b.getAttribute('data-text-en');
+      if (t) queue.push(t);
+    });
+
+    if (!queue.length) return;
+
+    window.speechSynthesis.cancel();
+    let idx = 0;
+    const utter = new SpeechSynthesisUtterance(queue[idx]);
+    utter.lang = langIsZh ? 'zh-HK' : 'en-HK';
+    utter.onend = () => {
+      idx++;
+      if (idx < queue.length){
+        utter.text = queue[idx];
+        window.speechSynthesis.speak(utter);
+      }
+    };
+    window.speechSynthesis.speak(utter);
+  }
+</script>
+
+</body>
+</html>
+    
+  </body>
+  
+</html>
