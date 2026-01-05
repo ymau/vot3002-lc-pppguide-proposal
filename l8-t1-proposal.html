@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Presentation Practice Tool</title>
+  <title>Presentation Practise Tool</title>
   <style>
     * {
       box-sizing: border-box;
@@ -187,7 +188,7 @@ h1 {
 
 .control-item:last-child {
  background: linear-gradient(135deg, #FFE8CD 0%, #DDF6D2 100%);
-  border-color: white
+  border-color: white;
 }
 
 .control-item:hover {
@@ -356,7 +357,7 @@ h1 {
 }
 
 .btn-stop {
-  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
   color: white;
   border: 2px solid transparent;
 }
@@ -560,7 +561,7 @@ h1 {
     <header>
       <button class="lang-toggle" id="langToggle">中文</button>
       <h1>
-        <span class="lang-en">Presentation Practice Tool</span>
+        <span class="lang-en">Presentation Practise Tool</span>
         <span class="lang-zh">簡報練習工具</span>
       </h1>
       <p class="subtitle">
@@ -685,6 +686,8 @@ Thank you for your attention. I'm happy to answer any questions.
     let recordingStartTime = 0;
     let currentPlayingAudio = null;
     let scriptLanguage = 'en'; // Track the language of the script
+    let supportedMimeType = 'audio/webm'; // Default
+
 
     // Initialize
     function init() {
@@ -959,39 +962,63 @@ Thank you for your attention. I'm happy to answer any questions.
       }
     }
 
-    // Start Recording
-    async function startRecording() {
-      try {
-        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        
-        mediaRecorder = new MediaRecorder(stream);
-        audioChunks = [];
-        recordingStartTime = Date.now();
-        
-        mediaRecorder.ondataavailable = (event) => {
-          audioChunks.push(event.data);
-        };
-        
-        mediaRecorder.onstop = () => {
-          const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
-          const duration = Math.round((Date.now() - recordingStartTime) / 1000);
-          saveRecording(audioBlob, duration);
-          stream.getTracks().forEach(track => track.stop());
-        };
-        
-        mediaRecorder.start();
-        
-        const recordBtn = document.getElementById('recordBtn');
-        recordBtn.classList.add('recording');
-        recordBtn.innerHTML = `<span>⏹️</span><span><span class="lang-en">Stop Recording</span><span class="lang-zh">停止錄音</span></span>`;
-        
-        showStatus(currentLang === 'en' ? '🎙️ Recording...' : '🎙️ 錄音中...', 999999);
-        
-      } catch (error) {
-        console.error('Error accessing microphone:', error);
-        showStatus(currentLang === 'en' ? '❌ Microphone access denied' : '❌ 無法存取麥克風');
-      }
+    // Detect supported MIME type once on init
+function detectSupportedMimeType() {
+  const types = [
+    'audio/mp4',  // iOS Safari preferred
+    'audio/webm;codecs=opus',
+    'audio/webm',
+    'audio/mp4;codecs=mp4a.40.2',
+    'audio/ogg;codecs=opus'
+  ];
+  for (let type of types) {
+    if (MediaRecorder.isTypeSupported(type)) {
+      supportedMimeType = type;
+      console.log('Using MIME type:', supportedMimeType);
+      return;
     }
+  }
+}
+
+// Start Recording (fixed)
+async function startRecording() {
+  try {
+    detectSupportedMimeType(); // Ensure detection
+    const stream = await navigator.mediaDevices.getUserMedia({ 
+      audio: {
+        echoCancellation: true,
+        noiseSuppression: true,
+        sampleRate: 44100
+      } 
+    });
+    mediaRecorder = new MediaRecorder(stream, { mimeType: supportedMimeType });
+    audioChunks = [];
+    recordingStartTime = Date.now();
+    
+    mediaRecorder.ondataavailable = (event) => {
+      if (event.data.size > 0) {
+        audioChunks.push(event.data);
+      }
+    };
+    
+    mediaRecorder.onstop = () => {
+      const audioBlob = new Blob(audioChunks, { type: supportedMimeType });
+      const duration = Math.round((Date.now() - recordingStartTime) / 1000);
+      saveRecording(audioBlob, duration);
+      stream.getTracks().forEach(track => track.stop());
+    };
+    
+    mediaRecorder.start(100); // Timeslice for better iOS chunks
+    const recordBtn = document.getElementById('recordBtn');
+    recordBtn.classList.add('recording');
+    recordBtn.innerHTML = `<span>⏹️</span><span><span class="lang-en">Stop Recording</span><span class="lang-zh">停止錄音</span></span>`;
+    showStatus(currentLang === 'en' ? '🎙️ Recording...' : '🎙️ 錄音中...', 999999);
+  } catch (error) {
+    console.error('Error accessing microphone:', error);
+    showStatus(currentLang === 'en' ? '❌ Microphone access denied' : '❌ 無法存取麥克風');
+  }
+}
+
 
     // Stop Recording
     function stopRecording() {
@@ -1015,21 +1042,21 @@ Thank you for your attention. I'm happy to answer any questions.
       }
     }
 
-    // Save Recording
-    function saveRecording(blob, duration) {
-      const recording = {
-        id: Date.now(),
-        blob: blob,
-        url: URL.createObjectURL(blob),
-        duration: duration,
-        timestamp: new Date().toLocaleString(),
-        language: scriptLanguage === 'zh' ? '粵語' : 'English'
-      };
-      
-      recordings.unshift(recording);
-      renderRecordings();
-      showStatus(currentLang === 'en' ? '✅ Recording saved!' : '✅ 錄音已儲存！');
-    }
+    // Save Recording (fixed type matching)
+function saveRecording(blob, duration) {
+  const recording = {
+    id: Date.now(),
+    blob: blob,
+    url: URL.createObjectURL(blob),
+    duration: duration,
+    timestamp: new Date().toLocaleString(),
+    mimeType: supportedMimeType, // Store for debugging
+    language: scriptLanguage === 'zh' ? '粵語' : 'English'
+  };
+  recordings.unshift(recording);
+  renderRecordings();
+  showStatus(currentLang === 'en' ? `✅ Recording saved! (${supportedMimeType})` : '✅ 錄音已儲存！');
+}
 
     // Render Recordings
     function renderRecordings() {
@@ -1126,6 +1153,8 @@ Thank you for your attention. I'm happy to answer any questions.
 
     // Initialize on load
     window.addEventListener('load', init);
+    detectSupportedMimeType();
+    
   </script>
 </body>
 </html>
