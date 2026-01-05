@@ -944,7 +944,7 @@ Thank you for your attention. I'm happy to answer any questions.
         playBtn.classList.remove('playing');
         playBtn.disabled = false;
         stopBtn.disabled = true;
-        showStatus(currentLang === 'en' ? '❌ Playback error' : '❌ 播放錯誤');
+        showStatus(currentLang === 'en' ? '❌ Playback stopped' : '❌ 播放停止');
       };
       
       window.speechSynthesis.speak(currentUtterance);
