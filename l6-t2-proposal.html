@@ -182,7 +182,19 @@
       font-size: 0.9rem;
       line-height: 1.9;
       color: #334155;
-      margin-bottom: 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.25rem;
+    }
+
+    .section-controls button {
+      font-size: 0.8rem;
+      padding: 0.45rem 1.2rem;
     }
 
     .blank-select {
@@ -394,8 +406,8 @@
       h1 { font-size: 1.3rem; }
       .subtitle { font-size: 0.85rem; }
       .section-text { font-size: 0.85rem; line-height: 1.8; }
-      .blank-select { 
-        min-width: 120px; 
+      .blank-select {
+        min-width: 120px;
         font-size: 0.8rem;
         padding: 0.35rem 0.6rem;
       }
@@ -404,6 +416,9 @@
         right: 0.75rem;
         padding: 0.4rem 0.8rem;
         font-size: 0.8rem;
+      }
+      .section-controls button {
+        flex: 1 1 100%;
       }
     }
   </style>
@@ -425,16 +440,16 @@
 
     <div class="controls">
       <button class="btn-secondary" id="resetBtn">
-        🔄 <span class="lang-en">Reset</span><span class="lang-zh">重設</span>
+        🔄 <span class="lang-en">Reset All</span><span class="lang-zh">重設全部</span>
       </button>
       <button class="btn-primary" id="checkBtn">
-        ✓ <span class="lang-en">Check Answers</span><span class="lang-zh">檢查答案</span>
+        ✓ <span class="lang-en">Check All Answers</span><span class="lang-zh">檢查全部答案</span>
       </button>
     </div>
 
     <p class="instruction">
-      <span class="lang-en">💡 Tip: Select the correct phrase from each dropdown menu to complete the sentences.</span>
-      <span class="lang-zh">💡 提示：從每個下拉選單中選擇正確的詞語以完成句子。</span>
+      <span class="lang-en">💡 Tip: You can check each section separately, or check all answers at once.</span>
+      <span class="lang-zh">💡 提示：你可以逐部分檢查答案，或者一次過檢查全部答案。</span>
     </p>
 
     <div id="feedback" class="feedback"></div>
@@ -597,11 +612,26 @@
           <div class="lang-zh">${htmlZh}</div>
         `;
 
+        const controlsDiv = document.createElement('div');
+        controlsDiv.className = 'section-controls';
+        controlsDiv.innerHTML = `
+          <button class="btn-primary section-check-btn" data-section-id="${section.id}">
+            ✓ <span class="lang-en">Check this section</span>
+              <span class="lang-zh">檢查呢一部分</span>
+          </button>
+          <button class="btn-secondary section-reset-btn" data-section-id="${section.id}">
+            🔄 <span class="lang-en">Reset this section</span>
+               <span class="lang-zh">重設呢一部分</span>
+          </button>
+        `;
+
         card.appendChild(label);
         card.appendChild(textContainer);
+        card.appendChild(controlsDiv);
         sectionsArea.appendChild(card);
       });
 
+      // dropdown change
       document.querySelectorAll('.blank-select').forEach(select => {
         select.addEventListener('change', (e) => {
           if (e.target.value) {
@@ -610,6 +640,37 @@
             e.target.classList.remove('filled');
           }
           clearFeedback();
+          const card = e.target.closest('.section-card');
+          if (card) {
+            card.classList.remove('correct', 'wrong');
+          }
+        });
+      });
+
+      // section-level buttons
+      document.querySelectorAll('.section-check-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const sectionId = parseInt(btn.dataset.sectionId, 10);
+          const lang = currentLang;
+          checkSection(sectionId, lang);
+        });
+      });
+
+      document.querySelectorAll('.section-reset-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const sectionId = parseInt(btn.dataset.sectionId, 10);
+          const lang = currentLang;
+
+          const card = document.querySelector(`.section-card[data-section-id="${sectionId}"]`);
+          card.classList.remove('correct', 'wrong');
+
+          const selects = document.querySelectorAll(`.blank-select[data-section="${sectionId}"][data-lang="${lang}"]`);
+          selects.forEach(select => {
+            select.value = '';
+            select.classList.remove('filled', 'correct', 'wrong');
+          });
+
+          clearFeedback();
         });
       });
 
@@ -617,15 +678,9 @@
     }
 
     function clearFeedback() {
-      feedback.textContent = '';
-      feedback.className = 'feedback';
-      document.querySelectorAll('.section-card').forEach(card => {
-        card.classList.remove('correct', 'wrong');
-      });
-      document.querySelectorAll('.blank-select').forEach(select => {
-        select.classList.remove('correct', 'wrong');
-      });
-    }
+  feedback.textContent = '';
+  feedback.className = 'feedback';
+}
 
     function reconstructText(sectionId, lang) {
       const section = sections.find(s => s.id === sectionId);
@@ -654,60 +709,70 @@
         .replace(/[，。、：；？！]/g, "");
     }
 
+    function checkSection(sectionId, lang) {
+      const section = sections.find(s => s.id === sectionId);
+      const { text: userText } = reconstructText(sectionId, lang);
+      const correctText = lang === 'en' ? section.fullTextEn : section.fullTextZh;
+
+      const isCorrect = lang === 'zh'
+        ? normalizeZh(userText) === normalizeZh(correctText)
+        : userText === correctText;
+
+      const card = document.querySelector(`.section-card[data-section-id="${sectionId}"]`);
+      const selects = document.querySelectorAll(`.blank-select[data-section="${sectionId}"][data-lang="${lang}"]`);
+
+      if (isCorrect) {
+        card.classList.add('correct');
+        card.classList.remove('wrong');
+        selects.forEach(select => {
+          if (select.value) {
+            select.classList.add('correct');
+            select.classList.remove('wrong');
+          }
+        });
+      } else {
+        card.classList.add('wrong');
+        card.classList.remove('correct');
+        selects.forEach(select => {
+          if (select.value) {
+            select.classList.add('wrong');
+            select.classList.remove('correct');
+          } else {
+            select.classList.add('wrong');
+          }
+        });
+      }
+
+      feedback.innerHTML = isCorrect
+        ? (lang === 'en'
+            ? '✅ This section is correct.'
+            : '✅ 呢一部分全部正確。')
+        : (lang === 'en'
+            ? '❌ There are errors in this section. Check the highlighted blanks.'
+            : '❌ 呢一部分有啲錯。檢查紅色嘅選項。');
+
+      feedback.className = isCorrect ? 'feedback correct' : 'feedback wrong';
+
+      return isCorrect;
+    }
+
     function checkAnswers() {
       let allCorrect = true;
       const lang = currentLang;
 
       sections.forEach(section => {
-        const { text: userText, allFilled } = reconstructText(section.id, lang);
-        const correctText = lang === 'en' ? section.fullTextEn : section.fullTextZh;
-
-        const isCorrect = lang === 'zh' 
-        ? normalizeZh(userText) === normalizeZh(correctText)
-        : userText === correctText;
-
-
-        const card = document.querySelector(`.section-card[data-section-id="${section.id}"]`);
-        const selects = document.querySelectorAll(`.blank-select[data-section="${section.id}"][data-lang="${lang}"]`);
-
-        if (isCorrect) {
-          card.classList.add('correct');
-          card.classList.remove('wrong');
-          selects.forEach(select => {
-            if (select.value) {
-              select.classList.add('correct');
-              select.classList.remove('wrong');
-            }
-          });
-        } else {
-          card.classList.add('wrong');
-          card.classList.remove('correct');
-          allCorrect = false;
-
-          selects.forEach(select => {
-            if (select.value) {
-              select.classList.add('wrong');
-              select.classList.remove('correct');
-            } else {
-              select.classList.add('wrong');
-            }
-          });
-        }
+        const ok = checkSection(section.id, lang);
+        if (!ok) allCorrect = false;
       });
 
       if (allCorrect) {
-        feedback.innerHTML = currentLang === 'en' 
-          ? '🎉 Excellent! All answers are correct!' 
+        feedback.innerHTML = currentLang === 'en'
+          ? '🎉 Excellent! All answers are correct!'
           : '🎉 好叻！所有答案都啱晒！';
         feedback.className = 'feedback correct';
 
         celebrateWithConfetti();
         setTimeout(() => showOverview(), 2500);
-      } else {
-        feedback.innerHTML = currentLang === 'en'
-          ? '❌ Some answers are incorrect. Check the highlighted sections and try again.'
-          : '❌ 有啲答案唔啱。檢查一下標示咗嘅部分再試過啦。';
-        feedback.className = 'feedback wrong';
       }
     }
 
@@ -868,13 +933,15 @@
 
     function reset() {
       createSections();
-      clearFeedback();
+      feedback.textContent = '';
+      feedback.className = 'feedback';
     }
 
     langToggle.addEventListener('click', () => {
       currentLang = currentLang === 'en' ? 'zh' : 'en';
       updateLanguage();
-      clearFeedback();
+      feedback.textContent = '';
+      feedback.className = 'feedback';
     });
 
     document.getElementById('checkBtn').addEventListener('click', checkAnswers);
