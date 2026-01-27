@@ -631,7 +631,6 @@
         sectionsArea.appendChild(card);
       });
 
-      // dropdown change
       document.querySelectorAll('.blank-select').forEach(select => {
         select.addEventListener('change', (e) => {
           if (e.target.value) {
@@ -647,7 +646,6 @@
         });
       });
 
-      // section-level buttons
       document.querySelectorAll('.section-check-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           const sectionId = parseInt(btn.dataset.sectionId, 10);
@@ -678,28 +676,33 @@
     }
 
     function clearFeedback() {
-  feedback.textContent = '';
-  feedback.className = 'feedback';
-}
+      feedback.textContent = '';
+      feedback.className = 'feedback';
+    }
 
     function reconstructText(sectionId, lang) {
       const section = sections.find(s => s.id === sectionId);
       const template = lang === 'en' ? section.textEn : section.textZh;
-      const selects = document.querySelectorAll(`.blank-select[data-section="${sectionId}"][data-lang="${lang}"]`);
+      const selects = Array.from(
+        document.querySelectorAll(`.blank-select[data-section="${sectionId}"][data-lang="${lang}"]`)
+      );
 
       let reconstructed = template;
       let allFilled = true;
+      const userAnswers = [];
 
       selects.forEach(select => {
         if (select.value) {
           reconstructed = reconstructed.replace('<blank>', select.value);
+          userAnswers.push(select.value);
         } else {
           allFilled = false;
           reconstructed = reconstructed.replace('<blank>', '[EMPTY]');
+          userAnswers.push('');
         }
       });
 
-      return { text: reconstructed, allFilled };
+      return { text: reconstructed, allFilled, userAnswers, selects };
     }
 
     function normalizeZh(str) {
@@ -709,51 +712,123 @@
         .replace(/[，。、：；？！]/g, "");
     }
 
-    function checkSection(sectionId, lang) {
+    function getCorrectAnswersForSection(sectionId, lang) {
       const section = sections.find(s => s.id === sectionId);
-      const { text: userText } = reconstructText(sectionId, lang);
-      const correctText = lang === 'en' ? section.fullTextEn : section.fullTextZh;
+      const full = lang === 'en' ? section.fullTextEn : section.fullTextZh;
+      const template = lang === 'en' ? section.textEn : section.textZh;
 
-      const isCorrect = lang === 'zh'
-        ? normalizeZh(userText) === normalizeZh(correctText)
-        : userText === correctText;
+      const parts = template.split('<blank>');
+      const correctBlanks = [];
+      let remaining = full;
 
+      for (let i = 0; i < parts.length - 1; i++) {
+        const before = parts[i];
+        const after = parts[i + 1];
+
+        if (before && remaining.startsWith(before)) {
+          remaining = remaining.slice(before.length);
+        }
+
+        let blankValue = '';
+        if (after) {
+          const idx = remaining.indexOf(after);
+          if (idx !== -1) {
+            blankValue = remaining.slice(0, idx).trim();
+            remaining = remaining.slice(idx);
+          } else {
+            blankValue = remaining.trim();
+            remaining = '';
+          }
+        } else {
+          blankValue = remaining.trim();
+          remaining = '';
+        }
+
+        correctBlanks.push(blankValue);
+      }
+
+      return correctBlanks;
+    }
+
+    function checkIfAllSectionsCorrect(lang) {
+      let allCorrect = true;
+
+      sections.forEach(section => {
+        const { userAnswers } = reconstructText(section.id, lang);
+        const correctBlanks = getCorrectAnswersForSection(section.id, lang);
+
+        const sectionCorrect = userAnswers.every((ans, idx) => {
+          const correct = correctBlanks[idx] || '';
+          if (!ans) return false;
+          return lang === 'zh'
+            ? normalizeZh(ans) === normalizeZh(correct)
+            : ans === correct;
+        });
+
+        if (!sectionCorrect) {
+          allCorrect = false;
+        }
+      });
+
+      if (allCorrect) {
+        feedback.innerHTML = lang === 'en'
+          ? '🎉 Excellent! All answers are correct!'
+          : '🎉 好叻！所有答案都啱晒！';
+        feedback.className = 'feedback correct';
+        celebrateWithConfetti();
+        setTimeout(() => showOverview(), 2500);
+      }
+
+      return allCorrect;
+    }
+
+    function checkSection(sectionId, lang) {
+      const { userAnswers, selects } = reconstructText(sectionId, lang);
+      const correctBlanks = getCorrectAnswersForSection(sectionId, lang);
       const card = document.querySelector(`.section-card[data-section-id="${sectionId}"]`);
-      const selects = document.querySelectorAll(`.blank-select[data-section="${sectionId}"][data-lang="${lang}"]`);
 
-      if (isCorrect) {
+      let sectionAllCorrect = true;
+
+      selects.forEach((select, index) => {
+        const userAns = userAnswers[index];
+        const correctAns = correctBlanks[index] || '';
+
+        select.classList.remove('correct', 'wrong');
+
+        if (!userAns) {
+          select.classList.add('wrong');
+          sectionAllCorrect = false;
+        } else if (lang === 'zh'
+          ? normalizeZh(userAns) === normalizeZh(correctAns)
+          : userAns === correctAns) {
+          select.classList.add('correct');
+        } else {
+          select.classList.add('wrong');
+          sectionAllCorrect = false;
+        }
+      });
+
+      if (sectionAllCorrect) {
         card.classList.add('correct');
         card.classList.remove('wrong');
-        selects.forEach(select => {
-          if (select.value) {
-            select.classList.add('correct');
-            select.classList.remove('wrong');
-          }
-        });
       } else {
         card.classList.add('wrong');
         card.classList.remove('correct');
-        selects.forEach(select => {
-          if (select.value) {
-            select.classList.add('wrong');
-            select.classList.remove('correct');
-          } else {
-            select.classList.add('wrong');
-          }
-        });
       }
 
-      feedback.innerHTML = isCorrect
+      feedback.innerHTML = sectionAllCorrect
         ? (lang === 'en'
-            ? '✅ This section is correct.'
-            : '✅ 呢一部分全部正確。')
+          ? '✅ This section is correct.'
+          : '✅ 呢一部分全部正確。')
         : (lang === 'en'
-            ? '❌ There are errors in this section. Check the highlighted blanks.'
-            : '❌ 呢一部分有啲錯。檢查紅色嘅選項。');
+          ? '❌ There are errors in this section. Check the highlighted blanks.'
+          : '❌ 呢一部分有啲錯。檢查紅色嘅選項。');
 
-      feedback.className = isCorrect ? 'feedback correct' : 'feedback wrong';
+      feedback.className = sectionAllCorrect ? 'feedback correct' : 'feedback wrong';
 
-      return isCorrect;
+      checkIfAllSectionsCorrect(lang);
+
+      return sectionAllCorrect;
     }
 
     function checkAnswers() {
@@ -766,13 +841,7 @@
       });
 
       if (allCorrect) {
-        feedback.innerHTML = currentLang === 'en'
-          ? '🎉 Excellent! All answers are correct!'
-          : '🎉 好叻！所有答案都啱晒！';
-        feedback.className = 'feedback correct';
-
-        celebrateWithConfetti();
-        setTimeout(() => showOverview(), 2500);
+        checkIfAllSectionsCorrect(lang);
       }
     }
 
@@ -780,7 +849,14 @@
       confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
       setTimeout(() => { confetti({ particleCount: 50, angle: 60, spread: 55, origin: { x: 0 } }); }, 250);
       setTimeout(() => { confetti({ particleCount: 50, angle: 120, spread: 55, origin: { x: 1 } }); }, 500);
-      setTimeout(() => { confetti({ particleCount: 100, spread: 100, origin: { y: 0.6 }, colors: ['#667eea', '#764ba2', '#f093fb', '#10b981', '#3b82f6'] }); }, 1000);
+      setTimeout(() => {
+        confetti({
+          particleCount: 100,
+          spread: 100,
+          origin: { y: 0.6 },
+          colors: ['#667eea', '#764ba2', '#f093fb', '#10b981', '#3b82f6']
+        });
+      }, 1000);
     }
 
     function showOverview() {
@@ -933,15 +1009,13 @@
 
     function reset() {
       createSections();
-      feedback.textContent = '';
-      feedback.className = 'feedback';
+      clearFeedback();
     }
 
     langToggle.addEventListener('click', () => {
       currentLang = currentLang === 'en' ? 'zh' : 'en';
       updateLanguage();
-      feedback.textContent = '';
-      feedback.className = 'feedback';
+      clearFeedback();
     });
 
     document.getElementById('checkBtn').addEventListener('click', checkAnswers);
